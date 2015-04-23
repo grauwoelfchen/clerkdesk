@@ -1,0 +1,15 @@
+{
+  "name": "clerkdesk",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+  },
+  "dependencies": {
+    "bower": "*"
+  },
+  "devDependencies": {
+    "gulp-bower": "0.0.10",
+    "gulp-watch": "4.2.0",
+    "gulp-shell": "0.4.0"
+  }
+}

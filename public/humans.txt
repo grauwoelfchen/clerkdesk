@@ -1,0 +1,10 @@
+/* TEAM */
+
+  Name: Yasuhiro Asaka
+  Site: http://grauwoelfchen.net
+  Location: Tokyo, JP.
+
+/* SITE */
+
+  Last update: 2015-04-24
+  Language: English
