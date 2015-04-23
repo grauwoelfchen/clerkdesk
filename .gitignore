@@ -1,0 +1,13 @@
+/.bundle
+/log/*
+!/log/.keep
+/tmp
+
+/node_modules
+/vendor/assets/components
+/public/assets
+/venv
+
+/Gemfile.rock
+/.env
+/Procfile

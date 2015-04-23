@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  url: <%= ENV["DATABASE_URL_DEVELOPMENT"] %>
+  min_messages: notice
+
+test:
+  <<: *default
+  url: <%= ENV["DATABASE_URL_TEST"] %>
+  min_messages: warning
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
+  min_messages: warning
