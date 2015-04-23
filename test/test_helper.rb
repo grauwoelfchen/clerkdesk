@@ -11,8 +11,7 @@ require "minitest/rails/capybara"
 require "minitest/pride" if ENV["TEST_PRIDE"].present?
 require "database_cleaner"
 
-require "locker_room/testing_support/integration/subdomain_helpers"
-require "locker_room/testing_support/integration/authentication_helpers"
+require "locker_room/testing_support/helpers"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
@@ -29,6 +28,8 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
 end
 
 class ActiveSupport::TestCase
+  include LockerRoom::TestingSupport::FixtureHelpers
+
   ActiveRecord::Migration.check_pending!
   DatabaseCleaner.strategy = :truncation
 
@@ -41,15 +42,11 @@ class ActiveSupport::TestCase
     DatabaseCleaner.clean
     super
   end
-
-  def self.locker_room_fixtures(*fixture_names)
-    fixtures(*fixture_names.map { |name| "locker_room/#{name}" })
-  end
 end
 
 # class ActionController::TestCase
 #   include Controller::SubdomainHelpers
-#   include Sorcery::TestHelpers::Rails::Controller
+#   include Controller::AuthenticationHelpers
 # end
 
 Capybara.configure do |config|
