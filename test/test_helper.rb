@@ -11,6 +11,7 @@ require "minitest/rails/capybara"
 require "minitest/pride" if ENV["TEST_PRIDE"].present?
 require "database_cleaner"
 
+require "locker_room/testing_support/secret"
 require "locker_room/testing_support/helpers"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
@@ -44,6 +45,16 @@ class ActiveSupport::TestCase
   end
 end
 
+#class ActionController::TestCase
+#  include LockerRoom::TestingSupport::Controller::SubdomainHelpers
+#  include LockerRoom::TestingSupport::Controller::AuthenticationHelpers
+#
+#  def setup
+#    @routes = LockerRoom::Engine.routes
+#    super
+#  end
+#end
+
 # class ActionController::TestCase
 #   include Controller::SubdomainHelpers
 #   include Controller::AuthenticationHelpers
@@ -68,3 +79,6 @@ class Capybara::Rails::TestCase
     locker_room.scope.default_url_options[:host] = @default_host
   end
 end
+
+ActiveRecord::FixtureSet.context_class.send(
+  :include, LockerRoom::TestingSupport::Secret::Utilities)
