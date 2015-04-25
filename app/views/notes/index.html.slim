@@ -2,6 +2,30 @@
   h1 Notes
   h2 Protokoll, Memo
 
-ul
-  - @notes.each do |note|
-    li= note.title
+- content_for :navigation
+  nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-selected
+        = link_to "Index", "#", class: "pure-menu-link"
+      li.pure-menu-item
+        = link_to "New", new_note_path, class: "pure-menu-link"
+
+table.table.pure-table.pure-table-horizontal
+  thead
+    tr
+      th= Note.human_attribute_name(:title)
+      th= Note.human_attribute_name(:content)
+      th= t("general.created_at")
+      th= t("general.updated_at")
+      th= t("general.operation")
+  tbody
+    - @notes.each do |note|
+      tr
+        td= link_to note.title, note_path(note)
+        td= truncate(note.content, length: 20)
+        td= note.created_at
+        td= note.updated_at
+        td
+          ul.operation
+            li= link_to "Edit", edit_note_path(note)
+            li= link_to "Delete", note_path(note), method: :delete, data: {confirm: "Are you sure?"}
