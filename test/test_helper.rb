@@ -11,9 +11,6 @@ require "minitest/rails/capybara"
 require "minitest/pride" if ENV["TEST_PRIDE"].present?
 require "database_cleaner"
 
-require "locker_room/testing_support/secret"
-require "locker_room/testing_support/helpers"
-
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
@@ -29,7 +26,7 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
 end
 
 class ActiveSupport::TestCase
-  include LockerRoom::TestingSupport::FixtureHelpers
+  include LockerRoom::Testing::FixtureHelpers
 
   ActiveRecord::Migration.check_pending!
   DatabaseCleaner.strategy = :truncation
@@ -45,28 +42,23 @@ class ActiveSupport::TestCase
   end
 end
 
-#class ActionController::TestCase
-#  include LockerRoom::TestingSupport::Controller::SubdomainHelpers
-#  include LockerRoom::TestingSupport::Controller::AuthenticationHelpers
-#
-#  def setup
-#    @routes = LockerRoom::Engine.routes
-#    super
-#  end
-#end
+class ActionController::TestCase
+  include LockerRoom::Testing::Controller::SubdomainHelpers
+  include LockerRoom::Testing::Controller::AuthenticationHelpers
 
-# class ActionController::TestCase
-#   include Controller::SubdomainHelpers
-#   include Controller::AuthenticationHelpers
-# end
+  def setup
+    @routes = LockerRoom::Engine.routes
+    super
+  end
+end
 
 Capybara.configure do |config|
   config.app_host = "http://example.org"
 end
 
 class Capybara::Rails::TestCase
-  include LockerRoom::TestingSupport::Integration::SubdomainHelpers
-  include LockerRoom::TestingSupport::Integration::AuthenticationHelpers
+  include LockerRoom::Testing::Integration::SubdomainHelpers
+  include LockerRoom::Testing::Integration::AuthenticationHelpers
 
   def before_setup
     @default_host = locker_room.scope.default_url_options[:host]
@@ -79,6 +71,3 @@ class Capybara::Rails::TestCase
     locker_room.scope.default_url_options[:host] = @default_host
   end
 end
-
-ActiveRecord::FixtureSet.context_class.send(
-  :include, LockerRoom::TestingSupport::Secret::Utilities)
