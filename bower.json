@@ -7,13 +7,15 @@
     "vendor/assets/components"
   ],
   "main": [
-    "jquery", "jquery-autosize", "moment"
+    "jquery",
+    "jquery-autosize",
+    "moment"
   ],
   "dependencies": {
-    "jquery": "*"
-  , "jquery-ujs": "*"
-  , "jquery-autosize": "*"
-  , "moment": "*"
-  , "normalize-css": "*"
+    "jquery": "*",
+    "jquery-ujs": "*",
+    "jquery-autosize": "*",
+    "moment": "*",
+    "purecss": "~0.6.0"
   }
 }

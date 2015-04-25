@@ -4,6 +4,7 @@ var gulp  = require('gulp')
   , bower = require('gulp-bower')
   , watch = require('gulp-watch')
   , shell = require('gulp-shell')
+  ;
 
 gulp.task('watch', function() {
   watch('./test/**/*_test.rb', {
@@ -26,4 +27,13 @@ gulp.task('bower', function() {
   return bower('./vendor/assets/components');
 });
 
-gulp.task('default', ['bower']);
+gulp.task('build-purecss', function() {
+  process.chdir('./vendor/assets/components/purecss');
+  gulp.src('*')
+    .pipe(shell([
+      'npm install'
+    , 'grunt'
+    ]));
+});
+
+gulp.task('default', ['bower', 'build-purecss']);
