@@ -3,7 +3,7 @@ require "locker_room/constraints/subdomain_required"
 
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
-    resources :notes, only: [:index, :show]
+    resources :notes
     root to: "desktop#index"
   end
 

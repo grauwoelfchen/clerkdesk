@@ -1,0 +1,5 @@
+= form_for @note, html: {class: "form pure-form"} do |f|
+  fieldset.pure-group
+    = f.text_field :title,  class: "pure-input-1", placeholder: "A title"
+    = f.text_area :content, class: "pure-input-1", placeholder: "Content"
+  = f.submit action, class: "pure-button"
