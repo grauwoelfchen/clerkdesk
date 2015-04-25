@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'notes/index'
 
   constraints(LockerRoom::Constraints::SubdomainRequired) do
-    resources :notes, only: :index
+    resources :notes, only: [:index, :show]
     root to: "pages#index"
   end
   mount LockerRoom::Engine, at: "/"
