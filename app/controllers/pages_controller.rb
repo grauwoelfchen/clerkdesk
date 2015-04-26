@@ -1,7 +1,5 @@
-class PagesController < ApplicationController
+class PagesController < WorkspaceController
   skip_filter :require_login
-
-  layout "public"
 
   def index
   end

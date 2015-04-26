@@ -1,4 +1,4 @@
-class DesktopController < ApplicationController
+class DesktopController < WorkspaceController
   def index
   end
 end
