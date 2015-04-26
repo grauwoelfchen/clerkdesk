@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < WorkspaceController
   before_action :load_note, :only => [:show, :edit, :update, :destroy]
 
   def index
