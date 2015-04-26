@@ -7,7 +7,5 @@ Rails.application.routes.draw do
     root to: "desktop#index"
   end
 
-  get "/", to: "pages#index"
-
   mount LockerRoom::Engine, at: "/"
 end

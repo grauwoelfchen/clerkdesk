@@ -10,6 +10,10 @@ class AccountScopTest < Capybara::Rails::TestCase
     Note.scoped_to(@account_penguin).create(:title => "The ice")
   end
 
+  def teardown
+    logout_user
+  end
+
   def test_scoped_visibility_on_account_piano
     user = @account_piano.owners.first
     login_user(user)
