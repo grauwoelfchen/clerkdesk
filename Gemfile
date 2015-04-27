@@ -5,11 +5,13 @@ gem "foreman"
 gem "rails", "4.2.1"
 gem "pg"
 
+gem "locker_room", path: "../locker_room"
+
+gem "acts-as-taggable-on", "~> 3.4"
+
 gem "uglifier"
 gem "slim"
 gem "stylus"
-
-gem "locker_room", path: "../locker_room"
 
 group :doc do
   gem "sdoc", "~> 0.4.0"
