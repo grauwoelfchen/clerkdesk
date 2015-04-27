@@ -54,3 +54,8 @@ see `Procfile`
 ;; Watch with gulp (see gulpfile.js)
 (venv) % gulp watch
 ```
+
+
+## ER diagram
+
+![https://raw.githubusercontent.com/grauwoelfchen/clerkdesk/master/doc/er.png](https://raw.githubusercontent.com/grauwoelfchen/clerkdesk/master/doc/er.png)
