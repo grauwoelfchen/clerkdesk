@@ -56,6 +56,6 @@ see `Procfile`
 ```
 
 
-## ER diagram
+## Document
 
-![https://raw.githubusercontent.com/grauwoelfchen/clerkdesk/master/doc/er.png](https://raw.githubusercontent.com/grauwoelfchen/clerkdesk/master/doc/er.png)
+![ER diagram](https://github.com/grauwoelfchen/clerkdesk/raw/master/doc/er.png)
