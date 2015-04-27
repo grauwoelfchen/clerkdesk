@@ -17,12 +17,12 @@ html lang="en"
       = render "shared/menu"
     div#main
       div.header.pure-g
-        .pure-u-3-5
+        .pure-u-18-24
           = yield :header
-        .pure-u-2-5
-          .user
-            = render "locker_room/shared/login"
-            span= link_to "logout", locker_room.logout_path, method: :delete
+        .pure-u-6-24
+          .sticky
+            .user= render "locker_room/shared/login"
+            span.logout= link_to "logout", locker_room.logout_path, method: :delete
       div.content
         - if flash.any?
           = render "shared/flash", flash: flash
