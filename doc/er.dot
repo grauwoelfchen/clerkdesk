@@ -1,0 +1,190 @@
+digraph Clerkdesk {
+  /**
+   * Style
+   *
+   */
+
+  graph [fontname = "DejaVuSansMono" fontsize = 9];
+  node  [fontname = "DejaVuSansMono" fontsize = 9];
+  edge  [fontname = "DejaVuSansMono" fontsize = 9];
+
+  /**
+   * Node
+   *
+   */
+
+  node [ // object
+    shape   = record
+    rankdir = LR
+  ]
+
+  Account [
+    label = "{locker_room_accounts|«LockerRoom::Account»\lhas_many: members\lhas_many: users\l\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  User [
+    label = "{locker_room_users|«LockerRoom::User»\lbelongs_to: account\lhas_one: member\l\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  Member [
+    label = "{locker_room_members|«LockerRoom::Member»\lbelongs_to: account\lbelongs_to: user\l\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  Tag [
+    label = "{tags|«ActsAsTaggableOn::Tag»\lhas_many: taggins\l\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  Tagging [
+    label = "{taggings|«ActsAsTaggableOn::Tagging»\lbelongs_to: tag\lbelongs_to: note,ledger_entry\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  Note [
+    label = "{notes|«Note»\lhas_many: tags\l\n|{ \
+      {FIELD|title\l|content\l}| \
+      {TYPE|varchar\l|text\l}| \
+      {VALUE|\r|\r} \
+    }}"
+  ]
+
+  Budget [
+    label = "{budgets|«Budget»\l\n|{ \
+      {FIELD|title\l}| \
+      {TYPE|varchar\l}| \
+      {VALUE|\r} \
+    }}"
+  ]
+
+  Ledger [
+    label = "{ledgers|«Ledger»\lbelongs_to: budget\l\n|{ \
+      {FIELD|budget_id\l|title\l|description\l}| \
+      {TYPE|integer\l|varchar\l|text\l}| \
+      {VALUE|\r|\r|\r} \
+    }}"
+  ]
+
+  LedgerCategory [
+    label = "{ledger_categories|«LedgerEntry»\lbelongs_to: ledger\l\n|{ \
+      {FIELD|ledger_id\l|type\l|name\l}| \
+      {TYPE|integer\l|integer\l|name\l}| \
+      {VALUE|\r|0:expense,1:income\r|\r} \
+    }}"
+  ]
+
+  LedgerEntry [
+    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lbelongs_to: ledger_category\lhas_many: tags\l\n|{ \
+      {FIELD|ledger_id\l|ledger_category_id\l|type\l|person_id\l|name\l|amount\l|memo\l}| \
+      {TYPE|integer\l|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
+      {VALUE|\r|\r|0:expense,1:income\r|\r|\r|\r|\r} \
+    }}"
+  ]
+
+  Person [
+    label = "{people|«Person»\l|{ \
+      {FIELD|identifier\l|name\l|zip_code\l|address\l|phone\l|email\l}| \
+      {TYPE|varchar\l|varchar\l|varchar\l|text\l|varchar\l|varchar\l}| \
+      {VALUE|\r|\r|\r|\r|\r|\r} \
+    }}"
+  ]
+
+  edge [ // table
+    shape   = record
+    rankdir = LR
+  ]
+
+  UserPerson [
+    label = "{users_people|{ \
+      {FIELD|user_id\l|person_id\l}| \
+      {TYPE|integer\l|integer\l}| \
+      {VALUE|\r|\r} \
+    }}"
+  ]
+
+
+  /**
+   * Relation
+   *
+   */
+
+  edge [ // has_many
+    arrowhead = crow
+    arrowtail = none
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  //Account -> Member
+  //Account -> User
+
+  Note        -> Tag
+  LedgerEntry -> Tag
+
+  edge [ // belongs_to
+    arrowhead = vee
+    arrowtail = none
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  Member -> Account
+  Member -> User
+  User   -> Account
+
+  Tagging -> Tag
+  Tagging -> Note
+  Tagging -> LedgerEntry
+
+  Ledger         -> Budget
+  LedgerCategory -> Ledger
+  LedgerEntry    -> Ledger
+  LedgerEntry    -> LedgerCategory
+
+  UserPerson -> User
+  UserPerson -> Person
+
+  edge [ // has_one
+    arrowhead = normal
+    arrowtail = none
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  edge [ // has_and_belongs_to_many
+    arrowhead = crow
+    arrowtail = vee
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+
+  /**
+   * Layout
+   *
+   */
+
+  {rank=same; Member;};
+  {rank=same; Account;User;};
+}
