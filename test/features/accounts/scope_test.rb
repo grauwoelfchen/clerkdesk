@@ -4,10 +4,14 @@ class AccountScopTest < Capybara::Rails::TestCase
   locker_room_fixtures(:accounts, :members, :users)
 
   def setup
-    @account_piano   = locker_room_accounts(:playing_piano)
-    @account_penguin = locker_room_accounts(:penguin_patrol)
-    Note.scoped_to(@account_piano).create(:title => "Musical instrument")
-    Note.scoped_to(@account_penguin).create(:title => "The ice")
+    @account_piano   = account_with_schema(:playing_piano)
+    @account_penguin = account_with_schema(:penguin_patrol)
+
+    Apartment::Tenant.switch!(@account_piano.subdomain)
+    Note.create(:title => "Musical instrument")
+    Apartment::Tenant.switch!(@account_penguin.subdomain)
+    Note.create(:title => "The ice")
+    Apartment::Tenant.reset
   end
 
   def teardown
@@ -31,36 +35,38 @@ class AccountScopTest < Capybara::Rails::TestCase
   end
 
   def test_scope_for_a_note_on_exact_account_piano
+    Apartment::Tenant.switch!(@account_piano.subdomain)
+    note = Note.first
     user = @account_piano.owners.first
-    note = Note.scoped_to(user.account).first
     login_user(user)
     visit(note_url(note, :subdomain => @account_piano.subdomain))
     assert_content("Musical instrument")
   end
 
   def test_scope_for_a_note_on_other_account_penguin
-    note = Note.scoped_to(@account_penguin).first
-    user = @account_piano.owners.first
+    Apartment::Tenant.switch!(@account_piano.subdomain)
+    note = Note.first
+    user = @account_penguin.owners.first
     login_user(user)
-    assert_raise(ActiveRecord::RecordNotFound) do
-      visit(note_url(note, :subdomain => @account_piano.subdomain))
-    end
+    visit(note_url(note, :subdomain => @account_penguin.subdomain))
+    refute_content("Musical instrument")
   end
 
   def test_scope_for_a_note_on_exact_account_penguin
+    Apartment::Tenant.switch!(@account_penguin.subdomain)
+    note = Note.first
     user = @account_penguin.owners.first
-    note = Note.scoped_to(user.account).first
     login_user(user)
     visit(note_url(note, :subdomain => @account_penguin.subdomain))
     assert_content("The ice")
   end
 
   def test_scope_for_a_note_on_other_account_piano
-    note = Note.scoped_to(@account_piano).first
-    user = @account_penguin.owners.first
+    Apartment::Tenant.switch!(@account_penguin.subdomain)
+    note = Note.first
+    user = @account_piano.owners.first
     login_user(user)
-    assert_raise(ActiveRecord::RecordNotFound) do
-      visit(note_url(note, :subdomain => @account_penguin.subdomain))
-    end
+    visit(note_url(note, :subdomain => @account_piano.subdomain))
+    refute_content("The ice")
   end
 end
