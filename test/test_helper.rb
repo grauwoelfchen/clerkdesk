@@ -37,19 +37,34 @@ class ActiveSupport::TestCase
   end
 
   def after_teardown
+    Apartment::Tenant.reset
+    clean_all_schema
     DatabaseCleaner.clean
     super
+  end
+
+  private
+
+  def clean_all_schema
+    connection = ActiveRecord::Base.connection.raw_connection
+    schemas = connection.query(%Q{
+      SELECT 'DROP SCHEMA ' || nspname || ' CASCADE;'
+      FROM pg_namespace
+      WHERE
+        nspname != 'public' AND
+        nspname != 'information_schema' AND
+        nspname NOT LIKE 'pg_%';
+    })
+    schemas.each do |query|
+      # DROP SCHEMA [NAME] CASCADE;
+      connection.query(query.values.first)
+    end
   end
 end
 
 class ActionController::TestCase
   include LockerRoom::Testing::Controller::SubdomainHelpers
   include LockerRoom::Testing::Controller::AuthenticationHelpers
-
-  def setup
-    @routes = LockerRoom::Engine.routes
-    super
-  end
 end
 
 Capybara.configure do |config|
