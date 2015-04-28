@@ -50,14 +50,11 @@ ActiveRecord::Schema.define(version: 20150427191543) do
   add_index "locker_room_users", ["account_id", "email"], name: "index_locker_room_users_on_account_id_and_email", unique: true, using: :btree
 
   create_table "notes", force: :cascade do |t|
-    t.integer  "account_id"
     t.string   "title"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "notes", ["account_id"], name: "index_notes_on_account_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

@@ -50,7 +50,7 @@ class UserSigninTest < Capybara::Rails::TestCase
   #end
 
   def test_signin_as_owner
-    account = locker_room_accounts(:playing_piano)
+    account = account_with_schema(:playing_piano)
     within_subdomain(account.subdomain) do
       visit(locker_room.login_url)
       assert_equal(locker_room.login_url, page.current_url)
@@ -94,7 +94,7 @@ class UserSigninTest < Capybara::Rails::TestCase
   #end
 
   def test_signin_as_member
-    user = locker_room_users(:weenie)
+    user = user_with_schema(:weenie)
     within_subdomain(user.account.subdomain) do
       visit(locker_room.login_url)
       assert_equal(locker_room.login_url, page.current_url)

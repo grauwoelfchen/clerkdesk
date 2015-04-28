@@ -1,5 +1,5 @@
 # This migration comes from locker_room (originally 20150416203502)
-class SorceryCore < ActiveRecord::Migration
+class CreateLockerRoomUsers < ActiveRecord::Migration
   def change
     create_table :locker_room_users do |t|
       t.integer :account_id

@@ -2,7 +2,7 @@ class NotesController < WorkspaceController
   before_action :load_note, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.scoped_to(current_account)
+    @notes = Note.all
   end
 
   def new
@@ -11,7 +11,6 @@ class NotesController < WorkspaceController
 
   def create
     @note = Note.new(note_params)
-    @note.assign_attributes(:account_id => current_account.id)
     if @note.save
       redirect_to @note, :notice => "Note is cuccessfully created."
     else
@@ -41,7 +40,7 @@ class NotesController < WorkspaceController
   private
 
   def load_note
-    @note = Note.scoped_to(current_account).find(params[:id])
+    @note = Note.find(params[:id])
   end
 
   def note_params
