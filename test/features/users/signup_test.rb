@@ -4,7 +4,7 @@ class UserSignupTest < Capybara::Rails::TestCase
   locker_room_fixtures(:accounts, :members, :users)
 
   def test_validation_with_duplicated_email
-    account = locker_room_accounts(:penguin_patrol)
+    account = account_with_schema(:penguin_patrol)
     within_subdomain(account.subdomain) do
       visit(root_url)
       assert_equal(locker_room.login_url, page.current_url)
@@ -21,7 +21,7 @@ class UserSignupTest < Capybara::Rails::TestCase
   end
 
   def test_user_signup
-    account = locker_room_accounts(:penguin_patrol)
+    account = account_with_schema(:penguin_patrol)
     within_subdomain(account.subdomain) do
       visit(root_url)
       assert_equal(locker_room.login_url, page.current_url)
