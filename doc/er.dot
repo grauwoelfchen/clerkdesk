@@ -84,7 +84,7 @@ digraph Clerkdesk {
 
   LedgerCategory [
     label = "{ledger_categories|«LedgerCategory»\lbelongs_to: ledger\l\n|{ \
-    {FIELD|ledger_id\l|realm\l|name\l}| \
+      {FIELD|ledger_id\l|type\l|name\l}| \
       {TYPE|integer\l|integer\l|name\l}| \
       {VALUE|\r|0:expense,1:income\r|\r} \
     }}"
@@ -92,7 +92,7 @@ digraph Clerkdesk {
 
   LedgerEntry [
     label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lbelongs_to: ledger_category (as category)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
-    {FIELD|ledger_id\l|ledger_category_id\l|realm\l|title\l|amount\l|memo\l}| \
+      {FIELD|ledger_id\l|ledger_category_id\l|type\l|title\l|amount\l|memo\l}| \
       {TYPE|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
       {VALUE|\r|\r|0:expense,1:income\r|\r|\r|\r} \
     }}"
