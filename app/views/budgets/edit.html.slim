@@ -1,0 +1,18 @@
+- content_for :header
+  h1 Budgets
+  h2 Account Book
+
+- content_for :navigation
+  nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item
+        = link_to "Index", budgets_path, class: "pure-menu-link"
+      li.pure-menu-item
+        = link_to "New", new_budget_path, class: "pure-menu-link"
+      | &nbsp;&nbsp;
+      li.pure-menu-item
+        = link_to "Show", budget_path(@budget), class: "pure-menu-link"
+
+h3 Edit
+
+= render "form", budget: @budget, action: "update"
