@@ -1,0 +1,29 @@
+- content_for :header
+  h1 Budgets
+  h2 Account Book
+
+- content_for :navigation
+  nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-selected
+        = link_to "Index", "#", class: "pure-menu-link"
+      li.pure-menu-item
+        = link_to "New", new_budget_path, class: "pure-menu-link"
+
+table.table.pure-table.pure-table-horizontal
+  thead
+    tr
+      th= Budget.human_attribute_name(:title)
+      th= t("general.created_at")
+      th= t("general.updated_at")
+      th= t("general.operation")
+  tbody
+    - @budgets.each do |budget|
+      tr
+        td= link_to budget.title, budget_path(budget)
+        td= budget.created_at
+        td= budget.updated_at
+        td
+          ul.operation
+            li= link_to "Edit", edit_budget_path(budget)
+            li= link_to "Delete", budget_path(budget), method: :delete, data: {confirm: "Are you sure?"}

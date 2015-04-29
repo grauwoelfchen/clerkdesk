@@ -1,0 +1,6 @@
+= form_for budget, html: {class: "form pure-form"} do |f|
+  - if budget.errors.any?
+    = render "shared/error", resource: budget
+  fieldset.pure-group
+    = f.text_field :title,  class: "pure-input-1", placeholder: "A title"
+  = f.submit t("general.#{action}"), class: "pure-button"

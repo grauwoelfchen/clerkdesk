@@ -1,11 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
 class DesktopControllerTest < ActionController::TestCase
-  locker_room_fixtures("users")
-
-  #def setup
-  #  #@request.host = "piano.example.org"
-  #end
+  locker_room_fixtures("accounts", "members", "users")
 
   def test_should_get_index
     user = user_with_schema(:oswald)

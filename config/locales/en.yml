@@ -5,6 +5,8 @@ en:
     title: "Clerkdesk"
     description: ""
   general:
+    create: "Create"
+    update: "Update"
     created_at: "Created"
     updated_at: "Updated"
   activerecord:
@@ -12,3 +14,5 @@ en:
       note:
         title: "Title"
         content: "Content"
+      budget:
+        title: "Title"
