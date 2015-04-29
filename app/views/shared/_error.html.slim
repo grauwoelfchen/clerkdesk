@@ -1,0 +1,4 @@
+.error-messages
+  ul
+    - resource.errors.each do |attribute, e|
+      li= resource.errors.full_message(attribute, e.is_a?(Hash) ? e[:message] : e)

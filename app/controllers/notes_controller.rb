@@ -12,7 +12,7 @@ class NotesController < WorkspaceController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to @note, :notice => "Note is cuccessfully created."
+      redirect_to @note, :notice => "Note has been cuccessfully created."
     else
       flash.now[:alert] = "Note could not be created."
       render :new
@@ -27,7 +27,7 @@ class NotesController < WorkspaceController
 
   def update
     if @note.update_attributes(note_params)
-      redirect_to @note, :notice => "Note is Successfully updated."
+      redirect_to @note, :notice => "Note has been successfully updated."
     else
       flash.now[:alert] = "Note could not be updated."
       render :edit
