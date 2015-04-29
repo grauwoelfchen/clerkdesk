@@ -59,7 +59,7 @@ digraph Clerkdesk {
   ]
 
   Note [
-    label = "{notes|«Note»\lhas_many: tags\l\n|{ \
+    label = "{notes|«Note»\lhas_many: tags\lhas_many: involvements (as concerns)\n|{ \
       {FIELD|title\l|content\l}| \
       {TYPE|varchar\l|text\l}| \
       {VALUE|\r|\r} \
@@ -75,42 +75,34 @@ digraph Clerkdesk {
   ]
 
   Ledger [
-    label = "{ledgers|«Ledger»\lbelongs_to: budget\l\n|{ \
+    label = "{ledgers|«Ledger»\lbelongs_to: budget\lhas_many: ledger_categories (as categories)\l\n|{ \
       {FIELD|budget_id\l|title\l|description\l}| \
       {TYPE|integer\l|varchar\l|text\l}| \
       {VALUE|\r|\r|\r} \
     }}"
   ]
 
-  Category [
-    label = "{categories|«Category»\lbelongs_to: ledger\l\n|{ \
-      {FIELD|ledger_id\l|type\l|name\l}| \
+  LedgerCategory [
+    label = "{ledger_categories|«LedgerCategory»\lbelongs_to: ledger\l\n|{ \
+    {FIELD|ledger_id\l|realm\l|name\l}| \
       {TYPE|integer\l|integer\l|name\l}| \
       {VALUE|\r|0:expense,1:income\r|\r} \
     }}"
   ]
 
-  Entry [
-    label = "{entries|«Entry»\lbelongs_to: ledger\lbelongs_to: category\lhas_many: tags\lhas_many: involvements (as concern)\l\n|{ \
-      {FIELD|ledger_id\l|category_id\l|type\l|title\l|amount\l|memo\l}| \
+  LedgerEntry [
+    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lbelongs_to: ledger_category (as category)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
+    {FIELD|ledger_id\l|ledger_category_id\l|realm\l|title\l|amount\l|memo\l}| \
       {TYPE|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
       {VALUE|\r|\r|0:expense,1:income\r|\r|\r|\r} \
     }}"
   ]
 
-  Item [
-    label = "{items|«Item»\lbelongs_to: entry\l\n|{ \
-      {FIELD|entry_id\l|name\l|amount\l|memo\l}| \
+  LedgerItem [
+    label = "{ledger_items|«LedgerItem»\lbelongs_to: ledger_entry (as entry)\l\n|{ \
+      {FIELD|ledger_entry_id\l|name\l|amount\l|memo\l}| \
       {TYPE|integer\l|varchar\l|varchar\l|varchar\l}| \
       {VALUE|\r|\r|\r|\r} \
-    }}"
-  ]
-
-  Person [
-    label = "{people|«Person»\lhas_one: user\lhas_many: involvements (as concern)\l\n|{ \
-      {FIELD|identifier\l|name\l|zip_code\l|address\l|phone\l|email\l}| \
-      {TYPE|varchar\l|varchar\l|varchar\l|text\l|varchar\l|varchar\l}| \
-      {VALUE|\r|\r|\r|\r|\r|\r} \
     }}"
   ]
 
@@ -119,6 +111,14 @@ digraph Clerkdesk {
       {FIELD|person_id\l|concern_id\l|concern_type\l}| \
       {TYPE|integer\l|integer\l|varchar\l}| \
       {VALUE|\r|\r|\r} \
+    }}"
+  ]
+
+  Person [
+    label = "{people|«Person»\lhas_one: user\lhas_many: involvements (as concerns)\l\n|{ \
+      {FIELD|identifier\l|name\l|zip_code\l|address\l|phone\l|email\l}| \
+      {TYPE|varchar\l|varchar\l|varchar\l|text\l|varchar\l|varchar\l}| \
+      {VALUE|\r|\r|\r|\r|\r|\r} \
     }}"
   ]
 
@@ -152,8 +152,8 @@ digraph Clerkdesk {
   //Account -> Member
   //Account -> User
 
-  Note  -> Tag
-  Entry -> Tag
+  Note        -> Tag
+  LedgerEntry -> Tag
 
   edge [ // belongs_to
     arrowhead = vee
@@ -169,19 +169,20 @@ digraph Clerkdesk {
 
   Tagging -> Tag
   Tagging -> Note
-  Tagging -> Entry
+  Tagging -> LedgerEntry
 
-  Ledger   -> Budget
-  Category -> Ledger
-  Entry    -> Ledger
-  Entry    -> Category
-  Item     -> Entry
+  Ledger         -> Budget
+  LedgerCategory -> Ledger
+  LedgerEntry    -> Ledger
+  LedgerEntry    -> LedgerCategory
+  LedgerItem     -> LedgerEntry
 
   UserPerson -> User
   UserPerson -> Person
 
   Involvement -> Person
-  Involvement -> Entry
+  Involvement -> Note
+  Involvement -> LedgerEntry
 
   edge [ // has_one
     arrowhead = normal
@@ -207,6 +208,8 @@ digraph Clerkdesk {
 
   {rank = same; Member;};
   {rank = same; Account; User;};
-  {rank = same; Ledger; Category};
-  {rank = same; Entry; Person};
+  {rank = same; Involvement; LedgerItem;};
+  {rank = same; Person; Tagging; LedgerEntry};
+  {rank = same; Note; Tag; LedgerCategory;};
+  {rank = same; Budget; Ledger;};
 }
