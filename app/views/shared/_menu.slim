@@ -4,8 +4,9 @@
     - selected = controller_name == "notes" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to "Notes", notes_path, class: "pure-menu-link"
-    li.pure-menu-item
-      = link_to "Reports", "#", class: "pure-menu-link"
+    - selected = controller_name == "budgets" ? "pure-menu-selected" : ""
+    li.pure-menu-item class=selected
+      = link_to "Budgets", budgets_path, class: "pure-menu-link"
     li.pure-menu-item
       = link_to "Accounts", "#", class: "pure-menu-link"
     li.pure-menu-item
