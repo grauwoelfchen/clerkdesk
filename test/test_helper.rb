@@ -11,25 +11,16 @@ require "minitest/rails/capybara"
 require "minitest/pride" if ENV["TEST_PRIDE"].present?
 require "database_cleaner"
 
-# Filter out Minitest backtrace while allowing backtrace from other libraries
-# to be shown.
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
-# Load support files
-test_dir = File.dirname(__FILE__)
-Dir["#{test_dir}/support/**/*.rb"].each { |f| require f }
-
-# Load fixtures from the engine
-if ActiveSupport::TestCase.respond_to?(:fixture_path=)
-  ActiveSupport::TestCase.fixture_path = test_dir + "/fixtures"
-  # ActiveSupport::TestCase.fixtures :all
-end
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 class ActiveSupport::TestCase
   include LockerRoom::Testing::FixtureHelpers
 
   ActiveRecord::Migration.check_pending!
-  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean_with(:truncation)
+  DatabaseCleaner.strategy = :transaction
 
   def before_setup
     super
@@ -38,27 +29,14 @@ class ActiveSupport::TestCase
 
   def after_teardown
     Apartment::Tenant.reset
-    clean_all_schema
+    # DROP SCHEMA
+    LockerRoom::Account.all.map do |account|
+      Apartment::Tenant.drop(account.schema_name)
+    rescue
+      nil
+    end
     DatabaseCleaner.clean
     super
-  end
-
-  private
-
-  def clean_all_schema
-    connection = ActiveRecord::Base.connection.raw_connection
-    schemas = connection.query(%Q{
-      SELECT 'DROP SCHEMA ' || nspname || ' CASCADE;'
-      FROM pg_namespace
-      WHERE
-        nspname != 'public' AND
-        nspname != 'information_schema' AND
-        nspname NOT LIKE 'pg_%';
-    })
-    schemas.each do |query|
-      # DROP SCHEMA [NAME] CASCADE;
-      connection.query(query.values.first)
-    end
   end
 end
 
@@ -74,15 +52,4 @@ end
 class Capybara::Rails::TestCase
   include LockerRoom::Testing::Integration::SubdomainHelpers
   include LockerRoom::Testing::Integration::AuthenticationHelpers
-
-  def before_setup
-    @default_host = locker_room.scope.default_url_options[:host]
-    locker_room.scope.default_url_options[:host] = Capybara.app_host
-    super
-  end
-
-  def after_teardown
-    super
-    locker_room.scope.default_url_options[:host] = @default_host
-  end
 end
