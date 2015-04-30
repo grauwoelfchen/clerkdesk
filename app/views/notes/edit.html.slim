@@ -11,9 +11,8 @@
         = link_to "New", new_note_path, class: "pure-menu-link"
       | &nbsp;&nbsp;
       li.pure-menu-item
-        = link_to "Edit", edit_note_path(@note), class: "pure-menu-link"
+        = link_to "Show", note_path(@note), class: "pure-menu-link"
 
-section.view
-  h4= @note.title
-  .text= simple_format(@note.content)
-  .tags= @note.tags.join(",")
+h3 Edit
+
+= render "form", note: @note, action: "update"

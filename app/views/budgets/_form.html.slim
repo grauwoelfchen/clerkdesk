@@ -3,4 +3,7 @@
     = render "shared/error", resource: budget
   fieldset.pure-group
     = f.text_field :title,  class: "pure-input-1", placeholder: "A title"
-  = f.submit t("general.#{action}"), class: "pure-button"
+  .action
+    = f.submit t("general.#{action}"), class: "pure-button button"
+    - if action == "update"
+      = link_to t("general.destroy"), budget_path(budget), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

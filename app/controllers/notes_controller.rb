@@ -12,7 +12,7 @@ class NotesController < WorkspaceController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to @note, :notice => "Note has been cuccessfully created."
+      redirect_to @note, :notice => "Note has been successfully created."
     else
       flash.now[:alert] = "Note could not be created."
       render :new
@@ -35,6 +35,9 @@ class NotesController < WorkspaceController
   end
 
   def destroy
+    @note.destroy
+    redirect_to notes_url,
+      :notice => "Note has been successfully destroyed."
   end
 
   private
