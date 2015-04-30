@@ -1,5 +1,11 @@
+$error-color = #CA3C3C
 
-// shared
+// button
+.button-error
+  color:      #FFFFFF
+  background: $error-color
+
+
 // flash
 .flash-messages
   ul
@@ -16,6 +22,7 @@
     border:           1px solid #CC3300
     background-color: #EBAD99
     color:            #7A1F00
+
 
 // sticky
 .sticky
@@ -45,6 +52,11 @@
   //  z-index:            -100
 
 
+// content
+.content
+  h3
+    margin: 0 0 18px 2px
+
 
 // table
 table.table
@@ -59,13 +71,30 @@ table.table
         list-style: none
         margin:     0 3px
 
+
 // form
 form.form
-  width: 100%
-  margin: 3px 0 18px 0
+  width:  100%
+  margin: 3px 0 19px 0
   input[type="submit"]
-    margin: 18px 0
+    margin: 19px 0
+  .error-messages
+    ul
+      margin:  9px 0 18px 0
+      padding: 0 0 0 16px
+      li
+        color: $error-color
+
 
 // show
 section.view
   padding: 3px 3px
+
+
+// shared
+.action
+  margin: 18px 0 18px 1px
+  input[type="submit"].button,
+  button.button,
+  a.button
+    margin-right: 31px

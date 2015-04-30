@@ -36,7 +36,7 @@ class BudgetsController < WorkspaceController
 
   def destroy
     @budget.destroy
-    redirect_to budgets_url, 
+    redirect_to budgets_url,
       :notice => "Budget has been successfully destroyed."
   end
 

@@ -1,6 +1,6 @@
 - content_for :header
-  h1 Notes
-  h2 Protokoll, Memo
+  h2 Notes
+  h3 Protokoll, Memo
 
 - content_for :navigation
   nav.pure-menu.pure-menu-horizontal
@@ -9,5 +9,7 @@
         = link_to "Index", notes_path, class: "pure-menu-link"
       li.pure-menu-item.pure-menu-selected
         = link_to "New", "#", class: "pure-menu-link"
+
+h3 New
 
 = render "form", note: @note, action: "create"
