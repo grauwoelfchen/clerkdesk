@@ -29,14 +29,16 @@ class ActiveSupport::TestCase
 
   def after_teardown
     Apartment::Tenant.reset
-    # DROP SCHEMA
-    LockerRoom::Account.all.map do |account|
-      Apartment::Tenant.drop(account.schema_name)
-    rescue
-      nil
-    end
+    clean_all_schema
     DatabaseCleaner.clean
     super
+  end
+
+  def clean_all_schema
+    LockerRoom::Account.all.map do |account|
+      conn = ActiveRecord::Base.connection
+      conn.query(%Q{DROP SCHEMA IF EXISTS #{account.schema_name} CASCADE;})
+    end
   end
 end
 

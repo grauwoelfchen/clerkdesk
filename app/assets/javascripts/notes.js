@@ -1,2 +1,14 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+(function($) {
+  'use strict';
+  $(function() {
+    var tagList = $('#note_tag_list');
+    tagList.tagEditor({
+      'delimiter':      ','
+    , 'forceLowercase': false
+    , 'placeholder':    'Tag'
+    });
+
+    var textarea = $('#note_content');
+    textarea.autosize();
+  });
+})(jQuery);
