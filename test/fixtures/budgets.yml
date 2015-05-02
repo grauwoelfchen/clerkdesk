@@ -1,4 +1,6 @@
 second_piano_budget:
+  account: general_account
   title: 'Second piano budget'
 unicycle_budget:
+  account: special_account
   title: 'Unicycle budget'

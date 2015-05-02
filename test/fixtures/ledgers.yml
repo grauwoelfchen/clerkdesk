@@ -1,0 +1,8 @@
+bank:
+  account: general_account
+  title: 'Bank'
+  description: ''
+wallet:
+  account: general_account
+  title: 'Wallet'
+  description: ''

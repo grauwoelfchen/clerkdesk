@@ -1,6 +1,6 @@
-class CreateBudgets < ActiveRecord::Migration
+class CreateSettlements < ActiveRecord::Migration
   def change
-    create_table :budgets do |t|
+    create_table :settlements do |t|
       t.integer   :account_id,  null: false
       t.string    :title,       null: false
       t.text      :description, null: true,  default: nil
@@ -10,6 +10,6 @@ class CreateBudgets < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :budgets, :account_id
+    add_index :settlements, :account_id
   end
 end

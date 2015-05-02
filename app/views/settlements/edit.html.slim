@@ -1,5 +1,5 @@
 - content_for :header
-  h2 Budget
+  h2 Settlement
   h3 Financial record
 
 - content_for :navigation
@@ -8,8 +8,8 @@
       li.pure-menu-item
         = link_to "Account", account_path(@account), class: "pure-menu-link"
       li.pure-menu-item
-        = link_to "Show", account_budget_path(@account), class: "pure-menu-link"
+        = link_to "Show", account_settlement_path(@account), class: "pure-menu-link"
 
 h3 Edit
 
-= render "form", account: @account, budget: @budget, action: "update"
+= render "form", account: @account, settlement: @settlement, action: "update"
