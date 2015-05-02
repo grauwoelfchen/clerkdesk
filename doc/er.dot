@@ -22,7 +22,7 @@ digraph Clerkdesk {
     label = "{locker_room_accounts|«LockerRoom::Account»\lhas_many: locker_roommembers\lhas_many: locker_room_users\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
-      {VALUE|\r} \
+      {VALUE|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
@@ -33,7 +33,7 @@ digraph Clerkdesk {
     label = "{locker_room_users|«LockerRoom::User»\lbelongs_to: locker_room_account\lhas_one: locker_room_member\lhas_one: person\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
-      {VALUE|\r} \
+      {VALUE|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
@@ -44,7 +44,7 @@ digraph Clerkdesk {
     label = "{locker_room_members|«LockerRoom::Member»\lbelongs_to: locker_room_account\lbelongs_to: locker_room_user\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
-      {VALUE|\r} \
+      {VALUE|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
@@ -55,7 +55,7 @@ digraph Clerkdesk {
     label = "{tags|«ActsAsTaggableOn::Tag»\lhas_many: taggins\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
-      {VALUE|\r} \
+      {VALUE|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
@@ -66,7 +66,7 @@ digraph Clerkdesk {
     label = "{taggings|«ActsAsTaggableOn::Tagging»\lbelongs_to: tag\lbelongs_to: note\lbelongs_to: entry\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
-      {VALUE|\r} \
+      {VALUE|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
@@ -77,7 +77,7 @@ digraph Clerkdesk {
     label = "{notes|«Note»\lhas_many: tags\lhas_many: involvements (as concerns)\n|{ \
       {FIELD|title\l|content\l}| \
       {TYPE|varchar\l|text\l}| \
-      {VALUE|\r|\r} \
+      {VALUE|\l|\l} \
     }}"
   ]
 
@@ -85,7 +85,7 @@ digraph Clerkdesk {
     label = "{accounts|«Account»\lhas_one: budget\lhas_one: settlement\l\n|{ \
       {FIELD|name\l|description\l|started_at\l|finished_at\l|status\l}| \
       {TYPE|varchar\l|text\l|datetime\l|datetime\l|integer\l}| \
-      {VALUE|\r|\r|\r|\r|\r} \
+      {VALUE|\l|\l|\l|\l|\l} \
     }}"
   ]
 
@@ -94,7 +94,7 @@ digraph Clerkdesk {
     label = "{account_categories|«AccountCategory»\lbelongs_to: account\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
       {FIELD|account_id\l|type\l|name\l}| \
       {TYPE|integer\l|integer\l|name\l}| \
-      {VALUE|\r|0:expense,1:income\r|\r} \
+      {VALUE|\l|0:expense,1:income\l|\l} \
     }}"
   ]
 
@@ -102,7 +102,7 @@ digraph Clerkdesk {
     label = "{budgets|«Budget»\lbelongs_to: account\l\n|{ \
       {FIELD|account_id\l|title\l|description\l|carryover\l|approved_at\l}| \
       {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
-      {VALUE|\r|\r|\r|default:0\r|\r} \
+      {VALUE|\l|\l|\l|default:0\l|\l} \
     }}"
   ]
 
@@ -110,7 +110,7 @@ digraph Clerkdesk {
     label = "{settlements|«Settlement»\lbelongs_to: account\l\n|{ \
       {FIELD|account_id\l|title\l|description\l|carryover\l|approved_at\l}| \
       {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
-      {VALUE|\r|\r|\r|default:0\r|\r} \
+      {VALUE|\l|\l|\l|default:0\l|\l} \
     }}"
   ]
 
@@ -118,7 +118,7 @@ digraph Clerkdesk {
     label = "{ledgers|«Ledger»\lbelongs_to: account\lhas_many: ledger_entries (as entries)\l\n|{ \
       {FIELD|account_id\l|title\l|description\l}| \
       {TYPE|integer\l|varchar\l|text\l}| \
-      {VALUE|\r|\r|\r} \
+      {VALUE|\l|\l|\l} \
     }}"
   ]
 
@@ -126,7 +126,7 @@ digraph Clerkdesk {
     label = "{journalizings|«Journalizing»\lbelongs_to: account_category (as category)\lbelongs_to: ledger_entry: (as entry)\l\n|{ \
       {FIELD|entry_id\l|category_id\l|entries_count\l}| \
       {TYPE|integer\l|integer\l|integer\l}| \
-      {VALUE|\r|\r|default:0\r} \
+      {VALUE|\l|\l|default:0\l} \
     }}"
   ]
 
@@ -134,7 +134,7 @@ digraph Clerkdesk {
     label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lhas_one: account_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
       {FIELD|ledger_id\l|category_id\l|type\l|title\l|amount\l|memo\l}| \
       {TYPE|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
-      {VALUE|\r|\r|0:expense,1:income\r|\r|\r|\r} \
+      {VALUE|\l|\l|0:expense,1:income\l|\l|\l|\l} \
     }}"
   ]
 
@@ -142,7 +142,7 @@ digraph Clerkdesk {
     label = "{ledger_items|«LedgerItem»\lbelongs_to: ledger_entry (as entry)\l\n|{ \
       {FIELD|entry_id\l|name\l|amount\l|memo\l}| \
       {TYPE|integer\l|varchar\l|varchar\l|varchar\l}| \
-      {VALUE|\r|\r|\r|\r} \
+      {VALUE|\l|\l|\l|\l} \
     }}"
   ]
 
@@ -150,7 +150,7 @@ digraph Clerkdesk {
     label = "{involvements|«Involvement»\lbelongs_to: person\lbelongs_to: concern\l\n|{ \
       {FIELD|person_id\l|concern_id\l|concern_type\l}| \
       {TYPE|integer\l|integer\l|varchar\l}| \
-      {VALUE|\r|\r|\r} \
+      {VALUE|\l|\l|\l} \
     }}"
   ]
 
@@ -158,7 +158,7 @@ digraph Clerkdesk {
     label = "{people|«Person»\lhas_one: locker_room_user (as user)\lhas_many: involvements (as concerns)\l\n|{ \
       {FIELD|identifier\l|name\l|zip_code\l|address\l|phone\l|email\l}| \
       {TYPE|varchar\l|varchar\l|varchar\l|text\l|varchar\l|varchar\l}| \
-      {VALUE|\r|\r|\r|\r|\r|\r} \
+      {VALUE|\l|\l|\l|\l|\l|\l} \
     }}"
   ]
 
@@ -171,7 +171,7 @@ digraph Clerkdesk {
     label = "{users_people|{ \
       {FIELD|user_id\l|person_id\l}| \
       {TYPE|integer\l|integer\l}| \
-      {VALUE|\r|\r} \
+      {VALUE|\l|\l} \
     }}"
     style     = "filled"
     fontcolor = "black"
