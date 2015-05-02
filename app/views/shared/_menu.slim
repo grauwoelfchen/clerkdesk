@@ -4,14 +4,12 @@
     - selected = controller_name == "notes" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to "Notes", notes_path, class: "pure-menu-link"
-    - selected = controller_name == "budgets" ? "pure-menu-selected" : ""
+    - selected = controller_name.in?(%w{accounts budgets settlements ledgers}) ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
-      = link_to "Budgets", budgets_path, class: "pure-menu-link"
-    li.pure-menu-item
-      = link_to "Accounts", "#", class: "pure-menu-link"
-    li.pure-menu-item
+      = link_to "Accounts", accounts_path, class: "pure-menu-link"
+    - selected = controller_name == "people" ? "pure-menu-selected" : ""
+    li.pure-menu-item class=selected
       = link_to "People", "#", class: "pure-menu-link"
-    li.pure-menu-item.menu-item-divided
-      = link_to "Account", "#", class: "pure-menu-link"
-    li.pure-menu-item
-      = link_to "Team settings", "#", class: "pure-menu-link"
+    - selected = controller_name == "settings" ? "pure-menu-selected" : ""
+    li.pure-menu-item class=selected
+      = link_to "Settings", "#", class: "pure-menu-link"

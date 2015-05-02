@@ -1,23 +1,6 @@
 class BudgetsController < WorkspaceController
-  before_action :load_budget, :only => [:show, :edit, :update, :destroy]
-
-  def index
-    @budgets = Budget.all
-  end
-
-  def new
-    @budget = Budget.new
-  end
-
-  def create
-    @budget = Budget.new(budget_params)
-    if @budget.save
-      redirect_to @budget, :notice => "Budget has been successfully created."
-    else
-      flash.now[:alert] = "Budget could not be created."
-      render :new
-    end
-  end
+  before_action :load_account
+  before_action :load_budget
 
   def show
   end
@@ -27,26 +10,25 @@ class BudgetsController < WorkspaceController
 
   def update
     if @budget.update_attributes(budget_params)
-      redirect_to @budget, :notice => "Budget has been successfully updated."
+      redirect_to account_budget_url(@account),
+        :notice => "Budget has been successfully updated."
     else
       flash.now[:alert] = "Budget could not be updated."
       render :edit
     end
   end
 
-  def destroy
-    @budget.destroy
-    redirect_to budgets_url,
-      :notice => "Budget has been successfully destroyed."
-  end
-
   private
 
+  def load_account
+    @account = Account.find(params[:account_id])
+  end
+
   def load_budget
-    @budget = Budget.find(params[:id])
+    @budget = @account.budget
   end
 
   def budget_params
-    params.require(:budget).permit(:title)
+    params.require(:budget).permit(:title, :description)
   end
 end

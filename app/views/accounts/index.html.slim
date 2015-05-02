@@ -1,0 +1,35 @@
+- content_for :header
+  h2 Accounts
+  h3 Financial records
+
+- content_for :navigation
+  nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-selected
+        = link_to "Index", "#", class: "pure-menu-link"
+      li.pure-menu-item
+        = link_to "New", new_account_path, class: "pure-menu-link"
+
+table.table.pure-table.pure-table-horizontal
+  thead
+    tr
+      th= Account.human_attribute_name(:name)
+      th= Account.human_attribute_name(:description)
+      th= Account.human_attribute_name(:started_at)
+      th= Account.human_attribute_name(:finished_at)
+      th= t("general.created_at")
+      th= t("general.updated_at")
+      th= t("general.operation")
+  tbody
+    - @accounts.each do |account|
+      tr
+        td= link_to account.name, account_path(account)
+        td= truncate(account.description, length: 20)
+        td= account.started_at.strftime("%Y-%m-%d %H:%M")
+        td= account.finished_at.strftime("%Y-%m-%d %H:%M")
+        td= account.created_at
+        td= account.updated_at
+        td
+          ul.operation
+            li= link_to "Edit", edit_account_path(account)
+            li= link_to "Delete", account_path(account), method: :delete, data: {confirm: "Are you sure?"}

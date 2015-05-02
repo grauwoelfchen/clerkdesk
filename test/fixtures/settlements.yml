@@ -1,0 +1,6 @@
+second_piano_settlement:
+  account: general_account
+  title: 'Second piano settlement'
+unicycle_settlement:
+  account: special_account
+  title: 'Unicycle settlement'

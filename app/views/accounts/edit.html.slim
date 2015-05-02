@@ -1,0 +1,18 @@
+- content_for :header
+  h2 Account
+  h3 Financial record
+
+- content_for :navigation
+  nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item
+        = link_to "Index", accounts_path, class: "pure-menu-link"
+      li.pure-menu-item
+        = link_to "New", new_account_path, class: "pure-menu-link"
+      | &nbsp;&nbsp;
+      li.pure-menu-item
+        = link_to "Show", account_path(@account), class: "pure-menu-link"
+
+h3 Edit
+
+= render "form", account: @account, action: "update"
