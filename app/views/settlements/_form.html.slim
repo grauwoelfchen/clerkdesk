@@ -1,0 +1,9 @@
+= form_for settlement, url: account_settlement_path(account), html: {class: "form pure-form"} do |f|
+  - if settlement.errors.any?
+    = render "shared/error", resource: settlement
+  fieldset.pure-group
+    = f.text_field :title,  class: "pure-input-1", placeholder: "A title"
+  .action
+    = f.submit t("general.#{action}"), class: "pure-button button"
+    - if action == "update"
+      = link_to t("general.destroy"), account_settlement_path(account), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

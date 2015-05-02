@@ -1,5 +1,5 @@
 - content_for :header
-  h2 Budget
+  h2 Settlement
   h3 Financial record
 
 - content_for :navigation
@@ -7,11 +7,12 @@
     ul.pure-menu-list
       li.pure-menu-item
         = link_to "Account", account_path(@account), class: "pure-menu-link"
+      | &nbsp;&nbsp;
       li.pure-menu-item
-        = link_to "Edit", edit_account_budget_path(@account, @budget), class: "pure-menu-link"
+        = link_to "Edit", edit_account_settlement_path(@account, @settlement), class: "pure-menu-link"
 
 section.view
-  h4= @budget.title
+  h4= @settlement.title
 
   .pure-g
     .pure-u-1-3

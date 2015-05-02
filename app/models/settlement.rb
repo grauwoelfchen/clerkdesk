@@ -1,4 +1,4 @@
-class Budget < ActiveRecord::Base
+class Settlement < ActiveRecord::Base
   belongs_to :account
 
   validates :title,
