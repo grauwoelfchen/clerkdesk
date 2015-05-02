@@ -1,0 +1,10 @@
+general_account:
+  name: "General account"
+  description: "General!"
+  started_at: <%= Time.new(2015, 05, 01, 10, 00, 00, "-00:00") %>
+  finished_at: <%= Time.new(2016, 05, 01, 10, 00, 00, "-00:00") %>
+special_account:
+  name: "Special account"
+  description: "Special!"
+  started_at: <%= Time.new(2015, 05, 01, 10, 00, 00, "-00:00") %>
+  finished_at: <%= Time.new(2016, 05, 01, 10, 00, 00, "-00:00") %>

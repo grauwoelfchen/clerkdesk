@@ -1,0 +1,18 @@
+= form_for account, html: {class: "form pure-form"} do |f|
+  - if account.errors.any?
+    = render "shared/error", resource: account
+  fieldset.pure-group
+    = f.text_field :name,  class: "pure-input-1", placeholder: "Name"
+    = f.text_area :description,  class: "pure-input-1", rows: 4, placeholder: "Description"
+  fieldset.pure-group
+    = f.label :started_at
+    | <br>
+    = f.datetime_select :started_at, ampm: false, use_two_digit_numbers: true, minute_step: 5, include_seconds: false, prompt: true, datetime_separator: "&nbsp;"
+  fieldset.pure-group
+    = f.label :finished_at
+    | <br>
+    = f.datetime_select :finished_at, ampm: false, use_two_digit_numbers: true, minute_step: 5, include_seconds: false, prompt: true, datetime_separator: "&nbsp;"
+  .action
+    = f.submit t("general.#{action}"), class: "pure-button button"
+    - if action == "update"
+      = link_to t("general.destroy"), account_path(account), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

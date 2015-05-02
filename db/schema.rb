@@ -11,16 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429173336) do
+ActiveRecord::Schema.define(version: 20150501220820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "budgets", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.integer  "status",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer  "account_id",              null: false
+    t.string   "title",                   null: false
+    t.text     "description"
+    t.integer  "carryover",   default: 0, null: false
+    t.datetime "approved_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "budgets", ["account_id"], name: "index_budgets_on_account_id", using: :btree
+
+  create_table "ledgers", force: :cascade do |t|
+    t.integer  "account_id",  null: false
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "ledgers", ["account_id"], name: "index_ledgers_on_account_id", using: :btree
 
   create_table "locker_room_accounts", force: :cascade do |t|
     t.string   "name"
@@ -61,6 +87,18 @@ ActiveRecord::Schema.define(version: 20150429173336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "settlements", force: :cascade do |t|
+    t.integer  "account_id",              null: false
+    t.string   "title",                   null: false
+    t.text     "description"
+    t.integer  "carryover",   default: 0, null: false
+    t.datetime "approved_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "settlements", ["account_id"], name: "index_settlements_on_account_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
