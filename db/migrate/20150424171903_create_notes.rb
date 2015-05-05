@@ -3,6 +3,7 @@ class CreateNotes < ActiveRecord::Migration
     create_table :notes do |t|
       t.string  :title
       t.text    :content
+      t.text    :content_html
 
       t.timestamps null: false
     end

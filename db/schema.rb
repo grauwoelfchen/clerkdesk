@@ -84,8 +84,9 @@ ActiveRecord::Schema.define(version: 20150501220820) do
   create_table "notes", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "content_html"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "settlements", force: :cascade do |t|
