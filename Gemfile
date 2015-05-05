@@ -9,6 +9,8 @@ gem "locker_room", path: "../locker_room"
 
 gem "acts-as-taggable-on", "~> 3.4"
 
+gem "gretel"
+
 gem "uglifier"
 gem "slim"
 gem "stylus"

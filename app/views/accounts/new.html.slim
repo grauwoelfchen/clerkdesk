@@ -1,14 +1,17 @@
+- breadcrumb :account, @account
+
 - content_for :header
   h2 New Account
   h3 Financial record
 
 - content_for :navigation
-  nav.pure-menu.pure-menu-horizontal
+  nav.nav.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
-      li.pure-menu-item
-        = link_to "Index", accounts_path, class: "pure-menu-link"
-      li.pure-menu-item.pure-menu-selected
-        = link_to "New", "#", class: "pure-menu-link"
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Actions", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to "Index", accounts_path, class: "pure-menu-link"
 
 h3 New
 
