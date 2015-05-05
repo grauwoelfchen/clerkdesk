@@ -30,7 +30,7 @@ $width = 255px
 
 
 .content
-  margin:      18px auto 55px auto
+  margin:      6px auto 55px auto
   padding:     9px
   line-height: 1.6em
   min-height:  760px
@@ -57,26 +57,41 @@ $width = 255px
     text-align: right
   .login
     text-align: right
+  .header-content
+    float: left
+  .navigation
+    float:    left
+    position: relative
+    margin:   44px 0 3px 49px
 
-.content-subhead
-    margin:      50px 0 20px 0
-    font-weight: 300
-    color:       #888888
 
 .navigation
-  .nav
-    nav
-      margin: 3px 0 27px 0
-
-.nav
-  nav.tab
-    margin: 18px 0 8px 0
+  margin: 0 0 3px 3px
+  nav.nav
+    line-height: 1.7em
     ul
-      li
-        margin: 0
-        a
-          border:        none
-          border-bottom: 1px solid #EEEEEE
+      border:        1px solid #EEEEEE
+      border-radius: 2px
+      &:hover
+        border-radius: 2px 2px 0 0
+    ul.pure-menu-children
+      padding:       0
+      border:        1px solid #E3E3E3
+      border-radius: 0 0 2px 2px
+      li.delimiter
+        border-top: 1px solid #EEEEEE
+    a
+      border: none
+  .breadcrumbs
+    margin: 3px 0 18px 0
+    a
+      color:           #ABAB9B
+      text-decoration: none
+      &:hover
+        color: #5F5F5F
+    span.current
+      color: #5F5F5F
+
 
 .footer
   background-color: #FAFAFA
