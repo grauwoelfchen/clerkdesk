@@ -18,7 +18,10 @@ html lang="en"
     div#main
       div.header.pure-g
         .pure-u-18-24
-          = yield :header
+          .header-content
+            = yield :header
+          .navigation
+            = yield :navigation
         .pure-u-6-24
           .sticky
             .user= render "locker_room/shared/login"
@@ -28,7 +31,7 @@ html lang="en"
           = render "shared/flash", flash: flash
         .navigation.pure-g
           .nav.pure-u-3-5
-            = yield :navigation
+            = breadcrumbs pretext: "", separator: " &rsaquo; "
           .nav.pure-u-2-5
         = yield
       div.footer
