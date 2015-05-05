@@ -17,6 +17,11 @@
           li.pure-menu-item.delimiter
             = link_to "New", new_note_path, class: "pure-menu-link"
 
-h3 Edit
+.pure-g
+  .pure-u-3-4
+    h3 Edit
+  .pure-u-1-4
+    .pure-form.form.right
+      = select_tag :syntax, options_for_select(["Markdown"], "Markdown")
 
 = render "form", note: @note, action: "update"
