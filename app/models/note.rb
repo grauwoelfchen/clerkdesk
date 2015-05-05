@@ -1,5 +1,8 @@
 class Note < ActiveRecord::Base
+  include HtmlConvertable
+
   acts_as_taggable
+  html_convertable :content
 
   validates :title,
     presence: true

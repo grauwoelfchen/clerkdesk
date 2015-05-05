@@ -19,5 +19,5 @@
 
 section.view
   h4= @note.title
-  .text= simple_format(@note.content)
+  .text== @note.content_html
   .tags= @note.tags.join(",")
