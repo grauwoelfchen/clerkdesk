@@ -1,6 +1,7 @@
 class Note < ActiveRecord::Base
   include HtmlConvertable
 
+  paginates_per 12
   acts_as_taggable
   html_convertable :content
 
