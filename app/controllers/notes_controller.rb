@@ -2,7 +2,7 @@ class NotesController < WorkspaceController
   before_action :load_note, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.all
+    @notes = Note.order(:created_at => :desc).page(params[:page])
   end
 
   def new
