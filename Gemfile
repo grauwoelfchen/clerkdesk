@@ -11,6 +11,7 @@ gem "acts-as-taggable-on", "~> 3.4"
 
 gem "gretel"
 gem "redcarpet"
+gem "kaminari"
 
 gem "uglifier"
 gem "slim"
