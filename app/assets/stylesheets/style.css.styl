@@ -1,11 +1,5 @@
 $error-color = #CA3C3C
 
-// button
-.button-error
-  color:      #FFFFFF
-  background: $error-color
-
-
 // flash
 .flash-messages
   ul
@@ -60,7 +54,7 @@ $error-color = #CA3C3C
 
 // table
 table.table
-  width: 100%
+  width:  100%
   margin: 3px 0 18px 0
   td
     ul.operation
@@ -71,6 +65,54 @@ table.table
         list-style: none
         margin:     0 3px
 
+
+// pagination
+pagination-link = @block {
+  color:   #777777
+  display: inline-block
+  margin:  0
+}
+
+pagination = @block {
+  border-radius:   2px
+  text-decoration: none
+}
+
+nav.pagination,
+.pagination-info
+  margin: 6px 0 11px 1px
+  span.prev
+  span.next,
+  span.current,
+  span.page
+    {pagination-link}
+    {pagination}
+    padding: 0
+    a
+      {pagination-link}
+      padding:         1px 8px
+      border:          none
+      text-decoration: none
+    &:hover
+      background-color: #EEEEEE
+  span.page.gap
+    border: none
+    &:hover
+      background-color: #FFFFFF
+  span.current
+    padding:          1px 8px
+    color:            #140A00
+    background-color: #DDDDDD
+    &:hover
+      background-color: #DDDDDD
+
+//.tile
+//  border:     1px solid gray
+//  margin:     0px 20px 18px 0
+//  padding:    9px 13px
+//  min-height: 310px
+//.note
+//  font-size: 7px
 
 // form
 .form
@@ -84,9 +126,6 @@ table.table
       padding: 0 0 0 16px
       li
         color: $error-color
-  &.right
-    text-align:    right
-    margin-bottom: 0
 
 
 // show
@@ -131,3 +170,12 @@ section.view
   button.button,
   a.button
     margin-right: 31px
+
+.button-error
+  color:      #FFFFFF
+  background: $error-color
+
+.right
+  text-align:    right
+  margin-bottom: 0
+  padding-right:  3px
