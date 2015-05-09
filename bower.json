@@ -17,6 +17,7 @@
     "jquery-autosize": "1.18.18",
     "jquery-tag-editor": "1.0.14",
     "moment": "2.10.2",
-    "purecss": "~0.6.0"
+    "purecss": "~0.6.0",
+    "font-awesome": "4.3.0"
   }
 }

@@ -1,4 +1,11 @@
 class Account < ActiveRecord::Base
+  include Sortable
+
+  paginates_per 5
+  sortable :name, :description, :started_at,
+           :updated_at, :finished_at,
+           :created_at, :updated_at
+
   has_one :budget
   has_one :settlement
   has_many :ledgers
