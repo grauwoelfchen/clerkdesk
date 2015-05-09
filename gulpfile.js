@@ -5,9 +5,11 @@ var gulp  = require('gulp')
   , watch = require('gulp-watch')
   , shell = require('gulp-shell')
   ;
+var sequence = require('run-sequence')
+  ;
 
 gulp.task('watch', function() {
-  watch('./test/**/*_test.rb', {
+  return watch('./test/**/*_test.rb', {
     read:          false
   , readDelay:     5
   , ignoreInitial: true
@@ -29,11 +31,13 @@ gulp.task('bower', function() {
 
 gulp.task('build-purecss', function() {
   process.chdir('./vendor/assets/components/purecss');
-  gulp.src('*')
+  return gulp.src('*')
     .pipe(shell([
       'npm install'
     , 'grunt'
     ]));
 });
 
-gulp.task('default', ['bower', 'build-purecss']);
+gulp.task('default', function(callback) {
+  sequence('bower', 'build-purecss', callback);
+});
