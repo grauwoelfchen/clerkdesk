@@ -2,7 +2,8 @@ class AccountsController < WorkspaceController
   before_action :load_account, only: [:show, :edit, :update, :destroy]
 
   def index
-    @accounts = Account.order(:created_at => :desc)
+    @accounts = Account.ordered(params[:column], params[:direction])
+      .page(params[:page])
   end
 
   def new

@@ -1,8 +1,10 @@
 class Note < ActiveRecord::Base
+  include Sortable
   include HtmlConvertable
 
   paginates_per 12
   acts_as_taggable
+  sortable :title, :content, :created_at, :updated_at
   html_convertable :content
 
   validates :title,

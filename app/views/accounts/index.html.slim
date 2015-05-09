@@ -12,17 +12,38 @@
         ul.pure-menu-children
           li.pure-menu-item
             = link_to "New", new_account_path, class: "pure-menu-link"
+            
+= render "shared/pagination", resource: @accounts, info: true
 
 table.table.pure-table.pure-table-horizontal
   thead
     tr
-      th= Account.human_attribute_name(:name)
-      th= Account.human_attribute_name(:description)
-      th= Account.human_attribute_name(:started_at)
-      th= Account.human_attribute_name(:finished_at)
-      th= t("general.created_at")
-      th= t("general.updated_at")
-      th= t("general.operation")
+      th
+        span.attribute
+          = Account.human_attribute_name(:name)
+        = sort_links_for(:name)
+      th
+        span.attribute
+          = Account.human_attribute_name(:description)
+        = sort_links_for(:description)
+      th
+        span.attribute
+          = Account.human_attribute_name(:started_at)
+        = sort_links_for(:started_at)
+      th
+        span.attribute
+          = Account.human_attribute_name(:finished_at)
+        = sort_links_for(:finished_at)
+      th
+        span.attribute
+          = t("general.created_at")
+        = sort_links_for(:created_at)
+      th
+        span.attribute
+          = t("general.updated_at")
+        = sort_links_for(:updated_at, :desc)
+      th
+        = t("general.operation")
   tbody
     - @accounts.each do |account|
       tr
@@ -36,3 +57,5 @@ table.table.pure-table.pure-table-horizontal
           ul.operation
             li= link_to "Edit", edit_account_path(account)
             li= link_to "Delete", account_path(account), method: :delete, data: {confirm: "Are you sure?"}
+
+= render "shared/pagination", resource: @accounts, info: false
