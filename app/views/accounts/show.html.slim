@@ -2,7 +2,7 @@
 
 - content_for :header
   h2 Account
-  h3 Financial record
+  h3 Stat
 
 - content_for :navigation
   nav.nav.pure-menu.pure-menu-horizontal
@@ -18,99 +18,112 @@
             = link_to "New", new_account_path, class: "pure-menu-link"
 
 section.view
-  h4= @account.name
-  .text= simple_format(@account.description)
-  p.term
-   span=@account.started_at.strftime("%Y-%m-%d %H:%M")
-   | &nbsp;-&nbsp;
-   span=@account.finished_at.strftime("%Y-%m-%d %H:%M")
+  .pure-g
+    .account.pure-u-1
 
-  - if @account.budget
-    h4
-      = link_to account_budget_path(@account) do
-        = @account.budget.title
-        | &nbsp;
-        = Budget.model_name.human
-    .pure-g
-      .pure-u-1-3
-        .field.left
-          h5 Expense
-          table.table.pure-table.pure-table-horizontal
-            thead
-              tr
-                th Category
-                th Amount
-            tbody
-              tr
-                td Network
-                td 102020000
-              tr
-                td Event
-                td 3020000
-              tr
-                td Carryover
-                td 3020000
-      .pure-u-1-3
-        .field.left
-          h5 Income
-          table.table.pure-table.pure-table-horizontal
-            thead
-              tr
-                th Category
-                th Amount
-            tbody
-              tr
-                td Carryover
-                td 1020200
-              tr
-                td Network
-                td 102020000
-              tr
-                td Event
-                td 3020000
+      h4= @account.name
+      .text= simple_format(@account.description)
 
-  - if @account.settlement
-    h4
-      = link_to account_settlement_path(@account) do
-        = @account.settlement.title
-        | &nbsp;
-        = Settlement.model_name.human
-    .pure-g
-      .pure-u-1-3
-        .field.left
-          h5 Expense
-          table.table.pure-table.pure-table-horizontal
-            thead
-              tr
-                th Category
-                th Amount
-            tbody
-              tr
-                td Network
-                td 102020000
-              tr
-                td Event
-                td 3020000
-              tr
-                td Carryover
-                td 30200
-      .pure-u-1-3
-        .field.left
-          h5 Income
-          table.table.pure-table.pure-table-horizontal
-            thead
-              tr
-                th Category
-                th Amount
-            tbody
-              tr
-                td Carryover
-                td 30200
-              tr
-                td Network
-                td 102020000
-              tr
-                td Event
-                td 3020000
+      p.term
+       span=@account.started_at.strftime("%Y-%m-%d %H:%M")
+       | &nbsp;-&nbsp;
+       span=@account.finished_at.strftime("%Y-%m-%d %H:%M")
 
-= link_to "Ledgers", account_ledgers_path(@account), class: "pure-button"
+      .box 
+        nav.tab.pure-menu.pure-menu-horizontal
+          ul.pure-menu-list
+            li.pure-menu-item.pure-menu-selected
+              = link_to "Summary", "#", class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Ledgers", account_ledgers_path(@account), class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Budget", account_budget_path(@account), class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Settlement", account_settlement_path(@account), class: "pure-menu-link"
+
+        .main
+          .pure-g
+            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+              .field.left
+                h5 Current status
+                table.table.pure-table.pure-table-bordered
+                  thead
+                    tr
+                      th Category
+                      th Current
+                      th Budget
+                  tbody
+                    tr
+                      td XXXXX
+                      td 103204
+                      td 39302040
+                    tr
+                      td XXXXX
+                      td 103204
+                      td 39302040
+                    tr
+                      td XXXXX
+                      td 12200
+                      td 22000
+                    tr
+                      td XXXXX
+                      td 3200
+                      td 202000
+                    tr
+                      td XXXXX
+                      td 3200
+                      td 202000
+                ul
+                  li.more
+                    = link_to "more", "#"
+            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+              .field.left
+                h5 Recent entries
+                table.table.pure-table.pure-table-bordered
+                  thead
+                    tr
+                      th Datetime
+                      th Category
+                      th Mony
+                      th Ledger
+                      th Memo
+                  tbody
+                    tr
+                      td 2015/05/13
+                      td XXXX
+                      td -204
+                      td @wallet
+                      td NNNNNNN
+                    tr
+                      td 2015/04/29
+                      td XXXX
+                      td 10200
+                      td @account
+                      td
+                    tr
+                      td 2015/04/10
+                      td XXXX
+                      td -124
+                      td @wallet
+                      td
+                    tr
+                      td 2015/04/03
+                      td XXXX
+                      td -10394
+                      td @wallet
+                      td NNNNNN...
+                    tr
+                      td 2015/04/01
+                      td XXXX
+                      td -10394
+                      td @wallet
+                      td NNNNNN...
+                ul
+                  li.more
+                    = link_to "more", "#"
+            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+              .field
+                h5 Total assets
+                .wall.left
+                  p.asset
+                    | 20,2292,0293
