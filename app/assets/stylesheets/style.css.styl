@@ -56,6 +56,8 @@ $error-color = #CA3C3C
 table.table
   width:  100%
   margin: 3px 0 18px 0
+  th
+    font-weight: normal
   td
     ul.operation
       margin:  0
@@ -107,6 +109,8 @@ pagination = @block {
 nav.pagination,
 .pagination-info
   margin: 6px 0 11px 1px
+  span
+    line-height: 27px
   span.prev
   span.next,
   span.current,
@@ -116,7 +120,7 @@ nav.pagination,
     padding: 0
     a
       {pagination-link}
-      padding:         1px 8px
+      padding:         0px 8px
       border:          none
       text-decoration: none
     &:hover
@@ -126,7 +130,7 @@ nav.pagination,
     &:hover
       background-color: #FFFFFF
   span.current
-    padding:          1px 8px
+    padding:          0px 8px
     color:            #140A00
     background-color: #DDDDDD
     &:hover
@@ -162,15 +166,13 @@ section.view
     margin:  0 0 9px 0
 
 .field
-  padding: 9px 0
+  padding: 0
   &.left
     margin: 0 9px 0 0
   &.right
     margin: 0 0 0 9px
   h5
-    margin:      3px 0 13px 0
-    //font-size:   18px
-    //font-weight: bold
+    margin: 3px 0 13px 0
   ul
     font-size: 15px
     padding:   0
@@ -186,7 +188,56 @@ section.view
   .wall
     min-height: 175px
     padding:    9px 18px
-    background: #EEEBE8
+    background: #F1EFED
+
+.box
+  border:        1px solid #EBE7E4
+  border-radius: 2px
+  .main
+    padding: 27px 27px 36px 27px
+    h5
+      margin:         8px 0 13px 1px
+      vertical-align: middle
+      font-size:      21px
+    nav.nav
+      margin: 0 0 3px 3px
+
+
+// navigation, tab
+nav.nav
+  line-height: 1.7em
+  ul
+    border:        1px solid #EEEEEE
+    border-radius: 2px
+    &:hover
+      border-radius: 2px 2px 0 0
+  ul.pure-menu-children
+    padding:       0
+    border:        1px solid #E3E3E3
+    border-radius: 0 0 2px 2px
+    li.delimiter
+      border-top: 1px solid #EEEEEE
+  a
+    border: none
+
+nav.tab
+  border-radius: 2px 2px 0 0
+  background:    #EBE7E4
+  line-height:   12px
+  ul.pure-menu-list
+    background: #EBE7E4
+    li.pure-menu-item
+      float:      left
+      list-style: none
+      a
+        line-height: 29px
+      a:hover
+        background: #DDD7D2
+    li.pure-menu-selected
+      a
+        background: #B8AEA4
+        &:hover
+          background: #B8AEA4
 
 
 // shared

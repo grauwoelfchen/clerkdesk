@@ -27,3 +27,18 @@ crumb :account do |account|
   end
   parent :accounts
 end
+
+crumb :ledgers do |account|
+  link "Ledgers", account_ledgers_path(account)
+  parent :account, account
+end
+
+crumb :budget do |account|
+  link "Budget", account_budget_path(account)
+  parent :account, account
+end
+
+crumb :settlement do |account|
+  link "Settlement", account_settlement_path(account)
+  parent :account, account
+end
