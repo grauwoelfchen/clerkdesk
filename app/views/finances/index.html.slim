@@ -1,7 +1,7 @@
-- breadcrumb :accounts
+- breadcrumb :finances
 
 - content_for :header
-  h2 Accounts
+  h2 finances
   h3 Financial records
 
 - content_for :navigation
@@ -11,28 +11,28 @@
         = link_to "Actions", "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "New", new_account_path, class: "pure-menu-link"
-            
-= render "shared/pagination", resource: @accounts, info: true
+            = link_to "New", new_finance_path, class: "pure-menu-link"
+
+= render "shared/pagination", resource: @finances, info: true
 
 table.table.pure-table.pure-table-horizontal
   thead
     tr
       th
         span.attribute
-          = Account.human_attribute_name(:name)
+          = Finance.human_attribute_name(:name)
         = sort_links_for(:name)
       th
         span.attribute
-          = Account.human_attribute_name(:description)
+          = Finance.human_attribute_name(:description)
         = sort_links_for(:description)
       th
         span.attribute
-          = Account.human_attribute_name(:started_at)
+          = Finance.human_attribute_name(:started_at)
         = sort_links_for(:started_at)
       th
         span.attribute
-          = Account.human_attribute_name(:finished_at)
+          = Finance.human_attribute_name(:finished_at)
         = sort_links_for(:finished_at)
       th
         span.attribute
@@ -45,17 +45,17 @@ table.table.pure-table.pure-table-horizontal
       th
         = t("general.operation")
   tbody
-    - @accounts.each do |account|
+    - @finances.each do |finance|
       tr
-        td= link_to account.name, account_path(account)
-        td= truncate(account.description, length: 20)
-        td= account.started_at.strftime("%Y-%m-%d %H:%M")
-        td= account.finished_at.strftime("%Y-%m-%d %H:%M")
-        td= account.created_at
-        td= account.updated_at
+        td= link_to finance.name, finance_path(finance)
+        td= truncate(finance.description, length: 20)
+        td= finance.started_at.strftime("%Y-%m-%d %H:%M")
+        td= finance.finished_at.strftime("%Y-%m-%d %H:%M")
+        td= finance.created_at
+        td= finance.updated_at
         td
           ul.operation
-            li= link_to "Edit", edit_account_path(account)
-            li= link_to "Delete", account_path(account), method: :delete, data: {confirm: "Are you sure?"}
+            li= link_to "Edit", edit_finance_path(finance)
+            li= link_to "Delete", finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
 
-= render "shared/pagination", resource: @accounts, info: false
+= render "shared/pagination", resource: @finances, info: false

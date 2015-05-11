@@ -1,0 +1,57 @@
+- breadcrumb :ledger, @finance, @ledger
+
+- content_for :header
+  h2 finance
+  h3 Ledger
+
+- content_for :navigation
+  nav.nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Actions", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to "Index", finances_path, class: "pure-menu-link"
+          li.pure-menu-item
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+            = link_to "New", new_finance_path, class: "pure-menu-link"
+
+section.view
+  .pure-g
+    .finance.pure-u-1
+      = render "shared/finance", finance: @finance
+
+      .box
+        = render "tab", finance: @finance
+
+        .main.pure-g
+          .pure-u-2-24
+            h5 Ledger
+            p.text= simple_format(@ledger.description)
+          .pure-u-22-24
+            nav.nav.pure-menu.pure-menu-horizontal
+              ul.pure-menu-list
+                li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+                  = link_to "Actions", "#", class: "pure-menu-link"
+                  ul.pure-menu-children
+                    li.pure-menu-item
+                      = link_to "Edit", edit_finance_ledger_path(@finance), class: "pure-menu-link"
+          .pure-u-1-1
+            table.table.pure-table.pure-table-horizontal
+              thead
+                tr
+                  th
+                  th= t("general.created_at")
+                  th= t("general.updated_at")
+                  th= t("general.operation")
+              tbody
+                /- @ledger.entries.each do |entry|
+                /  tr
+                /    td= link_to entry.title, nil
+                /    td
+                /    td
+                /    td
+                /      ul.operation
+                /        li= link_to "Edit", nil
+                /        li= link_to "Delete", nil, method: :delete, data: {confirm: "Are you sure?"}

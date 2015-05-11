@@ -1,7 +1,7 @@
-- breadcrumb :settlement, @account
+- breadcrumb :settlement, @finance
 
 - content_for :header
-  h2 Account
+  h2 finance
   h3 Settlement
 
 - content_for :navigation
@@ -11,33 +11,33 @@
         = link_to "Actions", "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", accounts_path, class: "pure-menu-link"
+            = link_to "Index", finances_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Edit", edit_account_path(@account), class: "pure-menu-link"
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
-            = link_to "New", new_account_path, class: "pure-menu-link"
+            = link_to "New", new_finance_path, class: "pure-menu-link"
 
 section.view
   .pure-g
-    .account.pure-u-1
+    .finance.pure-u-1
 
-      h4= @account.name
-      .text= simple_format(@account.description)
+      h4= @finance.name
+      .text= simple_format(@finance.description)
 
       p.term
-       span=@account.started_at.strftime("%Y-%m-%d %H:%M")
+       span=@finance.started_at.strftime("%Y-%m-%d %H:%M")
        | &nbsp;-&nbsp;
-       span=@account.finished_at.strftime("%Y-%m-%d %H:%M")
+       span=@finance.finished_at.strftime("%Y-%m-%d %H:%M")
 
       .box
         nav.tab.pure-menu.pure-menu-horizontal
           ul.pure-menu-list
             li.pure-menu-item
-              = link_to "Summary", account_path(@account), class: "pure-menu-link"
+              = link_to "Summary", finance_path(@finance), class: "pure-menu-link"
             li.pure-menu-item
-              = link_to "Ledgers", account_ledgers_path(@account), class: "pure-menu-link"
+              = link_to "Ledger", finance_ledger_path(@finance), class: "pure-menu-link"
             li.pure-menu-item
-              = link_to "Budget", account_budget_path(@account), class: "pure-menu-link"
+              = link_to "Budget", finance_budget_path(@finance), class: "pure-menu-link"
             li.pure-menu-item.pure-menu-selected
               = link_to "Settlement", "#", class: "pure-menu-link"
 

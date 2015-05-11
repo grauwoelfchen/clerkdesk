@@ -1,13 +1,35 @@
 class LedgersController < WorkspaceController
-  before_filter :load_account
+  before_filter :load_finance
+  before_action :load_ledger
 
-  def index
-    @ledgers = @account.ledgers
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @ledger.update_attributes(ledger_params)
+      redirect_to [@finance, :ledger],
+        :notice => "Ledger has been successfully updated."
+    else
+      flash.now[:alert] = "Ledger could not be updated."
+      render :edit
+    end
   end
 
   private
 
-  def load_account
-    @account = Account.find(params[:account_id])
+  def load_finance
+    @finance = Finance.find(params[:finance_id])
+  end
+
+  def load_ledger
+    @ledger = @finance.ledger or
+      raise ActiveRecord::RecordNotFound
+  end
+
+  def ledger_params
+    params.require(:ledger).permit(:title, :description)
   end
 end

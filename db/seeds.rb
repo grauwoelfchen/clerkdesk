@@ -1,7 +1,50 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+if Apartment::Tenant.current == "public"
+
+  conn = ActiveRecord::Base.connection
+  Apartment.tenant_names.map do |tenant|
+    conn.query(%Q{DROP SCHEMA IF EXISTS #{tenant} CASCADE;})
+  end
+
+  account_params = {
+    name:      "grauwoelfchen",
+    subdomain: "grauwoelfchen",
+    owners_attributes: [{
+      email:                 "grauwoelfchen@gmail.com",
+      password:              "secret",
+      password_confirmation: "secret"
+    }]
+  }
+
+  account = LockerRoom::Account.create_with_owner(account_params)
+  account.create_schema
+end
+
+if Apartment::Tenant.current == "grauwoelfchen"
+  finance_params = {
+    name:        "2015.05 Accounting",
+    description: "Foo",
+    started_at:  Time.new(2015,04, 01, 00, 00, 00, "+00:00"),
+    finished_at: Time.new(2016,03, 31, 23, 59, 59, "+00:00"),
+  }
+  finance = Finance.new(finance_params)
+  finance.save_with_ficsal_objects
+
+  note_params = {
+    title: "05.2015 13th Meeting",
+    content: <<-CONTENT
+## Summary
+
+* Foo
+* Bar
+
+## Schedule
+
+|Foo|Bar|
+|---|---|
+|foo|bar|
+  CONTENT
+  }
+
+  note = Note.new(note_params)
+  note.save!
+end

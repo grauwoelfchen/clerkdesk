@@ -1,6 +1,6 @@
-= form_for account, html: {class: "form pure-form"} do |f|
-  - if account.errors.any?
-    = render "shared/error", resource: account
+= form_for finance, html: {class: "form pure-form"} do |f|
+  - if finance.errors.any?
+    = render "shared/error", resource: finance
   fieldset.pure-group
     = f.text_field :name,  class: "pure-input-1", placeholder: "Name"
     = f.text_area :description,  class: "pure-input-1", rows: 4, placeholder: "Description"
@@ -15,4 +15,4 @@
   .action
     = f.submit t("general.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("general.destroy"), account_path(account), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("general.destroy"), finance_path(finance), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

@@ -1,4 +1,4 @@
-class Account < ActiveRecord::Base
+class Finance < ActiveRecord::Base
   include Sortable
 
   paginates_per 5
@@ -8,7 +8,7 @@ class Account < ActiveRecord::Base
 
   has_one :budget
   has_one :settlement
-  has_many :ledgers
+  has_one :ledger
 
   validates :name,
     presence: true
@@ -17,12 +17,13 @@ class Account < ActiveRecord::Base
   validates :name,
     length: {maximum: 128}
 
-  def save_with_budget_and_settlement
+  def save_with_ficsal_objects
     self.class.transaction do
       result = save
       if result
         create_budget(title: name)
         create_settlement(title: name)
+        create_ledger(title: name)
       end
       result
     end

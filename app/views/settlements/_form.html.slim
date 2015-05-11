@@ -1,4 +1,4 @@
-= form_for settlement, url: account_settlement_path(account), html: {class: "form pure-form"} do |f|
+= form_for settlement, url: finance_settlement_path(finance), html: {class: "form pure-form"} do |f|
   - if settlement.errors.any?
     = render "shared/error", resource: settlement
   fieldset.pure-group
@@ -6,4 +6,4 @@
   .action
     = f.submit t("general.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("general.destroy"), account_settlement_path(account), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("general.destroy"), finance_settlement_path(finance), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

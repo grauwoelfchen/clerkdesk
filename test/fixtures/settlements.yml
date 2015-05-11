@@ -1,6 +1,6 @@
 second_piano_settlement:
-  account: general_account
+  finance: general_finance
   title: 'Second piano settlement'
 unicycle_settlement:
-  account: special_account
+  finance: special_finance
   title: 'Unicycle settlement'
