@@ -6,11 +6,11 @@
       = link_to notes_path, class: "pure-menu-link" do
         i.fa.fa-file-text-o
         | Notes
-    - selected = controller_name.in?(%w{accounts budgets settlements ledgers}) ? "pure-menu-selected" : ""
+    - selected = controller_name.in?(%w{finances budgets settlements ledgers}) ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
-      = link_to accounts_path, class: "pure-menu-link" do
+      = link_to finances_path, class: "pure-menu-link" do
         i.fa.fa-calculator
-        | Accounts
+        | finances
     - selected = controller_name == "people" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to "#", class: "pure-menu-link" do

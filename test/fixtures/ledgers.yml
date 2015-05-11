@@ -1,8 +1,8 @@
-bank:
-  account: general_account
-  title: 'Bank'
+general_ledger:
+  finance: general_finance
+  title: 'General finance ledger'
   description: ''
-wallet:
-  account: general_account
-  title: 'Wallet'
+special_ledger:
+  finance: special_finance
+  title: 'Special finance ledger'
   description: ''

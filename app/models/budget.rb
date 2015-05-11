@@ -1,5 +1,5 @@
 class Budget < ActiveRecord::Base
-  belongs_to :account
+  belongs_to :finance
 
   validates :title,
     presence: true

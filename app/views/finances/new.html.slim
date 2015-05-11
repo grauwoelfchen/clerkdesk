@@ -1,7 +1,7 @@
-- breadcrumb :account, @account
+- breadcrumb :finance, @finance
 
 - content_for :header
-  h2 New Account
+  h2 New finance
   h3 Financial record
 
 - content_for :navigation
@@ -11,8 +11,8 @@
         = link_to "Actions", "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", accounts_path, class: "pure-menu-link"
+            = link_to "Index", finances_path, class: "pure-menu-link"
 
 h3 New
 
-= render "form", account: @account, action: "create"
+= render "form", finance: @finance, action: "create"

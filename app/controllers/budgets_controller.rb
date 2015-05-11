@@ -1,5 +1,5 @@
 class BudgetsController < WorkspaceController
-  before_action :load_account
+  before_action :load_finance
   before_action :load_budget
 
   def show
@@ -10,7 +10,7 @@ class BudgetsController < WorkspaceController
 
   def update
     if @budget.update_attributes(budget_params)
-      redirect_to account_budget_url(@account),
+      redirect_to [@finance, :budget],
         :notice => "Budget has been successfully updated."
     else
       flash.now[:alert] = "Budget could not be updated."
@@ -20,12 +20,13 @@ class BudgetsController < WorkspaceController
 
   private
 
-  def load_account
-    @account = Account.find(params[:account_id])
+  def load_finance
+    @finance = Finance.find(params[:finance_id])
   end
 
   def load_budget
-    @budget = @account.budget
+    @budget = @finance.budget or
+      raise ActiveRecord::RecordNotFound
   end
 
   def budget_params
