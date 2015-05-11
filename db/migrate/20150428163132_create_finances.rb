@@ -1,6 +1,6 @@
-class CreateAccounts < ActiveRecord::Migration
+class CreateFinances < ActiveRecord::Migration
   def change
-    create_table :accounts do |t|
+    create_table :finances do |t|
       t.string   :name
       t.string   :description, null: true,  default: nil
       t.datetime :started_at,  null: true,  default: nil

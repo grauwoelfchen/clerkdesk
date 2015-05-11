@@ -28,9 +28,9 @@ class ActiveSupport::TestCase
   end
 
   def after_teardown
+    DatabaseCleaner.clean
     Apartment::Tenant.reset
     clean_all_schema
-    DatabaseCleaner.clean
     super
   end
 

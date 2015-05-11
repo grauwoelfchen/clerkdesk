@@ -1,0 +1,7 @@
+h4= finance.name
+.text= simple_format(finance.description)
+
+p.term
+ span=finance.started_at.strftime("%Y-%m-%d %H:%M")
+ | &nbsp;-&nbsp;
+ span=finance.finished_at.strftime("%Y-%m-%d %H:%M")

@@ -15,30 +15,30 @@ crumb :note do |note|
   parent :notes
 end
 
-crumb :accounts do
-  link "Accounts", accounts_path
+crumb :finances do
+  link "finances", finances_path
 end
 
-crumb :account do |account|
-  unless account.persisted?
+crumb :finance do |finance|
+  unless finance.persisted?
     link "New", nil
   else
-    link account.name, account
+    link finance.name, finance
   end
-  parent :accounts
+  parent :finances
 end
 
-crumb :ledgers do |account|
-  link "Ledgers", account_ledgers_path(account)
-  parent :account, account
+crumb :ledger do |finance|
+  link "Ledger", finance_ledger_path(finance)
+  parent :finance, finance
 end
 
-crumb :budget do |account|
-  link "Budget", account_budget_path(account)
-  parent :account, account
+crumb :budget do |finance|
+  link "Budget", finance_budget_path(finance)
+  parent :finance, finance
 end
 
-crumb :settlement do |account|
-  link "Settlement", account_settlement_path(account)
-  parent :account, account
+crumb :settlement do |finance|
+  link "Settlement", finance_settlement_path(finance)
+  parent :finance, finance
 end
