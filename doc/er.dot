@@ -81,49 +81,48 @@ digraph Clerkdesk {
     }}"
   ]
 
-  Account [
-    label = "{accounts|«Account»\lhas_one: budget\lhas_one: settlement\l\n|{ \
+  Finance [
+    label = "{finances|«Finance»\lhas_one: budget\lhas_one: settlement\lhas_one: ledger\l\n|{ \
       {FIELD|name\l|description\l|started_at\l|finished_at\l|status\l}| \
       {TYPE|varchar\l|text\l|datetime\l|datetime\l|integer\l}| \
       {VALUE|\l|\l|\l|\l|\l} \
     }}"
   ]
 
-
-  AccountCategory [
-    label = "{account_categories|«AccountCategory»\lbelongs_to: account\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
-      {FIELD|account_id\l|type\l|name\l}| \
+  FinanceCategory [
+    label = "{finane_categories|«FinanceCategory»\lbelongs_to: finance\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
+      {FIELD|finance_id\l|type\l|name\l}| \
       {TYPE|integer\l|integer\l|name\l}| \
       {VALUE|\l|0:expense,1:income\l|\l} \
     }}"
   ]
 
   Budget [
-    label = "{budgets|«Budget»\lbelongs_to: account\l\n|{ \
-      {FIELD|account_id\l|title\l|description\l|carryover\l|approved_at\l}| \
+    label = "{budgets|«Budget»\lbelongs_to: finance\l\n|{ \
+      {FIELD|finance_id\l|title\l|description\l|carryover\l|approved_at\l}| \
       {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
       {VALUE|\l|\l|\l|default:0\l|\l} \
     }}"
   ]
 
   Settlement [
-    label = "{settlements|«Settlement»\lbelongs_to: account\l\n|{ \
-      {FIELD|account_id\l|title\l|description\l|carryover\l|approved_at\l}| \
+    label = "{settlements|«Settlement»\lbelongs_to: finance\l\n|{ \
+      {FIELD|finance_id\l|title\l|description\l|carryover\l|approved_at\l}| \
       {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
       {VALUE|\l|\l|\l|default:0\l|\l} \
     }}"
   ]
 
   Ledger [
-    label = "{ledgers|«Ledger»\lbelongs_to: account\lhas_many: ledger_entries (as entries)\l\n|{ \
-      {FIELD|account_id\l|title\l|description\l}| \
+    label = "{ledgers|«Ledger»\lbelongs_to: finance\lhas_many: ledger_entries (as entries)\l\n|{ \
+      {FIELD|finance_id\l|title\l|description\l}| \
       {TYPE|integer\l|varchar\l|text\l}| \
       {VALUE|\l|\l|\l} \
     }}"
   ]
 
   Journalizing [
-    label = "{journalizings|«Journalizing»\lbelongs_to: account_category (as category)\lbelongs_to: ledger_entry: (as entry)\l\n|{ \
+    label = "{journalizings|«Journalizing»\lbelongs_to: finance_category (as category)\lbelongs_to: ledger_entry: (as entry)\l\n|{ \
       {FIELD|entry_id\l|category_id\l|entries_count\l}| \
       {TYPE|integer\l|integer\l|integer\l}| \
       {VALUE|\l|\l|default:0\l} \
@@ -131,7 +130,7 @@ digraph Clerkdesk {
   ]
 
   LedgerEntry [
-    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lhas_one: account_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
+    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lhas_one: finance_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
       {FIELD|ledger_id\l|category_id\l|type\l|title\l|amount\l|memo\l}| \
       {TYPE|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
       {VALUE|\l|\l|0:expense,1:income\l|\l|\l|\l} \
@@ -214,15 +213,15 @@ digraph Clerkdesk {
   Tagging -> Note
   Tagging -> LedgerEntry
 
-  Budget     -> Account
-  Settlement -> Account
-  AccountCategory -> Account
+  Budget     -> Finance
+  Settlement -> Finance
+  FinanceCategory -> Finance
 
-  Ledger      -> Account
+  Ledger      -> Finance
   LedgerEntry -> Ledger
   LedgerItem  -> LedgerEntry
 
-  Journalizing -> AccountCategory
+  Journalizing -> FinanceCategory
   Journalizing -> LedgerEntry
 
   Involvement -> Person
@@ -264,9 +263,9 @@ digraph Clerkdesk {
 
   {rank = same; LockerRoomMember;};
   {rank = same; LockerRoomAccount; LockerRoomUser; Person};
-  {rank = same; Note; Involvement; Account;};
+  {rank = same; Note; Involvement; Finance;};
   {rank = same; Budget; Settlement;};
   {rank = same; Involvement;};
-  {rank = same; Tagging; LedgerEntry;AccountCategory;};
+  {rank = same; Tagging; LedgerEntry;FinanceCategory;};
   {rank = same; Tag; Ledger;};
 }

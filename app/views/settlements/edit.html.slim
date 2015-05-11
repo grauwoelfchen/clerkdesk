@@ -6,10 +6,10 @@
   nav.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item
-        = link_to "Account", account_path(@account), class: "pure-menu-link"
+        = link_to "finance", finance_path(@finance), class: "pure-menu-link"
       li.pure-menu-item
-        = link_to "Show", account_settlement_path(@account), class: "pure-menu-link"
+        = link_to "Show", finance_settlement_path(@finance), class: "pure-menu-link"
 
 h3 Edit
 
-= render "form", account: @account, settlement: @settlement, action: "update"
+= render "form", finance: @finance, settlement: @settlement, action: "update"

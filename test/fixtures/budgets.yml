@@ -1,6 +1,6 @@
 second_piano_budget:
-  account: general_account
+  finance: general_finance
   title: 'Second piano budget'
 unicycle_budget:
-  account: special_account
+  finance: special_finance
   title: 'Unicycle budget'

@@ -1,5 +1,5 @@
 class SettlementsController < WorkspaceController
-  before_action :load_account
+  before_action :load_finance
   before_action :load_settlement
 
   def show
@@ -10,7 +10,7 @@ class SettlementsController < WorkspaceController
 
   def update
     if @settlement.update_attributes(settlement_params)
-      redirect_to account_settlement_url(@account),
+      redirect_to [@finance, :settlement],
         :notice => "Settlement has been successfully updated."
     else
       flash.now[:alert] = "Settlement could not be updated."
@@ -20,12 +20,13 @@ class SettlementsController < WorkspaceController
 
   private
 
-  def load_account
-    @account = Account.find(params[:account_id])
+  def load_finance
+    @finance = Finance.find(params[:finance_id])
   end
 
   def load_settlement
-    @settlement = @account.settlement
+    @settlement = @finance.settlement or
+      raise ActiveRecord::RecordNotFound
   end
 
   def settlement_params
