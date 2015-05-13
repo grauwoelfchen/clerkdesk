@@ -27,7 +27,7 @@ section.view
 
         .main.pure-g
           .pure-u-2-24
-            h5 Ledger
+            h5 Entries
             p.text= simple_format(@ledger.description)
           .pure-u-22-24
             nav.nav.pure-menu.pure-menu-horizontal
@@ -41,17 +41,21 @@ section.view
             table.table.pure-table.pure-table-horizontal
               thead
                 tr
-                  th
+                  th= LedgerEntry.human_attribute_name(:title)
+                  th= LedgerEntry.human_attribute_name(:type)
+                  th= LedgerEntry.human_attribute_name(:total_amount)
                   th= t("general.created_at")
                   th= t("general.updated_at")
                   th= t("general.operation")
               tbody
-                /- @ledger.entries.each do |entry|
-                /  tr
-                /    td= link_to entry.title, nil
-                /    td
-                /    td
-                /    td
-                /      ul.operation
-                /        li= link_to "Edit", nil
-                /        li= link_to "Delete", nil, method: :delete, data: {confirm: "Are you sure?"}
+                - @ledger.entries.each do |entry|
+                  tr
+                    td= link_to entry.title, nil
+                    td= entry.type
+                    td= entry.total_amount
+                    td
+                    td
+                    td
+                      ul.operation
+                        li= link_to "Edit", nil
+                        li= link_to "Delete", nil, method: :delete, data: {confirm: "Are you sure?"}

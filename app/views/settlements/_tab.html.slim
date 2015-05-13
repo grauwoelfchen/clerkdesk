@@ -4,9 +4,9 @@ nav.tab.pure-menu.pure-menu-horizontal
       = link_to "Summary", finance_path(finance), class: "pure-menu-link"
     li.pure-menu-item
       = link_to "Categories", finance_categories_path(finance), class: "pure-menu-link"
-    li.pure-menu-item.pure-menu-selected
-      = link_to "Ledger", "#", class: "pure-menu-link"
+    li.pure-menu-item
+      = link_to "Ledger", finance_ledger_path(finance), class: "pure-menu-link"
     li.pure-menu-item
       = link_to "Budget", finance_budget_path(finance), class: "pure-menu-link"
-    li.pure-menu-item
-      = link_to "Settlement", finance_settlement_path(finance), class: "pure-menu-link"
+    li.pure-menu-item.pure-menu-selected
+      = link_to "Settlement", "#", class: "pure-menu-link"
