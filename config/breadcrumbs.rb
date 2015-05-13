@@ -28,6 +28,20 @@ crumb :finance do |finance|
   parent :finances
 end
 
+crumb :finance_categories do |finance|
+  link "Categories", finance_categories_path(finance)
+  parent :finance, finance
+end
+
+crumb :finance_category do |finance, category|
+  unless category.persisted?
+    link "New", nil
+  else
+    link category.name, finance_category_path(finance, category)
+  end
+  parent :finance_categories, finance
+end
+
 crumb :ledger do |finance|
   link "Ledger", finance_ledger_path(finance)
   parent :finance, finance

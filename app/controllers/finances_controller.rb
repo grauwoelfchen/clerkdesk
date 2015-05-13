@@ -1,5 +1,5 @@
 class FinancesController < WorkspaceController
-  before_action :load_finance, only: [:show, :edit, :update, :destroy]
+  before_action :load_finance, :only => [:show, :edit, :update, :destroy]
 
   def index
     @finances = Finance.ordered(params[:column], params[:direction])

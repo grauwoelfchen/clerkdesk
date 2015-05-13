@@ -1,5 +1,6 @@
 class Ledger < ActiveRecord::Base
   belongs_to :finance
+  has_many :entries, class_name: "LedgerEntry"
 
   validates :title,
     presence: true

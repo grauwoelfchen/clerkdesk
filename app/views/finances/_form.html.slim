@@ -1,3 +1,4 @@
+- action = finance.persisted? ? "update" : "create"
 = form_for finance, html: {class: "form pure-form"} do |f|
   - if finance.errors.any?
     = render "shared/error", resource: finance
