@@ -1,4 +1,5 @@
-= form_for budget, url: finance_budget_path(finance), html: {class: "form pure-form"} do |f|
+- action = budget.persisted? ? "update" : "create"
+= form_for [finance, budget], html: {class: "form pure-form"} do |f|
   - if budget.errors.any?
     = render "shared/error", resource: budget
   fieldset.pure-group

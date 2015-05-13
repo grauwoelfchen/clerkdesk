@@ -90,7 +90,7 @@ digraph Clerkdesk {
   ]
 
   FinanceCategory [
-    label = "{finane_categories|«FinanceCategory»\lbelongs_to: finance\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
+    label = "{finance_categories|«FinanceCategory»\lbelongs_to: finance\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
       {FIELD|finance_id\l|type\l|name\l}| \
       {TYPE|integer\l|integer\l|name\l}| \
       {VALUE|\l|0:expense,1:income\l|\l} \
@@ -122,17 +122,17 @@ digraph Clerkdesk {
   ]
 
   Journalizing [
-    label = "{journalizings|«Journalizing»\lbelongs_to: finance_category (as category)\lbelongs_to: ledger_entry: (as entry)\l\n|{ \
-      {FIELD|entry_id\l|category_id\l|entries_count\l}| \
+    label = "{journalizings|«Journalizing»\lbelongs_to: ledger\lbelongs_to: finance_category (as category)\lhas_many: ledger_entry: (as entry)\l\n|{ \
+      {FIELD|ledger_id\l|category_id\l|entries_count\l}| \
       {TYPE|integer\l|integer\l|integer\l}| \
       {VALUE|\l|\l|default:0\l} \
     }}"
   ]
 
   LedgerEntry [
-    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lhas_one: finance_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
-      {FIELD|ledger_id\l|category_id\l|type\l|title\l|amount\l|memo\l}| \
-      {TYPE|integer\l|integer\l|integer\l|varchar\l|varchar\l|varchar\l}| \
+    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lbelongs_to: finace_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
+      {FIELD|ledger_id\l|journalizing_id\l|type\l|title\l|total_amount\l|memo\l}| \
+      {TYPE|integer\l|integer\l|integer\l|varchar\l|integer\l|varchar\l}| \
       {VALUE|\l|\l|0:expense,1:income\l|\l|\l|\l} \
     }}"
   ]
@@ -140,7 +140,7 @@ digraph Clerkdesk {
   LedgerItem [
     label = "{ledger_items|«LedgerItem»\lbelongs_to: ledger_entry (as entry)\l\n|{ \
       {FIELD|entry_id\l|name\l|amount\l|memo\l}| \
-      {TYPE|integer\l|varchar\l|varchar\l|varchar\l}| \
+      {TYPE|integer\l|varchar\l|integer\l|varchar\l}| \
       {VALUE|\l|\l|\l|\l} \
     }}"
   ]
@@ -219,10 +219,11 @@ digraph Clerkdesk {
 
   Ledger      -> Finance
   LedgerEntry -> Ledger
+  LedgerEntry -> Journalizing
   LedgerItem  -> LedgerEntry
 
+  Journalizing -> Ledger
   Journalizing -> FinanceCategory
-  Journalizing -> LedgerEntry
 
   Involvement -> Person
   Involvement -> Note

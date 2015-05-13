@@ -1,0 +1,14 @@
+- action = category.persisted? ? "update" : "create"
+- if action == "update"
+  - url = finance_category_path(finance, category)
+- else
+  - url = category
+= form_for category, url: url, html: {class: "form pure-form"} do |f|
+  - if category.errors.any?
+    = render "shared/error", resource: category
+  = f.text_field :name, class: "pure-input-1", placeholder: "Name"
+  = f.select :type, FinanceCategory.human_types.invert
+  .action
+    = f.submit t("general.#{action}"), class: "pure-button button"
+    - if action == "update"
+      = link_to t("general.destroy"), finance_category_path(finance, category), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

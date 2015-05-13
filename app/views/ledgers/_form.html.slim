@@ -1,3 +1,4 @@
+- action = ledger.persisted? ? "update" : "create"
 = form_for [finance, ledger], html: {class: "form pure-form"} do |f|
   - if ledger.errors.any?
     = render "shared/error", resource: ledger

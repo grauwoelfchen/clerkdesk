@@ -1,8 +1,8 @@
 - breadcrumb :finance, @finance
 
 - content_for :header
-  h2 finance
-  h3 Stat
+  h2 Finance
+  h3 Summary
 
 - content_for :navigation
   nav.nav.pure-menu.pure-menu-horizontal
@@ -34,6 +34,8 @@ section.view
           ul.pure-menu-list
             li.pure-menu-item.pure-menu-selected
               = link_to "Summary", "#", class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Categories", finance_categories_path(@finance), class: "pure-menu-link"
             li.pure-menu-item
               = link_to "Ledger", finance_ledger_path(@finance), class: "pure-menu-link"
             li.pure-menu-item

@@ -1,8 +1,8 @@
-- breadcrumb :finance, @finance
+- breadcrumb :finance_category, @finance, @category
 
 - content_for :header
-  h2 finance
-  h3 Financial record
+  h2 Finance
+  h3 Edit category
 
 - content_for :navigation
   nav.nav.pure-menu.pure-menu-horizontal
@@ -13,10 +13,17 @@
           li.pure-menu-item
             = link_to "Index", finances_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Show", finance_path(@finance), class: "pure-menu-link"
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
             = link_to "New", new_finance_path, class: "pure-menu-link"
 
-h3 Edit
+section.view
+  .pure-g
+    .finance.pure-u-1
+      = render "shared/finance", finance: @finance
 
-= render "form", finance: @finance
+      .box
+        = render "tab", finance: @finance
+
+        .main
+          = render "form", finance: @finance, category: @category
