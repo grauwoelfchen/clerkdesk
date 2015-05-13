@@ -1,0 +1,72 @@
+- breadcrumb :finance_categories, @finance
+
+- content_for :header
+  h2 Finance
+  h3 Category
+
+- content_for :navigation
+  nav.nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Actions", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to "Index", finances_path, class: "pure-menu-link"
+          li.pure-menu-item
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+            = link_to "New", new_finance_path, class: "pure-menu-link"
+
+section.view
+  .pure-g
+    .finance.pure-u-1
+
+      h4= @finance.name
+      .text= simple_format(@finance.description)
+
+      p.term
+       span=@finance.started_at.strftime("%Y-%m-%d %H:%M")
+       | &nbsp;-&nbsp;
+       span=@finance.finished_at.strftime("%Y-%m-%d %H:%M")
+
+      .box
+        nav.tab.pure-menu.pure-menu-horizontal
+          ul.pure-menu-list
+            li.pure-menu-item
+              = link_to "Summary", finance_path(@finance), class: "pure-menu-link"
+            li.pure-menu-item.pure-menu-selected
+              = link_to "Categories", "#", class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Ledger", finance_ledger_path(@finance), class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Budget", finance_budget_path(@finance), class: "pure-menu-link"
+            li.pure-menu-item
+              = link_to "Settlement", finance_settlement_path(@finance), class: "pure-menu-link"
+
+        .main.pure-g
+          .pure-u-2-24
+            h5 Categories
+          .pure-u-22-24
+            nav.nav.pure-menu.pure-menu-horizontal
+              ul.pure-menu-list
+                li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+                  = link_to "Actions", "#", class: "pure-menu-link"
+                  ul.pure-menu-children
+                    li.pure-menu-item
+                      = link_to "New", new_finance_category_path(@finance), class: "pure-menu-link"
+          .pure-u-1-1
+            table.table.pure-table.pure-table-horizontal
+              thead
+                tr
+                  th= FinanceCategory.human_attribute_name(:name)
+                  th= FinanceCategory.human_attribute_name(:type)
+                  th= t("general.operation")
+              tbody
+                - @categories.each do |category|
+                  tr
+                    td= category.name
+                    td= category.type
+                    td
+                      ul.operation
+                        li= link_to "Edit", edit_finance_category_path(@finance, category)
+                        li= link_to "Delete", finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}

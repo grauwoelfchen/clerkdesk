@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resource :budget,     only: [:show, :edit, :update]
       resource :settlement, only: [:show, :edit, :update]
       resource :ledger
+      resources :categories, controller: :finance_categories
     end
 
     root to: "desktop#index"
