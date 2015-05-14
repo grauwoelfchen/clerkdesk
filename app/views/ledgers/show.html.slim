@@ -1,7 +1,7 @@
 - breadcrumb :ledger, @finance, @ledger
 
 - content_for :header
-  h2 finance
+  h2 Finance
   h3 Ledger
 
 - content_for :navigation
@@ -21,23 +21,12 @@ section.view
   .pure-g
     .finance.pure-u-1
       = render "shared/finance", finance: @finance
-
       .box
-        = render "tab", finance: @finance
-
+        = render "shared/tab", finance: @finance
         .main.pure-g
-          .pure-u-2-24
-            h5 Entries
-            p.text= simple_format(@ledger.description)
-          .pure-u-22-24
-            nav.nav.pure-menu.pure-menu-horizontal
-              ul.pure-menu-list
-                li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-                  = link_to "Actions", "#", class: "pure-menu-link"
-                  ul.pure-menu-children
-                    li.pure-menu-item
-                      = link_to "Edit", edit_finance_ledger_path(@finance), class: "pure-menu-link"
           .pure-u-1-1
+            h5 Ledger entries
+            p.text= simple_format(@ledger.description)
             table.table.pure-table.pure-table-horizontal
               thead
                 tr
