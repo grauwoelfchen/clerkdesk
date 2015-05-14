@@ -144,18 +144,6 @@ nav.pagination,
 //.note
 //  font-size: 7px
 
-// form
-.form
-  width:  100%
-  margin: 3px 0 19px 0
-  input[type="submit"]
-    margin: 19px 0
-  .error-messages
-    ul
-      margin:  9px 0 18px 0
-      padding: 0 0 0 16px
-      li
-        color: $error-color
 
 
 // show
@@ -237,7 +225,19 @@ nav.tab
         background: #B8AEA4
         &:hover
           background: #B8AEA4
-
+  ul.pure-menu-children
+    li.pure-menu-item
+      float: none
+      a
+        background: none
+      a:hover
+        background: #EEEEEE
+  ul.pure-menu-children
+    padding:       0
+    border:        1px solid #E3E3E3
+    border-radius: 0 0 2px 2px
+    li.delimiter
+      border-top: 1px solid #EEEEEE
 
 // shared
 .action

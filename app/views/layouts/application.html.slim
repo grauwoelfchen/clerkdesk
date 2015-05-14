@@ -13,10 +13,10 @@ html lang="en"
     link type="text/plain" rel="author" href="/humans.txt"
   body#content
     a#menuLink.menu-link href="#menu"
-    div#menu
+    #menu
       = render "shared/menu"
-    div#main
-      div.header.pure-g
+    #main
+      .header.pure-g
         .pure-u-18-24
           .header-content
             = yield :header
@@ -26,7 +26,7 @@ html lang="en"
           .sticky
             .user= render "locker_room/shared/login"
             span.logout= link_to "logout", locker_room.logout_path, method: :delete
-      div.content
+      .content
         - if flash.any?
           = render "shared/flash", flash: flash
         .navigation.pure-g
@@ -34,7 +34,7 @@ html lang="en"
             = breadcrumbs pretext: "", separator: " &rsaquo; "
           .nav.pure-u-2-5
         = yield
-      div.footer
+      .footer
         .pure-g
           .pure-u-1.u-sm-1-2
             | <a href="/">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
