@@ -1,0 +1,69 @@
+nav.tab.pure-menu.pure-menu-horizontal
+  ul.pure-menu-list
+    / Finance
+    - if controller_name == "finances"
+      li.pure-menu-item.pure-menu-selected
+        = link_to "Summary", finance_path(finance), class: "pure-menu-link"
+    - else
+      li.pure-menu-item
+        = link_to "Summary", finance_path(finance), class: "pure-menu-link"
+
+    / FinanceCategory
+    - if controller_name == "finance_categories"
+      li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Categories", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          - if action_name == "index"
+            li.pure-menu-item
+              = link_to "New", new_finance_category_path(finance), class: "pure-menu-link"
+          - else
+            li.pure-menu-item
+              = link_to "Index", finance_categories_path(finance), class: "pure-menu-link"
+    - else
+      li.pure-menu-item
+        = link_to "Categories", finance_categories_path(finance), class: "pure-menu-link"
+
+    / Ledger
+    - if controller_name == "ledgers"
+      li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Ledger", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          - if action_name == "show"
+            li.pure-menu-item
+              = link_to "Edit", edit_finance_ledger_path(finance), class: "pure-menu-link"
+          - else
+            li.pure-menu-item
+              = link_to "Show", finance_ledger_path(finance), class: "pure-menu-link"
+    - else
+      li.pure-menu-item
+        = link_to "Ledger", finance_ledger_path(finance), class: "pure-menu-link"
+
+    / Budget
+    - if controller_name == "budgets"
+      li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Budget", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          - if action_name == "show"
+            li.pure-menu-item.delimiter
+              = link_to "Edit", edit_finance_budget_path(finance), class: "pure-menu-link"
+          - else
+            li.pure-menu-item
+              = link_to "Show", finance_budget_path(finance), class: "pure-menu-link"
+    - else
+      li.pure-menu-item
+        = link_to "Budget", finance_budget_path(finance), class: "pure-menu-link"
+
+    / Settlement
+    - if controller_name == "settlements"
+      li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Settlement", finance_settlement_path(finance), class: "pure-menu-link"
+        ul.pure-menu-children
+          - if action_name == "show"
+            li.pure-menu-item
+              = link_to "Edit", edit_finance_settlement_path(finance), class: "pure-menu-link"
+          - else
+            li.pure-menu-item
+              = link_to "Show", finance_settlement_path(finance), class: "pure-menu-link"
+    - else
+      li.pure-menu-item
+        = link_to "Settlement", finance_settlement_path(finance), class: "pure-menu-link"

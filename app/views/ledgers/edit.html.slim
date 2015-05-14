@@ -1,7 +1,7 @@
 - breadcrumb :ledger, @finance
 
 - content_for :header
-  h2 finance
+  h2 Finance
   h3 Edit ledger
 
 - content_for :navigation
@@ -21,9 +21,9 @@ section.view
   .pure-g
     .finance.pure-u-1
       = render "shared/finance", finance: @finance
-
       .box
-        = render "tab", finance: @finance
-
-        .main
-          = render "form", finance: @finance, ledger: @ledger
+        = render "shared/tab", finance: @finance
+        .main.pure-g
+          .pure-u-1-1
+            h5 Edit ledger
+            = render "form", finance: @finance, ledger: @ledger

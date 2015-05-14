@@ -2,7 +2,7 @@
 = form_for note, html: {class: "form pure-form"} do |f|
   - if note.errors.any?
     = render "shared/error", resource: note
-  fieldset.pure-group
+  fieldset.group.pure-group
     = f.text_field :title, class: "pure-input-1", placeholder: "A title"
     = f.text_area :content, class: "pure-input-1", rows: 18, placeholder: "Content"
   = f.text_field :tag_list, class: "pure-input-1", value: note.tag_list.join(","), placeholder: "Tag"

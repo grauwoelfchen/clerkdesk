@@ -1,7 +1,7 @@
 - breadcrumb :budget, @finance
 
 - content_for :header
-  h2 finance
+  h2 Finance
   h3 Budget
 
 - content_for :navigation
@@ -20,52 +20,43 @@
 section.view
   .pure-g
     .finance.pure-u-1
-      h4= @finance.name
-      .text= simple_format(@finance.description)
-
-      p.term
-       span=@finance.started_at.strftime("%Y-%m-%d %H:%M")
-       | &nbsp;-&nbsp;
-       span=@finance.finished_at.strftime("%Y-%m-%d %H:%M")
-
+      = render "shared/finance", finance: @finance
       .box
-        = render "tab", finance: @finance
-
-        .main
-          .pure-g
-            .pure-u-1-3
-              .field.left
-                h5 Expense
-                table.table.pure-table.pure-table-horizontal
-                  thead
-                    tr
-                      th Category
-                      th Amount
-                  tbody
-                    tr
-                      td Network
-                      td 102020000
-                    tr
-                      td Event
-                      td 3020000
-                    tr
-                      td Carryover
-                      td 3020000
-            .pure-u-1-3
-              .field.left
-                h5 Income
-                table.table.pure-table.pure-table-horizontal
-                  thead
-                    tr
-                      th Category
-                      th Amount
-                  tbody
-                    tr
-                      td Carryover
-                      td 1020200
-                    tr
-                      td Network
-                      td 102020000
-                    tr
-                      td Event
-                      td 3020000
+        = render "shared/tab", finance: @finance
+        .main.pure-g
+          .pure-u-1-3
+            .field.left
+              h5 Expense
+              table.table.pure-table.pure-table-horizontal
+                thead
+                  tr
+                    th Category
+                    th Amount
+                tbody
+                  tr
+                    td Network
+                    td 102020000
+                  tr
+                    td Event
+                    td 3020000
+                  tr
+                    td Carryover
+                    td 3020000
+          .pure-u-1-3
+            .field.left
+              h5 Income
+              table.table.pure-table.pure-table-horizontal
+                thead
+                  tr
+                    th Category
+                    th Amount
+                tbody
+                  tr
+                    td Carryover
+                    td 1020200
+                  tr
+                    td Network
+                    td 102020000
+                  tr
+                    td Event
+                    td 3020000
