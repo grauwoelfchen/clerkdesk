@@ -6,8 +6,10 @@
 = form_for category, url: url, html: {class: "form pure-form"} do |f|
   - if category.errors.any?
     = render "shared/error", resource: category
-  = f.text_field :name, class: "pure-input-1", placeholder: "Name"
-  = f.select :type, FinanceCategory.human_types.invert
+  fieldset.group.pure-group
+    = f.text_field :name, class: "pure-input-1", placeholder: "Name"
+  fieldset.group.pure-group
+    = f.select :type, FinanceCategory.human_types.invert
   .action
     = f.submit t("general.#{action}"), class: "pure-button button"
     - if action == "update"

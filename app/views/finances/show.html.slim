@@ -20,112 +20,91 @@
 section.view
   .pure-g
     .finance.pure-u-1
-
-      h4= @finance.name
-      .text= simple_format(@finance.description)
-
-      p.term
-       span=@finance.started_at.strftime("%Y-%m-%d %H:%M")
-       | &nbsp;-&nbsp;
-       span=@finance.finished_at.strftime("%Y-%m-%d %H:%M")
-
+      = render "shared/finance", finance: @finance
       .box
-        nav.tab.pure-menu.pure-menu-horizontal
-          ul.pure-menu-list
-            li.pure-menu-item.pure-menu-selected
-              = link_to "Summary", "#", class: "pure-menu-link"
-            li.pure-menu-item
-              = link_to "Categories", finance_categories_path(@finance), class: "pure-menu-link"
-            li.pure-menu-item
-              = link_to "Ledger", finance_ledger_path(@finance), class: "pure-menu-link"
-            li.pure-menu-item
-              = link_to "Budget", finance_budget_path(@finance), class: "pure-menu-link"
-            li.pure-menu-item
-              = link_to "Settlement", finance_settlement_path(@finance), class: "pure-menu-link"
-
-        .main
-          .pure-g
-            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-              .field.left
-                h5 Current status
-                table.table.pure-table.pure-table-bordered
-                  thead
-                    tr
-                      th Category
-                      th Current
-                      th Budget
-                  tbody
-                    tr
-                      td XXXXX
-                      td 103204
-                      td 39302040
-                    tr
-                      td XXXXX
-                      td 103204
-                      td 39302040
-                    tr
-                      td XXXXX
-                      td 12200
-                      td 22000
-                    tr
-                      td XXXXX
-                      td 3200
-                      td 202000
-                    tr
-                      td XXXXX
-                      td 3200
-                      td 202000
-                ul
-                  li.more
-                    = link_to "more", "#"
-            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-              .field.left
-                h5 Recent entries
-                table.table.pure-table.pure-table-bordered
-                  thead
-                    tr
-                      th Datetime
-                      th Category
-                      th Mony
-                      th Ledger
-                      th Memo
-                  tbody
-                    tr
-                      td 2015/05/13
-                      td XXXX
-                      td -204
-                      td @wallet
-                      td NNNNNNN
-                    tr
-                      td 2015/04/29
-                      td XXXX
-                      td 10200
-                      td @finance
-                      td
-                    tr
-                      td 2015/04/10
-                      td XXXX
-                      td -124
-                      td @wallet
-                      td
-                    tr
-                      td 2015/04/03
-                      td XXXX
-                      td -10394
-                      td @wallet
-                      td NNNNNN...
-                    tr
-                      td 2015/04/01
-                      td XXXX
-                      td -10394
-                      td @wallet
-                      td NNNNNN...
-                ul
-                  li.more
-                    = link_to "more", "#"
-            .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-              .field
-                h5 Total assets
-                .wall.left
-                  p.asset
-                    | 20,2292,0293
+        = render "shared/tab", finance: @finance
+        .main.pure-g
+          .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+            .field.left
+              h5 Current status
+              table.table.pure-table.pure-table-bordered
+                thead
+                  tr
+                    th Category
+                    th Current
+                    th Budget
+                tbody
+                  tr
+                    td XXXXX
+                    td 103204
+                    td 39302040
+                  tr
+                    td XXXXX
+                    td 103204
+                    td 39302040
+                  tr
+                    td XXXXX
+                    td 12200
+                    td 22000
+                  tr
+                    td XXXXX
+                    td 3200
+                    td 202000
+                  tr
+                    td XXXXX
+                    td 3200
+                    td 202000
+              ul
+                li.more
+                  = link_to "more", "#"
+          .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+            .field.left
+              h5 Recent entries
+              table.table.pure-table.pure-table-bordered
+                thead
+                  tr
+                    th Datetime
+                    th Category
+                    th Mony
+                    th Ledger
+                    th Memo
+                tbody
+                  tr
+                    td 2015/05/13
+                    td XXXX
+                    td -204
+                    td @wallet
+                    td NNNNNNN
+                  tr
+                    td 2015/04/29
+                    td XXXX
+                    td 10200
+                    td @finance
+                    td
+                  tr
+                    td 2015/04/10
+                    td XXXX
+                    td -124
+                    td @wallet
+                    td
+                  tr
+                    td 2015/04/03
+                    td XXXX
+                    td -10394
+                    td @wallet
+                    td NNNNNN...
+                  tr
+                    td 2015/04/01
+                    td XXXX
+                    td -10394
+                    td @wallet
+                    td NNNNNN...
+              ul
+                li.more
+                  = link_to "more", "#"
+          .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+            .field
+              h5 Total assets
+              .wall.left
+                p.asset
+                  | 20,2292,0293
