@@ -30,6 +30,7 @@ section.view
             table.table.pure-table.pure-table-horizontal
               thead
                 tr
+                  th= FinanceCategory.human_attribute_name(:name)
                   th= LedgerEntry.human_attribute_name(:title)
                   th= LedgerEntry.human_attribute_name(:type)
                   th= LedgerEntry.human_attribute_name(:total_amount)
@@ -37,14 +38,15 @@ section.view
                   th= t("general.updated_at")
                   th= t("general.operation")
               tbody
-                - @ledger.entries.each do |entry|
+                - @entries.each do |entry|
                   tr
-                    td= link_to entry.title, nil
+                    td= entry.category.name
+                    td= link_to entry.title, finance_ledger_entry_path(@finance, entry)
                     td= entry.type
                     td= entry.total_amount
-                    td
-                    td
+                    td= entry.created_at
+                    td= entry.updated_at
                     td
                       ul.operation
-                        li= link_to "Edit", nil
+                        li= link_to "Edit", edit_finance_ledger_entry_path(@finance, entry)
                         li= link_to "Delete", nil, method: :delete, data: {confirm: "Are you sure?"}

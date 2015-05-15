@@ -1,11 +1,22 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+stationaly_goods:
+  ledger: general_ledger
+  journalizing: general_journalizing_miscellaneous_expense
+  type: <%= :expense %>
+  title: 'Stationaly goods'
+  total_amount: 305
+  memo: 'at ABC books'
+books:
+  ledger: general_ledger
+  journalizing: general_journalizing_miscellaneous_expense
+  type: <%= :expense %>
+  title: 'Books'
+  total_amount: 2850
+  memo: 'at ABC books'
+assistance_from_univ:
+  ledger: general_ledger
+  journalizing: general_journalizing_assistance
+  type: <%= :income %>
+  title: 'Yearly assistance from University'
+  total_amount: 200000
+  memo: ''
+#xxx_membership_fee:

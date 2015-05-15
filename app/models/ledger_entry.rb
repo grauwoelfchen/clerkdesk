@@ -5,7 +5,7 @@ class LedgerEntry < ActiveRecord::Base
   enum_accessor :type, [:expense, :income]
 
   belongs_to :ledger
-  has_one :journalizing
+  belongs_to :journalizing, counter_cache: :entries_count
   has_one :category,
     through: :journalizing,
     class_name: "FinanceCategory"
@@ -13,4 +13,20 @@ class LedgerEntry < ActiveRecord::Base
   acts_as_taggable
   paginates_per 25
   sortable :title, :type, :total_amount, :created_at, :updated_at
+
+  validates :title,
+    presence: true
+  validates :title,
+    length: {maximum: 128}
+
+  validates :memo,
+    length: {maximum: 1024},
+    if:     ->(e) { e.memo.present? }
+
+  def journalize_to(category)
+    self.class.transaction do
+      self.journalizing = ledger.journalizings.build(:category => category)
+      save
+    end
+  end
 end

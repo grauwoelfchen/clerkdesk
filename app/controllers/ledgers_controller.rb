@@ -1,8 +1,9 @@
 class LedgersController < WorkspaceController
-  before_filter :load_finance
+  before_action :load_finance
   before_action :load_ledger
 
   def show
+    @entries = @ledger.entries
   end
 
   def edit
