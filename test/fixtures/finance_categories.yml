@@ -1,11 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+miscellaneous_expense:
+  finance: general_finance
+  type: <%= :expense %>
+  name: 'Miscellaneous expense'
+correspondence:
+  finance: general_finance
+  type: <%= :expense %>
+  name: 'Correspondence'
+event:
+  finance: general_finance
+  type: <%= :expense %>
+  name: 'Event'
+assistance:
+  finance: general_finance
+  type: <%= :income %>
+  name: 'Assistance'
+membepship_fee:
+  finance: general_finance
+  type: <%= :income %>
+  name: 'Membership fee'

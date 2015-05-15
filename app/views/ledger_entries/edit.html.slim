@@ -1,0 +1,29 @@
+- breadcrumb :ledger_entry, @finance, @entry
+
+- content_for :header
+  h2 Finance
+  h3 Edit entry
+
+- content_for :navigation
+  nav.nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Actions", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to "Index", finances_path, class: "pure-menu-link"
+          li.pure-menu-item
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+            = link_to "New", new_finance_path, class: "pure-menu-link"
+
+section.view.entry
+  .pure-g
+    .finance.pure-u-1
+      = render "shared/finance", finance: @finance
+      .box
+        = render "shared/tab", finance: @finance
+        .main.pure-g
+          .pure-u-1-1
+            h5 New entry
+            = render "form", finance: @finance, entry: @entry, categories: @categories

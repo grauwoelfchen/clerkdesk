@@ -1,5 +1,9 @@
 class Ledger < ActiveRecord::Base
   belongs_to :finance
+  has_many :journalizings
+  has_many :categories,
+    through: :journalizings,
+    class_name: "FinanceCategory"
   has_many :entries, class_name: "LedgerEntry"
 
   validates :title,
