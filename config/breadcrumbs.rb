@@ -47,6 +47,15 @@ crumb :ledger do |finance|
   parent :finance, finance
 end
 
+crumb :ledger_entry do |finance, entry|
+  unless entry.persisted?
+    link "Entry", nil
+  else
+    link "Entry", finance_ledger_entry_path(finance, entry)
+  end
+  parent :ledger, finance
+end
+
 crumb :budget do |finance|
   link "Budget", finance_budget_path(finance)
   parent :finance, finance

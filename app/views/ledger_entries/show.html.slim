@@ -1,0 +1,39 @@
+- breadcrumb :ledger, @finance, @ledger
+
+- content_for :header
+  h2 Finance
+  h3 Ledger
+
+- content_for :navigation
+  nav.nav.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to "Actions", "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to "Index", finances_path, class: "pure-menu-link"
+          li.pure-menu-item
+            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+            = link_to "New", new_finance_path, class: "pure-menu-link"
+
+section.view
+  .pure-g
+    .finance.pure-u-1
+      = render "shared/finance", finance: @finance
+      .box
+        = render "shared/tab", finance: @finance
+        .main.pure-g
+          .pure-u-1-1
+            h5 Ledger entry
+            p= @entry.category.name
+            p= @entry.title
+            p= @entry.type
+            p= @entry.total_amount
+            p= simple_format(@entry.memo)
+            p= @entry.created_at
+            p= @entry.updated_at
+            .action
+              = link_to "Edit", edit_finance_ledger_entry_path(@finance, @entry), class: "pure-button"
+              | &nbsp;&nbsp;
+              = link_to t("general.destroy"), finance_ledger_entry_path(@finance, @entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
