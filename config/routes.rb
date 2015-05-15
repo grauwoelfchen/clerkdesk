@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resource :settlement, only: [:show, :edit, :update]
       resource :ledger
       resources :categories, controller: :finance_categories
+      resources :entries,    controller: :ledger_entries, as: :ledger_entries
     end
 
     root to: "desktop#index"
