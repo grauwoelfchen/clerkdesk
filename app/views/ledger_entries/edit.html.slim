@@ -4,8 +4,8 @@
   h2 Finance
   h3 Edit entry
 
-- content_for :navigation
-  nav.nav.pure-menu.pure-menu-horizontal
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
         = link_to "Actions", "#", class: "pure-menu-link"
@@ -17,6 +17,11 @@
           li.pure-menu-item.delimiter
             = link_to "New", new_finance_path, class: "pure-menu-link"
 
+- content_for :links
+  ul.links
+    li= link_to "Entries", finance_ledger_path(@finance)
+    li= link_to "Show entry", finance_ledger_entry_path(@finance, @entry)
+
 section.view.entry
   .pure-g
     .finance.pure-u-1
@@ -25,5 +30,5 @@ section.view.entry
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5 New entry
+            h5 Edit entry
             = render "form", finance: @finance, entry: @entry, categories: @categories
