@@ -16,7 +16,7 @@ crumb :note do |note|
 end
 
 crumb :finances do
-  link "finances", finances_path
+  link "Finances", finances_path
 end
 
 crumb :finance do |finance|
