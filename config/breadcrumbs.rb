@@ -51,7 +51,7 @@ crumb :ledger_entry do |finance, entry|
   unless entry.persisted?
     link "Entry", nil
   else
-    link "Entry", finance_ledger_entry_path(finance, entry)
+    link entry.title, finance_ledger_entry_path(finance, entry)
   end
   parent :ledger, finance
 end

@@ -1,11 +1,11 @@
-- breadcrumb :ledger, @finance, @ledger
+- breadcrumb :ledger_entry, @finance, @entry
 
 - content_for :header
   h2 Finance
-  h3 Ledger
+  h3 Entry
 
-- content_for :navigation
-  nav.nav.pure-menu.pure-menu-horizontal
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
         = link_to "Actions", "#", class: "pure-menu-link"
@@ -16,6 +16,11 @@
             = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
             = link_to "New", new_finance_path, class: "pure-menu-link"
+
+- content_for :links
+  ul.links
+    li= link_to "Entries", finance_ledger_path(@finance)
+    li= link_to "Edit entry", edit_finance_ledger_entry_path(@finance, @entry)
 
 section.view
   .pure-g
