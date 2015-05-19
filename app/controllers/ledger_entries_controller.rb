@@ -13,10 +13,10 @@ class LedgerEntriesController < WorkspaceController
     @category = fetch_category
     if @entry.journalize_to(@category)
       redirect_to finance_ledger_entry_url(@finance, @entry),
-        :notice => "Entry has been successfully updated."
+        :notice => "Entry has been successfully created."
     else
-      flash.now[:alert] = "Entry could not be updated."
-      render :edit
+      flash.now[:alert] = "Entry could not be created."
+      render :new
     end
   end
 
