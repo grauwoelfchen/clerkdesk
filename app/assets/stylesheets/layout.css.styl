@@ -1,9 +1,10 @@
 body
-  color: #777
+  background-color #FAF9F8
+  color #777777
 
 .pure-img-responsive
-  max-width: 100%
-  height:    auto
+  max-width 100%
+  height    auto
 
 
 $width = 212px
@@ -12,195 +13,201 @@ $width = 212px
 #content,
 #menu,
 .menu-link
-  -webkit-transition: all 0.2s ease-out
-  -moz-transition:    all 0.2s ease-out
-  -ms-transition:     all 0.2s ease-out
-  -o-transition:      all 0.2s ease-out
-  transition:         all 0.2s ease-out
+  -webkit-transition all 0.2s ease-out
+  -moz-transition    all 0.2s ease-out
+  -ms-transition     all 0.2s ease-out
+  -o-transition      all 0.2s ease-out
+  transition         all 0.2s ease-out
 
 #menu
   i
-    display: inline-block
-    padding: 0
-    margin:  0 7px 0 0
+    display inline-block
+    padding 0
+    margin  0 7px 0 0
 
 #content
-  position:     relative
-  padding-left: 0
+  position     relative
+  padding-left 0
   &.active
     #menu
-      left:  $width
-      width: $width
+      left  $width
+      width $width
     .menu-link
-      left: $width
+      left $width
 
 
 .content
-  padding:      13px 9px
-  min-height:   760px
-  line-height:  1.444
-  border-right: 1px solid #F3F3F3
+  background-color #FFFFFF
+  padding          13px 9px 39px 9px
+  min-height       760px
+  line-height      1.444
+  border-right     1px solid #F3F3F3
 
 .rightbar
-  padding:    13px 9px
-  min-height: 760px
+  background       none
+  padding          13px 9px
+  min-height       760px
   h6
-    margin:      3px 0 13px 0
-    font-weight: normal
+    margin      3px 0 13px 0
+    font-weight normal
   .actions,
   .links
-    padding: 6px 0 21px 0
+    padding 6px 0 21px 0
   .links
     ul
-      padding-left: 1px
+      padding-left 1px
       li
-        list-style: none
-        margin:     0 0 11px 0
+        list-style none
+        margin     0 0 11px 0
+  nav.btn
+    ul
+      background-color #FFFFFF
 
 .header
-  margin:        0 auto
-  padding:       16px 0
-  color:         #CCCCCC
-  text-align:    left
-  border-bottom: 1px solid #EEEEEE
+  background-color #FFFFFF
+  margin           0 auto
+  padding          16px 0
+  color            #CCCCCC
+  text-align       left
+  border-bottom    1px solid #EEEEEE
   h2
-    color:       #190318
-    margin:      0 0 6px 0
-    font-size:   29px
-    font-weight: normal
+    color       #190318
+    margin      0 0 6px 0
+    font-size   29px
+    font-weight normal
   h3
-    color:       #CCCCCC
-    font-weight: normal
-    padding:     0
-    margin:      0
+    color       #CCCCCC
+    font-weight normal
+    padding     0
+    margin      0
   .user
-    display:    inline
-    margin:     0 5px 0 13px
-    text-align: right
+    display    inline
+    margin     0 5px 0 13px
+    text-align right
   .login
-    text-align: right
+    text-align right
   .header-content
-    float: left
+    float left
 
 .navigation
-  margin: 0
+  margin 0
   .breadcrumbs
-    margin: 3px 0 18px 0
+    margin 3px 0 18px 0
     a
-      color:           #ABAB9B
-      text-decoration: none
+      color           #ABAB9B
+      text-decoration none
       &:hover
-        color: #5F5F5F
+        color #5F5F5F
     span.current
-      color: #5F5F5F
+      color #5F5F5F
 
 .footer
-  background-color: #FAFAFA
-  border-top:       1px solid #EEEEEE
-  font-size:        87.5%
-  padding:          21px 21px 21px 26px
-  line-height:      1.6
-  margin:           0 auto
+  background-color #FAFAF8
+  border-top       1px solid #EEEEEE
+  font-size        87.5%
+  padding          21px 21px 21px 26px
+  line-height      1.6
+  margin           0 auto
   ul.legal-links,
   p.copyright
-    text-align: right
-    margin:     5px 6px 3px 0
-    padding:    0
+    text-align right
+    margin     5px 6px 3px 0
+    padding    0
   ul.legal-links
     li
-      list-style:    none
-      padding-right: 6px
+      list-style    none
+      padding-right 6px
 
 
 #menu
-  margin-left: -($width)
-  width:       $width
-  position:    fixed
-  top:         0
-  left:        0
-  bottom:      0
-  z-index:     1000
-  background:  #6C5035
-  overflow-y:  auto
-  -webkit-overflow-scrolling: touch
+  margin-left -($width)
+  width       $width
+  position    fixed
+  top         0
+  left        0
+  bottom      0
+  z-index     1000
+  background  #6C5035
+  overflow-y  auto
+  -webkit-overflow-scrolling touch
   a
-    color:   #F3F3F3
-    border:  none
-    padding: 21px 18px
+    color   #F3F3F3
+    border  none
+    padding 21px 18px
   .pure-menu,
   .pure-menu ul
-    border:     none
-    background: transparent
+    border     none
+    background transparent
   .pure-menu ul,
   .pure-menu .menu-item-divided
-    border-top: 1px solid #4D331A
+    border-top 1px solid #4D331A
   .pure-menu li a:hover,
   .pure-menu li a:focus
-    background: #55391D
+    background #55391D
   .pure-menu-heading
-    background: #93765A
+    background #93765A
   .pure-menu-selected a
-    color:      #FFFFFF
-    background: #4C331A
+    color      #FFFFFF
+    background #4C331A
   .pure-menu-heading
-    font-size: 110%
-    color:     #FFFFFF
-    margin:    0
+    font-size 110%
+    color     #FFFFFF
+    margin    0
 
 
 .menu-link
-  position:   fixed
-  display:    block
-  top:        0
-  left:       0
-  background: #000
-  background: rgba(0,0,0,0.7)
-  font-size:  10px
-  z-index:    10
-  width:      2em
-  height:     auto
-  padding:    18px 9px
+  position   fixed
+  display    block
+  top        0
+  left       0
+  background #000
+  background rgba(0,0,0,0.7)
+  font-size  10px
+  z-index    10
+  width      2em
+  height     auto
+  padding    18px 9px
   &:hover,
   &:focus
-    background: #000
+    background #000
   span
-    position: relative
-    display:  block
+    position relative
+    display  block
   span,
-  span:before,
-  span:after
-    background-color: #fff
-    width:            100%
-    height:           18px
-  span:before,
-  span:after
-    position:   absolute
-    margin-top: -9px
-    content:    " "
-  span:after
-    margin-top: 8px
+  spanbefore,
+  spanafter
+    background-color #fff
+    width            100%
+    height           18px
+  spanbefore,
+  spanafter
+    position   absolute
+    margin-top -9px
+    content    " "
+  spanafter
+    margin-top 8px
 
 
 
-@media(min-width: 48em)
+@media(min-width 48em)
   .header,
   .content,
   .rightbar
-     padding-left:  17px
-     padding-right: 17px
+     padding-left  17px
+     padding-right 17px
   #content
-     padding-left: $width
-     left:         0
+     padding-left $width
+     left         0
   #menu
-      left: $width
+      left $width
   .menu-link
-      position: fixed
-      left:     $width
-      display:  none
+      position fixed
+      left     $width
+      display  none
   #content.active .menu-link
-    left: $width
+    left $width
 
-@media(max-width: 48em)
+@media(max-width 48em)
   #content.active
-    position: relative
-    left:     $width
+    position relative
+    left     $width

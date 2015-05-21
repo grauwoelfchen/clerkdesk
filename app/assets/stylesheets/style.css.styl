@@ -3,253 +3,253 @@ $error-color = #CA3C3C
 // flash
 .flash-messages
   ul
-    margin:        0 0 13px 0
-    padding:       12px 22px
-    border-radius: 2px
+    margin        0 0 13px 0
+    padding       12px 22px
+    border-radius 2px
     li
-      list-style: none
+      list-style none
   ul.notice
-    background-color: #D6E0CC
-    color:            #336600
+    background-color #D6E0CC
+    color            #336600
   ul.alert
-    background-color: #FDF5F2
-    color:            #AF5A3E
+    background-color #FDF5F2
+    color            #AF5A3E
 
 
 // sticky
 .sticky
-  height:           31px
-  background-color: #F5F5F5
-  padding:          19px 19px 3px 9px
-  position:         relative
-  color:            #140A00
-  font-size:        14px
+  height           31px
+  background-color #FFFFCC
+  padding          19px 19px 3px 9px
+  position         relative
+  color            #140A00
+  font-size        14px
   //&:after
-  //  min-width:          281px
-  //  height:             26px
-  //  padding:            9px 18px
-  //  content:            ""
-  //  position:           absolute
-  //  top:                3px
-  //  right:              1px
-  //  -webkit-box-shadow: 0 5px 4px #555555
-  //  -moz-box-shadow:    0 5px 4px #555555
-  //  box-shadow:         0 5px 4px #555555
-  //  -webkit-transform:  rotate(1.7deg)
-  //  -moz-transform:     rotate(1.7deg)
-  //  -o-transform:       rotate(1.7deg)
-  //  -ms-transform:      rotate(1.7deg)
-  //  transform:          rotate(1.7deg)
-  //  z-index:            -100
+  //  min-width          281px
+  //  height             26px
+  //  padding            9px 18px
+  //  content            ""
+  //  position           absolute
+  //  top                3px
+  //  right              1px
+  //  -webkit-box-shadow 0 5px 4px #555555
+  //  -moz-box-shadow    0 5px 4px #555555
+  //  box-shadow         0 5px 4px #555555
+  //  -webkit-transform  rotate(1.7deg)
+  //  -moz-transform     rotate(1.7deg)
+  //  -o-transform       rotate(1.7deg)
+  //  -ms-transform      rotate(1.7deg)
+  //  transform          rotate(1.7deg)
+  //  z-index            -100
 
 
 // content
 .content
   h3
-    margin: 0 0 18px 2px
+    margin 0 0 18px 2px
   h4
-    margin: 0 0 9px 0
+    margin 0 0 9px 0
 
 
 // table
 table.table
-  width:  100%
-  margin: 3px 0 18px 0
+  width  100%
+  margin 3px 0 18px 0
   th
-    font-weight: normal
+    font-weight normal
   td
     ul.operation
-      margin:  0
-      padding: 0
+      margin  0
+      padding 0
       li
-        display:    inline
-        list-style: none
-        margin:     0 3px
+        display    inline
+        list-style none
+        margin     0 3px
 
 // sort
 th
   span.attribute
-    display:      inline-block
-    margin-right: 4px
+    display      inline-block
+    margin-right 4px
   ul.sort-links
-    display: inline
-    padding: 0
-    margin:  0
+    display inline
+    padding 0
+    margin  0
     li
-      display:    inline
-      list-style: none
+      display    inline
+      list-style none
   i.fa.fa-angle-up,
   i.fa.fa-angle-down
-    font-weight:    bold
-    border-radius:  2px
-    display:        inline-block
-    margin:         0
-    padding:        1px 3px
-    text-align:     center
-    vertical-align: middle
-    color:          #777777
+    font-weight    bold
+    border-radius  2px
+    display        inline-block
+    margin         0
+    padding        1px 3px
+    text-align     center
+    vertical-align middle
+    color          #777777
     &:hover
-      background-color: #F3F3F3
+      background-color #F3F3F3
     &.active
-      color: #CC0000
+      color #CC0000
 
 // pagination
 pagination-link = @block {
-  color:   #777777
-  display: inline-block
-  margin:  0
+  color   #777777
+  display inline-block
+  margin  0
 }
 
 pagination = @block {
-  border-radius:   2px
-  text-decoration: none
+  border-radius   2px
+  text-decoration none
 }
 
 nav.pagination,
 .pagination-info
-  margin: 6px 0 11px 1px
+  margin 6px 0 11px 1px
   span
-    line-height: 27px
+    line-height 27px
   span.prev
   span.next,
   span.current,
   span.page
     {pagination-link}
     {pagination}
-    padding: 0
+    padding 0
     a
       {pagination-link}
-      padding:         0px 8px
-      border:          none
-      text-decoration: none
+      padding         0px 8px
+      border          none
+      text-decoration none
     &:hover
-      background-color: #EEEEEE
+      background-color #EEEEEE
   span.page.gap
-    border: none
+    border none
     &:hover
-      background-color: #FFFFFF
+      background-color #FFFFFF
   span.current
-    padding:          0px 8px
-    color:            #140A00
-    background-color: #DDDDDD
+    padding          0px 8px
+    color            #140A00
+    background-color #DDDDDD
     &:hover
-      background-color: #DDDDDD
+      background-color #DDDDDD
 
 //.tile
-//  border:     1px solid gray
-//  margin:     0px 20px 18px 0
-//  padding:    9px 13px
-//  min-height: 310px
+//  border     1px solid gray
+//  margin     0px 20px 18px 0
+//  padding    9px 13px
+//  min-height 310px
 //.note
-//  font-size: 7px
+//  font-size 7px
 
 
 
 // show
 section.view
-  padding: 3px 3px
+  padding 3px 3px
   h4
-    font-size: 15px
-    margin:  0 0 9px 0
+    font-size 15px
+    margin  0 0 9px 0
 
 .field
-  padding: 0
+  padding 0
   &.left
-    margin: 0 9px 0 0
+    margin 0 9px 0 0
   &.right
-    margin: 0 0 0 9px
+    margin 0 0 0 9px
   h5
-    margin: 3px 0 13px 0
+    margin 3px 0 13px 0
   ul
-    font-size: 15px
-    padding:   0
+    font-size 15px
+    padding   0
     li
-      list-style: none
+      list-style none
     li.more
-      text-align: right
+      text-align right
   p.asset
-    padding:    0
-    margin:     134px 0 0 0
-    text-align: right
-    font-size:  38px
+    padding    0
+    margin     134px 0 0 0
+    text-align right
+    font-size  38px
   .wall
-    min-height: 175px
-    padding:    9px 18px
-    background: #F1EFED
+    min-height 175px
+    padding    9px 18px
+    background #F1EFED
 
 .box
-  margin: 13px 0 13px 0
+  margin 13px 0 13px 0
   .main
-    padding: 27px 3px 36px 3px
+    padding 27px 3px 36px 3px
     h5
-      margin:         8px 0 13px 1px
-      vertical-align: middle
-      font-size:      21px
+      margin         8px 0 13px 1px
+      vertical-align middle
+      font-size      21px
     nav.nav
-      margin: 0 0 3px 3px
+      margin 0 0 3px 3px
 
 
 // btn, tab
 nav.btn
   ul
-    border:        1px solid #EEEEEE
-    border-radius: 2px
+    border        1px solid #EEEEEE
+    border-radius 2px
     &:hover
-      border-radius: 2px 2px 0 0
+      border-radius 2px 2px 0 0
   ul.pure-menu-children
-    padding:       0
-    border:        1px solid #E3E3E3
-    border-radius: 0 0 2px 2px
+    padding       0
+    border        1px solid #E3E3E3
+    border-radius 0 0 2px 2px
     li.delimiter
-      border-top: 1px solid #EEEEEE
+      border-top 1px solid #EEEEEE
   a
-    border: none
+    border none
 
 nav.tab
-  border-radius: 2px 2px 0 0
-  background:    #EBE7E4
-  line-height:   12px
+  border-radius 2px 2px 0 0
+  background    #EBE7E4
+  line-height   12px
   ul.pure-menu-list
-    background: #EBE7E4
+    background #EBE7E4
     li.pure-menu-item
-      float:      left
-      list-style: none
+      float      left
+      list-style none
       a
-        line-height: 29px
+        line-height 29px
       a:hover
-        background: #DDD7D2
+        background #DDD7D2
     li.pure-menu-selected
       a
-        background: #B8AEA4
+        background #B8AEA4
         &:hover
-          background: #B8AEA4
+          background #B8AEA4
   ul.pure-menu-children
     li.pure-menu-item
-      float: none
+      float none
       a
-        background: none
+        background none
       a:hover
-        background: #EEEEEE
+        background #EEEEEE
   ul.pure-menu-children
-    padding:       0
-    border:        1px solid #E3E3E3
-    border-radius: 0 0 2px 2px
+    padding       0
+    border        1px solid #E3E3E3
+    border-radius 0 0 2px 2px
     li.delimiter
-      border-top: 1px solid #EEEEEE
+      border-top 1px solid #EEEEEE
 
 // shared
 .action
-  margin: 18px 0 18px 1px
+  margin 18px 0 18px 1px
   input[type="submit"].button,
   button.button,
   a.button
-    margin-right: 31px
+    margin-right 31px
 
 .button-error
-  color:      #FFFFFF
-  background: $error-color
+  color      #FFFFFF
+  background $error-color
 
 .right
-  text-align:    right
-  margin-bottom: 0
-  padding-right:  3px
+  text-align    right
+  margin-bottom 0
+  padding-right  3px
