@@ -5,7 +5,7 @@ gem "foreman"
 gem "rails", "4.2.1"
 gem "pg"
 
-gem "locker_room", path: "../locker_room"
+gem "locker_room", git: "https://github.com/grauwoelfchen/locker_room.git"
 
 gem "acts-as-taggable-on", "~> 3.4"
 
