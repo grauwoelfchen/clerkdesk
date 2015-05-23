@@ -1,0 +1,10 @@
+---
+en:
+  activerecord:
+    models:
+    attributes:
+      note:
+        title: Title
+        content: Content
+      budget:
+        title: Title
