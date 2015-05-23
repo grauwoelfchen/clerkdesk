@@ -1,0 +1,12 @@
+---
+ja:
+  activerecord:
+    models:
+      note: ノート
+      finance: 会計
+    attributes:
+      note:
+        title: タイトル
+        content: 本文
+      budget:
+        title: タイトル

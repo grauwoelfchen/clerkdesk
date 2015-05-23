@@ -51,6 +51,7 @@ $width = 212px
     margin      3px 0 13px 0
     font-weight normal
   .actions,
+  .navigations,
   .links
     padding 6px 0 21px 0
   .links
@@ -62,6 +63,21 @@ $width = 212px
   nav.btn
     ul
       background-color #FFFFFF
+      li
+        form
+          display inline-block
+          width   100%
+          height  100%
+          input[type='submit']
+            display    inline
+            text-align left
+            width      100%
+            padding    13px 18px
+            background none
+            border     none
+            cursor     pointer
+            &:hover
+              background-color #EEEEEE
 
 .header
   background-color #FFFFFF

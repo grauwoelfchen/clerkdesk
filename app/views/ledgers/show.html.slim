@@ -18,7 +18,7 @@
             = link_to "New", new_finance_path, class: "pure-menu-link"
 
 - content_for :links
-  ul.links
+  ul
     li= link_to "Edit ledger", edit_finance_ledger_path(@finance)
     li= link_to "New entry", new_finance_ledger_entry_path(@finance)
 

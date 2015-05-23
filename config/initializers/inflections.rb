@@ -14,3 +14,13 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym 'API'
+end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  # for :ja
+  inflect.plural(/^.*[^A-z]$/, '\0')
+  inflect.singular(/^.*[^A-z]$/, '\0')
+end
