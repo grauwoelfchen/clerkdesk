@@ -1,8 +1,8 @@
 - breadcrumb :finances
 
 - content_for :header
-  h2 Finances
-  h3 Fiscal records
+  h2= Finance.model_name.human
+  h3= t('subheading.fiscal_record')
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal

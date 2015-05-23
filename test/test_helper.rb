@@ -51,6 +51,11 @@ Capybara.configure do |config|
   config.app_host = "http://example.org"
 end
 
+Capybara.register_driver :rack_test do |app|
+  headers = {"HTTP_ACCEPT_LANGUAGE" => "en"}
+  Capybara::RackTest::Driver.new(app, headers: headers)
+end
+
 class Capybara::Rails::TestCase
   include LockerRoom::Testing::Integration::SubdomainHelpers
   include LockerRoom::Testing::Integration::AuthenticationHelpers
