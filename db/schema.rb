@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512004758) do
+ActiveRecord::Schema.define(version: 20150523115258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,11 +109,12 @@ ActiveRecord::Schema.define(version: 20150512004758) do
 
   create_table "locker_room_users", force: :cascade do |t|
     t.integer  "account_id"
-    t.string   "email",            null: false
+    t.string   "email",                                     null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "locale",           limit: 5, default: "en", null: false
   end
 
   add_index "locker_room_users", ["account_id", "email"], name: "index_locker_room_users_on_account_id_and_email", unique: true, using: :btree

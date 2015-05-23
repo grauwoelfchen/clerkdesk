@@ -1,5 +1,5 @@
-require "locker_room/engine"
 require "locker_room/constraints/subdomain_required"
+require "locker_room/engine"
 
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
@@ -13,8 +13,9 @@ Rails.application.routes.draw do
       resources :entries,    controller: :ledger_entries, as: :ledger_entries
     end
 
+    post :locale, to: "locale#switch", as: :switch_locale
+
     root to: "desktop#index"
   end
-
   mount LockerRoom::Engine, at: "/"
 end

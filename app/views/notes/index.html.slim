@@ -1,8 +1,8 @@
 - breadcrumb :notes
 
 - content_for :header
-  h2 Notes
-  h3 Protokoll, Memo
+  h2= Note.model_name.human.pluralize
+  h3= t("subheading.protokoll")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal

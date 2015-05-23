@@ -1,18 +1,19 @@
+---
 en:
   app:
-    title: "Clerkdesk"
+    title: Clerkdesk
   meta:
-    title: "Clerkdesk"
-    description: ""
+    title: Clerkdesk
+    description: ''
+  locale:
+    en: English
+    ja: Japanese
   general:
-    create: "Create"
-    update: "Update"
-    created_at: "Created"
-    updated_at: "Updated"
-  activerecord:
-    attributes:
-      note:
-        title: "Title"
-        content: "Content"
-      budget:
-        title: "Title"
+    create: Create
+    update: Update
+    created_at: Created
+    updated_at: Updated
+  heading:
+  subheading:
+    fiscal_record: Fiscal record
+    protokoll: Protokoll, Memo
