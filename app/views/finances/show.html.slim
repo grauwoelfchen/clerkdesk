@@ -6,16 +6,7 @@
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.show", resource: Finance.model_name.human.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.index"), finances_path, class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to t("action.edit"), edit_finance_path(@finance), class: "pure-menu-link"
-          li.pure-menu-item.delimiter
-            = link_to t("action.new"), new_finance_path, class: "pure-menu-link"
+    = render "shared/action", finance: @finance
 
 section.view
   .pure-g

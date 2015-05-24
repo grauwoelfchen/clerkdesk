@@ -1,26 +1,16 @@
 - breadcrumb :ledger, @finance
 
 - content_for :header
-  h2 Finance
-  h3 Edit ledger
+  h2= Finance.model_name.human
+  h3= t("subheading.ledger")
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to "Index", finances_path, class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
-          li.pure-menu-item.delimiter
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+  = render "shared/action", finance: @finance
 
 - content_for :links
   ul.links
-    li= link_to "Show Ledger", finance_ledger_path(@finance)
-    li= link_to "New entry", new_finance_ledger_entry_path(@finance)
+    li= link_to t("action.resource.index", resource: LedgerEntry.model_name.human.pluralize.downcase), finance_ledger_path(@finance)
+    li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
 section.view
   .pure-g
@@ -30,5 +20,5 @@ section.view
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5 Edit ledger
+            h5= t("action.edit")
             = render "form", finance: @finance, ledger: @ledger
