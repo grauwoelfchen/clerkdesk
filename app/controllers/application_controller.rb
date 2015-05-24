@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_back_or_to(default_url, flash_hash = {})
-    url = session[:return_to_url] || request.referrer || default_url
+    url = session.delete(:return_to_url) || request.referrer || default_url
     redirect_to(url, flash: flash_hash)
   end
 end
