@@ -17,13 +17,30 @@ html lang=current_locale
       = render "shared/menu"
     #main
       .header.pure-g
-        .pure-u-18-24
-          .header-content
-            = yield :header
-        .pure-u-6-24
-          .sticky
-            .user= render "locker_room/shared/login"
-            span.logout= link_to "logout", locker_room.logout_path, method: :delete
+        .pure-u-21-24
+          .pure-g
+            .pure-u-16-24
+              .header-content
+                = yield :header
+            .pure-u-8-24
+              .header-content
+                .sticky
+                  .user= render "locker_room/shared/login"
+                  span.logout= link_to "logout", locker_room.logout_path, method: :delete
+        .pure-u-3-24
+          .rightbox
+            .languages
+              h6 LANGUAGE
+              nav.btn.pure-menu.pure-menu-horizontal
+                ul.pure-menu-list
+                  li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+                    = link_to t("locale.#{current_locale}"), "#", class: "pure-menu-link"
+                    ul.pure-menu-children
+                      - (Rails.application.config.i18n.available_locales - [current_locale]).each do |locale_name|
+                        li.pure-menu-item
+                          = form_tag switch_locale_path do |f|
+                            = hidden_field_tag 'user[locale]', locale_name
+                            = submit_tag t("locale.#{locale_name}"), class: "pure-menu-link"
       .container.pure-g
         .pure-u-21-24
           .content
@@ -39,18 +56,6 @@ html lang=current_locale
             .actions
               h6 ACTIONS
               = yield :actions
-            .navigations
-              h6 NAVIGATION
-              nav.btn.pure-menu.pure-menu-horizontal
-                ul.pure-menu-list
-                  li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-                    = link_to t("locale.#{current_locale}"), "#", class: "pure-menu-link"
-                    ul.pure-menu-children
-                      - (Rails.application.config.i18n.available_locales - [current_locale]).each do |locale_name|
-                        li.pure-menu-item
-                          = form_tag switch_locale_path do |f|
-                            = hidden_field_tag 'user[locale]', locale_name
-                            = submit_tag t("locale.#{locale_name}"), class: "pure-menu-link"
             .links
               h6 LINKS
               = yield :links
