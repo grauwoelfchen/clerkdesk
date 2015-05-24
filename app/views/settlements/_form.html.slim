@@ -5,6 +5,6 @@
   fieldset.pure-group
     = f.text_field :title,  class: "pure-input-1", placeholder: "A title"
   .action
-    = f.submit t("general.#{action}"), class: "pure-button button"
+    = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("general.destroy"), finance_settlement_path(finance), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), finance_settlement_path(finance), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

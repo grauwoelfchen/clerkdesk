@@ -36,5 +36,10 @@ module Localization
         session[:locale] = I18n.locale
       end
     end
+
+    def reset_locale
+      session.delete(:locale)
+      set_locale
+    end
   end
 end

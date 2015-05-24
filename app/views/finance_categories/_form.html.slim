@@ -11,6 +11,6 @@
   fieldset.group.pure-group
     = f.select :type, FinanceCategory.human_types.invert
   .action
-    = f.submit t("general.#{action}"), class: "pure-button button"
+    = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("general.destroy"), finance_category_path(finance, category), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), finance_category_path(finance, category), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
