@@ -4,9 +4,30 @@ ja:
     models:
       note: ノート
       finance: 会計
+      finance_category: カテゴリ
+      ledger: 台帳
+      budget: 予算
+      settlement: 決算
+      ledger_entry: エントリ
     attributes:
       note:
         title: タイトル
         content: 本文
       budget:
         title: タイトル
+      finance:
+        name: 名前
+        description: 説明
+        started_at: 開始日時
+        finished_at: 終了日時
+      finance_category:
+        name: 名前
+        type: 種類
+      ledger_entry:
+        title: タイトル
+        type: 種類
+        total_amount: 金額
+  enum_accessor:
+    type:
+      expense: 支出
+      income: 収入

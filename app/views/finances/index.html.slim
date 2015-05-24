@@ -2,16 +2,16 @@
 
 - content_for :header
   h2= Finance.model_name.human
-  h3= t('subheading.fiscal_record')
+  h3= t('subheading.finance')
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.index", resource: Finance.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_finance_path, class: "pure-menu-link"
 
 = render "shared/pagination", resource: @finances, info: true
 
@@ -43,7 +43,6 @@ table.table.pure-table.pure-table-horizontal
           = t("general.updated_at")
         = sort_links_for(:updated_at, :desc)
       th
-        = t("general.operation")
   tbody
     - @finances.each do |finance|
       tr
@@ -55,7 +54,7 @@ table.table.pure-table.pure-table-horizontal
         td= finance.updated_at
         td
           ul.operation
-            li= link_to "Edit", edit_finance_path(finance)
-            li= link_to "Delete", finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
+            li= link_to t("action.edit"), edit_finance_path(finance)
+            li= link_to t("action.destroy"), finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
 
 = render "shared/pagination", resource: @finances, info: false

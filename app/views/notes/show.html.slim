@@ -1,21 +1,21 @@
 - breadcrumb :note, @note
 
 - content_for :header
-  h2 Note
-  h3 Protokoll, Memo
+  h2= Note.model_name.human
+  h3= t("subheading.note")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.show", resource: Note.model_name.human.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", notes_path, class: "pure-menu-link"
+            = link_to t("action.index"), notes_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Edit", edit_note_path(@note), class: "pure-menu-link"
+            = link_to t("action.edit"), edit_note_path(@note), class: "pure-menu-link"
           li.pure-menu-item.delimiter
-            = link_to "New", new_note_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_note_path, class: "pure-menu-link"
 
 section.view
   h4= @note.title

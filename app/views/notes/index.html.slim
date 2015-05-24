@@ -2,16 +2,16 @@
 
 - content_for :header
   h2= Note.model_name.human.pluralize
-  h3= t("subheading.protokoll")
+  h3= t("subheading.note")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.index", resource: Note.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "New", new_note_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_note_path, class: "pure-menu-link"
 
 = render "shared/pagination", resource: @notes, info: true
 
@@ -34,7 +34,7 @@ table.table.pure-table.pure-table-horizontal
         span.attribute
           = t("general.updated_at")
         = sort_links_for(:updated_at, :desc)
-      th= t("general.operation")
+      th
   tbody
     - @notes.each do |note|
       tr
@@ -44,7 +44,7 @@ table.table.pure-table.pure-table-horizontal
         td= note.updated_at
         td
           ul.operation
-            li= link_to "Edit", edit_note_path(note)
-            li= link_to "Delete", note_path(note), method: :delete, data: {confirm: "Are you sure?"}
+            li= link_to t("action.edit"), edit_note_path(note)
+            li= link_to t("action.destroy"), note_path(note), method: :delete, data: {confirm: "Are you sure?"}
 
 = render "shared/pagination", resource: @notes, info: false
