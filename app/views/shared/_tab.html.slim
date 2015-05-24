@@ -13,15 +13,22 @@ nav.tab.pure-menu.pure-menu-horizontal
       li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
         = link_to Ledger.model_name.human, "#", class: "pure-menu-link"
         ul.pure-menu-children
-          - if action_name == "show"
-            - if controller_name == "ledger_entries"
+          - unless controller_name == "ledgers" && action_name.in?(%w{edit update})
             li.pure-menu-item
-              = link_to t("action.edit"), edit_finance_ledger_path(finance), class: "pure-menu-link"
-          - else
+              = link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(finance), class: "pure-menu-link"
+          - unless controller_name == "ledgers" && action_name == "show"
             li.pure-menu-item
               = link_to t("action.resource.index", resource: LedgerEntry.model_name.human.downcase), finance_ledger_path(finance), class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(finance), class: "pure-menu-link"
+          - if controller_name == "ledger_entries" && defined?(entry)
+            - if action_name.in?(%w{edit update})
+              li.pure-menu-item
+                = link_to t("action.resource.show", resource: LedgerEntry.model_name.human.downcase), finance_ledger_entry_path(finance, entry), class: "pure-menu-link"
+            - elsif action_name == "show"
+              li.pure-menu-item
+                = link_to t("action.resource.edit", resource: LedgerEntry.model_name.human.downcase), edit_finance_ledger_entry_path(finance, entry), class: "pure-menu-link"
+          - unless action_name.in?(%w{new create})
+            li.pure-menu-item
+              = link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(finance), class: "pure-menu-link"
     - else
       li.pure-menu-item
         = link_to Ledger.model_name.human, finance_ledger_path(finance), class: "pure-menu-link"

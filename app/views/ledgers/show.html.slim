@@ -5,24 +5,14 @@
   h3= t("subheading.ledger")
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to "Index", finances_path, class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
-          li.pure-menu-item.delimiter
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+  = render "shared/action", finance: @finance
 
 - content_for :links
-  ul
+  ul.links
     li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
     li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
-section.view
+section.view.entry
   .pure-g
     .finance.pure-u-1
       = render "shared/finance", finance: @finance
@@ -30,8 +20,8 @@ section.view
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5= LedgerEntry.model_name.human.pluralize
-            p.text= simple_format(@ledger.description)
+            = render "shared/ledger", ledger: @ledger
+            h6= LedgerEntry.model_name.human.pluralize
             table.table.pure-table.pure-table-horizontal
               thead
                 tr
