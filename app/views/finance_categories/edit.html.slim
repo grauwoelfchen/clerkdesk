@@ -1,26 +1,26 @@
 - breadcrumb :finance_category, @finance, @category
 
 - content_for :header
-  h2 Finance
-  h3 New category
+  h2= Finance.model_name.human
+  h3= t("subheading.category")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.show", resource: Finance.model_name.human.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", finances_path, class: "pure-menu-link"
+            = link_to t("action.index"), finances_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+            = link_to t("action.edit"), edit_finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_finance_path, class: "pure-menu-link"
 
 - content_for :links
   ul.links
-    li= link_to "Categories", finance_categories_path(@finance)
-    li= link_to "New category", new_finance_category_path(@finance)
+    li= link_to t("action.resource.index", resource: FinanceCategory.model_name.human.pluralize.downcase), finance_categories_path(@finance)
+    li= link_to t("action.resource.new", resource: FinanceCategory.model_name.human.downcase), new_finance_category_path(@finance)
 
 section.view
   .pure-g
@@ -30,5 +30,5 @@ section.view
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5 Edit category
+            h5= t("action.edit")
             = render "form", finance: @finance, category: @category

@@ -1,7 +1,7 @@
 ---
 ja:
   app:
-    title: Clerkdesk
+    name: Clerkdesk
   meta:
     title: Clerkdesk
     description: ''
@@ -9,11 +9,34 @@ ja:
     en: 英語
     ja: 日本語
   general:
-    create: 作成
-    update: 更新
     created_at: 作成日時
     updated_at: 更新日時
-  heading:
+  nav:
+    desktop: デスクトップ
+    actions: アクション
+    settings: 設定
+  tab:
+    finance:
+      overview: 概要
+  crumb:
+    desktop: トップ
+    new: 作成
+  action:
+    create: 作成
+    update: 更新
+    destroy: 削除
+    index: 一覧
+    show: 詳細
+    edit: 編集
+    new: 新規作成
+    resource:
+      index: '%{resource}: 一覧'
+      show: '%{resource}: 詳細'
+      edit: '%{resource}: 編集'
+      new: '%{resource}: 作成'
   subheading:
-    fiscal_record: 財政記録
-    protokoll: プロトコル, メモ
+    note: プロトコル・メモ
+    finance: 財政記録
+    overview: 概要
+    category: カテゴリ
+    ledger: 台帳・アカウントブック

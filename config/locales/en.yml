@@ -1,7 +1,7 @@
 ---
 en:
   app:
-    title: Clerkdesk
+    name: Clerkdesk
   meta:
     title: Clerkdesk
     description: ''
@@ -9,11 +9,34 @@ en:
     en: English
     ja: Japanese
   general:
-    create: Create
-    update: Update
     created_at: Created
     updated_at: Updated
-  heading:
+  nav:
+    desktop: Desktop
+    actions: Actions
+    settings: Settings
+  tab:
+    finance:
+      overview: Overview
+  crumb:
+    desktop: Top
+    new: New
+  action:
+    create: Create
+    update: Update
+    destroy: Delete
+    index: Index
+    show: View
+    edit: Edit
+    new: New
+    resource:
+      index: 'All %{resource}'
+      show: 'View %{resource}'
+      edit: 'Edit %{resource}'
+      new: 'New %{resource}'
   subheading:
-    fiscal_record: Fiscal record
     protokoll: Protokoll, Memo
+    finance: Fiscal record
+    overview: Overview
+    category: Category
+    ledger: Ledger, Accounting book

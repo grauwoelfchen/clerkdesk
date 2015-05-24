@@ -1,16 +1,16 @@
 .pure-menu
-  = link_to "Clerkdesk", root_path, class: "pure-menu-heading"
+  = link_to t("app.name"), root_path, class: "pure-menu-heading"
   ul.pure-menu-list
     - selected = controller_name == "notes" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to notes_path, class: "pure-menu-link" do
         i.fa.fa-file-text-o
-        | Notes
+        = Note.model_name.human
     - selected = controller_name.in?(%w{finances finance_categories ledgers ledger_entries budgets settlements}) ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to finances_path, class: "pure-menu-link" do
         i.fa.fa-calculator
-        | Finances
+        = Finance.model_name.human
     - selected = controller_name == "people" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to "#", class: "pure-menu-link" do
@@ -20,4 +20,4 @@
     li.pure-menu-item class=selected
       = link_to "#", class: "pure-menu-link" do
         i.fa.fa-cog
-        | Settings
+        = t("nav.settings")
