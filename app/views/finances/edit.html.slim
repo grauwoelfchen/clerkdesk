@@ -1,22 +1,22 @@
 - breadcrumb :finance, @finance
 
 - content_for :header
-  h2 Finance
-  h3 Fiscal record
+  h2= Finance.model_name.human
+  h3= t("subheading.finance")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.edit", resource: Finance.model_name.human.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", finances_path, class: "pure-menu-link"
+            = link_to t("action.index"), finances_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Show", finance_path(@finance), class: "pure-menu-link"
+            = link_to t("action.show"), finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_finance_path, class: "pure-menu-link"
 
-h3 Edit
+h3= t("action.edit")
 
 = render "form", finance: @finance
