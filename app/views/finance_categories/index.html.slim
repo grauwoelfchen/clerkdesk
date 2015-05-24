@@ -1,25 +1,25 @@
 - breadcrumb :finance_categories, @finance
 
 - content_for :header
-  h2 Finance
-  h3 Category
+  h2= Finance.model_name.human
+  h3= t("subheading.category")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to "Actions", "#", class: "pure-menu-link"
+        = link_to t("action.resource.show", resource: Finance.model_name.human.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
-            = link_to "Index", finances_path, class: "pure-menu-link"
+            = link_to t("action.index"), finances_path, class: "pure-menu-link"
           li.pure-menu-item
-            = link_to "Edit", edit_finance_path(@finance), class: "pure-menu-link"
+            = link_to t("action.edit"), edit_finance_path(@finance), class: "pure-menu-link"
           li.pure-menu-item.delimiter
-            = link_to "New", new_finance_path, class: "pure-menu-link"
+            = link_to t("action.new"), new_finance_path, class: "pure-menu-link"
 
 - content_for :links
   ul.links
-    li= link_to "New category", new_finance_category_path(@finance)
+    li= link_to t("action.resource.new", resource: FinanceCategory.model_name.human.downcase), new_finance_category_path(@finance)
 
 section.view
   .pure-g
@@ -29,19 +29,19 @@ section.view
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5 Categories
+            h5= FinanceCategory.model_name.human.pluralize
             table.table.pure-table.pure-table-horizontal
               thead
                 tr
                   th= FinanceCategory.human_attribute_name(:name)
                   th= FinanceCategory.human_attribute_name(:type)
-                  th= t("general.operation")
+                  th
               tbody
                 - @categories.each do |category|
                   tr
                     td= category.name
-                    td= category.type
+                    td= category.human_type
                     td
                       ul.operation
-                        li= link_to "Edit", edit_finance_category_path(@finance, category)
-                        li= link_to "Delete", finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}
+                        li= link_to t("action.edit"), edit_finance_category_path(@finance, category)
+                        li= link_to t("action.destroy"), finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}

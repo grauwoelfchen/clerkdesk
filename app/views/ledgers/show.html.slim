@@ -1,8 +1,8 @@
 - breadcrumb :ledger, @finance, @ledger
 
 - content_for :header
-  h2 Finance
-  h3 Ledger
+  h2= Finance.model_name.human
+  h3= t("subheading.ledger")
 
 - content_for :actions
   nav.btn.pure-menu.pure-menu-horizontal
@@ -19,8 +19,8 @@
 
 - content_for :links
   ul
-    li= link_to "Edit ledger", edit_finance_ledger_path(@finance)
-    li= link_to "New entry", new_finance_ledger_entry_path(@finance)
+    li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
+    li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
 section.view
   .pure-g
@@ -30,7 +30,7 @@ section.view
         = render "shared/tab", finance: @finance
         .main.pure-g
           .pure-u-1-1
-            h5 Ledger entries
+            h5= LedgerEntry.model_name.human.pluralize
             p.text= simple_format(@ledger.description)
             table.table.pure-table.pure-table-horizontal
               thead
@@ -41,17 +41,17 @@ section.view
                   th= LedgerEntry.human_attribute_name(:total_amount)
                   th= t("general.created_at")
                   th= t("general.updated_at")
-                  th= t("general.operation")
+                  th
               tbody
                 - @entries.each do |entry|
                   tr
-                    td= entry.category.name
+                    td= link_to entry.category.name, finance_ledger_path(@finance)
                     td= link_to entry.title, finance_ledger_entry_path(@finance, entry)
-                    td= entry.type
+                    td= entry.human_type
                     td= entry.total_amount
                     td= entry.created_at
                     td= entry.updated_at
                     td
                       ul.operation
-                        li= link_to "Edit", edit_finance_ledger_entry_path(@finance, entry)
-                        li= link_to "Delete", nil, method: :delete, data: {confirm: "Are you sure?"}
+                        li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
+                        li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}

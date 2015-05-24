@@ -7,6 +7,6 @@
     = f.text_area :content, class: "pure-input-1", rows: 18, placeholder: "Content"
   = f.text_field :tag_list, class: "pure-input-1", value: note.tag_list.join(","), placeholder: "Tag"
   .action
-    = f.submit t("general.#{action}"), class: "pure-button button"
+    = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("general.destroy"), note_path(note), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), note_path(note), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

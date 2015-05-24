@@ -1,14 +1,14 @@
 crumb :root do
-  link "Desktop", root_path
+  link t("crumb.desktop"), root_path
 end
 
 crumb :notes do
-  link "Notes", notes_path
+  link Note.model_name.human.pluralize, notes_path
 end
 
 crumb :note do |note|
   unless note.persisted?
-    link "New", nil
+    link t("crumb.new"), nil
   else
     link note.title, note
   end
@@ -16,12 +16,12 @@ crumb :note do |note|
 end
 
 crumb :finances do
-  link "Finances", finances_path
+  link Finance.model_name.human.pluralize, finances_path
 end
 
 crumb :finance do |finance|
   unless finance.persisted?
-    link "New", nil
+    link t("crumb.new"), nil
   else
     link finance.name, finance
   end
@@ -29,13 +29,13 @@ crumb :finance do |finance|
 end
 
 crumb :finance_categories do |finance|
-  link "Categories", finance_categories_path(finance)
+  link FinanceCategory.model_name.human.pluralize, finance_categories_path(finance)
   parent :finance, finance
 end
 
 crumb :finance_category do |finance, category|
   unless category.persisted?
-    link "New", nil
+    link t("crumb.new"), nil
   else
     link category.name, finance_category_path(finance, category)
   end
@@ -43,13 +43,13 @@ crumb :finance_category do |finance, category|
 end
 
 crumb :ledger do |finance|
-  link "Ledger", finance_ledger_path(finance)
+  link Ledger.model_name.human, finance_ledger_path(finance)
   parent :finance, finance
 end
 
 crumb :ledger_entry do |finance, entry|
   unless entry.persisted?
-    link "Entry", nil
+    link t("crumb.new"), nil
   else
     link entry.title, finance_ledger_entry_path(finance, entry)
   end
@@ -57,11 +57,11 @@ crumb :ledger_entry do |finance, entry|
 end
 
 crumb :budget do |finance|
-  link "Budget", finance_budget_path(finance)
+  link Budget.model_name.human, finance_budget_path(finance)
   parent :finance, finance
 end
 
 crumb :settlement do |finance|
-  link "Settlement", finance_settlement_path(finance)
+  link Settlement.model_name.human, finance_settlement_path(finance)
   parent :finance, finance
 end

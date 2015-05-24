@@ -19,8 +19,9 @@
 
 - content_for :links
   ul.links
-    li= link_to "Entries", finance_ledger_path(@finance)
-    li= link_to "Edit entry", edit_finance_ledger_entry_path(@finance, @entry)
+    li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
+    li= link_to t("action.resource.index", resource: LedgerEntry.model_name.human.pluralize.downcase), finance_ledger_path(@finance)
+    li= link_to t("action.resource.edit", resource: LedgerEntry.model_name.human.downcase), edit_finance_ledger_entry_path(@finance, @entry)
 
 section.view
   .pure-g
@@ -39,6 +40,6 @@ section.view
             p= @entry.created_at
             p= @entry.updated_at
             .action
-              = link_to "Edit", edit_finance_ledger_entry_path(@finance, @entry), class: "pure-button"
+              = link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, @entry), class: "pure-button"
               | &nbsp;&nbsp;
-              = link_to t("general.destroy"), finance_ledger_entry_path(@finance, @entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+              = link_to t("action.destroy"), finance_ledger_entry_path(@finance, @entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
