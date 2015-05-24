@@ -9,7 +9,6 @@ body
 
 $width = 212px
 
-
 #content,
 #menu,
 .menu-link
@@ -35,6 +34,9 @@ $width = 212px
     .menu-link
       left $width
 
+.rightbox
+  .languages
+    padding 11px 0 13px 0
 
 .content
   background-color #FFFFFF
@@ -47,11 +49,7 @@ $width = 212px
   background       none
   padding          13px 9px
   min-height       760px
-  h6
-    margin      3px 0 13px 0
-    font-weight normal
   .actions,
-  .navigations,
   .links
     padding 6px 0 21px 0
   .links
@@ -60,6 +58,12 @@ $width = 212px
       li
         list-style none
         margin     0 0 11px 0
+
+.rightbox,
+.rightbar
+  h6
+    margin      3px 0 6px 0
+    font-weight normal
   nav.btn
     ul
       background-color #FFFFFF
@@ -80,13 +84,11 @@ $width = 212px
               background-color #EEEEEE
 
 .header
-  height           70px
-  background-color #FFFFFF
-  margin           0 auto
-  padding          16px 0 0 0
-  color            #CCCCCC
-  text-align       left
-  border-bottom    1px solid #EEEEEE
+  height        86px
+  margin        0 auto
+  color         #CCCCCC
+  text-align    left
+  border-bottom 1px solid #EEEEEE
   h2
     color       #190318
     margin      0 0 6px 0
@@ -99,12 +101,21 @@ $width = 212px
     margin      0
   .user
     display    inline
-    margin     0 5px 0 13px
+    margin     0 5px 0 23px
     text-align right
   .login
     text-align right
   .header-content
-    float left
+    padding 0 16px 0 16px
+
+.header
+  .pure-u-21-24
+    background-color #FFFFFF
+    height           100%
+    .pure-g
+      height       100%
+      padding-top  16px
+      border-right 1px solid #F3F3F3
 
 .navigation
   margin 0
@@ -211,8 +222,8 @@ $width = 212px
 
 
 @media(min-width 48em)
-  .header,
   .content,
+  .rightbox,
   .rightbar
      padding-left  17px
      padding-right 17px
