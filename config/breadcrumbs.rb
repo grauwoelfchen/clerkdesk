@@ -6,11 +6,16 @@ crumb :notes do
   link Note.model_name.human.pluralize, notes_path
 end
 
+crumb :notes_with_tag  do |tag|
+  link t("crumb.tag", tag: truncate(tag, length: 8)), nil
+  parent :notes
+end
+
 crumb :note do |note|
   unless note.persisted?
     link t("crumb.new"), nil
   else
-    link note.title, note
+    link truncate(note.title, length: 27), note
   end
   parent :notes
 end

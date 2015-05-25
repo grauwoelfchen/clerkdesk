@@ -1,5 +1,12 @@
 $error-color = #CA3C3C
 
+ul
+  padding 0
+  margin  0
+  li
+    list-style none
+
+
 // flash
 .flash-messages
   ul
@@ -14,6 +21,15 @@ $error-color = #CA3C3C
   ul.alert
     background-color #FDF5F2
     color            #AF5A3E
+
+
+// font
+.fa-5
+  font-size 5.2em
+.fa-4
+  font-size 4.2em
+.fa-3
+  font-size 3.2em
 
 
 // sticky
@@ -32,6 +48,11 @@ $error-color = #CA3C3C
     margin 0 0 18px 2px
   h4
     margin 0 0 9px 0
+
+
+// index
+p.result
+  margin 0
 
 
 // table
@@ -87,6 +108,9 @@ pagination = @block {
   border-radius   2px
   text-decoration none
 }
+
+div.pagination
+  margin 2px 0 9px 0
 
 nav.pagination,
 .pagination-info
@@ -225,6 +249,14 @@ nav.tab
       border-top 1px solid #EEEEEE
 
 // shared
+ul.actions
+  margin  0 0 0 3px
+  padding 0
+  li
+    display    inline
+    list-style none
+    margin     0 3px
+
 .action
   margin 18px 0 18px 1px
   input[type="submit"].button,
