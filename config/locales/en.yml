@@ -21,6 +21,7 @@ en:
   crumb:
     desktop: Top
     new: New
+    tag: 'Tag: %{tag}'
   action:
     create: Create
     update: Update
@@ -34,6 +35,9 @@ en:
       show: 'View %{resource}'
       edit: 'Edit %{resource}'
       new: 'New %{resource}'
+  result:
+    filter_by:
+      tag: 'Filtered by %{tag}'
   subheading:
     protokoll: Protokoll, Memo
     finance: Fiscal record

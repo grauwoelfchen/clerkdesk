@@ -25,6 +25,73 @@ textarea#note_content
   word-wrap: break-word
   padding:   6px 9px
 
+// index
+ul.sort-links
+  display inline-block
+  margin  0 0 9px 0
+  li
+    list-style none
+    display    inline-block
+    i.fa.fa-angle-up,
+    i.fa.fa-angle-down
+      font-weight    bold
+      border-radius  2px
+      display        inline-block
+      margin         0
+      padding        1px 3px
+      text-align     center
+      vertical-align middle
+      color          #777777
+      &:hover
+        background-color #F3F3F3
+      &.active
+        color #CC0000
+.filter
+  display inline-block
+  margin  0 0 0 13px
+
+ul.notes
+  padding 0
+  margin  0 0 0 3px
+ul.notes > li
+    list-style none
+    margin         0 0 18px 0
+    padding-bottom 13px
+    border-bottom  1px solid #EEEEEE
+    i
+      color      #5C3D1F
+      text-align center
+    .tags
+      margin     3px 0 0 0
+      font-size  13px
+      min-height 18px
+    p.title
+      vertical-align top
+      font-size      19px
+      margin         0 0 2px 0
+      a
+        text-decoration none
+    span.updated
+      text-align left
+      display    inline-block
+      margin     0
+    ul.actions
+      display inline-block
+
+span.tag
+  background    #E0EAF1
+  border-radius 2px
+  a
+    color           #46799B
+    text-decoration none
+span.tag,
+span.more
+  display     inline-block
+  margin      0 2px 0 0
+  padding     0 5px
+  white-space nowrap
+
+
 // show
 section.view
   .text

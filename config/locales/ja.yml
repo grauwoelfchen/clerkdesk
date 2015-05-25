@@ -21,6 +21,7 @@ ja:
   crumb:
     desktop: トップ
     new: 作成
+    tag: 'タグ: %{tag}'
   action:
     create: 作成
     update: 更新
@@ -34,6 +35,9 @@ ja:
       show: '%{resource}: 詳細'
       edit: '%{resource}: 編集'
       new: '%{resource}: 作成'
+  result:
+    filter_by:
+      tag: '%{tag} タグの一覧'
   subheading:
     note: プロトコル・メモ
     finance: 財政記録

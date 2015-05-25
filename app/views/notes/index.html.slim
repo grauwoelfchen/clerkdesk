@@ -1,4 +1,7 @@
-- breadcrumb :notes
+- if params[:tag]
+  - breadcrumb :notes_with_tag, params[:tag]
+- else
+  - breadcrumb :notes
 
 - content_for :header
   h2= Note.model_name.human.pluralize
@@ -13,38 +16,43 @@
           li.pure-menu-item
             = link_to t("action.new"), new_note_path, class: "pure-menu-link"
 
+.nav
+  ul.sort-links
+    li
+      span.attribute
+        = Note.human_attribute_name(:title)
+      = sort_links_for(:title)
+    li
+      span.attribute
+        = t("general.updated_at")
+      = sort_links_for(:updated_at, :desc)
+  .filter
+    - if params[:tag]
+      - capture_to_local tag=:tag
+        span.tag= params[:tag]
+      = t("result.filter_by.tag", tag: tag).html_safe
+
 = render "shared/pagination", resource: @notes, info: true
 
-table.table.pure-table.pure-table-horizontal
-  thead
-    tr
-      th
-        span.attribute
-          = Note.human_attribute_name(:title)
-        = sort_links_for(:title)
-      th
-        span.attribute
-          = Note.human_attribute_name(:content)
-        = sort_links_for(:content)
-      th
-        span.attribute
-          = t("general.created_at")
-        = sort_links_for(:created_at)
-      th
-        span.attribute
-          = t("general.updated_at")
-        = sort_links_for(:updated_at, :desc)
-      th
-  tbody
-    - @notes.each do |note|
-      tr
-        td= link_to note.title, note_path(note)
-        td= truncate(note.content, length: 20)
-        td= note.created_at
-        td= note.updated_at
-        td
-          ul.operation
+ul.notes.list
+  - @notes.each do |note|
+    li.pure-g
+      .pure-u-2-24
+        = link_to note_path(note) do
+          i.fa.fa-file-o.fa-5
+      .pure-u-22-24
+        .note
+          p.title= link_to truncate(note.title, length: 22), note_path(note)
+          span.updated= note.updated_at
+          ul.actions
             li= link_to t("action.edit"), edit_note_path(note)
             li= link_to t("action.destroy"), note_path(note), method: :delete, data: {confirm: "Are you sure?"}
+        .tags
+          - note.tags.take(6).each do |tag|
+            span.tag
+              = link_to truncate(tag.name, length: 8), url_for(params.merge(tag: tag.name))
+          - if note.tags.length > 3
+            span.more
+              = link_to "more", note_path(note)
 
 = render "shared/pagination", resource: @notes, info: false

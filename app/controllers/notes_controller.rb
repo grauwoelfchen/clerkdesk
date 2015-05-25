@@ -3,7 +3,12 @@ class NotesController < WorkspaceController
 
   def index
     @notes = Note.ordered(params[:column], params[:direction])
+      .includes(:tags)
       .page(params[:page])
+    if params[:tag]
+      @tag = Note.tags_on(:tags).find_by!(name: params[:tag])
+      @notes = @notes.tagged_with(@tag.name)
+    end
   end
 
   def new
