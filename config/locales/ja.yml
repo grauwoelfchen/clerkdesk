@@ -35,6 +35,22 @@ ja:
       show: '%{resource}: 詳細'
       edit: '%{resource}: 編集'
       new: '%{resource}: 作成'
+  placeholder:
+    first_name: 性
+    last_name: 名
+    memo: メモ
+  example:
+    person:
+      slug: 例） 01A001X
+      property: 例）
+      zip_code: 例） 1000000
+      first_name: 例） ジョン
+      last_name: 例） スミス
+      memo: 例）
+      city: 例）千代田区
+      address: 例）1-1-1
+      phone: 例） 03-0000-0000
+      email: 例） john@example.org
   result:
     filter_by:
       tag: '%{tag} タグの一覧'
@@ -46,3 +62,4 @@ ja:
     ledger: 台帳・アカウントブック
     budget: 予算
     settlement: 決算
+    person: メンバー

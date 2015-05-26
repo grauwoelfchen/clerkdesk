@@ -70,3 +70,16 @@ crumb :settlement do |finance|
   link Settlement.model_name.human, finance_settlement_path(finance)
   parent :finance, finance
 end
+
+crumb :people do
+  link Person.model_name.human.pluralize, people_path
+end
+
+crumb :person do |person|
+  unless person.persisted?
+    link t("crumb.new"), nil
+  else
+    link person.full_name, person_path(person)
+  end
+  parent :people
+end

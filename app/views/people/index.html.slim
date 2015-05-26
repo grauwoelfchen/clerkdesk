@@ -1,0 +1,65 @@
+- breadcrumb :people
+
+- content_for :header
+  h2= Person.model_name.human
+  h3= t('subheading.person')
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.index", resource: Person.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to t("action.new"), new_person_path, class: "pure-menu-link"
+
+= render "shared/pagination", resource: @people, info: true
+
+table.table.pure-table.pure-table-horizontal
+  thead
+    tr
+      th
+        span.attribute
+          = Person.human_attribute_name(:full_name)
+        = sort_links_for(:full_name)
+      th
+        span.attribute
+          = Person.human_attribute_name(:slug)
+        = sort_links_for(:slug)
+      th
+        span.attribute
+          = Person.human_attribute_name(:property)
+        = sort_links_for(:property)
+      th
+        span.attribute
+          = Person.human_attribute_name(:zip_code)
+        = sort_links_for(:zip_code)
+      th
+        span.attribute
+          = Person.human_attribute_name(:joined_at)
+        = sort_links_for(:joined_at)
+      th
+        span.attribute
+          = t("general.created_at")
+        = sort_links_for(:created_at)
+      th
+        span.attribute
+          = t("general.updated_at")
+        = sort_links_for(:updated_at, :desc)
+      th
+  tbody
+    - @people.each do |person|
+      tr
+        td= link_to person.full_name, person_path(person)
+        td= person.slug
+        td= person.property
+        td= person.zip_code
+        td= person.joined_at.strftime("%Y-%m-%d %H:%M") if person.joined_at
+        td= person.created_at
+        td= person.updated_at
+        td
+          ul.operation
+            li= link_to t("action.edit"), edit_person_path(person)
+            li= link_to t("action.destroy"), person_path(person), method: :delete, data: {confirm: "Are you sure?"}
+
+= render "shared/pagination", resource: @people, info: false

@@ -4,9 +4,12 @@ en:
     models:
       finance_category: Category
       ledger_entry: Entry
+      person: Member
     attributes:
       note:
         title: Title
         content: Content
       budget:
         title: Title
+      person:
+        joined_at: Joined
