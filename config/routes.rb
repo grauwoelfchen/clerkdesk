@@ -4,6 +4,7 @@ require "locker_room/engine"
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
     resources :notes
+    resources :people
 
     resources :finances do
       resource :budget,     only: [:show, :edit, :update]
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       resources :entries,    controller: :ledger_entries, as: :ledger_entries
     end
 
-    post :locale, to: "locale#switch", as: :switch_locale
+    post "/locale", to: "locales#switch", as: :switch_locale
 
     root to: "desktop#index"
   end

@@ -1,11 +1,5 @@
 $error-color = #CA3C3C
 
-ul
-  padding 0
-  margin  0
-  li
-    list-style none
-
 
 // flash
 .flash-messages
@@ -195,6 +189,14 @@ section.view
     nav.nav
       margin 0 0 3px 3px
 
+.nav
+  margin 0 0 18px 0
+  ul
+    padding 0
+    margin  0
+    li
+      list-style none
+
 
 // btn, tab
 nav.btn
@@ -247,6 +249,15 @@ nav.tab
     border-radius 0 0 2px 2px
     li.delimiter
       border-top 1px solid #EEEEEE
+
+// form
+form.form
+  legend
+    margin: 9px 0 18px 0
+  .field_with_errors
+    display inline-block
+    input[type="text"]
+      border-color #CA3C3C
 
 // shared
 ul.actions
