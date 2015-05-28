@@ -8,6 +8,9 @@ gem "pg"
 gem "locker_room", git: "https://github.com/grauwoelfchen/locker_room.git"
 
 gem "acts-as-taggable-on", "~> 3.4"
+gem "friendly_id"
+
+gem "country_select"
 
 gem "rails-i18n", "4.0.4"
 gem "gretel"
