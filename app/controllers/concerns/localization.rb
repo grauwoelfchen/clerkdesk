@@ -25,7 +25,7 @@ module Localization
       request.env["HTTP_ACCEPT_LANGUAGE"].to_s.scan(/^[a-z]{2}/).first
     end
 
-    def header_locale
+    def accept_lang
       valid_locale(extract_lang_from_http_accept_language)
     end
 
@@ -36,10 +36,8 @@ module Localization
     # actions
 
     def set_locale
-      unless session[:locale]
-        I18n.locale = user_locale || header_locale || I18n.default_locale
-        session[:locale] = I18n.locale
-      end
+      session[:locale] ||= (user_locale || accept_lang || I18n.default_locale)
+      I18n.locale = session[:locale]
     end
 
     def reset_locale
