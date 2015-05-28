@@ -13,14 +13,14 @@ require "database_cleaner"
 
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
+ActiveRecord::Migration.check_pending!
+DatabaseCleaner.clean_with(:truncation)
+DatabaseCleaner.strategy = :transaction
+
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 class ActiveSupport::TestCase
   include LockerRoom::Testing::FixtureHelpers
-
-  ActiveRecord::Migration.check_pending!
-  DatabaseCleaner.clean_with(:truncation)
-  DatabaseCleaner.strategy = :transaction
 
   def before_setup
     super
