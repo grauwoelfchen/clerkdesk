@@ -1,11 +1,37 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+# https://en.wikipedia.org/wiki/Oswald_(TV_series)#Characters
+oswald_as_person:
+  slug: '01AI0001A'
+  first_name: 'Oswald'
+  last_name: 'Octopus'
+weenie_as_person:
+  slug: '01AI0002A'
+  first_name: 'Weenie'
+  last_name: 'Girl'
+henry_as_person:
+  slug: '01AI0003A'
+  first_name: 'Henry'
+  last_name: 'the Penguin'
+daisy_as_person:
+  slug: '01AI0004A'
+  first_name: 'Daisy'
+  last_name: 'Flower'
+johnny_as_person:
+  slug: '01AI0005B'
+  first_name: 'Johnny'
+  last_name: 'Snowman'
+egbert:
+  slug: '01AI0006B'
+  first_name: 'Egbert'
+  last_name: 'the Egg Twins'
+leo:
+  slug: '01AI0007B'
+  first_name: 'Leo'
+  last_name: 'the Egg Twins'
+madame:
+  slug: '01AI0008B'
+  first_name: 'Madame'
+  last_name: 'Butterfly'
+catrina:
+  slug: '01AI0009B'
+  first_name: 'Catrina'
+  last_name: 'Butterfly'

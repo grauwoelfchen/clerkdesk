@@ -25,11 +25,4 @@ class NoteTest < ActiveSupport::TestCase
     message = "has already been taken"
     assert_equal([message], note.errors[:title])
   end
-
-  def test_validation_with_too_long_content
-    note = Note.new(:content => "long" * 1025)
-    refute(note.valid?)
-    message = "is too long (maximum is 4096 characters)"
-    assert_equal([message], note.errors[:content])
-  end
 end
