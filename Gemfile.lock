@@ -206,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 3.4)
+  countries
   country_select
   database_cleaner
   foreman
