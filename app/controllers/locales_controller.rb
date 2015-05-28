@@ -1,4 +1,4 @@
-class LocaleController < WorkspaceController
+class LocalesController < WorkspaceController
   before_action :load_user
 
   def switch

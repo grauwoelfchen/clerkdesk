@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523115258) do
+ActiveRecord::Schema.define(version: 20150526160345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20150523115258) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "people_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["people_id"], name: "index_identities_on_people_id", using: :btree
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "journalizings", force: :cascade do |t|
     t.integer  "ledger_id",                 null: false
@@ -126,6 +136,27 @@ ActiveRecord::Schema.define(version: 20150523115258) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "slug",                    null: false
+    t.string   "property"
+    t.string   "first_name", default: "", null: false
+    t.string   "last_name",  default: "", null: false
+    t.string   "zip_code"
+    t.string   "country",    default: "", null: false
+    t.string   "state",      default: "", null: false
+    t.string   "city",       default: "", null: false
+    t.string   "address",    default: "", null: false
+    t.string   "phone"
+    t.string   "email"
+    t.string   "memo"
+    t.datetime "joined_at"
+    t.datetime "left_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "people", ["slug"], name: "index_people_on_slug", unique: true, using: :btree
 
   create_table "settlements", force: :cascade do |t|
     t.integer  "finance_id",              null: false

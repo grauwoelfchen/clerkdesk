@@ -13,9 +13,9 @@
         = Finance.model_name.human
     - selected = controller_name == "people" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
-      = link_to "#", class: "pure-menu-link" do
+      = link_to people_path, class: "pure-menu-link" do
         i.fa.fa-user
-        | People
+        = Person.model_name.human
     - selected = controller_name == "settings" ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to "#", class: "pure-menu-link" do
