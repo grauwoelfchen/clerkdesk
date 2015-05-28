@@ -1,0 +1,18 @@
+- breadcrumb :person, @person
+
+- content_for :header
+  h2= Person.model_name.human
+  h3= t("subheading.person")
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.new", resource: Person.model_name.human.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to t("action.index"), people_path, class: "pure-menu-link"
+
+h3= t("action.new")
+
+= render "form", person: @person
