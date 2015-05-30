@@ -81,37 +81,37 @@ class PersonTest < ActiveSupport::TestCase
     assert_empty(person.errors[:country])
   end
 
-  def test_validation_error_with_orphaned_state
-    person = Person.new(:country => nil, :state => "01")
+  def test_validation_error_with_orphaned_division
+    person = Person.new(:country => nil, :division => "01")
     refute(person.valid?)
     message = "is not included in the list"
-    assert_equal([message], person.errors[:state])
+    assert_equal([message], person.errors[:division])
   end
 
-  def test_validation_error_with_invalid_state
-    person = Person.new(:country => "JP", :state => "48")
+  def test_validation_error_with_invalid_division
+    person = Person.new(:country => "JP", :division => "48")
     refute(person.valid?)
     message = "is not included in the list"
-    assert_equal([message], person.errors[:state])
+    assert_equal([message], person.errors[:division])
   end
 
-  def test_validation_error_with_invalid_zip_code
-    person = Person.new(:zip_code => "ZIP")
+  def test_validation_error_with_invalid_postcode
+    person = Person.new(:postcode => ":-)")
     refute(person.valid?)
     message = "is invalid"
-    assert_equal([message], person.errors[:zip_code])
+    assert_equal([message], person.errors[:postcode])
   end
 
-  def test_validation_error_with_too_long_zip_code
-    person = Person.new(:zip_code => "0" * 33)
+  def test_validation_error_with_too_long_postcode
+    person = Person.new(:postcode => "0" * 33)
     refute(person.valid?)
     message = "is too long (maximum is 32 characters)"
-    assert_equal([message], person.errors[:zip_code])
+    assert_equal([message], person.errors[:postcode])
   end
 
-  def test_allowance_without_zip_code
-    person = Person.new(:zip_code => "")
+  def test_allowance_without_postcode
+    person = Person.new(:postcode => "")
     refute(person.valid?)
-    assert_empty(person.errors[:zip_code])
+    assert_empty(person.errors[:postcode])
   end
 end

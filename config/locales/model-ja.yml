@@ -34,15 +34,15 @@ ja:
         first_name: 名
         last_name: 性
         country: 国
-        state: 都道府県/州
-        city: 市区町村/都市
-        zip_code: 郵便番号
+        division: 都道府県
+        city: 市区町村
+        postcode: 郵便番号
         address: 住所
         phone: 電話
         email: Eメール
         memo: メモ
-        joined_at: 参加日時
-        left_at: 退出日時
+        joined_at: 入会日時
+        left_at: 退会日時
         full_name: 名前
   enum_accessor:
     type:

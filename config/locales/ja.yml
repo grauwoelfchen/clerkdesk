@@ -43,7 +43,7 @@ ja:
     person:
       slug: 例） 01A001X
       property: 例）
-      zip_code: 例） 1000000
+      postcode: 例） 1000000
       first_name: 例） ジョン
       last_name: 例） スミス
       memo: 例）

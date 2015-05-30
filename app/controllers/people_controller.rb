@@ -41,7 +41,7 @@ class PeopleController < WorkspaceController
     params.require(:person).permit(
       :slug, :property,
       :first_name, :last_name,
-      :country, :state, :zip_code, :address,
+      :country, :division, :postcode, :address,
       :phone, :email,
       :joined_at, :left_at)
   end
