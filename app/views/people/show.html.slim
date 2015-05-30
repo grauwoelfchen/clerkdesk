@@ -34,46 +34,46 @@ section.block.person
       = label_tag Person.human_attribute_name(:last_name)
       = @person.last_name
   .pure-group
-    .last_name
+    .country
       = label_tag Person.human_attribute_name(:country)
       - country = Country.find_country_by_alpha2(@person.country)
       = country.translations[current_locale]
   .pure-group
-    .last_name
-      = label_tag Person.human_attribute_name(:state)
-      - if country && state = country.states[@person.state]
-        = state['name']
+    .division
+      = label_tag Person.human_attribute_name(:division)
+      - if country && division = country.subdivisions[@person.division]
+        = division['name']
   .pure-group
-    .last_name
+    .city
       = label_tag Person.human_attribute_name(:city)
       = @person.city
   .pure-group
-    .last_name
+    .address
       = label_tag Person.human_attribute_name(:address)
       = @person.address
   .pure-group
-    .last_name
-      = label_tag Person.human_attribute_name(:zip_code)
-      = @person.zip_code
+    .postcode
+      = label_tag Person.human_attribute_name(:postcode)
+      = @person.postcode
   .pure-group
-    .last_name
+    .phone
       = label_tag Person.human_attribute_name(:phone)
       = @person.phone
   .pure-group
-    .last_name
+    .email
       = label_tag Person.human_attribute_name(:email)
       = link_to @person.email
   legend Additional Information
   .pure-group
-    .last_name
+    .memo
       = label_tag Person.human_attribute_name(:memo)
       = @person.memo
   .pure-group
-    .last_name
+    .joined_at
       = label_tag Person.human_attribute_name(:joined_at)
       = @person.joined_at
   .pure-group
-    .last_name
+    .left_at
       = label_tag Person.human_attribute_name(:left_at)
       = @person.left_at
   .action

@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(version: 20150526160345) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",    null: false
-    t.integer  "people_id",  null: false
+    t.integer  "person_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "identities", ["people_id"], name: "index_identities_on_people_id", using: :btree
+  add_index "identities", ["person_id"], name: "index_identities_on_person_id", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "journalizings", force: :cascade do |t|
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 20150526160345) do
     t.string   "property"
     t.string   "first_name", default: "", null: false
     t.string   "last_name",  default: "", null: false
-    t.string   "zip_code"
+    t.string   "postcode"
     t.string   "country",    default: "", null: false
-    t.string   "state",      default: "", null: false
+    t.string   "division",   default: "", null: false
     t.string   "city",       default: "", null: false
     t.string   "address",    default: "", null: false
     t.string   "phone"

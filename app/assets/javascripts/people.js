@@ -1,12 +1,12 @@
 (function($) {
   'use strict';
   $(function() {
-    var country     = $('#person_country')
-      , subdivision = $('#person_state')
+    var country  = $('#person_country')
+      , division = $('#person_division')
       ;
 
     // indicator
-    $(subdivision).parent().append(
+    $(division).parent().append(
       '<span id="indicator"><img src="/assets/loading.gif"></div>'
     );
     $('#indicator').css({
@@ -16,64 +16,64 @@
       'vertical-align': 'middle'
     });
     $(document).ajaxStart(function() {
-      subdivision.hide();
+      division.hide();
       $('#indicator').css({display: 'inline-block'});
     }).ajaxStop(function() {
       $('#indicator').hide();
-      subdivision.show();
+      division.show();
     });
 
-    // subdivision codes updater
-    var setSubdivisionOptions = function(country_code, subdivision_code) {
-      if (typeof subdivision_code === "undefined") {
-        subdivision_code = null;
+    // division codes updater
+    var setDivisionOptions = function(country_code, division_code) {
+      if (typeof division_code === "undefined") {
+        division_code = null;
       }
       $.ajax({
         dataType: 'json',
         url:      '/countries/' +
-          encodeURIComponent(country_code) + '/subdivisions.json'
+          encodeURIComponent(country_code) + '/divisions.json'
       })
       .fail(function() {
-        subdivision.empty();
-        subdivision.html('<option value="">---</option>');
+        division.empty();
+        division.html('<option value="">---</option>');
         country.val('');
         alert("Sorry, please retry :'(");
       })
       .done(function(data) {
-        subdivision.empty();
+        division.empty();
         data.unshift({name: '---', code: ''});
         $(data).each(function(key, value) {
-          var code = $('<div />').text(value.code).html()
-            , name = $('<div />').text(value.name).html()
+          var code = $('<div/>').text(value.code).html()
+            , name = $('<div/>').text(value.name).html()
             ;
-          subdivision.append(
+          division.append(
             '<option value="' + code + '">' + name + '</option>'
           );
         });
-        if (subdivision_code) {
-          subdivision.val(subdivision_code).prop('selected', true);
+        if (division_code) {
+          division.val(division_code).prop('selected', true);
         }
         return true;
       });
     };
 
-    var country_code     = country.val()
-      , subdivision_code = subdivision.val()
+    var country_code  = country.val()
+      , division_code = division.val()
       ;
 
     // initialize
     if (country_code) {
-      setSubdivisionOptions(country_code, subdivision_code);
+      setDivisionOptions(country_code, division_code);
     }
 
     country.change(function() {
       var country_code = $(this).val(); // refetch
       if (country_code == '') {
-        subdivision.empty();
-        subdivision.html('<option value="">---</option>');
+        division.empty();
+        division.html('<option value="">---</option>');
         return true;
       }
-      return setSubdivisionOptions(country_code);
+      return setDivisionOptions(country_code);
     });
   });
 })(jQuery);

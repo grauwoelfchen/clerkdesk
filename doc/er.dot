@@ -155,9 +155,17 @@ digraph Clerkdesk {
 
   Person [
     label = "{people|«Person»\lhas_one: locker_room_user (as user)\lhas_many: involvements (as concerns)\l\n|{ \
-      {FIELD|identifier\l|name\l|zip_code\l|address\l|phone\l|email\l}| \
-      {TYPE|varchar\l|varchar\l|varchar\l|text\l|varchar\l|varchar\l}| \
-      {VALUE|\l|\l|\l|\l|\l|\l} \
+      {FIELD|slug\l|property\l|first_name\l|last_name\l|postcode\l|country\l|division\l|city\l|address\l|phone\l|email\l|memo\l|joined_at\l|left_at\l}| \
+      {TYPE|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|datetime\l|datetime\l}| \
+      {VALUE|\l|\l|default:''\l|default:''\l|\l|default:''\l|default:''\l|default:''\l|default:''\l|\l|\l|\l|\l|\l} \
+    }}"
+  ]
+
+  Identity [
+    label = "{identities|«Identity»\lbelongs_to: locker_room (as user)\lbelongs_to: person\l\n|{ \
+      {FIELD|user_id\l|person_id\l}| \
+      {TYPE|integer\l|integer\l}| \
+      {VALUE|\l|\l} \
     }}"
   ]
 
@@ -166,17 +174,16 @@ digraph Clerkdesk {
     rankdir = LR
   ]
 
-  UserPerson [
-    label = "{users_people|{ \
-      {FIELD|user_id\l|person_id\l}| \
-      {TYPE|integer\l|integer\l}| \
-      {VALUE|\l|\l} \
-    }}"
-    style     = "filled"
-    fontcolor = "black"
-    fillcolor = "cornsilk3"
-  ]
-
+  // table [
+  //   label = "{|{ \
+  //     {FIELD|\l|\l}| \
+  //     {TYPE|\l|\l}| \
+  //     {VALUE|\l|\l} \
+  //   }}"
+  //   style     = "filled"
+  //   fontcolor = "black"
+  //   fillcolor = "cornsilk3"
+  // ]
 
   /**
    * Relation
@@ -229,6 +236,9 @@ digraph Clerkdesk {
   Involvement -> Note
   Involvement -> LedgerEntry
 
+  Identity -> LockerRoomUser
+  Identity -> Person
+
   edge [ // has_one
     arrowhead = normal
     arrowtail = none
@@ -252,9 +262,6 @@ digraph Clerkdesk {
     taillabel = ""
     dir       = both
   ]
-
-  LockerRoomUser -> UserPerson
-  Person         -> UserPerson
 
 
   /**

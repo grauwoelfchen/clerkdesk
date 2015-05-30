@@ -1,16 +1,16 @@
 class CountriesController < WorkspaceController
   before_action :load_country
 
-  def subdivisions
-    sleep 0.3
-    subdivisions = @country.subdivisions.sort.map { |n, v|
+  def divisions
+    sleep 0.2 # :p
+    divisions = @country.subdivisions.sort.map { |n, v|
       {
         :code => n,
         :name => v['name'],
       }
     }
     respond_to do |format|
-      format.json { render :json => subdivisions.to_json }
+      format.json { render :json => divisions.to_json }
     end
   end
 

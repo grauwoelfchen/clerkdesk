@@ -24,11 +24,11 @@ class Person < ActiveRecord::Base
   validates :country,
     inclusion: {in: Country.all.map { |_, alpha2| alpha2 } },
     if:        "country.present?"
-  validate :state_must_be_in_valid_country
-  validates :zip_code,
+  validate :division_must_be_in_valid_country
+  validates :postcode,
     length:  {maximum: 32},
     format:  {with: /\A[0-9]+\z/},
-    if:      "zip_code.present?"
+    if:      "postcode.present?"
 
   def full_name
     "#{first_name} #{last_name}"
@@ -36,18 +36,18 @@ class Person < ActiveRecord::Base
 
   private
 
-  def state_must_be_in_valid_country
-    if state.present? && !valid_state?
-      errors.add(:state, "is not included in the list")
+  def division_must_be_in_valid_country
+    if division.present? && !valid_division?
+      errors.add(:division, "is not included in the list")
     end
   end
 
-  def valid_state?
+  def valid_division?
     return false unless country.present?
     # this finder does not raise any exception (returns nil)
     country_data = Country.find_country_by_alpha2(country)
     return false unless (country_data && country_data.subdivisions?)
-    subdivisions = country_data.subdivisions
-    subdivisions.keys.include?(state)
+    divisions = country_data.subdivisions
+    divisions.keys.include?(division)
   end
 end
