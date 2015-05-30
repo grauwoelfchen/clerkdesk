@@ -15,70 +15,71 @@
 
 section.block.person
   h4= @person.full_name
-  legend ID
-  .pure-group
-    .slug
-      = label_tag Person.human_attribute_name(:slug)
-      = @person.slug
-  .pure-group
-    .property
-      = label_tag Person.human_attribute_name(:property)
-      = @person.property
-  legend Personal Information
-  .pure-group
-    .first_name
-      = label_tag Person.human_attribute_name(:first_name)
-      = @person.first_name
-  .pure-group
-    .last_name
-      = label_tag Person.human_attribute_name(:last_name)
-      = @person.last_name
-  .pure-group
-    .country
-      = label_tag Person.human_attribute_name(:country)
-      - country = Country.find_country_by_alpha2(@person.country)
-      = country.translations[current_locale]
-  .pure-group
-    .division
-      = label_tag Person.human_attribute_name(:division)
-      - if country && division = country.subdivisions[@person.division]
-        = division['name']
-  .pure-group
-    .city
-      = label_tag Person.human_attribute_name(:city)
-      = @person.city
-  .pure-group
-    .address
-      = label_tag Person.human_attribute_name(:address)
-      = @person.address
-  .pure-group
-    .postcode
-      = label_tag Person.human_attribute_name(:postcode)
-      = @person.postcode
-  .pure-group
-    .phone
-      = label_tag Person.human_attribute_name(:phone)
-      = @person.phone
-  .pure-group
-    .email
-      = label_tag Person.human_attribute_name(:email)
-      = link_to @person.email
-  legend Additional Information
-  .pure-group
-    .memo
-      = label_tag Person.human_attribute_name(:memo)
-      = @person.memo
-  .pure-group
-    .joined_at
-      = label_tag Person.human_attribute_name(:joined_at)
-      = @person.joined_at
-  .pure-group
-    .left_at
-      = label_tag Person.human_attribute_name(:left_at)
-      = @person.left_at
-  .action
-    ul.actions
-      li
-        = link_to t("action.edit"), edit_person_path, class: "pure-button button"
-      li
-        = link_to t("action.destroy"), person_path, class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+  .container
+    legend= t("legend.id")
+    .group
+      .slug
+        = label_tag Person.human_attribute_name(:slug)
+        = @person.slug
+    .group
+      .property
+        = label_tag Person.human_attribute_name(:property)
+        = @person.property
+    legend= t("legend.personal_info")
+    .group
+      .first_name
+        = label_tag Person.human_attribute_name(:first_name)
+        = @person.first_name
+    .group
+      .last_name
+        = label_tag Person.human_attribute_name(:last_name)
+        = @person.last_name
+    .group
+      .country
+        = label_tag Person.human_attribute_name(:country)
+        - country = Country.find_country_by_alpha2(@person.country)
+        = country.translations[current_locale]
+    .group
+      .division
+        = label_tag Person.human_attribute_name(:division)
+        - if country && division = country.subdivisions[@person.division]
+          = division['name']
+    .group
+      .city
+        = label_tag Person.human_attribute_name(:city)
+        = @person.city
+    .group
+      .address
+        = label_tag Person.human_attribute_name(:address)
+        = @person.address
+    .group
+      .postcode
+        = label_tag Person.human_attribute_name(:postcode)
+        = @person.postcode
+    .group
+      .phone
+        = label_tag Person.human_attribute_name(:phone)
+        = @person.phone
+    .group
+      .email
+        = label_tag Person.human_attribute_name(:email)
+        = mail_to @person.email
+    legend= t("legend.additional_info")
+    .group
+      .memo
+        = label_tag Person.human_attribute_name(:memo)
+        = @person.memo
+    .group
+      .joined_at
+        = label_tag Person.human_attribute_name(:joined_at)
+        = @person.joined_at
+    .group
+      .left_at
+        = label_tag Person.human_attribute_name(:left_at)
+        = @person.left_at
+    .action
+      ul.actions
+        li
+          = link_to t("action.edit"), edit_person_path, class: "pure-button button"
+        li
+          = link_to t("action.destroy"), person_path, class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
