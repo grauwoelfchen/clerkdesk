@@ -51,6 +51,10 @@ ja:
       address: 例）1-1-1
       phone: 例） 03-0000-0000
       email: 例） john@example.org
+  legend:
+    id: ID
+    personal_info: 情報
+    additional_info: 管理項目
   result:
     filter_by:
       tag: '%{tag} タグの一覧'
