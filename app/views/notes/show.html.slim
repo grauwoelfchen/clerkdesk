@@ -17,7 +17,7 @@
           li.pure-menu-item.delimiter
             = link_to t("action.new"), new_note_path, class: "pure-menu-link"
 
-section.view
+section.block
   h4= @note.title
   .text== @note.content_html
   .tags

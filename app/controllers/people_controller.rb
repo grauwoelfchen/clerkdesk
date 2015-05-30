@@ -1,4 +1,6 @@
 class PeopleController < WorkspaceController
+  before_action :load_person, only: [:show, :edit, :update, :destroy]
+
   def index
     @people = Person.all.page(params[:page])
   end
@@ -17,6 +19,18 @@ class PeopleController < WorkspaceController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
   private
 
   def load_person
@@ -26,7 +40,9 @@ class PeopleController < WorkspaceController
   def person_params
     params.require(:person).permit(
       :slug, :property,
-      :first_name, :last_name, :zip_code, :address, :phone, :email,
+      :first_name, :last_name,
+      :country, :state, :zip_code, :address,
+      :phone, :email,
       :joined_at, :left_at)
   end
 end
