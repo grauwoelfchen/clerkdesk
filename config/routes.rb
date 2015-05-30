@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
 
     post "/locale", to: "locales#switch", as: :switch_locale
-    get  "/countries/:code/subdivisions", to: "countries#subdivisions",
+    get  "/countries/:code/divisions", to: "countries#divisions",
       constraints: {code: /[A-Z]{2}/},
       defaults:    {format: :json}
 

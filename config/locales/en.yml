@@ -39,11 +39,10 @@ en:
     person:
       slug: e.g. 01A001X
       property: e.g.
-      zip_code: e.g. 1000000
+      postcode: e.g. 1000000
       first_name: e.g. John
       last_name: e.g. Smith
       memo: e.g.
-      state: e.g.
       city: e.g.
       address: e.g.
       phone: e.g. 03-0000-0000
