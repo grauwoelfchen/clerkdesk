@@ -23,9 +23,9 @@
       / AI and AN has wrong translaton cache (at least)
       = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}
     .pure-control-group
-      = f.label :state
-      - state_options = person.state.present? ? [['', person.state]] : []
-      = f.select :state, state_options, {prompt: '---', value: person.state}
+      = f.label :division
+      - divisions = person.division.present? ? [['', person.division]] : []
+      = f.select :division, divisions, {prompt: '---', value: person.division}
     .pure-control-group
       = f.label :city
       = f.text_field :city, placeholder: t("example.person.city")
@@ -33,8 +33,8 @@
       = f.label :address
       = f.text_field :address, class: "pure-u-7-24", placeholder: t("example.person.address")
     .pure-control-group
-      = f.label :zip_code
-      = f.text_field :zip_code, placeholder: t("example.person.zip_code")
+      = f.label :postcode
+      = f.text_field :postcode, placeholder: t("example.person.postcode")
     .pure-control-group
       = f.label :phone
       = f.text_field :phone, placeholder: t("example.person.phone")

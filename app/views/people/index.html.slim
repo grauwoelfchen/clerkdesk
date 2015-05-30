@@ -32,8 +32,8 @@ table.table.pure-table.pure-table-horizontal
         = sort_links_for(:property)
       th
         span.attribute
-          = Person.human_attribute_name(:zip_code)
-        = sort_links_for(:zip_code)
+          = Person.human_attribute_name(:postcode)
+        = sort_links_for(:postcode)
       th
         span.attribute
           = Person.human_attribute_name(:joined_at)
@@ -53,7 +53,7 @@ table.table.pure-table.pure-table-horizontal
         td= link_to person.full_name, person_path(person)
         td= person.slug
         td= person.property
-        td= person.zip_code
+        td= person.postcode
         td= person.joined_at.strftime("%Y-%m-%d %H:%M") if person.joined_at
         td= person.created_at
         td= person.updated_at
