@@ -14,7 +14,7 @@
     li= link_to t("action.resource.show", resource: LedgerEntry.model_name.human.downcase), finance_ledger_entry_path(@finance, @entry)
     li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
-section.view.entry
+section.block.entry
   .pure-g
     .finance.pure-u-1
       = render "shared/finance", finance: @finance
