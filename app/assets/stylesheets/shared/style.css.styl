@@ -1,5 +1,4 @@
-$error-color = #CA3C3C
-
+@import "_mixin.css.styl"
 
 // flash
 .flash-messages
@@ -137,17 +136,6 @@ nav.pagination,
       background-color #DDDDDD
 
 
-// shared misc
-legend-style = @block {
-  border-bottom 1px solid #EEEEEE
-  color         #333333
-  display       block
-  margin        9px 0 18px 0
-  padding       0.3em 0
-  width         auto
-}
-
-
 // show
 section.block
   padding 0
@@ -264,6 +252,7 @@ nav.tab
 form.form
   legend
     {legend-style}
+    width 100%
   .field_with_errors
     display inline-block
     input[type="text"]
