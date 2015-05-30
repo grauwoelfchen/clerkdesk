@@ -7,9 +7,12 @@ class Person < ActiveRecord::Base
   friendly_id :slug, use: :slugged
 
   validates :slug,
-    uniqueness: true,
-    length:     {maximum: 192},
-    format:     {with: /\A[A-z0-9\-_]+\z/}
+    presence: true,
+    length:   {maximum: 192}
+  with_options if: "slug.present?" do |person|
+    person.validates :slug, format: {with: /\A[A-z0-9\-_]+\z/}
+    person.validates :slug, uniqueness: true
+  end
   validates :property,
     length: {maximum: 192}
   validates :first_name,
@@ -19,9 +22,13 @@ class Person < ActiveRecord::Base
     presence: true,
     length:   {maximum: 128}
   validates :country,
-    inclusion: {in: Country.all.map { |_, alpha2| alpha2 } }
-
+    inclusion: {in: Country.all.map { |_, alpha2| alpha2 } },
+    if:        "country.present?"
   validate :state_must_be_in_valid_country
+  validates :zip_code,
+    length:  {maximum: 32},
+    format:  {with: /\A[0-9]+\z/},
+    if:      "zip_code.present?"
 
   def full_name
     "#{first_name} #{last_name}"

@@ -1,0 +1,84 @@
+- breadcrumb :person, @person
+
+- content_for :header
+  h2= Person.model_name.human
+  h3= t("subheading.person")
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.new", resource: Person.model_name.human.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to t("action.index"), people_path, class: "pure-menu-link"
+
+section.block.person
+  h4= @person.full_name
+  legend ID
+  .pure-group
+    .slug
+      = label_tag Person.human_attribute_name(:slug)
+      = @person.slug
+  .pure-group
+    .property
+      = label_tag Person.human_attribute_name(:property)
+      = @person.property
+  legend Personal Information
+  .pure-group
+    .first_name
+      = label_tag Person.human_attribute_name(:first_name)
+      = @person.first_name
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:last_name)
+      = @person.last_name
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:country)
+      - country = Country.find_country_by_alpha2(@person.country)
+      = country.translations[current_locale]
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:state)
+      - if country && state = country.states[@person.state]
+        = state['name']
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:city)
+      = @person.city
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:address)
+      = @person.address
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:zip_code)
+      = @person.zip_code
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:phone)
+      = @person.phone
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:email)
+      = link_to @person.email
+  legend Additional Information
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:memo)
+      = @person.memo
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:joined_at)
+      = @person.joined_at
+  .pure-group
+    .last_name
+      = label_tag Person.human_attribute_name(:left_at)
+      = @person.left_at
+  .action
+    ul.actions
+      li
+        = link_to t("action.edit"), edit_person_path, class: "pure-button button"
+      li
+        = link_to t("action.destroy"), person_path, class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
