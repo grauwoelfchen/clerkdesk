@@ -12,6 +12,7 @@ gem "friendly_id"
 
 gem "countries"
 gem "country_select"
+gem "date_validator"
 
 gem "rails-i18n", "4.0.4"
 gem "gretel"

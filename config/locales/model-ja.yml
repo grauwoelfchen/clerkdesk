@@ -44,6 +44,10 @@ ja:
         joined_at: 入会日時
         left_at: 退会日時
         full_name: 名前
+    errors:
+      attributes:
+        left_at:
+          after_field: 'は%{field}より後に設定してください'
   enum_accessor:
     type:
       expense: 支出
