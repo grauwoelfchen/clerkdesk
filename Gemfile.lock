@@ -70,6 +70,8 @@ GEM
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
     database_cleaner (1.4.1)
+    date_validator (0.8.0)
+      activemodel
     enum_accessor (2.0.0)
       activesupport (>= 3.0.0)
     erubis (2.7.0)
@@ -209,6 +211,7 @@ DEPENDENCIES
   countries
   country_select
   database_cleaner
+  date_validator
   foreman
   friendly_id
   gretel

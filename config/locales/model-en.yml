@@ -13,3 +13,7 @@ en:
         title: Title
       person:
         joined_at: Joined
+    errors:
+      attributes:
+        left_at:
+          after_field: 'must be after %{field}'
