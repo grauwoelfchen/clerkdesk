@@ -36,10 +36,6 @@ table.table.pure-table.pure-table-horizontal
         = sort_links_for(:postcode)
       th
         span.attribute
-          = Person.human_attribute_name(:joined_at)
-        = sort_links_for(:joined_at)
-      th
-        span.attribute
           = t("general.created_at")
         = sort_links_for(:created_at)
       th
@@ -50,11 +46,10 @@ table.table.pure-table.pure-table-horizontal
   tbody
     - @people.each do |person|
       tr
-        td= link_to person.full_name, person_path(person)
-        td= person.slug
-        td= person.property
+        td= link_to truncate(person.full_name, length: 24), person_path(person)
+        td= truncate(person.slug, length: 12)
+        td= truncate(person.property, length: 12)
         td= person.postcode
-        td= person.joined_at.strftime("%Y-%m-%d %H:%M") if person.joined_at
         td= person.created_at
         td= person.updated_at
         td

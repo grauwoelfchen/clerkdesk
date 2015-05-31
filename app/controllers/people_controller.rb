@@ -26,9 +26,18 @@ class PeopleController < WorkspaceController
   end
 
   def update
+    if @person.update_attributes(person_params)
+      redirect_to @person, :notice => "Person has been successfully updated."
+    else
+      flash.now[:alert] = "Person could not be updated."
+      render :edit
+    end
   end
 
   def destroy
+    @person.destroy
+    redirect_to people_url,
+      :notice => "Person has been successfully destroyed."
   end
 
   private
@@ -41,8 +50,7 @@ class PeopleController < WorkspaceController
     params.require(:person).permit(
       :slug, :property,
       :first_name, :last_name,
-      :country, :division, :postcode, :address,
-      :phone, :email,
-      :joined_at, :left_at)
+      :country, :division, :postcode, :address, :phone, :email,
+      :memo, :joined_at, :left_at)
   end
 end
