@@ -48,10 +48,10 @@
       = f.text_field :memo, class: "pure-u-7-24", placeholder: t("example.person.memo")
     .pure-control-group
       = f.label :joined_at
-      = f.datetime_select :joined_at, ampm: false, use_two_digit_numbers: true, minute_step: 5, include_seconds: false, prompt: true, datetime_separator: "&nbsp;"
+      = f.date_select :joined_at, use_two_digit_numbers: true, prompt: true
     .pure-control-group
       = f.label :left_at
-      = f.datetime_select :left_at, ampm: false, use_two_digit_numbers: true, minute_step: 5, include_seconds: false, prompt: true, datetime_separator: "&nbsp;"
+      = f.date_select :left_at, use_two_digit_numbers: true, prompt: true
   .action
     = f.submit t("action.#{action}"), class: "pure-button pure-button-primary button"
     - if action == "update"
