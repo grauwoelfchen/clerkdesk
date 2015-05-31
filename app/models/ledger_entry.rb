@@ -5,9 +5,10 @@ class LedgerEntry < ActiveRecord::Base
   enum_accessor :type, [:expense, :income]
 
   belongs_to :ledger
-  belongs_to :journalizing, counter_cache: :entries_count
+  belongs_to :journalizing,
+    counter_cache: :entries_count
   has_one :category,
-    through: :journalizing,
+    through:    :journalizing,
     class_name: "FinanceCategory"
 
   acts_as_taggable
@@ -20,13 +21,6 @@ class LedgerEntry < ActiveRecord::Base
     length: {maximum: 128}
 
   validates :memo,
-    length: {maximum: 1024},
-    if:     ->(e) { e.memo.present? }
-
-  def journalize_to(category)
-    self.class.transaction do
-      self.journalizing = ledger.journalizings.build(:category => category)
-      save
-    end
-  end
+    length:      {maximum: 1024},
+    allow_blank: true
 end

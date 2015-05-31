@@ -4,7 +4,9 @@ class Ledger < ActiveRecord::Base
   has_many :categories,
     through: :journalizings,
     class_name: "FinanceCategory"
-  has_many :entries, class_name: "LedgerEntry"
+  has_many :entries,
+    class_name:  "LedgerEntry",
+    foreign_key: :ledger_id
 
   validates :title,
     presence: true
@@ -14,6 +16,6 @@ class Ledger < ActiveRecord::Base
     length: {maximum: 128}
 
   validates :description,
-    length: {maximum: 1024},
-    if:     ->(l) { l.description.present? }
+    length:      {maximum: 1024},
+    allow_blank: true
 end
