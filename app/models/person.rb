@@ -9,10 +9,12 @@ class Person < ActiveRecord::Base
   validates :slug,
     presence: true,
     length:   {maximum: 192}
+
   with_options if: "slug.present?" do |person|
     person.validates :slug, format: {with: /\A[A-z0-9\-_]+\z/}
     person.validates :slug, uniqueness: true
   end
+
   validates :property,
     length: {maximum: 192}
   validates :first_name,
@@ -22,13 +24,40 @@ class Person < ActiveRecord::Base
     presence: true,
     length:   {maximum: 128}
   validates :country,
-    inclusion: {in: Country.all.map { |_, alpha2| alpha2 } },
-    if:        "country.present?"
-  validate :division_must_be_in_valid_country
+    inclusion:   {in: Country.all.map { |_, alpha2| alpha2 } },
+    allow_blank: true
+  validates :city,
+    length: {maximum: 64}
+  validates :address,
+    length: {maximum: 255}
   validates :postcode,
-    length:  {maximum: 32},
-    format:  {with: /\A[0-9]+\z/},
-    if:      "postcode.present?"
+    length:      {maximum: 32},
+    format:      {with: /\A[0-9]+\z/},
+    allow_blank: true
+  validates :phone,
+    length:      {maximum: 24},
+    format:      {with: /\A[0-9\-\+]+\z/},
+    allow_blank: true
+  validates :email,
+    length:      {maximum: 64},
+    format:      {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
+    allow_blank: true
+  validates :memo,
+    length: {maximum: 255}
+  validates :joined_at,
+    date:        true,
+    allow_blank: true
+  validates :left_at,
+    date: {
+      after:   :joined_at,
+      message: I18n.t(
+        "activerecord.errors.attributes.left_at.after_field",
+        field: self.human_attribute_name(:joined_at).downcase
+      )
+    },
+    allow_blank: true
+
+  validate :division_must_be_in_valid_country
 
   def full_name
     "#{first_name} #{last_name}"
