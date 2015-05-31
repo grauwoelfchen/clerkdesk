@@ -9,12 +9,10 @@ class Person < ActiveRecord::Base
   validates :slug,
     presence: true,
     length:   {maximum: 192}
-
-  with_options if: "slug.present?" do |person|
-    person.validates :slug, format: {with: /\A[A-z0-9\-_]+\z/}
-    person.validates :slug, uniqueness: true
-  end
-
+  validates :slug,
+    uniqueness:  true,
+    format:      {with: /\A[A-z0-9\-_]+\z/},
+    allow_blank: true
   validates :property,
     length: {maximum: 192}
   validates :first_name,

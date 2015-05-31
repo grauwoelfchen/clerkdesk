@@ -4,6 +4,10 @@ class FinanceCategoriesController < WorkspaceController
 
   def index
     @categories = @finance.categories
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :json => @categories.to_json }
+    end
   end
 
   def new
@@ -13,6 +17,7 @@ class FinanceCategoriesController < WorkspaceController
   def create
     @category = @finance.categories.new(category_params)
     if @category.save
+      @category.journalizings.create(:ledger => @finance.ledger)
       redirect_to finance_categories_url,
         :notice => "Category has been successfully created."
     else

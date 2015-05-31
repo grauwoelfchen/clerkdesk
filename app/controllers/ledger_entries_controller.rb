@@ -1,8 +1,8 @@
 class LedgerEntriesController < WorkspaceController
   before_action :load_finance
   before_action :load_ledger
-  before_action :load_categories, :only => [:new, :create, :edit, :update]
-  before_action :load_entry, :only => [:show, :edit, :update, :destroy]
+  before_action :load_journalizings, :only => [:new, :create, :edit, :update]
+  before_action :load_entry,         :only => [:show, :edit, :update, :destroy]
 
   def new
     @entry = @ledger.entries.new
@@ -10,8 +10,7 @@ class LedgerEntriesController < WorkspaceController
 
   def create
     @entry = @ledger.entries.build(ledger_entry_params)
-    @category = fetch_category
-    if @entry.journalize_to(@category)
+    if @entry.save
       redirect_to finance_ledger_entry_url(@finance, @entry),
         :notice => "Entry has been successfully created."
     else
@@ -45,8 +44,8 @@ class LedgerEntriesController < WorkspaceController
     @finance = Finance.find(params[:finance_id])
   end
 
-  def load_categories
-    @categories = @finance.categories
+  def load_journalizings
+    @journalizings = @ledger.journalizings
   end
 
   def load_ledger
@@ -58,11 +57,9 @@ class LedgerEntriesController < WorkspaceController
     @entry = @ledger.entries.find(params[:id])
   end
 
-  def fetch_category
-    @finance.categories.find(params[:category_id])
-  end
-
   def ledger_entry_params
-    params.require(:ledger_entry).permit(:title, :memo)
+    params.require(:ledger_entry).permit(
+      :title, :type, :journalizing_id, :total_amount, :memo
+    )
   end
 end
