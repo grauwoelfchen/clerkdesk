@@ -8,14 +8,18 @@
   nav.btn.pure-menu.pure-menu-horizontal
     ul.pure-menu-list
       li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.new", resource: Person.model_name.human.downcase), "#", class: "pure-menu-link"
+        = link_to t("action.resource.edit", resource: Person.model_name.human.downcase), "#", class: "pure-menu-link"
         ul.pure-menu-children
           li.pure-menu-item
             = link_to t("action.index"), people_path, class: "pure-menu-link"
+          li.pure-menu-item
+            = link_to t("action.show"), person_path(@person), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+            = link_to t("action.new"), new_person_path, class: "pure-menu-link"
 
 section.block.person.pure-g
   .container.pure-u-16-24
-    h4= t("action.new")
+    h4= t("action.edit")
     hr
     = render "form", person: @person
   .pure-u-8-24

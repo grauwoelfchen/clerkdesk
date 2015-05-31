@@ -53,6 +53,6 @@
       = f.label :left_at
       = f.datetime_select :left_at, ampm: false, use_two_digit_numbers: true, minute_step: 5, include_seconds: false, prompt: true, datetime_separator: "&nbsp;"
   .action
-    = f.submit t("action.#{action}"), class: "pure-button button"
+    = f.submit t("action.#{action}"), class: "pure-button pure-button-primary button"
     - if action == "update"
       = link_to t("action.destroy"), person_path, class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
