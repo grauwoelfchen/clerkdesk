@@ -2,8 +2,8 @@ class NotesController < WorkspaceController
   before_action :load_note, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.ordered(params[:column], params[:direction])
-      .includes(:tags)
+    @notes = Note.includes(:tags)
+      .sort(params[:field], params[:direction])
       .page(params[:page])
     if params[:tag]
       @tag = Note.tags_on(:tags).find_by!(name: params[:tag])

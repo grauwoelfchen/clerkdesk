@@ -2,7 +2,9 @@ class PeopleController < WorkspaceController
   before_action :load_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @people = Person.all.page(params[:page])
+    @people = Person
+      .sort(params[:field], params[:direction])
+      .page(params[:page])
   end
 
   def new
