@@ -12,9 +12,16 @@ module Sortable
   end
 
   included do
-    scope :ordered, ->(column = nil, direction = nil) {
-      field = column.in?(self.sortable_attributes) ? column : "updated_at"
-      order(field => (!column || direction == "desc") ? :desc : :asc)
+    scope :sort, ->(field = nil, direction = nil) {
+      fields = field.to_s.split(',')
+      option = fields.inject({}) do |opt, fld|
+                 if fld.in?(self.sortable_attributes)
+                   opt[fld] = (direction == "desc") ? :desc : :asc
+                 end
+                 opt
+               end
+      option[:updated_at] = :desc if option.empty?
+      order(option)
     }
   end
 end

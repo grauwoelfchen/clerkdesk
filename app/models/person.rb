@@ -1,10 +1,14 @@
 class Person < ActiveRecord::Base
   include FriendlyId
+  include Sortable
 
   has_one :identity, foreign_key: :user_id
   has_one :user, through: :identity, source: :person
 
   friendly_id :slug, use: :slugged
+  paginates_per 30
+  sortable :first_name, :last_name, :slug, :property, :postcode,
+    :created_at, :updated_at
 
   validates :slug,
     presence: true,
@@ -57,8 +61,17 @@ class Person < ActiveRecord::Base
 
   validate :division_must_be_in_valid_country
 
+  def self.full_name_fields
+    if I18n.locale == :ja
+      "last_name,first_name"
+    else
+      "first_name,last_name"
+    end
+  end
+
   def full_name
-    "#{first_name} #{last_name}"
+    fields = self.class.full_name_fields.split(",")
+    fields.map { |field| self.send(field) }.join(" ")
   end
 
   private
