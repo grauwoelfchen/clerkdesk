@@ -21,7 +21,7 @@
   .pure-u-3-4
     h3= t("action.edit")
   .pure-u-1-4
-    .pure-form.form.right
+    .pure-form.select-form.right
       = select_tag :syntax, options_for_select(["Markdown"], "Markdown")
 
 = render "form", note: @note

@@ -4,6 +4,8 @@ class LedgersController < WorkspaceController
 
   def show
     @entries = @ledger.entries
+      .sort(params[:field], params[:direction])
+      .page(params[:page])
   end
 
   def edit

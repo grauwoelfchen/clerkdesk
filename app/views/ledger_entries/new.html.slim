@@ -9,17 +9,16 @@
 
 - content_for :links
   ul.links
-    li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
+    li= link_to t("action.resource.edit", resource:  Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
     li= link_to t("action.resource.index", resource: LedgerEntry.model_name.human.pluralize.downcase), finance_ledger_path(@finance)
 
 section.block.entry
-  .pure-g
-    .finance.pure-u-1
-      = render "shared/finance", finance: @finance
-      .box
-        = render "shared/tab", finance: @finance
-        .main.pure-g
-          .pure-u-1-1
-            = render "shared/ledger", ledger: @ledger
-            h6= t("action.new")
-            = render "form", finance: @finance, entry: @entry, categories: @categories
+  .finance-header
+    = render "shared/finance", finance: @finance
+  .box
+    = render "shared/tab", finance: @finance
+    .main.pure-g
+      .pure-u-1-1
+        = render "shared/ledger", ledger: @ledger
+        h6= t("action.new")
+        = render "form", finance: @finance, entry: @entry, journalizings: @journalizings
