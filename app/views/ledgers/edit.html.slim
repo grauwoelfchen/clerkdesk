@@ -10,15 +10,14 @@
 - content_for :links
   ul.links
     li= link_to t("action.resource.index", resource: LedgerEntry.model_name.human.pluralize.downcase), finance_ledger_path(@finance)
-    li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
+    li= link_to t("action.resource.new",   resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
 section.block
-  .pure-g
-    .finance.pure-u-1
-      = render "shared/finance", finance: @finance
-      .box
-        = render "shared/tab", finance: @finance
-        .main.pure-g
-          .pure-u-1-1
-            h5= t("action.edit")
-            = render "form", finance: @finance, ledger: @ledger
+  .finance-header
+    = render "shared/finance", finance: @finance
+  .box
+    = render "shared/tab", finance: @finance
+    .main.pure-g
+      .pure-u-1-1
+        h5= t("action.edit")
+        = render "form", finance: @finance, ledger: @ledger

@@ -1,6 +1,9 @@
-h4= finance.name
-p.term
- span.start=finance.started_at.strftime("%Y-%m-%d %H:%M")
- | &nbsp;-&nbsp;
- span.end=finance.finished_at.strftime("%Y-%m-%d %H:%M")
-.text= simple_format(finance.description)
+.finance-header
+  .pure-g
+    .pure-u-12-24
+      h4= finance.name
+    .pure-u-12-24
+      .term
+        span.started_at=finance.started_at.strftime("%Y-%m-%d %H:%M")
+        | &nbsp;-&nbsp;
+        span.finished_at=finance.finished_at.strftime("%Y-%m-%d %H:%M")
