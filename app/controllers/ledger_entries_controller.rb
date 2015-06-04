@@ -45,7 +45,7 @@ class LedgerEntriesController < WorkspaceController
   end
 
   def load_journalizings
-    @journalizings = @ledger.journalizings
+    @journalizings = @ledger.journalizings.includes(:category)
   end
 
   def load_ledger

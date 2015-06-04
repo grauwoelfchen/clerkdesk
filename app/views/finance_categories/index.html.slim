@@ -12,26 +12,42 @@
     li= link_to t("action.resource.new", resource: FinanceCategory.model_name.human.downcase), new_finance_category_path(@finance)
 
 section.block
-  .pure-g
-    .finance.pure-u-1
-      = render "shared/finance", finance: @finance
-      .box
-        = render "shared/tab", finance: @finance
-        .main.pure-g
-          .pure-u-1-1
-            h5= FinanceCategory.model_name.human.pluralize
-            table.table.pure-table.pure-table-horizontal
-              thead
-                tr
-                  th= FinanceCategory.human_attribute_name(:name)
-                  th= FinanceCategory.human_attribute_name(:type)
-                  th
-              tbody
-                - @categories.each do |category|
-                  tr
-                    td= category.name
-                    td= category.human_type
-                    td
-                      ul.operation
-                        li= link_to t("action.edit"), edit_finance_category_path(@finance, category)
-                        li= link_to t("action.destroy"), finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}
+  .finance-header
+    = render "shared/finance", finance: @finance
+  .box
+    = render "shared/tab", finance: @finance
+    .main.pure-g
+      .pure-u-1-1
+        h5= FinanceCategory.model_name.human.pluralize
+        = render "shared/pagination", resource: @categories, info: true
+        table.table.pure-table.pure-table-horizontal
+          thead
+            tr
+              th
+                span.attribute
+                  = FinanceCategory.human_attribute_name(:name)
+                = sort_links_for(:name)
+              th
+                span.attribute
+                  = FinanceCategory.human_attribute_name(:type)
+                = sort_links_for(:type)
+              th
+                span.attribute
+                  = t("general.created_at")
+                = sort_links_for(:created_at)
+              th
+                span.attribute
+                  = t("general.updated_at")
+                = sort_links_for(:updated_at)
+              th
+          tbody
+            - @categories.each do |category|
+              tr
+                td= category.name
+                td= category.human_type
+                td= category.created_at
+                td= category.updated_at
+                td.operations
+                  ul
+                    li= link_to t("action.edit"), edit_finance_category_path(@finance, category)
+                    li= link_to t("action.destroy"), finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}

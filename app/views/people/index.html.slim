@@ -52,8 +52,8 @@ table.table.pure-table.pure-table-horizontal
         td= person.postcode
         td= person.created_at
         td= person.updated_at
-        td
-          ul.operation
+        td.operations
+          ul
             li= link_to t("action.edit"), edit_person_path(person)
             li= link_to t("action.destroy"), person_path(person), method: :delete, data: {confirm: "Are you sure?"}
 

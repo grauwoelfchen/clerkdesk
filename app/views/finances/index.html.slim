@@ -46,14 +46,14 @@ table.table.pure-table.pure-table-horizontal
   tbody
     - @finances.each do |finance|
       tr
-        td= link_to finance.name, finance_path(finance)
-        td= truncate(finance.description, length: 20)
-        td= finance.started_at.strftime("%Y-%m-%d %H:%M")
-        td= finance.finished_at.strftime("%Y-%m-%d %H:%M")
-        td= finance.created_at
-        td= finance.updated_at
-        td
-          ul.operation
+        td.name= link_to finance.name, finance_path(finance)
+        td.description= truncate(finance.description, length: 20)
+        td.started_at= finance.started_at
+        td.finished_at= finance.finished_at
+        td.created_at= finance.created_at
+        td.updated_at= finance.updated_at
+        td.operations
+          ul
             li= link_to t("action.edit"), edit_finance_path(finance)
             li= link_to t("action.destroy"), finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
 

@@ -11,13 +11,12 @@
   ul.links
     li= link_to t("action.resource.show", resource: Settlement.model_name.human.downcase), finance_settlement_path(@finance)
 
-section.block
-  .pure-g
-    .finance.pure-u-1
-      = render "shared/finance", finance: @finance
-      .box
-        = render "shared/tab", finance: @finance
-        .main.pure-g
-          .pure-u-1-1
-            h5= t("action.edit")
-            = render "form", finance: @finance, settlement: @settlement
+section.block.settlement
+  .finance-header
+    = render "shared/finance", finance: @finance
+  .box
+    = render "shared/tab", finance: @finance
+    .main.pure-g
+      .pure-u-1-1
+        h5= t("action.edit")
+        = render "form", finance: @finance, settlement: @settlement

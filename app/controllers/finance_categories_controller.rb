@@ -5,7 +5,12 @@ class FinanceCategoriesController < WorkspaceController
   def index
     @categories = @finance.categories
     respond_to do |format|
-      format.html { render :index }
+      format.html {
+        @categories = @categories
+          .sort(params[:field], params[:direction])
+          .page(params[:page])
+        render :index
+      }
       format.json { render :json => @categories.to_json }
     end
   end
