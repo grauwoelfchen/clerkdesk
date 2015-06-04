@@ -12,36 +12,57 @@
     li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
     li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
-section.block.entry
-  .pure-g
-    .finance.pure-u-1
-      = render "shared/finance", finance: @finance
-      .box
-        = render "shared/tab", finance: @finance
-        .main.pure-g
-          .pure-u-1-1
-            = render "shared/ledger", ledger: @ledger
-            h6= LedgerEntry.model_name.human.pluralize
-            table.table.pure-table.pure-table-horizontal
-              thead
-                tr
-                  th= FinanceCategory.human_attribute_name(:name)
-                  th= LedgerEntry.human_attribute_name(:title)
-                  th= LedgerEntry.human_attribute_name(:type)
-                  th= LedgerEntry.human_attribute_name(:total_amount)
-                  th= t("general.created_at")
-                  th= t("general.updated_at")
-                  th
-              tbody
-                - @entries.each do |entry|
-                  tr
-                    td= link_to entry.category.name, finance_ledger_path(@finance)
-                    td= link_to entry.title, finance_ledger_entry_path(@finance, entry)
-                    td= entry.human_type
-                    td= entry.total_amount
-                    td= entry.created_at
-                    td= entry.updated_at
-                    td
-                      ul.operation
-                        li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
-                        li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
+section.block.ledger
+  .finance-header
+    = render "shared/finance", finance: @finance
+  .box
+    = render "shared/tab", finance: @finance
+    .main.pure-g
+      .pure-u-1-1
+        = render "shared/ledger", ledger: @ledger
+        h6= LedgerEntry.model_name.human.pluralize
+        = render "shared/pagination", resource: @entries, info: true
+        table.table.pure-table.pure-table-bordered
+          thead
+            tr
+              th
+                span.attribute
+                  = FinanceCategory.model_name.human
+                = sort_links_for(:journalizing_id)
+              th
+                span.attribute
+                  = LedgerEntry.human_attribute_name(:title)
+                = sort_links_for(:title)
+              th
+                span.attribute
+                  = LedgerEntry.human_attribute_name(:type)
+                = sort_links_for(:type)
+              th
+                span.attribute
+                  = LedgerEntry.human_attribute_name(:total_amount)
+                = sort_links_for(:total_amount)
+              th
+                span.attribute
+                  = t("general.created_at")
+                = sort_links_for(:created_at)
+              th
+                span.attribute
+                  = t("general.updated_at")
+                = sort_links_for(:updated_at, :desc)
+              th
+          tbody
+            - @entries.each do |entry|
+              tr
+                td.category
+                  = link_to entry.category.name, finance_ledger_path(@finance)
+                td.title
+                  = link_to entry.title, finance_ledger_entry_path(@finance, entry)
+                td.type= entry.human_type
+                td.total_amount= entry.total_amount
+                td.created_at= entry.created_at
+                td.updated_at= entry.updated_at
+                td.operations
+                  ul
+                    li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
+                    li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
+        = render "shared/pagination", resource: @entries, info: false

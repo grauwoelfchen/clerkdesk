@@ -43,6 +43,10 @@
     font-size   27px
     font-weight normal
     margin      0 0 9px 0
+  h6
+    font-size   17px
+    font-weight normal
+    margin      3px 0 3px 1px
 
 
 // index
@@ -53,11 +57,15 @@ p.result
 // table
 table.table
   width  100%
-  margin 3px 0 18px 0
+  margin 11px 0 18px 0
+  th,
+  td
+    line-height 1.8em
   th
     font-weight normal
-  td
-    ul.operation
+  td.operations
+    text-align center
+    ul
       margin  0
       padding 0
       li
@@ -105,11 +113,17 @@ pagination = @block {
 }
 
 div.pagination
-  margin 2px 0 9px 0
+  margin 2px 0 0 0
+  > div
+    vertical-align middle
 
 nav.pagination,
 .pagination-info
-  margin 6px 0 11px 1px
+  margin 6px 0 0 1px
+  &.right
+    text-align    right
+    margin-bottom 0
+    padding-right 3px
   span
     line-height 27px
   span.prev
@@ -161,9 +175,9 @@ section.block > .container
 .field
   padding 0
   &.left
-    margin 0 9px 0 0
+    margin 0 6px 0 0
   &.right
-    margin 0 0 0 9px
+    margin 0 0 0 6px
   h5
     margin 3px 0 13px 0
   ul
@@ -184,9 +198,9 @@ section.block > .container
     background #F1EFED
 
 .box
-  margin 13px 0 13px 0
+  margin 7px 0 13px 0
   .main
-    padding 27px 3px 36px 3px
+    padding 18px 3px 36px 3px
     h5
       margin         8px 0 13px 1px
       vertical-align middle
@@ -195,7 +209,7 @@ section.block > .container
       margin 0 0 3px 3px
 
 .nav
-  margin 0 0 9px 0
+  margin 0
   ul
     padding 0
     margin  0
@@ -222,7 +236,7 @@ nav.btn
 nav.tab
   border-radius 2px 2px 0 0
   background    #EBE7E4
-  line-height   12px
+  line-height   9px
   ul.pure-menu-list
     background #EBE7E4
     li.pure-menu-item
@@ -265,6 +279,12 @@ form.form
     input[type="text"]
       border-color #CA3C3C
 
+.select-form
+  &.right
+    text-align    right
+    margin-bottom 0
+    padding-right 3px
+
 // shared
 ul.actions
   display inline-block
@@ -282,11 +302,6 @@ ul.actions
   a.button
     margin-right 31px
 
-.button-error
-  color      #FFFFFF
-  background $error-color
-
-.right
-  text-align    right
-  margin-bottom 0
-  padding-right 3px
+  .button-error
+    color            #FFFFFF
+    background-color $error-color
