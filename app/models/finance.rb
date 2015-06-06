@@ -24,8 +24,9 @@ class Finance < ActiveRecord::Base
       if result
         create_budget(:title => name)
         create_settlement(:title => name)
-        create_ledger(:title => name)
+        ledger = create_ledger(:title => name)
         create_default_categories
+        categories.map { |c| c.journalizings.create(:ledger => ledger) }
       end
       result
     end
