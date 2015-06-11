@@ -5,15 +5,17 @@ class DestroyTest < Capybara::Rails::TestCase
   fixtures(:finances, :finance_categories)
 
   def test_destroy_finance
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     as_logged_in_user(user) do
-      finnace = finances(:general_finance)
+      finance = finances(:general_finance)
       visit(finances_url)
       assert_equal(finances_url, page.current_url)
       assert_difference("Finance.count", -1) do
+        visit(finances_url)
         href = "/finances/#{finance.id}"
-        link = find(:xpath, "//a[@href='#{href}']")
-        link.click
+        link = find(:xpath, "//a[@href='#{href}' and text()='Delete']")
+        # TODO: js driver
+        page.driver.submit(:delete, link['href'], {})
       end
     end
   end
