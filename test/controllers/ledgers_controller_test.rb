@@ -5,7 +5,7 @@ class LedgersControllerTest < ActionController::TestCase
   fixtures(:finances, :ledgers)
 
   def test_get_show
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       ledger = ledgers(:general_ledger)
