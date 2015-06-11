@@ -5,7 +5,7 @@ class NotesControllerTest < ActionController::TestCase
   fixtures(:notes)
 
   def test_get_index
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       get(:index)
@@ -16,7 +16,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_get_show
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
@@ -28,7 +28,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_get_new
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       get(:new)
@@ -40,7 +40,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_post_create_with_validation_errors
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       params = {
@@ -62,7 +62,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_post_create
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       params = {
@@ -85,7 +85,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_get_edit
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
@@ -98,7 +98,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_put_update_with_validation_errors
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
@@ -119,7 +119,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_put_update
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
@@ -141,7 +141,7 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   def test_delete_destroy
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       note = notes(:favorite_song)

@@ -5,7 +5,7 @@ class BudgetsControllerTest < ActionController::TestCase
   fixtures(:finances, :budgets)
 
   def test_get_show
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
@@ -18,7 +18,7 @@ class BudgetsControllerTest < ActionController::TestCase
   end
 
   def test_get_edit
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
@@ -32,7 +32,7 @@ class BudgetsControllerTest < ActionController::TestCase
   end
 
   def test_put_update_with_validation_errors
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
@@ -58,7 +58,7 @@ class BudgetsControllerTest < ActionController::TestCase
   end
 
   def test_put_update
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
