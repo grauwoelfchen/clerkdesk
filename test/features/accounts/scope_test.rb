@@ -4,12 +4,14 @@ class AccountScopTest < Capybara::Rails::TestCase
   locker_room_fixtures(:accounts, :members, :users)
 
   def setup
-    @account_piano   = account_with_schema(:playing_piano)
+    @account_piano   = locker_room_accounts(:playing_piano)
     @account_penguin = account_with_schema(:penguin_patrol)
 
     Apartment::Tenant.switch!(@account_piano.subdomain)
+    Note.delete_all
     Note.create(:title => "Musical instrument")
     Apartment::Tenant.switch!(@account_penguin.subdomain)
+    Note.delete_all
     Note.create(:title => "The ice")
     Apartment::Tenant.reset
   end
@@ -48,7 +50,9 @@ class AccountScopTest < Capybara::Rails::TestCase
     note = Note.first
     user = @account_penguin.owners.first
     login_user(user)
-    visit(note_url(note, :subdomain => @account_penguin.subdomain))
+    assert_raise(ActiveRecord::RecordNotFound) do
+      visit(note_url(note, :subdomain => @account_penguin.subdomain))
+    end
     refute_content("Musical instrument")
   end
 
@@ -66,7 +70,9 @@ class AccountScopTest < Capybara::Rails::TestCase
     note = Note.first
     user = @account_piano.owners.first
     login_user(user)
-    visit(note_url(note, :subdomain => @account_piano.subdomain))
+    assert_raise(ActiveRecord::RecordNotFound) do
+      visit(note_url(note, :subdomain => @account_piano.subdomain))
+    end
     refute_content("The ice")
   end
 end

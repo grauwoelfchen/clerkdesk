@@ -5,7 +5,7 @@ class PersonSortTest < Capybara::Rails::TestCase
   fixtures(:people)
 
   def test_sort_with_first_name_last_name_desc
-    user = user_with_schema(:weenie)
+    user = locker_room_users(:weenie)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       visit(people_url)
@@ -25,7 +25,7 @@ class PersonSortTest < Capybara::Rails::TestCase
   end
 
   def test_sort_with_first_name_last_name_desc
-    user = user_with_schema(:weenie)
+    user = locker_room_users(:weenie)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       visit(people_url)
@@ -45,7 +45,7 @@ class PersonSortTest < Capybara::Rails::TestCase
   end
 
   def test_sort_with_first_name_last_name_desc
-    user = user_with_schema(:weenie)
+    user = locker_room_users(:weenie)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       visit(people_url)

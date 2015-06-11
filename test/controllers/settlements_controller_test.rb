@@ -5,7 +5,7 @@ class SettlementsControllerTest < ActionController::TestCase
   fixtures(:finances, :settlements)
 
   def test_get_show
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       settlement = settlements(:second_piano_settlement)
@@ -18,7 +18,7 @@ class SettlementsControllerTest < ActionController::TestCase
   end
 
   def test_get_edit
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       settlement = settlements(:second_piano_settlement)
@@ -32,7 +32,7 @@ class SettlementsControllerTest < ActionController::TestCase
   end
 
   def test_put_update_with_validation_errors
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       settlement = settlements(:second_piano_settlement)
@@ -58,7 +58,7 @@ class SettlementsControllerTest < ActionController::TestCase
   end
 
   def test_put_update
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       settlement = settlements(:second_piano_settlement)

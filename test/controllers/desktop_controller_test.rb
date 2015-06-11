@@ -4,7 +4,7 @@ class DesktopControllerTest < ActionController::TestCase
   locker_room_fixtures("accounts", "members", "users")
 
   def test_should_get_index
-    user = user_with_schema(:oswald)
+    user = locker_room_users(:oswald)
     within_subdomain(user.account.subdomain) do
       login_user(user)
       get :index
