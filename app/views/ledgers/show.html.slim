@@ -54,11 +54,15 @@ section.block.ledger
             - @entries.each do |entry|
               tr
                 td.category
-                  = link_to entry.category.name, finance_ledger_path(@finance)
+                  - if entry.category
+                    = link_to entry.category.name, finance_ledger_path(@finance)
                 td.title
                   = link_to entry.title, finance_ledger_entry_path(@finance, entry)
-                td.type= entry.human_type
-                td.total_amount= entry.total_amount
+                td.type
+                  label class="label label-#{entry.type}"
+                    = entry.human_type
+                td.total_amount
+                  span= entry.total_amount
                 td.created_at= entry.created_at
                 td.updated_at= entry.updated_at
                 td.operations

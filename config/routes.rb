@@ -12,9 +12,13 @@ Rails.application.routes.draw do
       resource :ledger
       resources :categories, controller: :finance_categories
       resources :entries,    controller: :ledger_entries, as: :ledger_entries
+
+      resources :journalizings, only: [:index],
+        constraints: {type: /income|expense/, format: :json}
     end
 
     post "/locale", to: "locales#switch", as: :switch_locale
+
     get  "/countries/:code/divisions", to: "countries#divisions",
       constraints: {code: /[A-Z]{2}/},
       defaults:    {format: :json}
