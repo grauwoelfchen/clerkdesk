@@ -11,3 +11,5 @@
 /Gemfile.rock
 /.env
 /Procfile
+
+*.pyc
