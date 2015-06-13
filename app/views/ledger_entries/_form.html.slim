@@ -3,24 +3,29 @@
   - url = finance_ledger_entry_path(finance, entry)
 - else
   - url = finance_ledger_entries_path(finance)
-= form_for entry, url: url, html: {class: "form pure-form"} do |f|
+= form_for entry, url: url, html: {class: "form pure-form pure-form-aligned"} do |f|
   - if entry.errors.any?
     = render "shared/error", resource: entry
-  fieldset.group
-    = f.label :title
-    = f.text_field :title, class: "pure-input-1-3", placeholder: "Title"
-  fieldset.group
-    = f.label :type
-    = f.select :type, LedgerEntry.human_types.invert
-  fieldset.group
-    = f.label :journalizing_id, FinanceCategory.model_name.human
-    = f.select :journalizing_id, options_from_collection_for_select(journalizings, :id, :category, entry.journalizing_id)
-  fieldset.group
-    = f.label :total_amount
-    = f.text_field :total_amount, class: "pure-input-1-3", placeholder: ""
-  fieldset.group
-    = f.label :memo
-    = f.text_area :memo, class: "pure-input-1-3", rows: 3, placeholder: "Memo"
+  fieldset
+    legend Entry
+    .pure-control-group
+      = f.label :title
+      = f.text_field :title, class: "pure-input-1-3", placeholder: "Title"
+    .pure-control-group
+      = f.label :type
+      = f.select :type, LedgerEntry.human_types.invert
+    .pure-control-group
+      - journalizings = entry.journalizing_id ? [['', entry.journalizing_id]] : []
+      = f.label :journalizing_id, FinanceCategory.model_name.human
+      = f.select :journalizing_id, journalizings, prompt: '---'
+    .pure-control-group
+      = f.label :total_amount
+      = f.text_field :total_amount, class: "pure-input-1-3", placeholder: ""
+  fieldset
+    legend Additional Information
+    .pure-control-group
+      = f.label :memo
+      = f.text_area :memo, class: "pure-input-1-3", rows: 3, placeholder: "Memo"
   .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"

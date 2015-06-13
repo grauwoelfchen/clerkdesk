@@ -20,18 +20,42 @@ section.block.entry
   .box
     = render "shared/tab", finance: @finance, entry: @entry
     .main.pure-g
-      .pure-u-1-1
+      .pure-u-16-24
         = render "shared/ledger", ledger: @ledger
         h6= LedgerEntry.model_name.human
-        p
-          - if @entry.category
-            = @entry.category.name
-        p= @entry.title
-        p= @entry.type
-        p= @entry.total_amount
-        p= simple_format(@entry.memo)
-        p= @entry.created_at
-        p= @entry.updated_at
+        hr
+        legend= t("legend.id")
+        .group
+          .category
+            = label_tag LedgerEntry.human_attribute_name(:category_id)
+            - if @entry.category
+              = @entry.category.name
+        .group
+          .title
+            = label_tag LedgerEntry.human_attribute_name(:title)
+            = @entry.title
+        .group
+          .type
+            = label_tag LedgerEntry.human_attribute_name(:type)
+            label class="label label-#{@entry.type}"
+              = @entry.type
+        .group
+          .total_amount
+            = label_tag LedgerEntry.human_attribute_name(:total_amount)
+            span#ledger_entry_total_amount
+              = @entry.total_amount
+        .group
+          .memo
+            = label_tag LedgerEntry.human_attribute_name(:memo)
+            = simple_format(@entry.memo, {}, wrapper_tag: 'span')
+        .group
+          .created_at
+            = label_tag LedgerEntry.human_attribute_name(:created_at)
+            = @entry.created_at
+        .group
+          .updated_at
+            = label_tag LedgerEntry.human_attribute_name(:updated_at)
+            = @entry.updated_at
         .action
           = link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, @entry), class: "pure-button"
           | &nbsp;&nbsp;
