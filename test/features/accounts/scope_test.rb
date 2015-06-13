@@ -8,8 +8,10 @@ class AccountScopTest < Capybara::Rails::TestCase
     @account_penguin = account_with_schema(:penguin_patrol)
 
     Apartment::Tenant.switch!(@account_piano.subdomain)
+    Note.delete_all
     Note.create(:id => 12345, :title => "Musical instrument")
     Apartment::Tenant.switch!(@account_penguin.subdomain)
+    Note.delete_all
     Note.create(:id => 54321, :title => "The ice")
     Apartment::Tenant.reset
   end
