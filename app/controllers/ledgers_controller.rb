@@ -4,6 +4,7 @@ class LedgersController < WorkspaceController
 
   def show
     @entries = @ledger.entries
+      .includes(:journalizing, :category)
       .sort(params[:field], params[:direction])
       .page(params[:page])
   end
