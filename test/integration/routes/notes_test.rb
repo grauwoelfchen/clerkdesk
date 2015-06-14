@@ -119,7 +119,7 @@ class NotesRouteTest < ActionDispatch::IntegrationTest
         path:   "#{host}/people/1/edit"
       }, {
         controller: "people",
-        method:     "edit",
+        action:     "edit",
         id:         "1"
       })
       assert_routing({
@@ -142,8 +142,9 @@ class NotesRouteTest < ActionDispatch::IntegrationTest
         method: "delete",
         path:   "#{host}/people/1"
       }, {
-
-
+        controller: "people",
+        action:     "destroy",
+        id:         "1"
       })
     end
   end
