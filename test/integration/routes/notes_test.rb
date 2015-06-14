@@ -83,72 +83,6 @@ class NotesRouteTest < ActionDispatch::IntegrationTest
     end
   end
 
-  def test_route_to_people
-    within_subdomain_host do |host|
-      assert_routing({
-        method: "get",
-        path:   "#{host}/people"
-      }, {
-        controller: "people",
-        action:     "index"
-      })
-      assert_routing({
-        method: "get",
-        path:   "#{host}/people/new"
-      }, {
-        controller: "people",
-        action:     "new"
-      })
-      assert_routing({
-        method: "post",
-        path:   "#{host}/people"
-      }, {
-        controller: "people",
-        action:     "create"
-      })
-      assert_routing({
-        method: "get",
-        path:   "#{host}/people/1"
-      }, {
-        controller: "people",
-        action:     "show",
-        id:         "1"
-      })
-      assert_routing({
-        method: "get",
-        path:   "#{host}/people/1/edit"
-      }, {
-        controller: "people",
-        action:     "edit",
-        id:         "1"
-      })
-      assert_routing({
-        method: "patch",
-        path:   "#{host}/people/1"
-      }, {
-        controller: "people",
-        action:     "update",
-        id:         "1"
-      })
-      assert_routing({
-        method: "put",
-        path:   "#{host}/people/1"
-      }, {
-        controller: "people",
-        action:     "update",
-        id:         "1"
-      })
-      assert_routing({
-        method: "delete",
-        path:   "#{host}/people/1"
-      }, {
-        controller: "people",
-        action:     "destroy",
-        id:         "1"
-      })
-    end
-  end
-
   def test_route_to_journalizings
     within_subdomain_host do |host|
       assert_routing({
@@ -159,6 +93,72 @@ class NotesRouteTest < ActionDispatch::IntegrationTest
         action:     "index",
         finance_id: "1",
         format:     "json"
+      })
+    end
+  end
+
+  def test_route_to_finances
+    within_subdomain_host do |host|
+      assert_routing({
+        method: "get",
+        path:   "#{host}/finances"
+      }, {
+        controller: "finances",
+        action:     "index"
+      })
+      assert_routing({
+        method: "get",
+        path:   "#{host}/finances/new"
+      }, {
+        controller: "finances",
+        action:     "new"
+      })
+      assert_routing({
+        method: "post",
+        path:   "#{host}/finances"
+      }, {
+        controller: "finances",
+        action:     "create"
+      })
+      assert_routing({
+        method: "get",
+        path:   "#{host}/finances/1"
+      }, {
+        controller: "finances",
+        action:     "show",
+        id:         "1"
+      })
+      assert_routing({
+        method: "get",
+        path:   "#{host}/finances/1/edit"
+      }, {
+        controller: "finances",
+        action:     "edit",
+        id:         "1"
+      })
+      assert_routing({
+        method: "patch",
+        path:   "#{host}/finances/1"
+      }, {
+        controller: "finances",
+        action:     "update",
+        id:         "1"
+      })
+      assert_routing({
+        method: "put",
+        path:   "#{host}/finances/1"
+      }, {
+        controller: "finances",
+        action:     "update",
+        id:         "1"
+      })
+      assert_routing({
+        method: "delete",
+        path:   "#{host}/finances/1"
+      }, {
+        controller: "finances",
+        action:     "destroy",
+        id:         "1"
       })
     end
   end
