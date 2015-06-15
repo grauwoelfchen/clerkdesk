@@ -12,61 +12,62 @@
     li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
     li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
 
-section.block.ledger
-  .finance-header
-    = render "shared/finance", finance: @finance
-  .box
-    = render "shared/tab", finance: @finance
-    .main.pure-g
-      .pure-u-1-1
-        = render "shared/ledger", ledger: @ledger
-        h6= LedgerEntry.model_name.human.pluralize
-        = render "shared/pagination", resource: @entries, info: true
-        table.table.pure-table.pure-table-bordered
-          thead
-            tr
-              th
-                span.attribute
-                  = FinanceCategory.model_name.human
-                = sort_links_for(:journalizing_id)
-              th
-                span.attribute
-                  = LedgerEntry.human_attribute_name(:title)
-                = sort_links_for(:title)
-              th
-                span.attribute
-                  = LedgerEntry.human_attribute_name(:type)
-                = sort_links_for(:type)
-              th
-                span.attribute
-                  = LedgerEntry.human_attribute_name(:total_amount)
-                = sort_links_for(:total_amount)
-              th
-                span.attribute
-                  = t("general.created_at")
-                = sort_links_for(:created_at)
-              th
-                span.attribute
-                  = t("general.updated_at")
-                = sort_links_for(:updated_at, :desc)
-              th
-          tbody
-            - @entries.each do |entry|
+.ledger
+  section.block
+    .finance-header
+      = render "shared/finance", finance: @finance
+    .box
+      = render "shared/tab", finance: @finance
+      .main.pure-g
+        .pure-u-1-1
+          = render "shared/ledger", ledger: @ledger
+          h6= LedgerEntry.model_name.human.pluralize
+          = render "shared/pagination", resource: @entries, info: true
+          table.table.pure-table.pure-table-bordered
+            thead
               tr
-                td.category
-                  - if entry.category
-                    = link_to entry.category.name, finance_ledger_path(@finance)
-                td.title
-                  = link_to entry.title, finance_ledger_entry_path(@finance, entry)
-                td.type
-                  label class="label label-#{entry.type}"
-                    = entry.human_type
-                td.total_amount
-                  span= entry.total_amount
-                td.created_at= entry.created_at
-                td.updated_at= entry.updated_at
-                td.operations
-                  ul
-                    li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
-                    li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
-        = render "shared/pagination", resource: @entries, info: false
+                th
+                  span.attribute
+                    = FinanceCategory.model_name.human
+                  = sort_links_for(:journalizing_id)
+                th
+                  span.attribute
+                    = LedgerEntry.human_attribute_name(:title)
+                  = sort_links_for(:title)
+                th
+                  span.attribute
+                    = LedgerEntry.human_attribute_name(:type)
+                  = sort_links_for(:type)
+                th
+                  span.attribute
+                    = LedgerEntry.human_attribute_name(:total_amount)
+                  = sort_links_for(:total_amount)
+                th
+                  span.attribute
+                    = LedgerEntry.human_attribute_name(:created_at)
+                  = sort_links_for(:created_at)
+                th
+                  span.attribute
+                    = LedgerEntry.human_attribute_name(:updated_at)
+                  = sort_links_for(:updated_at, :desc)
+                th
+            tbody
+              - @entries.each do |entry|
+                tr
+                  td.category
+                    - if entry.category
+                      = link_to entry.category.name, finance_ledger_path(@finance)
+                  td.title
+                    = link_to entry.title, finance_ledger_entry_path(@finance, entry)
+                  td.type
+                    label class="label label-#{entry.type}"
+                      = entry.human_type
+                  td.total_amount
+                    span= entry.total_amount
+                  td.created_at= entry.created_at
+                  td.updated_at= entry.updated_at
+                  td.operations
+                    ul
+                      li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
+                      li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
+          = render "shared/pagination", resource: @entries, info: false

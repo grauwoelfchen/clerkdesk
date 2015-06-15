@@ -9,10 +9,23 @@ en:
       note:
         title: Title
         content: Content
+        created_at: Created
+        updated_at: Updated
+      finance:
+        created_at: Created
+        updated_at: Updated
+      finance_category:
+        created_at: Created
+        updated_at: Updated
       budget:
         title: Title
       person:
         joined_at: Joined
+        created_at: Created
+        updated_at: Updated
+      ledger_entry:
+        created_at: Created
+        updated_at: Updated
     errors:
       attributes:
         left_at:

@@ -17,10 +17,17 @@
           li.pure-menu-item.delimiter
             = link_to t("action.new"), new_note_path, class: "pure-menu-link"
 
-section.block
-  h4= @note.title
-  .text== @note.content_html
-  .tags
-    - @note.tags.each do |tag|
-      span.tag
-        = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
+.note
+  section.block
+    h4= @note.title
+    .text== @note.content_html
+    .created
+      label.label.label-default= Note.human_attribute_name(:created_at)
+      span.created_at= @note.created_at
+    .updated
+      label.label.label-default= Note.human_attribute_name(:updated_at)
+      span.updated_at= @note.updated_at
+    .tags
+      - @note.tags.each do |tag|
+        span.tag
+          = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)

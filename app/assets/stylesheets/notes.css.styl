@@ -1,117 +1,129 @@
 // tag_list
-ul.tag-editor
-  padding: 0
-  border:  1px solid #CCCCCC
-  width:   100%
-  li.placeholder
-    margin: 5px 0 9px 0
-  li
-    margin:  0 0 2px 0
+.note
+  ul.tag-editor
     padding: 0
-    .tag-editor-spacer,
-    .tag-editor-tag,
-    .tag-editor-delete
-      margin: 7px 0 5px 0
-    input[type="text"]
+    border:  1px solid #CCCCCC
+    width:   100%
+    li.placeholder
+      margin: 5px 0 9px 0
+    li
+      margin:  0 0 2px 0
       padding: 0
-      margin:  0
-      border: none
-      width: 100% !important 
+      .tag-editor-spacer,
+      .tag-editor-tag,
+      .tag-editor-delete
+        margin: 7px 0 5px 0
+      input[type="text"]
+        padding: 0
+        margin:  0
+        border: none
+        width: 100% !important
+  textarea#note_content
+    overflow:  hidden
+    resize:    none
+    word-wrap: break-word
+    padding:   6px 9px
 
-// textarea
-textarea#note_content
-  overflow:  hidden
-  resize:    none
-  word-wrap: break-word
-  padding:   6px 9px
 
-// index
-.nav ul.sort-links
-  display inline-block
-  margin  0 0 6px 0
-  li
-    list-style none
-    display    inline-block
-    i.fa.fa-angle-up,
-    i.fa.fa-angle-down
-      font-weight    bold
-      border-radius  2px
-      display        inline-block
-      margin         0
-      padding        1px 3px
-      text-align     center
-      vertical-align middle
-      color          #777777
-      &:hover
-        background-color #F3F3F3
-      &.active
-        color #CC0000
-.filter
-  display inline-block
-  margin  0 0 0 13px
-
-ul.notes
-  padding 0
-  margin  18px 0 0 3px
-ul.notes > li
-    list-style none
-    margin         0 0 18px 0
-    padding-bottom 13px
-    border-bottom  1px solid #EEEEEE
-    i
-      color      #5C3D1F
-      text-align center
-    .tags
-      margin     3px 0 0 0
-      font-size  13px
-      min-height 18px
-    p.title
-      vertical-align top
-      font-size      19px
-      margin         0 0 2px 0
-      a
-        text-decoration none
-    span.updated
-      text-align left
+.note
+  .nav ul.sort-links
+    display inline-block
+    margin  0 0 6px 0
+    li
+      list-style none
       display    inline-block
-      margin     0
+      i.fa.fa-angle-up,
+      i.fa.fa-angle-down
+        font-weight    bold
+        border-radius  2px
+        display        inline-block
+        margin         0
+        padding        1px 3px
+        text-align     center
+        vertical-align middle
+        color          #777777
+        &:hover
+          background-color #F3F3F3
+        &.active
+          color #CC0000
+  .filter
+    display inline-block
+    margin  0 0 0 13px
 
-span.tag
-  background    #E0EAF1
-  border-radius 2px
-  a
-    color           #46799B
-    text-decoration none
-span.tag,
-span.more
-  display     inline-block
-  margin      0 2px 0 0
-  padding     0 5px
-  white-space nowrap
+
+.note
+  ul.list
+    padding 0
+    margin  18px 0 0 3px
+  ul.list > li
+      list-style none
+      margin         0 0 18px 0
+      padding-bottom 13px
+      border-bottom  1px solid #EEEEEE
+      i
+        color      #5C3D1F
+        text-align center
+      .tags
+        margin     3px 0 0 0
+        font-size  13px
+        min-height 18px
+      p.title
+        vertical-align top
+        font-size      19px
+        margin         0 0 2px 0
+        a
+          text-decoration none
+      span.updated
+        text-align left
+        display    inline-block
+        margin     0
 
 
-// show
-section.block
-  .text
-    margin: 3px 0 27px 0
-    h1,
-    h2
-      font-size: 16px
-      margin:    21px 0
-    table
-      border: 1px solid #CCCCCC
-      margin: 2px 0 3px 1px
-    th,
-    td
-      padding: 3px 9px
-      border:  1px solid #CCCCCC
-    th
-      background-color: #F3F3F3
-      text-align: center !important
-    ul,
-    ol
-      padding: 0
-    ol
-      margin:  3px 0 6px 24px
-    ul
-      margin:  3px 0 6px 17px
+.note
+  span.tag
+    background    #E0EAF1
+    border-radius 2px
+    a
+      color           #46799B
+      text-decoration none
+  span.tag,
+  span.more
+    display     inline-block
+    margin      0 2px 0 0
+    padding     0 5px
+    white-space nowrap
+
+
+.note
+  section.block
+    .text
+      margin: 18px 0 36px 0
+      h1,
+      h2
+        font-size: 16px
+        margin:    21px 0
+      table
+        border: 1px solid #CCCCCC
+        margin: 2px 0 3px 1px
+      th,
+      td
+        padding: 3px 9px
+        border:  1px solid #CCCCCC
+      th
+        background-color: #F3F3F3
+        text-align: center !important
+      ul,
+      ol
+        padding: 0
+      ol
+        margin:  3px 0 6px 24px
+      ul
+        margin:  3px 0 6px 17px
+    .created,
+    .updated
+      label
+        font-weight bold
+        display     inline-block
+        margin      1px 9px 1px 2px
+    .tags
+      margin 9px 0
