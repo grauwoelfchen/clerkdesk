@@ -8,9 +8,6 @@ ja:
   locale:
     en: 英語
     ja: 日本語
-  general:
-    created_at: 作成日時
-    updated_at: 更新日時
   nav:
     desktop: デスクトップ
     actions: アクション

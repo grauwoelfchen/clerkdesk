@@ -15,46 +15,39 @@
 
 = render "shared/pagination", resource: @finances, info: true
 
-table.table.pure-table.pure-table-horizontal
-  thead
-    tr
-      th
-        span.attribute
-          = Finance.human_attribute_name(:name)
-        = sort_links_for(:name)
-      th
-        span.attribute
-          = Finance.human_attribute_name(:description)
-        = sort_links_for(:description)
-      th
-        span.attribute
-          = Finance.human_attribute_name(:started_at)
-        = sort_links_for(:started_at)
-      th
-        span.attribute
-          = Finance.human_attribute_name(:finished_at)
-        = sort_links_for(:finished_at)
-      th
-        span.attribute
-          = t("general.created_at")
-        = sort_links_for(:created_at)
-      th
-        span.attribute
-          = t("general.updated_at")
-        = sort_links_for(:updated_at, :desc)
-      th
-  tbody
-    - @finances.each do |finance|
+.finance
+  table.table.pure-table.pure-table-horizontal
+    thead
       tr
-        td.name= link_to finance.name, finance_path(finance)
-        td.description= truncate(finance.description, length: 20)
-        td.started_at= finance.started_at
-        td.finished_at= finance.finished_at
-        td.created_at= finance.created_at
-        td.updated_at= finance.updated_at
-        td.operations
-          ul
-            li= link_to t("action.edit"), edit_finance_path(finance)
-            li= link_to t("action.destroy"), finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
+        th
+          span.attribute
+            = Finance.human_attribute_name(:name)
+          = sort_links_for(:name)
+        th
+          span.attribute
+            = Finance.human_attribute_name(:description)
+          = sort_links_for(:description)
+        th
+          span.attribute
+            = Finance.human_attribute_name(:created_at)
+          = sort_links_for(:created_at)
+        th
+          span.attribute
+            = Finance.human_attribute_name(:updated_at)
+          = sort_links_for(:updated_at, :desc)
+        th
+    tbody
+      - @finances.each do |finance|
+        tr
+          td.name= link_to truncate(finance.name, length: 20), finance_path(finance)
+          td.description= truncate(finance.description, length: 25)
+          td.created_at
+            = finance.created_at
+          td.updated_at
+            = finance.updated_at
+          td.operations
+            ul
+              li= link_to t("action.edit"), edit_finance_path(finance)
+              li= link_to t("action.destroy"), finance_path(finance), method: :delete, data: {confirm: "Are you sure?"}
 
-= render "shared/pagination", resource: @finances, info: false
+  = render "shared/pagination", resource: @finances, info: false

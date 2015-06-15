@@ -11,12 +11,13 @@
   ul.links
     li= link_to t("action.resource.show", resource: Budget.model_name.human.downcase), finance_budget_path(@finance)
 
-section.block.budget
-  .finance-header
-    = render "shared/finance", finance: @finance
-  .box
-    = render "shared/tab", finance: @finance
-    .main.pure-g
-      .pure-u-1-1
-        h5= t("action.edit")
-        = render "form", finance: @finance, budget: @budget
+.budget
+  section.block
+    .finance-header
+      = render "shared/finance", finance: @finance
+    .box
+      = render "shared/tab", finance: @finance
+      .main.pure-g
+        .pure-u-1-1
+          h5= t("action.edit")
+          = render "form", finance: @finance, budget: @budget
