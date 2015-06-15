@@ -4,6 +4,8 @@
       h4= finance.name
     .pure-u-12-24
       .term
-        span.started_at=finance.started_at.strftime("%Y-%m-%d %H:%M")
+        span.started_at data-format="LL"
+          = finance.started_at
         | &nbsp;-&nbsp;
-        span.finished_at=finance.finished_at.strftime("%Y-%m-%d %H:%M")
+        span.finished_at data-format="LL"
+          = finance.finished_at
