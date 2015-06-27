@@ -27,7 +27,7 @@ if Apartment::Tenant.current == "grauwoelfchen"
     finished_at: Time.new(2016,03, 31, 23, 59, 59, "+00:00"),
   }
   finance = Finance.new(finance_params)
-  finance.save_with_ficsal_objects
+  finance.save_with_fiscal_objects
 
   note_params = {
     title: "05.2015 13th Meeting",
