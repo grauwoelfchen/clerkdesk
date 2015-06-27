@@ -158,18 +158,6 @@ ActiveRecord::Schema.define(version: 20150526160345) do
 
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true, using: :btree
 
-  create_table "settlements", force: :cascade do |t|
-    t.integer  "finance_id",              null: false
-    t.string   "title",                   null: false
-    t.text     "description"
-    t.integer  "carryover",   default: 0, null: false
-    t.datetime "approved_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "settlements", ["finance_id"], name: "index_settlements_on_finance_id", using: :btree
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"

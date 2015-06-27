@@ -6,7 +6,7 @@
       = link_to notes_path, class: "pure-menu-link" do
         i.fa.fa-file-text-o
         = Note.model_name.human
-    - selected = controller_name.in?(%w{finances finance_categories ledgers ledger_entries budgets settlements}) ? "pure-menu-selected" : ""
+    - selected = controller_name.in?(%w{finances finance_categories ledgers ledger_entries budgets}) ? "pure-menu-selected" : ""
     li.pure-menu-item class=selected
       = link_to finances_path, class: "pure-menu-link" do
         i.fa.fa-calculator
