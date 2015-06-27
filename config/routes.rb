@@ -7,8 +7,7 @@ Rails.application.routes.draw do
     resources :people
 
     resources :finances do
-      resource :budget,     only: [:show, :edit, :update]
-      resource :settlement, only: [:show, :edit, :update]
+      resource :budget, only: [:show, :edit, :update]
       resource :ledger
       resources :categories, controller: :finance_categories
       resources :entries,    controller: :ledger_entries, as: :ledger_entries
