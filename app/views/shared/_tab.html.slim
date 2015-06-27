@@ -63,18 +63,3 @@ nav.tab.pure-menu.pure-menu-horizontal
     - else
       li.pure-menu-item
         = link_to Budget.model_name.human, finance_budget_path(finance), class: "pure-menu-link"
-
-    / Settlement
-    - if controller_name == "settlements"
-      li.pure-menu-item.pure-menu-selected.pure-menu-has-children.pure-menu-allow-hover
-        = link_to Settlement.model_name.human, finance_settlement_path(finance), class: "pure-menu-link"
-        ul.pure-menu-children
-          - if action_name == "show"
-            li.pure-menu-item
-              = link_to t("action.edit"), edit_finance_settlement_path(finance), class: "pure-menu-link"
-          - else
-            li.pure-menu-item
-              = link_to t("action.show"), finance_settlement_path(finance), class: "pure-menu-link"
-    - else
-      li.pure-menu-item
-        = link_to Settlement.model_name.human, finance_settlement_path(finance), class: "pure-menu-link"

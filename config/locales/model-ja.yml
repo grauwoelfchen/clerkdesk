@@ -7,7 +7,6 @@ ja:
       finance_category: カテゴリ
       ledger: 台帳
       budget: 予算
-      settlement: 決算
       ledger_entry: エントリ
       person: メンバー
     attributes:
