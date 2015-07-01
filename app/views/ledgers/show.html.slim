@@ -9,8 +9,8 @@
 
 - content_for :links
   ul.links
-    li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(@finance)
-    li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(@finance)
+    li= link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), financial_path(@finance, :edit_finance_ledger)
+    li= link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), financial_path(@finance, :new_finance_ledger_entry)
 
 .ledger
   section.block
@@ -56,11 +56,11 @@
                 tr
                   td.category
                     - if entry.category
-                      = link_to entry.category.name, finance_ledger_path(@finance)
+                      = link_to entry.category.name, financial_path(@finance, :finance_ledger)
                   td.title
-                    = link_to entry.title, finance_ledger_entry_path(@finance, entry)
+                    = link_to entry.title, financial_path(@finance, :finance_ledger_entry, entry)
                   td.type
-                    label class="label label-#{entry.type}"
+                    span class="label label-#{entry.type}"
                       = entry.human_type
                   td.total_amount
                     span= entry.total_amount
@@ -68,6 +68,6 @@
                   td.updated_at= entry.updated_at
                   td.operations
                     ul
-                      li= link_to t("action.edit"), edit_finance_ledger_entry_path(@finance, entry)
+                      li= link_to t("action.edit"), financial_path(@finance, :edit_finance_ledger_entry, entry)
                       li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
           = render "shared/pagination", resource: @entries, info: false

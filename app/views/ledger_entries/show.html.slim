@@ -37,7 +37,7 @@ section.block.entry
         .group
           .type
             = label_tag LedgerEntry.human_attribute_name(:type)
-            label class="label label-#{@entry.type}"
+            span class="label label-#{@entry.type}"
               = @entry.type
         .group
           .total_amount
