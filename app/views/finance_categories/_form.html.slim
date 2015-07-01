@@ -1,8 +1,8 @@
 - action = category.persisted? ? "update" : "create"
 - if action == "update"
-  - url = finance_category_path(finance, category)
+  - url = financial_path(finance, :finance_category, category)
 - else
-  - url = category
+  - url = financial_path(finance, :finance_categories)
 = form_for category, url: url, html: {class: "form pure-form"} do |f|
   - if category.errors.any?
     = render "shared/error", resource: category
@@ -13,4 +13,4 @@
   .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("action.destroy"), finance_category_path(finance, category), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), financial_path(finance, :finance_category, category), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

@@ -1,4 +1,6 @@
 class LedgersController < WorkspaceController
+  include FinancialPlanner
+
   before_action :load_finance
   before_action :load_ledger
 
@@ -14,7 +16,7 @@ class LedgersController < WorkspaceController
 
   def update
     if @ledger.update_attributes(ledger_params)
-      redirect_to [@finance, :ledger],
+      redirect_to financial_url(@finance, :ledger),
         :notice => "Ledger has been successfully updated."
     else
       flash.now[:alert] = "Ledger could not be updated."
@@ -25,7 +27,7 @@ class LedgersController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find(params[:finance_id])
+    @finance = Finance.find_or_primary(params[:finance_id])
   end
 
   def load_ledger
