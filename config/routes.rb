@@ -4,6 +4,7 @@ require "locker_room/engine"
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
     resources :notes
+    resources :users, only: [:index, :show]
     resources :people
 
     resources :finances do
