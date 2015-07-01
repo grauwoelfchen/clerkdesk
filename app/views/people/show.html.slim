@@ -42,7 +42,8 @@
         .country
           = label_tag Person.human_attribute_name(:country)
           - country = Country.find_country_by_alpha2(@person.country)
-          = country.translations[current_locale]
+          - if country
+            = country.translations[current_locale]
       .group
         .division
           = label_tag Person.human_attribute_name(:division)

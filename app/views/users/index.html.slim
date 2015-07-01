@@ -1,0 +1,43 @@
+- breadcrumb :users
+
+- content_for :header
+  h2= LockerRoom::User.model_name.human
+  h3= t('subheading.user')
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.index", resource: LockerRoom::User.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            /= link_to t("action.new"), new_user_path, class: "pure-menu-link"
+
+/= render "shared/pagination", resource: @users, info: true
+
+.user
+  table.table.pure-table.pure-table-horizontal
+    thead
+      tr
+        th
+          span.attribute= LockerRoom::User.human_attribute_name(:email)
+          = sort_links_for(:email)
+        th
+          span.attribute= LockerRoom::User.human_attribute_name(:created_at)
+          = sort_links_for(:created_at)
+        th
+          span.attribute= LockerRoom::User.human_attribute_name(:updated_at)
+          = sort_links_for(:updated_at, :desc)
+        th
+    tbody
+      - @users.each do |user|
+        tr
+          td= link_to truncate(user.email, length: 24), user_path(user)
+          td.created_at= user.created_at
+          td.updated_at= user.updated_at
+          td.operations
+            ul
+              /li= link_to t("action.edit"), edit_user_path(user)
+              /li= link_to t("action.destroy"), user_path(user), method: :delete, data: {confirm: "Are you sure?"}
+
+  /= render "shared/pagination", resource: @users, info: false

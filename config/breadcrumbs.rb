@@ -78,3 +78,7 @@ crumb :person do |person|
   end
   parent :people
 end
+
+crumb :users do
+  link LockerRoom::User.model_name.human.pluralize, users_path
+end

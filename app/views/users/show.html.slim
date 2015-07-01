@@ -1,0 +1,35 @@
+/- breadcrumb :user, @user
+
+- content_for :header
+  h2= LockerRoom::User.model_name.human
+  h3= t("subheading.user")
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.show", resource: LockerRoom::User.model_name.human.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to t("action.index"), users_path, class: "pure-menu-link"
+          li.pure-menu-item
+            /= link_to t("action.edit"), edit_user_path(@user), class: "pure-menu-link"
+
+.user
+  section.block.pure-g
+    .container.pure-u-16-24
+      h4= @user.email
+      hr
+      legend= t("legend.account")
+      .group
+        .slug
+          = label_tag LockerRoom::User.human_attribute_name(:email)
+          = @user.email
+      .group
+        .email
+          = label_tag LockerRoom::User.human_attribute_name(:email)
+          = mail_to @user.email
+      .action
+        ul.actions
+          li
+           / = link_to t("action.edit"), edit_user_path, class: "pure-button button"
