@@ -44,10 +44,12 @@ ActiveRecord::Schema.define(version: 20150526160345) do
     t.string   "description"
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.integer  "status",      default: 0, null: false
+    t.integer  "state",       default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "finances", ["state"], name: "index_finances_on_state", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",    null: false

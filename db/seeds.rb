@@ -25,6 +25,7 @@ if Apartment::Tenant.current == "grauwoelfchen"
     description: "Foo",
     started_at:  Time.new(2015,04, 01, 00, 00, 00, "+00:00"),
     finished_at: Time.new(2016,03, 31, 23, 59, 59, "+00:00"),
+    state:       :primary
   }
   finance = Finance.new(finance_params)
   finance.save_with_fiscal_objects

@@ -1,8 +1,9 @@
 class Finance < ActiveRecord::Base
   include Sortable
 
+  enum_accessor :state, [:closed, :opened, :primary]
   paginates_per 6
-  sortable :name, :description, :started_at,
+  sortable :name, :state, :description, :started_at,
            :updated_at, :finished_at,
            :created_at, :updated_at
 
@@ -16,6 +17,14 @@ class Finance < ActiveRecord::Base
     uniqueness: true
   validates :name,
     length: {maximum: 128}
+
+  def self.find_or_primary(id)
+    if id
+      Finance.find(id)
+    else
+      Finance.where_state(:primary).take!
+    end
+  end
 
   def save_with_fiscal_objects
     self.class.transaction do
