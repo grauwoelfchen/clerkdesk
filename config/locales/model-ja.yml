@@ -9,6 +9,7 @@ ja:
       budget: 予算
       ledger_entry: エントリ
       person: メンバー
+      locker_room/user: 管理者
     attributes:
       note:
         title: タイトル
