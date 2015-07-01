@@ -1,4 +1,6 @@
 class FinanceCategoriesController < WorkspaceController
+  include FinancialPlanner
+
   before_action :load_finance
   before_action :load_category, :only => [:edit, :update, :destroy]
 
@@ -23,7 +25,7 @@ class FinanceCategoriesController < WorkspaceController
     @category = @finance.categories.new(category_params)
     if @category.save
       @category.journalizings.create(:ledger => @finance.ledger)
-      redirect_to finance_categories_url,
+      redirect_to financial_url(@finance, :finance_categories),
         :notice => "Category has been successfully created."
     else
       flash.now[:alert] = "Category could not be created."
@@ -36,7 +38,7 @@ class FinanceCategoriesController < WorkspaceController
 
   def update
     if @category.update_attributes(category_params)
-      redirect_to finance_categories_path(@finance),
+      redirect_to financial_url(@finance, :finance_categories),
         :notice => "Category has been successfully updated."
     else
       flash.now[:alert] = "Category could not be updated."
@@ -46,14 +48,14 @@ class FinanceCategoriesController < WorkspaceController
 
   def destroy
     @category.destroy
-    redirect_to finance_categories_url,
+    redirect_to financial_url(@finance, :finance_categories),
       :notice => "Category has been successfully destroyed."
   end
 
   private
 
   def load_finance
-    @finance = Finance.find(params[:finance_id])
+    @finance = Finance.find_or_primary(params[:finance_id])
   end
 
   def load_category

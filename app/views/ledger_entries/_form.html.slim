@@ -1,8 +1,8 @@
 - action = entry.persisted? ? "update" : "create"
 - if action == "update"
-  - url = finance_ledger_entry_path(finance, entry)
+  - url = financial_path(finance, :finance_ledger_entry, entry)
 - else
-  - url = finance_ledger_entries_path(finance)
+  - url = financial_path(finance, :finance_ledger_entries)
 = form_for entry, url: url, html: {class: "form pure-form pure-form-aligned"} do |f|
   - if entry.errors.any?
     = render "shared/error", resource: entry
@@ -29,4 +29,4 @@
   .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("action.destroy"), finance_ledger_entry_path(finance, entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), financial_path(finance, :finance_ledger_entry, entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
