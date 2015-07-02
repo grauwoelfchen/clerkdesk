@@ -14,6 +14,7 @@
  *= require purecss/build/grids-responsive-min
  *= require font-awesome/css/font-awesome.min
  *= require jquery-tag-editor/jquery.tag-editor
+//= require pickmeup/css/pickmeup.min
  *= require_tree .
  *= require_self
  */

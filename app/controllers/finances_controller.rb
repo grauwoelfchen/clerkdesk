@@ -10,10 +10,10 @@ class FinancesController < WorkspaceController
   end
 
   def new
-    now = Time.now
+    today = Time.zone.today
     default = {
-      :started_at  => now + 1.hour,
-      :finished_at => now + 1.year
+      :started_at  => today,
+      :finished_at => today + 1.year
     }
     @finance = Finance.new(default)
   end
@@ -57,6 +57,6 @@ class FinancesController < WorkspaceController
 
   def finance_params
     params.require(:finance).permit(
-      :name, :description, :started_at, :finished_at, :status)
+      :name, :state, :description, :started_at, :finished_at)
   end
 end

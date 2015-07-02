@@ -17,6 +17,9 @@ class Finance < ActiveRecord::Base
     uniqueness: true
   validates :name,
     length: {maximum: 128}
+  validates :description,
+    length: {maximum: 1024}
+  validate :check_period
 
   def self.find_or_primary(id)
     if id
@@ -40,6 +43,12 @@ class Finance < ActiveRecord::Base
   end
 
   private
+
+  def check_period
+    if started_at >= finished_at
+      errors.add(:started_at, :before_than_finished_at)
+    end
+  end
 
   def create_default_categories
     %w{accumulation carry-over stationary correspondence membership-fee}.map do |category|

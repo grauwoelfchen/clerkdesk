@@ -14,12 +14,18 @@
   textarea
     box-shadow none
   .pure-group
-    input:first-child,
-    textarea:first-child
-      border-radius 2px 2px 0 0
-    input:last-child,
+    input:first-child
+      border-radius 2px 2px 0 0 !important
     textarea:last-child
-      border-radius 0 0 2px 2px
+      top           -1px
+      border-radius 0 0 2px 2px !important
+
+.pure-form.pure-form-stacked
+  .pure-control-group
+    label
+      margin 0.9em 0 0.6em 0
+    input[type="text"]
+      min-width 125px
 
 .pure-menu-link,
 .pure-menu-disabled,
