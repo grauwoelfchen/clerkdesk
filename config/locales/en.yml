@@ -48,6 +48,7 @@ en:
     id: ID
     personal_info: Personal info.
     additional_info: Additional info.
+    period: Period
   result:
     filter_by:
       tag: 'Filtered by %{tag}'

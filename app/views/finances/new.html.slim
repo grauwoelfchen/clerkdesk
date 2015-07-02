@@ -13,6 +13,10 @@
           li.pure-menu-item
             = link_to t("action.index"), finances_path, class: "pure-menu-link"
 
-h3= t("action.new")
-
-= render "form", finance: @finance
+.finance
+  section.block.pure-g
+    .container.pure-u-16-24
+      h4= t("action.new")
+      hr
+      = render "form", finance: @finance
+    .pure-u-8-24

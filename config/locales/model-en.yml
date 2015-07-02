@@ -30,3 +30,8 @@ en:
       attributes:
         left_at:
           after_field: 'must be after %{field}'
+      models:
+        finance:
+          attributes:
+            started_at:
+              before_than_finished_at: 'must be before than finished_at'
