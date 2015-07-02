@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20150526160345) do
   create_table "finances", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "started_at"
-    t.datetime "finished_at"
+    t.date     "started_at"
+    t.date     "finished_at"
     t.integer  "state",       default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
