@@ -21,8 +21,8 @@ ja:
       finance:
         name: 名前
         description: 説明
-        started_at: 開始日時
-        finished_at: 終了日時
+        started_at: 開始
+        finished_at: 終了
         state: 状態
         created_at: 作成日時
         updated_at: 更新日時
@@ -59,6 +59,11 @@ ja:
       attributes:
         left_at:
           after_field: 'は%{field}より後に設定してください'
+      models:
+        finance:
+          attributes:
+            started_at:
+              before_than_finished_at: 'は終了より前に設定してください'
   enum_accessor:
     type:
       expense: 支出

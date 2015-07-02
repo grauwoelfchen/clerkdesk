@@ -5,4 +5,5 @@
 //= require jquery-tag-editor/jquery.tag-editor.min
 //= require autoNumeric
 //= require moment/min/moment-with-locales.min
+//= require pickmeup/js/jquery.pickmeup.min
 //= require_tree .
