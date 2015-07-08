@@ -31,5 +31,6 @@ Rails.application.routes.draw do
 
     root to: "desktop#index"
   end
+
   mount LockerRoom::Engine, at: "/"
 end
