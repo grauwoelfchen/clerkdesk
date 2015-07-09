@@ -1,7 +1,7 @@
 require "test_helper"
 
 class LedgerEntryTest < ActiveSupport::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:finances, :finance_categories, :ledgers, :journalizings,
            :ledger_entries)
 
