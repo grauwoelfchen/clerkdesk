@@ -1,12 +1,12 @@
 require "test_helper"
 
 class PersonSortTest < Capybara::Rails::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:people)
 
   def test_sort_with_first_name_last_name_desc
     user = locker_room_users(:weenie)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
@@ -26,7 +26,7 @@ class PersonSortTest < Capybara::Rails::TestCase
 
   def test_sort_with_first_name_last_name_desc
     user = locker_room_users(:weenie)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
@@ -46,7 +46,7 @@ class PersonSortTest < Capybara::Rails::TestCase
 
   def test_sort_with_first_name_last_name_desc
     user = locker_room_users(:weenie)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)

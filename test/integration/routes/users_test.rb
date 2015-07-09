@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UsersRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
 
   def test_route_to_users
     within_subdomain_host do |host|
@@ -26,7 +26,7 @@ class UsersRouteTest < ActionDispatch::IntegrationTest
 
   def within_subdomain_host
     user = locker_room_users(:oswald)
-    host = "http://#{user.account.subdomain}.example.org"
+    host = "http://#{user.team.subdomain}.example.org"
     yield(host)
   end
 end

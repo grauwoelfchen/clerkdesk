@@ -1,7 +1,7 @@
 require "test_helper"
 
 class NoteTest < ActiveSupport::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:notes)
 
   def test_validation_with_without_title
