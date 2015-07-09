@@ -7,7 +7,7 @@ class AccountSignupTest < Capybara::Rails::TestCase
     penguin = locker_room_accounts(:penguin_patrol)
 
     visit "/"
-    click_link("Signup")
+    click_link("GET STARTED")
     fill_in("Name",                  :with => "Penguin Octupus Patrol")
     fill_in("Subdomain",             :with => "penguin")
     fill_in("Email",                 :with => "oswald@example.com")
@@ -21,7 +21,7 @@ class AccountSignupTest < Capybara::Rails::TestCase
 
   def test_subdomain_restriction_with_reserved_word
     visit "/"
-    click_link("Signup")
+    click_link("GET STARTED")
     fill_in("Name",                  :with => "Vanilla dog biscuits")
     fill_in("Subdomain",             :with => "admin")
     fill_in("Email",                 :with => "weenie@example.com")
@@ -35,7 +35,7 @@ class AccountSignupTest < Capybara::Rails::TestCase
 
   def test_subdomain_restriction_with_invalid_word
     visit "/"
-    click_link("Signup")
+    click_link("GET STARTED")
     fill_in("Name",                  :with => "Vanilla dog biscuits")
     fill_in("Subdomain",             :with => "<test>")
     fill_in("Email",                 :with => "weenie@example.com")
@@ -49,7 +49,7 @@ class AccountSignupTest < Capybara::Rails::TestCase
 
   def test_account_signup
     visit "/"
-    click_link("Signup")
+    click_link("GET STARTED")
     fill_in("Name",                  :with => "Vanilla dog biscuits")
     fill_in("Subdomain",             :with => "vanilla-dog-biscuits")
     fill_in("Email",                 :with => "weenie@example.com")
