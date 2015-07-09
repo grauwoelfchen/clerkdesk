@@ -1,12 +1,12 @@
 require "test_helper"
 
 class BudgetsControllerTest < ActionController::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:finances, :budgets)
 
   def test_get_show
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
       get(:show, :finance_id => budget.finance_id)
@@ -19,7 +19,7 @@ class BudgetsControllerTest < ActionController::TestCase
 
   def test_get_edit
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
       get(:edit, :finance_id => budget.finance_id)
@@ -33,7 +33,7 @@ class BudgetsControllerTest < ActionController::TestCase
 
   def test_put_update_with_validation_errors
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
       params = {
@@ -59,7 +59,7 @@ class BudgetsControllerTest < ActionController::TestCase
 
   def test_put_update
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       budget = budgets(:second_piano_budget)
       params = {

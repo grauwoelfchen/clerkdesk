@@ -5,7 +5,7 @@ if Apartment::Tenant.current == "public"
     conn.query(%Q{DROP SCHEMA IF EXISTS #{tenant} CASCADE;})
   end
 
-  account_params = {
+  team_params = {
     name:      "grauwoelfchen",
     subdomain: "grauwoelfchen",
     owners_attributes: [{
@@ -15,8 +15,8 @@ if Apartment::Tenant.current == "public"
     }]
   }
 
-  account = LockerRoom::Account.create_with_owner(account_params)
-  account.create_schema
+  team = LockerRoom::Team.create_with_owner(team_params)
+  team.create_schema
 end
 
 if Apartment::Tenant.current == "grauwoelfchen"

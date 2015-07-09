@@ -14,9 +14,9 @@ require "database_cleaner"
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 Minitest.after_run {
   # clean_all_schema
-  LockerRoom::Account.all.map do |account|
+  LockerRoom::Team.all.map do |team|
     conn = ActiveRecord::Base.connection
-    conn.query(%Q{DROP SCHEMA IF EXISTS #{account.schema_name} CASCADE;})
+    conn.query(%Q{DROP SCHEMA IF EXISTS #{team.schema_name} CASCADE;})
   end
 }
 
@@ -31,18 +31,18 @@ class ActiveSupport::TestCase
 
   def before_setup
     # default schema (see locker_room_fixtures)
-    account = locker_room_accounts(:playing_piano)
-    if account
+    team = locker_room_teams(:playing_piano)
+    if team
       result = ActiveRecord::Base.connection.execute(<<-SQL)
         SELECT schema_name
         FROM information_schema.schemata
-        WHERE schema_name = '#{account.schema_name}';
+        WHERE schema_name = '#{team.schema_name}';
       SQL
       if result.first.blank?
-        account.create_schema
+        team.create_schema
       end
     end
-    Apartment::Tenant.switch!(account.subdomain)
+    Apartment::Tenant.switch!(team.subdomain)
     DatabaseCleaner.start
     # normal fixtures
     super

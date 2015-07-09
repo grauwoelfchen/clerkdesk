@@ -1,7 +1,7 @@
 require "test_helper"
 
 class NotesRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:notes, :people)
 
   def test_route_to_notes
@@ -167,7 +167,7 @@ class NotesRouteTest < ActionDispatch::IntegrationTest
 
   def within_subdomain_host
     user = locker_room_users(:oswald)
-    host = "http://#{user.account.subdomain}.example.org"
+    host = "http://#{user.team.subdomain}.example.org"
     yield(host)
   end
 end

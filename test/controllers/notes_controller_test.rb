@@ -1,12 +1,12 @@
 require "test_helper"
 
 class NotesControllerTest < ActionController::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:notes)
 
   def test_get_index
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       get(:index)
       refute_empty(assigns[:notes])
@@ -17,7 +17,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_get_show
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       get(:show, :id => note.id)
@@ -29,7 +29,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_get_new
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       get(:new)
       assert_kind_of(Note, assigns[:note])
@@ -41,7 +41,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_post_create_with_validation_errors
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       params = {
         :note  => {
@@ -63,7 +63,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_post_create
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       params = {
         :note  => {
@@ -86,7 +86,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_get_edit
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       get(:edit, :id => note.id)
@@ -99,7 +99,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_put_update_with_validation_errors
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       params = {
@@ -120,7 +120,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_put_update
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       params = {
@@ -142,7 +142,7 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_delete_destroy
     user = locker_room_users(:oswald)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       assert_difference("Note.count", -1) do
