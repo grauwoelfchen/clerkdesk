@@ -10,6 +10,7 @@ if Apartment::Tenant.current == "public"
     subdomain: "grauwoelfchen",
     owners_attributes: [{
       email:                 "grauwoelfchen@gmail.com",
+      username:              "grauwoelfchen",
       password:              "secret",
       password_confirmation: "secret"
     }]
