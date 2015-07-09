@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DestroyTest < Capybara::Rails::TestCase
-  locker_room_fixtures(:accounts, :members, :users)
+  locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:finances, :finance_categories)
 
   def test_destroy_finance
@@ -23,7 +23,7 @@ class DestroyTest < Capybara::Rails::TestCase
   private
 
   def as_logged_in_user(user)
-    within_subdomain(user.account.subdomain) do
+    within_subdomain(user.team.subdomain) do
       login_user(user)
       yield
       logout_user(locker_room.logout_url, :delete)
