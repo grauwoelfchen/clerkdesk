@@ -3,6 +3,9 @@
   - url = financial_path(finance, :finance_ledger_entry, entry)
 - else
   - url = financial_path(finance, :finance_ledger_entries)
+
+span#finance data-id=@finance.id style="height:0;width:0;opacity:0;"
+
 = form_for entry, url: url, html: {class: "form pure-form pure-form-aligned"} do |f|
   - if entry.errors.any?
     = render "shared/error", resource: entry

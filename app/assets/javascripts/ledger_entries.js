@@ -26,13 +26,14 @@
 
     // journalizings updater
     var setJournalizingOptions = function(type_val, journalizing_val) {
+      var finance = $('#finance');
       if (typeof journalizing_val === "undefined") {
         journalizing_val = null;
       }
       $.ajax({
         dataType: 'json',
-        url:      '/finances/3/journalizings.json?type=' +
-          encodeURIComponent(type_val)
+        url:      '/finances/' + finance.attr('data-id') +
+          '/journalizings.json?type=' + encodeURIComponent(type_val)
       })
       .fail(function() {
         journalizing.empty();
