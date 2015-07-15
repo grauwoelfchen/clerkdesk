@@ -61,7 +61,10 @@ class LedgerEntriesController < WorkspaceController
 
   def ledger_entry_params
     params.require(:ledger_entry).permit(
-      :title, :type, :journalizing_id, :total_amount, :memo
+      :title, :type, :journalizing_id, :total_amount, :memo,
+      :involvements_attributes => [
+        :id, :holder_id, :holder_type, :_destroy
+      ]
     )
   end
 end

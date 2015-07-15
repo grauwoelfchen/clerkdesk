@@ -1,10 +1,18 @@
 class PeopleController < WorkspaceController
+  before_filter :xhr_only,    only: [:search]
   before_action :load_person, only: [:show, :edit, :update, :destroy]
 
   def index
     @people = Person
       .sort(params[:field], params[:direction])
       .page(params[:page])
+  end
+
+  def search
+    @people = Person.select(:id, :slug, :last_name, :first_name)
+    if params[:term]
+      @people = @people.search(params[:term], :slug, :last_name, :first_name)
+    end
   end
 
   def new
@@ -43,6 +51,15 @@ class PeopleController < WorkspaceController
   end
 
   private
+
+  def xhr_only
+    not_found = {
+      :file   => Rails.public_path.join('404.html'),
+      :layout => false,
+      :status => 404
+    }
+    render(not_found) unless request.xhr?
+  end
 
   def load_person
     @person = Person.friendly.find(params[:id])

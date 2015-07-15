@@ -1,3 +1,11 @@
+- content_for :script do
+  = javascript_include_tag 'autoNumeric/autoNumeric'
+  = javascript_include_tag "jquery-autosize/jquery.autosize.min"
+  = javascript_include_tag "jquery-ui/jquery-ui.min"
+  = javascript_include_tag "jquery-ui/ui/minified/autocomplete.min"
+  = javascript_include_tag "jquery-tag-editor/jquery.caret.min"
+  = javascript_include_tag "jquery-tag-editor/jquery.tag-editor.min"
+
 - action = entry.persisted? ? "update" : "create"
 - if action == "update"
   - url = financial_path(finance, :finance_ledger_entry, entry)
@@ -29,6 +37,17 @@ span#finance data-id=@finance.id style="height:0;width:0;opacity:0;"
     .pure-control-group
       = f.label :memo
       = f.text_area :memo, class: "pure-input-1-3", rows: 3, placeholder: "Memo"
+    .pure-control-group
+      = f.label :people
+      = text_field_tag :labels, entry.people.map(&:label).join(','), id: "labels", class: "pure-input-1-3", placeholder: "Person"
+      #people
+        - entry.involvements.where(holder_type: 'Person').each do |involvement|
+          div.holder
+            - person = involvement.holder
+            = f.hidden_field :people, id: "holder_#{person.id}",         value: person.id,                         name: 'ledger_entry[involvements_attributes][][holder_id]'
+            = f.hidden_field :people, id: "holder_#{person.id}_id",      value: involvement.id,  class: 'id',      name: 'ledger_entry[involvements_attributes][][id]'
+            = f.hidden_field :people, id: "holder_#{person.id}_type",    value: 'Person',        class: 'type',    name: 'ledger_entry[involvements_attributes][][holder_type]'
+            = f.hidden_field :people, id: "holder_#{person.id}_destroy", value: "0",             class: 'destroy', name: 'ledger_entry[involvements_attributes][][_destroy]'
   .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
