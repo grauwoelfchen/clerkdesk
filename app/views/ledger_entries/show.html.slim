@@ -49,6 +49,12 @@ section.block.entry
             = label_tag LedgerEntry.human_attribute_name(:memo)
             = simple_format(@entry.memo, {}, wrapper_tag: 'span')
         .group
+          .people
+            = label_tag LedgerEntry.human_attribute_name(:people)
+            - @entry.people.each do |person|
+              span.tag
+                = link_to person.label, person_path(person)
+        .group
           .created_at
             = label_tag LedgerEntry.human_attribute_name(:created_at)
             = @entry.created_at

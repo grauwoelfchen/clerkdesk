@@ -1,7 +1,15 @@
 class Person < ActiveRecord::Base
   include FriendlyId
   include Sortable
+  include Searchable
 
+  has_many :involvements,
+    ->{ order(:id => :asc) },
+    as: :holder
+  has_many :ledger_entries,
+    through:     :involvements,
+    source:      :matter,
+    source_type: 'LedgerEntry'
   has_one :identity, foreign_key: :user_id
   has_one :user, through: :identity, source: :person
 
@@ -72,6 +80,10 @@ class Person < ActiveRecord::Base
   def full_name
     fields = self.class.full_name_fields.split(",")
     fields.map { |field| self.send(field) }.join(" ")
+  end
+
+  def label
+    full_name + " (#{slug})"
   end
 
   private

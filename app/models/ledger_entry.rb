@@ -7,9 +7,21 @@ class LedgerEntry < ActiveRecord::Base
   belongs_to :ledger
   belongs_to :journalizing,
     counter_cache: :entries_count
+  has_many :involvements,
+    ->{ order(:id => :asc) },
+    as: :matter
+  has_many :people,
+    through:     :involvements,
+    source:      :holder,
+    source_type: 'Person'
   has_one :category,
     through:    :journalizing,
     class_name: "FinanceCategory"
+
+
+  accepts_nested_attributes_for :involvements,
+    allow_destroy: true,
+    reject_if:     :reject_involvements
 
   acts_as_taggable
   paginates_per 25
@@ -24,4 +36,10 @@ class LedgerEntry < ActiveRecord::Base
   validates :memo,
     length:      {maximum: 1024},
     allow_blank: true
+
+  private
+
+  def reject_involvements(attributes)
+    attributes[:_destroy] == "0"
+  end
 end
