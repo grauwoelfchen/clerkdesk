@@ -20,8 +20,8 @@
     thead
       tr
         th
-          span.attribute= Person.human_attribute_name(:full_name)
-          = sort_links_for(Person.full_name_fields)
+          span.attribute= Person.human_attribute_name(:name)
+          = sort_links_for(:name)
         th
           span.attribute= Person.human_attribute_name(:slug)
           = sort_links_for(:slug)
@@ -41,7 +41,7 @@
     tbody
       - @people.each do |person|
         tr
-          td= link_to truncate(person.full_name, length: 24), person_path(person)
+          td= link_to truncate(person.name, length: 28), person_path(person)
           td= truncate(person.slug, length: 12)
           td= truncate(person.property, length: 12)
           td= person.postcode

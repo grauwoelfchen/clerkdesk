@@ -18,7 +18,7 @@
 .person
   section.block.pure-g
     .container.pure-u-16-24
-      h4= @person.full_name
+      h4= @person.name
       hr
       legend= t("legend.id")
       .group
@@ -31,13 +31,9 @@
           = @person.property
       legend= t("legend.personal_info")
       .group
-        .first_name
-          = label_tag Person.human_attribute_name(:first_name)
-          = @person.first_name
-      .group
-        .last_name
-          = label_tag Person.human_attribute_name(:last_name)
-          = @person.last_name
+        .name
+          = label_tag Person.human_attribute_name(:name)
+          = @person.name
       .group
         .country
           = label_tag Person.human_attribute_name(:country)

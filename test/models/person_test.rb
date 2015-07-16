@@ -40,32 +40,18 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal([message], person.errors[:property])
   end
 
-  def test_validation_error_without_first_name
-    person = Person.new(:first_name => nil)
+  def test_validation_error_without_name
+    person = Person.new(:name => nil)
     refute(person.valid?)
     message = "can't be blank"
-    assert_equal([message], person.errors[:first_name])
+    assert_equal([message], person.errors[:name])
   end
 
-  def test_validation_error_with_too_long_first_name
-    person = Person.new(:first_name => "long" * 33)
+  def test_validation_error_with_too_long_name
+    person = Person.new(:name => "long" * 33)
     refute(person.valid?)
     message = "is too long (maximum is 128 characters)"
-    assert_equal([message], person.errors[:first_name])
-  end
-
-  def test_validation_error_without_last_name
-    person = Person.new(:last_name => nil)
-    refute(person.valid?)
-    message = "can't be blank"
-    assert_equal([message], person.errors[:last_name])
-  end
-
-  def test_validation_error_with_too_long_last_name
-    person = Person.new(:last_name => "long" * 33)
-    refute(person.valid?)
-    message = "is too long (maximum is 128 characters)"
-    assert_equal([message], person.errors[:last_name])
+    assert_equal([message], person.errors[:name])
   end
 
   def test_validation_error_with_invalid_country
