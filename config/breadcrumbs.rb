@@ -74,7 +74,7 @@ crumb :person do |person|
   unless person.persisted?
     link t("crumb.new"), nil
   else
-    link person.full_name, person_path(person)
+    link person.name, person_path(person)
   end
   parent :people
 end
