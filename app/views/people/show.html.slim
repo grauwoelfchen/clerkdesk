@@ -24,16 +24,12 @@
       .group
         .slug
           = label_tag Person.human_attribute_name(:slug)
-          = @person.slug
-      .group
-        .property
-          = label_tag Person.human_attribute_name(:property)
-          = @person.property
-      legend= t("legend.personal_info")
+          span.label.label-default= @person.slug
       .group
         .name
           = label_tag Person.human_attribute_name(:name)
           = @person.name
+      legend= t("legend.contact")
       .group
         .country
           = label_tag Person.human_attribute_name(:country)
@@ -67,6 +63,10 @@
           = mail_to @person.email
       legend= t("legend.additional_info")
       .group
+        .property
+          = label_tag Person.human_attribute_name(:property)
+          = @person.property
+      .group
         .memo
           = label_tag Person.human_attribute_name(:memo)
           = @person.memo
@@ -78,7 +78,6 @@
         .left
           = label_tag Person.human_attribute_name(:left_at)
           span.left_at= @person.left_at
-      .action
-        ul.actions
-          li
-            = link_to t("action.edit"), edit_person_path, class: "pure-button button"
+      ul.actions
+        li
+          = link_to t("action.edit"), edit_person_path, class: "pure-button button"

@@ -17,9 +17,10 @@
           li.pure-menu-item.delimiter
             = link_to t("action.new"), new_person_path, class: "pure-menu-link"
 
-section.block.person.pure-g
-  .container.pure-u-16-24
-    h4= t("action.edit")
-    hr
-    = render "form", person: @person
-  .pure-u-8-24
+.person
+  section.block.pure-g
+    .container.pure-u-16-24
+      h4= t("action.edit")
+      hr
+      = render "form", person: @person
+    .pure-u-8-24

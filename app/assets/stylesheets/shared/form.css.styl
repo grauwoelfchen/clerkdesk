@@ -19,6 +19,15 @@
   input[type="submit"]
     margin 19px 0
 
+.form
+  fieldset
+    margin 9px 0px 18px 2px
+
+.form
+  legend
+    {legend-style}
+    width 100%
+
 .error-messages
   ul
     margin  9px 0 18px 0
@@ -27,17 +36,10 @@
       list-style none
       color      $error-color
 
-fieldset.group
-  margin 9px 0px 18px 0
-
-.form
-  legend
-    {legend-style}
-    width 100%
-  .field_with_errors
-    display inline
-    input[type="text"]
-      color #CA3C3C
+.field_with_errors
+  display inline
+  input[type="text"]
+    color #CA3C3C
 
 // extras
 .select-form

@@ -29,8 +29,8 @@
           span.attribute= Person.human_attribute_name(:property)
           = sort_links_for(:property)
         th
-          span.attribute= Person.human_attribute_name(:postcode)
-          = sort_links_for(:postcode)
+          span.attribute= Person.human_attribute_name(:memo)
+          = sort_links_for(:memo)
         th
           span.attribute= Person.human_attribute_name(:created_at)
           = sort_links_for(:created_at)
@@ -41,10 +41,11 @@
     tbody
       - @people.each do |person|
         tr
-          td= link_to truncate(person.name, length: 28), person_path(person)
-          td= truncate(person.slug, length: 12)
+          td= link_to truncate(person.name, length: 18), person_path(person)
+          td
+            span.label.label-default= truncate(person.slug, length: 12)
           td= truncate(person.property, length: 12)
-          td= person.postcode
+          td= truncate(person.memo, length: 12)
           td.created_at= person.created_at
           td.updated_at= person.updated_at
           td.operations
