@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 
   friendly_id :slug, use: :slugged
   paginates_per 30
-  sortable :first_name, :last_name, :slug, :property, :postcode,
+  sortable :name, :slug, :property, :postcode,
     :created_at, :updated_at
 
   validates :slug,
@@ -27,10 +27,7 @@ class Person < ActiveRecord::Base
     allow_blank: true
   validates :property,
     length: {maximum: 192}
-  validates :first_name,
-    presence: true,
-    length:   {maximum: 128}
-  validates :last_name,
+  validates :name,
     presence: true,
     length:   {maximum: 128}
   validates :country,
@@ -69,21 +66,8 @@ class Person < ActiveRecord::Base
 
   validate :division_must_be_in_valid_country
 
-  def self.full_name_fields
-    if I18n.locale == :ja
-      "last_name,first_name"
-    else
-      "first_name,last_name"
-    end
-  end
-
-  def full_name
-    fields = self.class.full_name_fields.split(",")
-    fields.map { |field| self.send(field) }.join(" ")
-  end
-
   def label
-    full_name + " (#{slug})"
+    name + " (#{slug})"
   end
 
   private
