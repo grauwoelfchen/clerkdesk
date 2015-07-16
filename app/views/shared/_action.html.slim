@@ -6,6 +6,6 @@ nav.btn.pure-menu.pure-menu-horizontal
         li.pure-menu-item
           = link_to t("action.index"), finances_path, class: "pure-menu-link"
         li.pure-menu-item
-          = link_to t("action.edit"), financial_path(finance, :edit_finance), class: "pure-menu-link"
+          = link_to t("action.edit"), edit_finance_path(finance), class: "pure-menu-link"
         li.pure-menu-item.delimiter
           = link_to t("action.new"), new_finance_path, class: "pure-menu-link"

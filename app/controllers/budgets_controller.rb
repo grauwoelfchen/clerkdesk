@@ -1,6 +1,4 @@
 class BudgetsController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance
   before_action :load_budget
 
@@ -12,7 +10,7 @@ class BudgetsController < WorkspaceController
 
   def update
     if @budget.update_attributes(budget_params)
-      redirect_to financial_url(@finance, :finance_budget),
+      redirect_to finance_budget_url(@finance),
         :notice => "Budget has been successfully updated."
     else
       flash.now[:alert] = "Budget could not be updated."
@@ -23,7 +21,7 @@ class BudgetsController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find_or_primary(params[:finance_id])
+    @finance = Finance.find(params[:finance_id])
   end
 
   def load_budget
