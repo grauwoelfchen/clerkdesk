@@ -155,8 +155,7 @@ ActiveRecord::Schema.define(version: 20150715185513) do
   create_table "people", force: :cascade do |t|
     t.string   "slug",                    null: false
     t.string   "property"
-    t.string   "first_name", default: "", null: false
-    t.string   "last_name",  default: "", null: false
+    t.string   "name",       default: "", null: false
     t.string   "postcode"
     t.string   "country",    default: "", null: false
     t.string   "division",   default: "", null: false

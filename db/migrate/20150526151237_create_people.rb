@@ -3,8 +3,7 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string  :slug,       null: false
       t.string  :property
-      t.string  :first_name, null: false, default: ""
-      t.string  :last_name,  null: false, default: ""
+      t.string  :name,       null: false, default: ""
       t.string  :postcode
       t.string  :country,    null: false, default: ""
       t.string  :division,   null: false, default: ""

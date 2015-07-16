@@ -32,22 +32,17 @@ ja:
       show: '%{resource}: 詳細'
       edit: '%{resource}: 編集'
       new: '%{resource}: 作成'
-  placeholder:
-    first_name: 性
-    last_name: 名
-    memo: メモ
   example:
     person:
-      slug: 例） 01A001X
-      property: 例）
-      postcode: 例） 1000000
-      first_name: 例） ジョン
-      last_name: 例） スミス
-      memo: 例）
-      city: 例）千代田区
+      slug: 例）01A001X
+      property: 例）名誉会員
+      postcode: 例）1000000
+      name: 例）ジョン　スミス
+      memo: 例）07.05 要返信
+      city: 例）○○区
       address: 例）1-1-1
-      phone: 例） 03-0000-0000
-      email: 例） john@example.org
+      phone: 例）00-0000-0000
+      email: 例）john@example.org
   legend:
     id: ID
     personal_info: 情報

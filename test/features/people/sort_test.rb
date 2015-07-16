@@ -4,16 +4,16 @@ class PersonSortTest < Capybara::Rails::TestCase
   locker_room_fixtures(:teams, :users, :memberships)
   fixtures(:people)
 
-  def test_sort_with_first_name_last_name_desc
+  def test_sort_with_name_desc
     user = locker_room_users(:weenie)
     within_subdomain(user.team.subdomain) do
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
-      href = "/people?direction=desc&field=first_name%2Clast_name"
+      href = "/people?direction=desc&field=name"
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => "first_name,last_name", :direction => "desc"}
+      params = {:field => "name", :direction => "desc"}
       assert_equal(people_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ""))
         //ul[@class='sort-links']/li
@@ -24,16 +24,16 @@ class PersonSortTest < Capybara::Rails::TestCase
     end
   end
 
-  def test_sort_with_first_name_last_name_desc
+  def test_sort_with_name_asc
     user = locker_room_users(:weenie)
     within_subdomain(user.team.subdomain) do
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
-      href = "/people?direction=asc&field=first_name%2Clast_name"
+      href = "/people?direction=asc&field=name"
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => "first_name,last_name", :direction => "asc"}
+      params = {:field => "name", :direction => "asc"}
       assert_equal(people_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ""))
         //ul[@class='sort-links']/li
@@ -44,7 +44,7 @@ class PersonSortTest < Capybara::Rails::TestCase
     end
   end
 
-  def test_sort_with_first_name_last_name_desc
+  def test_sort_with_slug_desc
     user = locker_room_users(:weenie)
     within_subdomain(user.team.subdomain) do
       login_user(user)
