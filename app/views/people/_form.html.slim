@@ -3,18 +3,15 @@
   - if person.errors.any?
     = render "shared/error", resource: person
   fieldset
-    legend ID
+    legend= t("legend.id")
     .pure-control-group
       = f.label :slug
-      = f.text_field :slug, placeholder: t("example.person.slug")
-    .pure-control-group
-      = f.label :property
-      = f.text_field :property, placeholder: t("example.person.property")
-  fieldset
-    legend Personal Information
+      = f.text_field :slug, class: "pure-u-7-24", placeholder: t("example.person.slug")
     .pure-control-group
       = f.label :name
       = f.text_field :name, placeholder: t("example.person.name")
+  fieldset
+    legend= t("legend.contact")
     .pure-control-group
       = f.label :country
       / AI and AN has wrong translaton cache (at least)
@@ -37,9 +34,12 @@
       = f.text_field :phone, placeholder: t("example.person.phone")
     .pure-control-group
       = f.label :email
-      = f.text_field :email, placeholder: t("example.person.email")
+      = f.text_field :email, class: "pure-u-7-24", placeholder: t("example.person.email")
   fieldset
-    legend Additional Information
+    legend= t("legend.additional_info")
+    .pure-control-group
+      = f.label :property
+      = f.text_field :property, class: "pure-u-7-24", placeholder: t("example.person.property")
     .pure-control-group
       = f.label :memo
       = f.text_field :memo, class: "pure-u-7-24", placeholder: t("example.person.memo")
@@ -49,7 +49,7 @@
     .pure-control-group
       = f.label :left_at
       = f.date_select :left_at, use_two_digit_numbers: true, prompt: true
-  .action
-    = f.submit t("action.#{action}"), class: "pure-button pure-button-primary button"
+  .actions
+    = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
       = link_to t("action.destroy"), person_path, class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

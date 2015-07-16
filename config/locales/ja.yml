@@ -34,19 +34,20 @@ ja:
       new: '%{resource}: 作成'
   example:
     person:
-      slug: 例）01A001X
-      property: 例）名誉会員
-      postcode: 例）1000000
-      name: 例）ジョン　スミス
-      memo: 例）07.05 要返信
-      city: 例）○○区
-      address: 例）1-1-1
-      phone: 例）00-0000-0000
-      email: 例）john@example.org
+      slug: 例） 01A001X
+      property: 例） 名誉会員
+      postcode: 例） 1000000
+      name: 例） ジョン スミス
+      memo: 例） 07.05 要返信
+      city: 例） ○○区
+      address: 例） 1-1-1
+      phone: 例） 00-0000-0000
+      email: 例） john@example.org
   legend:
-    id: ID
-    personal_info: 情報
-    additional_info: 管理項目
+    id: 識別子
+    name: 名前
+    contact: 連絡先
+    additional_info: その他の項目
     period: 期間
   result:
     filter_by:
