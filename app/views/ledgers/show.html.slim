@@ -1,5 +1,8 @@
 - breadcrumb :ledger, @finance, @ledger
 
+- content_for :script
+  = javascript_include_tag 'autoNumeric/autoNumeric'
+
 - content_for :header
   h2= Finance.model_name.human
   h3= t("subheading.ledger")

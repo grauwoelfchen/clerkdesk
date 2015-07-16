@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
     resources :notes
     resources :users, only: [:index, :show]
-    resources :people
+    resources :people do
+      get :search, on: :collection
+    end
 
     finance_resources = proc do
       resource :budget, only: [:show, :edit, :update]

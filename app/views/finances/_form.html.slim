@@ -1,3 +1,7 @@
+- content_for :script do
+  = javascript_include_tag "jquery-autosize/jquery.autosize.min"
+  = javascript_include_tag "pickmeup/js/jquery.pickmeup.min"
+
 - action = finance.persisted? ? "update" : "create"
 = form_for finance, html: {class: "form pure-form pure-form-stacked"} do |f|
   - if finance.errors.any?
