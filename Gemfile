@@ -19,6 +19,7 @@ gem "gretel"
 gem "redcarpet"
 gem "kaminari"
 
+gem "jbuilder"
 gem "uglifier"
 gem "slim"
 gem "stylus"

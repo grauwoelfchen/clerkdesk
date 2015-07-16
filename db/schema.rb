@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526160345) do
+ActiveRecord::Schema.define(version: 20150715185513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 20150526160345) do
 
   add_index "identities", ["person_id"], name: "index_identities_on_person_id", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "involvements", force: :cascade do |t|
+    t.string   "holder_type"
+    t.integer  "holder_id"
+    t.string   "matter_type"
+    t.integer  "matter_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "involvements", ["holder_type", "holder_id"], name: "index_involvements_on_holder_type_and_holder_id", using: :btree
+  add_index "involvements", ["matter_type", "matter_id"], name: "index_involvements_on_matter_type_and_matter_id", using: :btree
 
   create_table "journalizings", force: :cascade do |t|
     t.integer  "ledger_id",                 null: false
