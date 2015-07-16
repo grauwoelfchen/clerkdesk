@@ -1,6 +1,4 @@
 class FinancesController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance, :only => [:show, :edit, :update, :destroy]
 
   def index

@@ -1,6 +1,4 @@
 class LedgersController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance
   before_action :load_ledger
 
