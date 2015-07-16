@@ -45,7 +45,8 @@ en:
       email: e.g. john@example.org
   legend:
     id: ID
-    personal_info: Personal info.
+    name: Name
+    contact: Contact
     additional_info: Additional info.
     period: Period
   result:
