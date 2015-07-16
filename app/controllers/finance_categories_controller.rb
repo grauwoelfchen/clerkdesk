@@ -1,6 +1,4 @@
 class FinanceCategoriesController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance
   before_action :load_category, :only => [:edit, :update, :destroy]
 

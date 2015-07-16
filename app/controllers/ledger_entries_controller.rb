@@ -1,6 +1,4 @@
 class LedgerEntriesController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance
   before_action :load_ledger
   before_action :load_journalizings, :only => [:new, :create, :edit, :update]
