@@ -9,9 +9,9 @@ class PeopleController < WorkspaceController
   end
 
   def search
-    @people = Person.select(:id, :slug, :last_name, :first_name)
+    @people = Person.select(:id, :slug, :name)
     if params[:term]
-      @people = @people.search(params[:term], :slug, :last_name, :first_name)
+      @people = @people.search(params[:term], :slug, :name)
     end
   end
 
@@ -67,8 +67,7 @@ class PeopleController < WorkspaceController
 
   def person_params
     params.require(:person).permit(
-      :slug, :property,
-      :first_name, :last_name,
+      :slug, :property, :name,
       :country, :division, :postcode, :address, :phone, :email,
       :memo, :joined_at, :left_at)
   end
