@@ -21,14 +21,6 @@ class Finance < ActiveRecord::Base
     length: {maximum: 1024}
   validate :check_period
 
-  def self.find_or_primary(id)
-    if id
-      Finance.find(id)
-    else
-      Finance.where_state(:primary).take!
-    end
-  end
-
   def save_with_fiscal_objects
     self.class.transaction do
       result = save

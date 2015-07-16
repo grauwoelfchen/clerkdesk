@@ -1,6 +1,4 @@
 class FinancesController < WorkspaceController
-  include FinancialPlanner
-
   before_action :load_finance, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -52,7 +50,7 @@ class FinancesController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find_or_primary(params[:id])
+    @finance = Finance.find(params[:id])
   end
 
   def finance_params

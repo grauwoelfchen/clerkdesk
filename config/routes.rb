@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
-    finance_resources = proc do
+    resources :finances do
       resource :budget, only: [:show, :edit, :update]
       resource :ledger
       resources :categories, controller: :finance_categories
@@ -18,12 +18,6 @@ Rails.application.routes.draw do
       resources :journalizings, only: [:index],
         constraints: {type: /income|expense/, format: :json}
     end
-    resources :finances,
-      &finance_resources
-    resource :finance,
-      except: [:new, :create],
-      as:     :primary_finance,
-      &finance_resources
 
     post "/locale", to: "locales#switch", as: :switch_locale
 

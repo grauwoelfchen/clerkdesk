@@ -8,9 +8,9 @@
 
 - action = entry.persisted? ? "update" : "create"
 - if action == "update"
-  - url = financial_path(finance, :finance_ledger_entry, entry)
+  - url = finance_ledger_entry_path(finance, entry)
 - else
-  - url = financial_path(finance, :finance_ledger_entries)
+  - url = finance_ledger_entries_path(finance)
 
 span#finance data-id=@finance.id style="height:0;width:0;opacity:0;"
 
@@ -54,4 +54,4 @@ span#finance data-id=@finance.id style="height:0;width:0;opacity:0;"
     .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("action.destroy"), financial_path(finance, :finance_ledger_entry, entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), finance_ledger_entry_path(finance, entry), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

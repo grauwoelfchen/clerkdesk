@@ -3,10 +3,10 @@ nav.tab.pure-menu.pure-menu-horizontal
     / Finance
     - if controller_name == "finances"
       li.pure-menu-item.pure-menu-selected
-        = link_to t("tab.finance.overview"), financial_path(finance, :finance), class: "pure-menu-link"
+        = link_to t("tab.finance.overview"), finance_path(finance), class: "pure-menu-link"
     - else
       li.pure-menu-item
-        = link_to t("tab.finance.overview"), financial_path(finance, :finance), class: "pure-menu-link"
+        = link_to t("tab.finance.overview"), finance_path(finance), class: "pure-menu-link"
 
     / Ledger
     - if controller_name.in?(%w{ledgers ledger_entries})
@@ -15,23 +15,23 @@ nav.tab.pure-menu.pure-menu-horizontal
         ul.pure-menu-children
           - unless controller_name == "ledgers" && action_name.in?(%w{edit update})
             li.pure-menu-item
-              = link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), financial_path(finance, :edit_finance_ledger), class: "pure-menu-link"
+              = link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(finance), class: "pure-menu-link"
           - unless controller_name == "ledgers" && action_name == "show"
             li.pure-menu-item
-              = link_to t("action.resource.index", resource: LedgerEntry.model_name.human.downcase), financial_path(finance, :finance_ledger), class: "pure-menu-link"
+              = link_to t("action.resource.index", resource: LedgerEntry.model_name.human.downcase), edit_finance_ledger_path(finance), class: "pure-menu-link"
           - if controller_name == "ledger_entries" && defined?(entry)
             - if action_name.in?(%w{edit update})
               li.pure-menu-item
-                = link_to t("action.resource.show", resource: LedgerEntry.model_name.human.downcase), financial_path(finance, :finance_ledger_entry, entry), class: "pure-menu-link"
+                = link_to t("action.resource.show", resource: LedgerEntry.model_name.human.downcase), finance_ledger_entry_path(finance, entry), class: "pure-menu-link"
             - elsif action_name == "show"
               li.pure-menu-item
-                = link_to t("action.resource.edit", resource: LedgerEntry.model_name.human.downcase), financial_path(finance, :edit_finance_ledger_entry, entry), class: "pure-menu-link"
+                = link_to t("action.resource.edit", resource: LedgerEntry.model_name.human.downcase), edit_finance_ledger_entry_path(finance, entry), class: "pure-menu-link"
           - unless action_name.in?(%w{new create})
             li.pure-menu-item
-              = link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), financial_path(finance, :new_finance_ledger_entry), class: "pure-menu-link"
+              = link_to t("action.resource.new", resource: LedgerEntry.model_name.human.downcase), new_finance_ledger_entry_path(finance), class: "pure-menu-link"
     - else
       li.pure-menu-item
-        = link_to Ledger.model_name.human, financial_path(finance, :finance_ledger), class: "pure-menu-link"
+        = link_to Ledger.model_name.human, finance_ledger_path(finance), class: "pure-menu-link"
 
     / FinanceCategory
     - if controller_name == "finance_categories"
@@ -40,13 +40,13 @@ nav.tab.pure-menu.pure-menu-horizontal
         ul.pure-menu-children
           - if action_name == "index"
             li.pure-menu-item
-              = link_to t("action.new"), financial_path(finance, :new_finance_category), class: "pure-menu-link"
+              = link_to t("action.new"), new_finance_category_path(finance), class: "pure-menu-link"
           - else
             li.pure-menu-item
-              = link_to t("action.index"), financial_path(finance, :finance_categories), class: "pure-menu-link"
+              = link_to t("action.index"), finance_categories_path(finance), class: "pure-menu-link"
     - else
       li.pure-menu-item
-        = link_to FinanceCategory.model_name.human.pluralize, financial_path(finance, :finance_categories), class: "pure-menu-link"
+        = link_to FinanceCategory.model_name.human.pluralize, finance_categories_path(finance), class: "pure-menu-link"
 
 
     / Budget
@@ -56,10 +56,10 @@ nav.tab.pure-menu.pure-menu-horizontal
         ul.pure-menu-children
           - if action_name == "show"
             li.pure-menu-item.delimiter
-              = link_to t("action.edit"), financial_path(finance, :edit_finance_budget), class: "pure-menu-link"
+              = link_to t("action.edit"), edit_finance_budget_path(finance), class: "pure-menu-link"
           - else
             li.pure-menu-item
-              = link_to t("action.show"), financial_path(finance, :finance_budget), class: "pure-menu-link"
+              = link_to t("action.show"), finance_budget_path(finance), class: "pure-menu-link"
     - else
       li.pure-menu-item
-        = link_to Budget.model_name.human, financial_path(finance, :finance_budget), class: "pure-menu-link"
+        = link_to Budget.model_name.human, finance_budget_path(finance), class: "pure-menu-link"
