@@ -18,7 +18,7 @@ nav.tab.pure-menu.pure-menu-horizontal
               = link_to t("action.resource.edit", resource: Ledger.model_name.human.downcase), edit_finance_ledger_path(finance), class: "pure-menu-link"
           - unless controller_name == "ledgers" && action_name == "show"
             li.pure-menu-item
-              = link_to t("action.resource.index", resource: LedgerEntry.model_name.human.downcase), edit_finance_ledger_path(finance), class: "pure-menu-link"
+              = link_to t("action.resource.index", resource: LedgerEntry.model_name.human.downcase), finance_ledger_path(finance), class: "pure-menu-link"
           - if controller_name == "ledger_entries" && defined?(entry)
             - if action_name.in?(%w{edit update})
               li.pure-menu-item

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     resources :finances do
       resource :budget, only: [:show, :edit, :update]
-      resource :ledger
+      resource :ledger, only: [:show, :edit, :update]
       resources :categories, controller: :finance_categories
       resources :entries,    controller: :ledger_entries, as: :ledger_entries
 
