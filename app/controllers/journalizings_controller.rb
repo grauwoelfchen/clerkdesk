@@ -17,6 +17,6 @@ class JournalizingsController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find_or_primary(params[:finance_id])
+    @finance = Finance.find(params[:finance_id])
   end
 end

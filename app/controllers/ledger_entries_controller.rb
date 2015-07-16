@@ -11,7 +11,7 @@ class LedgerEntriesController < WorkspaceController
   def create
     @entry = @ledger.entries.build(ledger_entry_params)
     if @entry.save
-      redirect_to financial_url(@finance, :finance_ledger_entry, @entry),
+      redirect_to finance_ledger_entry_url(@finance, @entry),
         :notice => "Entry has been successfully created."
     else
       flash.now[:alert] = "Entry could not be created."
@@ -27,7 +27,7 @@ class LedgerEntriesController < WorkspaceController
 
   def update
     if @entry.update_attributes(ledger_entry_params)
-      redirect_to financial_url(@finance, :finance_ledger_entry, @entry),
+      redirect_to finance_ledger_entry_url(@finance, @entry),
         :notice => "Entry has been successfully updated."
     else
       flash.now[:alert] = "Entry could not be updated."
@@ -41,7 +41,7 @@ class LedgerEntriesController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find_or_primary(params[:finance_id])
+    @finance = Finance.find(params[:finance_id])
   end
 
   def load_journalizings
