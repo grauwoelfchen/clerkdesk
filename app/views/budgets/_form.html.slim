@@ -1,5 +1,5 @@
 - action = budget.persisted? ? "update" : "create"
-= form_for budget, url: financial_path(finance, :finance_budget), html: {class: "form pure-form"} do |f|
+= form_for budget, url: finance_budget_path(finance), html: {class: "form pure-form"} do |f|
   - if budget.errors.any?
     = render "shared/error", resource: budget
   fieldset.pure-group
@@ -7,4 +7,4 @@
   .action
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("action.destroy"), financial_path(finance, :finance_budget), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), finance_budget_path(finance), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}

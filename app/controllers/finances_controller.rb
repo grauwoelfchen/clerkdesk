@@ -50,7 +50,7 @@ class FinancesController < WorkspaceController
   private
 
   def load_finance
-    @finance = Finance.find_or_primary(params[:id])
+    @finance = Finance.find(params[:id])
   end
 
   def finance_params

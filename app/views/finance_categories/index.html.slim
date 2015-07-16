@@ -9,7 +9,7 @@
 
 - content_for :links
   ul.links
-    li= link_to t("action.resource.new", resource: FinanceCategory.model_name.human.downcase), financial_path(@finance, :new_finance_category)
+    li= link_to t("action.resource.new", resource: FinanceCategory.model_name.human.downcase), new_finance_category_path(@finance)
 
 section.block
   .finance-header
@@ -49,5 +49,5 @@ section.block
                 td.updated_at= category.updated_at
                 td.operations
                   ul
-                    li= link_to t("action.edit"), financial_path(@finance, :edit_finance_category, category)
-                    li= link_to t("action.destroy"), financial_path(@finance, :finance_category, category), method: :delete, data: {confirm: "Are you sure?"}
+                    li= link_to t("action.edit"), edit_finance_category_path(@finance, category)
+                    li= link_to t("action.destroy"), finance_category_path(@finance, category), method: :delete, data: {confirm: "Are you sure?"}
