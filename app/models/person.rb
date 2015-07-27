@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   has_one :user, through: :identity, source: :person
 
   friendly_id :slug, use: :slugged
-  paginates_per 30
+  paginates_per 20
   sortable :name, :slug, :property, :created_at, :updated_at
 
   validates :slug,

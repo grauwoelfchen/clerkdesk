@@ -2,7 +2,7 @@
 
 - content_for :header
   h2= Finance::Entry.model_name.human
-  h3= t("subheading.ledger")
+  h3= t("subheading.finance.entry")
 
 - content_for :actions
   = render "finance/shared/actions", report: @report
@@ -14,12 +14,12 @@
     li= link_to t("action.resource.index", resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_path(@report, @account_book)
 
 section.block.entry
-  .finance-header
-    = render "finance/shared/report", report: @report
+  = render "finance/shared/report", report: @report
   .box
     = render "finance/shared/tab", report: @report, account_book: @account_book
     .main.pure-g
       .pure-u-16-24
-        = render "finance/shared/account_book", account_book: @account_book
-        h6= t("action.new")
-        = render "form", report: @report, account_book: @account_book, entry: @entry, journalizings: @journalizings
+        = render "finance/shared/account_book", report: @report, account_book: @account_book
+        .container
+          h6= t("action.new")
+          = render "form", report: @report, account_book: @account_book, entry: @entry, journalizings: @journalizings

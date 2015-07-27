@@ -25,13 +25,7 @@
       = render "finance/shared/tab", report: @report, account_book: @account_book
       .main.pure-g
         .pure-u-16-24
-          = render "finance/shared/account_book", account_book: @account_book
-          nav.switch.pure-menu.pure-menu-horizontal
-            ul.pure-menu-list
-              li.pure-menu-item.pure-menu-selected
-                = link_to t("action.show"), finance_report_account_book_path(@report, @account_book), class: "pure-menu-link"
-              li.pure-menu-item
-                = link_to Finance::Entry.model_name.human, finance_report_account_book_entries_path(@report, @account_book), class: "pure-menu-link"
+          = render "finance/shared/account_book", report: @report, account_book: @account_book
           .container
             .group
               .name
