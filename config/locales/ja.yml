@@ -54,9 +54,10 @@ ja:
       tag: '%{tag} タグの一覧'
   subheading:
     note: プロトコル・メモ
-    finance: 財政記録
-    overview: 概要
-    category: カテゴリ
-    ledger: 台帳・アカウントブック
-    budget: 予算
+    finance:
+      report: 財政記録
+      overview: 概要
+      category: 分類
+      account_book: アカウントブック
+      budget: 予算
     person: メンバー

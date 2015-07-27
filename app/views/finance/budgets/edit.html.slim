@@ -1,0 +1,23 @@
+- breadcrumb :'finance/budget', @report, @budget
+
+- content_for :header
+  h2= Finance::Budget.model_name.human
+  h3= t("subheading.finance.budget")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.show", resource: Finance::Budget.model_name.human.downcase), finance_report_budget_path(@report)
+
+.finance.budget
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report, budget: @budget
+      .main.pure-g
+        .pure-u-16-24
+          h5= t("action.edit")
+          hr
+          = render "form", report: @report, budget: @budget

@@ -112,14 +112,12 @@ pagination = @block {
   text-decoration none
 }
 
-div.pagination
-  margin 2px 0 0 0
-  > div
-    vertical-align middle
+div.pagination > div
+  vertical-align middle
 
 nav.pagination,
 .pagination-info
-  margin 6px 0 0 1px
+  margin 4px 0 0 1px
   &.right
     text-align    right
     margin-bottom 0
@@ -164,8 +162,14 @@ section.block
     border     medium none
     height     0.16em
     margin     10px 0 21px 0
+  label
+    display      inline-block
+    margin-right 13px
+    min-width    90px
+    text-align   right
 
-section.block > .container
+
+section.block .container
   margin 9px 0
   legend
     {legend-style}
@@ -200,7 +204,7 @@ section.block > .container
 .box
   margin 7px 0 13px 0
   .main
-    padding 18px 3px 36px 3px
+    padding 11px 3px 36px 3px
     h5
       margin         8px 0 13px 1px
       vertical-align middle
@@ -266,8 +270,25 @@ nav.tab
     padding       0
     border        1px solid #E3E3E3
     border-radius 0 0 2px 2px
-    li.delimiter
-      border-top 1px solid #EEEEEE
+
+nav.switch
+  ul.pure-menu-list
+    background #EBE7E4
+    li.pure-menu-item
+      float  left
+      margin 0
+      a
+        text-decoration none
+        display         inline-block
+        padding         2px 9px
+        &:hover
+          background #DDD7D2
+    li.pure-menu-selected
+      a
+        background #B8AEA4
+        &:hover
+          background #B8AEA4
+
 
 // shared
 ul.actions
@@ -277,17 +298,9 @@ ul.actions
     display    inline
     list-style none
 
-div.actions
-  margin 21px 0 18px 1px
-  input[type="submit"].button,
-  button.button,
-  a.button
-    margin-right 47px
-
-  .button-error
-    color            #FFFFFF
-    background-color $error-color
-
+li.divider
+  border-top 1px solid #EEEEEE
+  height 0
 
 span.tag
   background    #E0EAF1

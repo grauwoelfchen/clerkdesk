@@ -1,0 +1,23 @@
+- breadcrumb :'finance/category', @report, @category
+
+- content_for :header
+  h2= Finance::Category.model_name.human
+  h3= t("subheading.finance.category")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.index", resource: Finance::Category.model_name.human.pluralize.downcase), finance_report_categories_path(@report)
+    li= link_to t("action.resource.new",   resource: Finance::Category.model_name.human.downcase), new_finance_report_category_path(@report)
+
+.finance.category
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report
+      .main.pure-g
+        .pure-u-1-1
+          h5= t("action.edit")
+          = render "form", report: @report, category: @category

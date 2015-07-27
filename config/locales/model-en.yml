@@ -2,8 +2,11 @@
 en:
   activerecord:
     models:
-      finance_category: Category
-      ledger_entry: Entry
+      finance/report: Finance
+      finance/category: Category
+      finance/account_book: Account book
+      finance/budget: Budget
+      finance/entry: Entry
       person: Member
     attributes:
       note:
@@ -11,19 +14,20 @@ en:
         content: Content
         created_at: Created
         updated_at: Updated
-      finance:
+      finance/report:
         created_at: Created
         updated_at: Updated
-      finance_category:
+      finance/category:
         created_at: Created
         updated_at: Updated
-      budget:
-        title: Title
+      finance/account_book:
+        created_at: Created
+        updated_at: Updated
+      finance/entry:
+        created_at: Created
+        updated_at: Updated
       person:
         joined_at: Joined
-        created_at: Created
-        updated_at: Updated
-      ledger_entry:
         created_at: Created
         updated_at: Updated
     errors:
@@ -31,7 +35,7 @@ en:
         left_at:
           after_field: 'must be after %{field}'
       models:
-        finance:
+        finance/report:
           attributes:
             started_at:
               before_than_finished_at: 'must be before than finished_at'

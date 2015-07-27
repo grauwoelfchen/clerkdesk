@@ -2,6 +2,8 @@ crumb :root do
   link t("crumb.desktop"), root_path
 end
 
+# notes
+
 crumb :notes do
   link Note.model_name.human.pluralize, notes_path
 end
@@ -20,51 +22,69 @@ crumb :note do |note|
   parent :notes
 end
 
-crumb :finances do
-  link Finance.model_name.human.pluralize, finances_path
+# finance
+
+crumb :'finance/reports' do
+  link Finance::Report.model_name.human.pluralize, finance_reports_path
 end
 
-crumb :finance do |finance|
-  unless finance.persisted?
+crumb :'finance/report' do |report|
+  unless report.persisted?
     link t("crumb.new"), nil
   else
-    link finance.name, finance
+    link report.name, [:overview, :finance, report]
   end
-  parent :finances
+  parent :'finance/reports'
 end
 
-crumb :finance_categories do |finance|
-  link FinanceCategory.model_name.human.pluralize, finance_categories_path(finance)
-  parent :finance, finance
+crumb :'finance/categories' do |report|
+  link Finance::Category.model_name.human.pluralize, finance_report_categories_path(report)
+  parent :'finance/report', report
 end
 
-crumb :finance_category do |finance, category|
+crumb :'finance/category' do |report, category|
   unless category.persisted?
     link t("crumb.new"), nil
   else
-    link category.name, finance_category_path(finance, category)
+    link category.name, finance_report_category_path(report, category)
   end
-  parent :finance_categories, finance
+  parent :'finance/categories', report
 end
 
-crumb :ledger do |finance|
-  link Ledger.model_name.human, finance_ledger_path(finance)
-  parent :finance, finance
+crumb :'finance/account_books' do |report|
+  link Finance::AccountBook.model_name.human.pluralize, finance_report_account_books_path(report)
+  parent :'finance/report', report
 end
 
-crumb :ledger_entry do |finance, entry|
+crumb :'finance/account_book' do |report, account_book|
+  unless account_book.persisted?
+    link t("crumb.new"), nil
+  else
+    link account_book.name, finance_report_account_book_path(report, account_book)
+  end
+  parent :'finance/account_books', report
+end
+
+crumb :'finance/entries' do |report, account_book|
+  link Finance::Entry.model_name.human.pluralize, finance_report_account_book_entries_path(report, account_book)
+  parent :'finance/account_book', report, account_book
+end
+
+crumb :'finance/entry' do |report, account_book, entry|
   unless entry.persisted?
     link t("crumb.new"), nil
   else
-    link entry.title, finance_ledger_entry_path(finance, entry)
+    link entry.title, finance_report_account_book_entry_path(report, account_book, entry)
   end
-  parent :ledger, finance
+  parent :'finance/entries', report, account_book
 end
 
-crumb :budget do |finance|
-  link Budget.model_name.human, finance_budget_path(finance)
-  parent :finance, finance
+crumb :'finance/budget' do |report|
+  link Finance::Budget.model_name.human, finance_report_budget_path(report)
+  parent :'finance/report', report
 end
+
+# people
 
 crumb :people do
   link Person.model_name.human.pluralize, people_path
@@ -78,6 +98,8 @@ crumb :person do |person|
   end
   parent :people
 end
+
+# users
 
 crumb :users do
   link LockerRoom::User.model_name.human.pluralize, users_path

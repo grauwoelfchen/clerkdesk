@@ -1,0 +1,85 @@
+- breadcrumb :'finance/entries', @report, @account_book
+
+- content_for :script
+  = javascript_include_tag 'autoNumeric/autoNumeric'
+
+- content_for :header
+  h2= Finance::Entry.model_name.human
+  h3= t("subheading.finance.account_book")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.index", resource: Finance::AccountBook.model_name.human.downcase), finance_report_account_books_path(@report)
+    li= link_to t("action.resource.edit",  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
+    li= link_to t("action.resource.new",   resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_book_entry_path(@report, @account_book)
+
+.finance.account_book
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report, account_book: @account_book
+      .main.pure-g
+        .pure-u-1-1
+          = render "finance/shared/account_book", account_book: @account_book
+
+          nav.switch.pure-menu.pure-menu-horizontal
+            ul.pure-menu-list
+              li.pure-menu-item
+                = link_to t("action.show"), finance_report_account_book_path(@report, @account_book), class: "pure-menu-link"
+              li.pure-menu-item.pure-menu-selected
+                = link_to Finance::Entry.model_name.human, finance_report_account_book_entries_path(@report, @account_book), class: "pure-menu-link"
+
+          .container
+            = render "shared/pagination", resource: @entries, info: true
+
+            table.table.pure-table.pure-table-bordered
+              thead
+                tr
+                  th
+                    span.attribute
+                      = Finance::Category.model_name.human
+                    = sort_links_for(:journalizing_id)
+                  th
+                    span.attribute
+                      = Finance::Entry.human_attribute_name(:title)
+                    = sort_links_for(:title)
+                  th
+                    span.attribute
+                      = Finance::Entry.human_attribute_name(:type)
+                    = sort_links_for(:type)
+                  th
+                    span.attribute
+                      = Finance::Entry.human_attribute_name(:total_amount)
+                    = sort_links_for(:total_amount)
+                  th
+                    span.attribute
+                      = Finance::Entry.human_attribute_name(:created_at)
+                    = sort_links_for(:created_at)
+                  th
+                    span.attribute
+                      = Finance::Entry.human_attribute_name(:updated_at)
+                    = sort_links_for(:updated_at, :desc)
+                  th
+              tbody
+                - @entries.each do |entry|
+                  tr
+                    td.category
+                      - if entry.category
+                        = link_to entry.category.name, finance_report_account_book_entry_path(@report, @account_book, entry)
+                    td.title
+                      = link_to entry.title, finance_report_account_book_entry_path(@report, @account_book, entry)
+                    td.type
+                      span class="label label-#{entry.type}"= entry.human_type
+                    td.total_amount
+                      span= entry.total_amount
+                    td.created_at= entry.created_at
+                    td.updated_at= entry.updated_at
+                    td.operations
+                      ul
+                        li= link_to t("action.edit"), edit_finance_report_account_book_entry_path(@report, @account_book, entry)
+                        li= link_to t("action.destroy"), nil, method: :delete, data: {confirm: "Are you sure?"}
+
+            = render "shared/pagination", resource: @entries, info: false
