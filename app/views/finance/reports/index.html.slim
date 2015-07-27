@@ -1,0 +1,60 @@
+- breadcrumb :'finance/reports'
+
+- content_for :header
+  h2= Finance::Report.model_name.human
+  h3= t("subheading.finance.report")
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    ul.pure-menu-list
+      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+        = link_to t("action.resource.index", resource: Finance::Report.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
+        ul.pure-menu-children
+          li.pure-menu-item
+            = link_to t("action.new"), new_finance_report_path, class: "pure-menu-link"
+
+= render "shared/pagination", resource: @reports, info: true
+
+.finance.report
+  table.table.pure-table.pure-table-horizontal
+    thead
+      tr
+        th
+        th
+          span.attribute
+            = Finance::Report.human_attribute_name(:name)
+          = sort_links_for(:name)
+        th
+          span.attribute
+            = Finance::Report.human_attribute_name(:state)
+          = sort_links_for(:state)
+        th
+          span.attribute
+            = Finance::Report.human_attribute_name(:description)
+          = sort_links_for(:description)
+        th
+          span.attribute
+            = Finance::Report.human_attribute_name(:created_at)
+          = sort_links_for(:created_at)
+        th
+          span.attribute
+            = Finance::Report.human_attribute_name(:updated_at)
+          = sort_links_for(:updated_at, :desc)
+        th
+    tbody
+      - @reports.each do |report|
+        tr
+          td.check
+            - if report.state_primary?
+              i.fa.fa-check
+          td.name= link_to truncate(report.name, length: 20), overview_finance_report_path(report)
+          td.state= report_label(report, :state)
+          td.description= truncate(report.description, length: 25)
+          td.created_at= report.created_at
+          td.updated_at= report.updated_at
+          td.operations
+            ul
+              li= link_to t("action.edit"), edit_finance_report_path(report)
+              li= link_to t("action.destroy"), finance_report_path(report), method: :delete, data: {confirm: "Are you sure?"}
+
+  = render "shared/pagination", resource: @reports, info: false

@@ -21,15 +21,15 @@ if Apartment::Tenant.current == "public"
 end
 
 if Apartment::Tenant.current == "grauwoelfchen"
-  finance_params = {
+  report_params = {
     name:        "2015.05 Accounting",
     description: "Foo",
     started_at:  Time.new(2015,04, 01, 00, 00, 00, "+00:00"),
     finished_at: Time.new(2016,03, 31, 23, 59, 59, "+00:00"),
     state:       :primary
   }
-  finance = Finance.new(finance_params)
-  finance.save_with_fiscal_objects
+  report = Finance::Report.new(report_params)
+  report.save_with_fiscal_objects
 
   note_params = {
     title: "05.2015 13th Meeting",

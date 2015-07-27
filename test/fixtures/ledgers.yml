@@ -1,8 +1,0 @@
-general_ledger:
-  finance: general_finance
-  title: 'General finance ledger'
-  description: ''
-special_ledger:
-  finance: special_finance
-  title: 'Special finance ledger'
-  description: ''

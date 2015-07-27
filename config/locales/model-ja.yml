@@ -3,11 +3,11 @@ ja:
   activerecord:
     models:
       note: ノート
-      finance: 会計
-      finance_category: カテゴリ
-      ledger: 台帳
-      budget: 予算
-      ledger_entry: エントリ
+      finance/report: 会計
+      finance/category: 分類
+      finance/account_book: 帳簿
+      finance/budget: 予算
+      finance/entry: エントリ
       person: メンバー
       locker_room/user: 管理者
     attributes:
@@ -16,9 +16,7 @@ ja:
         content: 本文
         created_at: 作成日時
         updated_at: 更新日時
-      budget:
-        title: タイトル
-      finance:
+      finance/report:
         name: 名前
         description: 説明
         started_at: 開始
@@ -26,12 +24,21 @@ ja:
         state: 状態
         created_at: 作成日時
         updated_at: 更新日時
-      finance_category:
+      finance/budget:
+        description: 説明
+        memo: メモ
+      finance/category:
         name: 名前
         type: 種類
         created_at: 作成日時
         updated_at: 更新日時
-      ledger_entry:
+      finance/account_book:
+        name: 名前
+        description: 説明
+        memo: メモ
+        created_at: 作成日時
+        updated_at: 更新日時
+      finance/entry:
         title: タイトル
         type: 種類
         total_amount: 金額
@@ -58,7 +65,7 @@ ja:
         left_at:
           after_field: 'は%{field}より後に設定してください'
       models:
-        finance:
+        finance/report:
           attributes:
             started_at:
               before_than_finished_at: 'は終了より前に設定してください'
@@ -66,7 +73,7 @@ ja:
     type:
       expense: 支出
       income: 収入
-    finance:
+    finance/report:
       state:
         closed: 終了
         opened: 有効

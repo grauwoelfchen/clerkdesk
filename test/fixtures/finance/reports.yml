@@ -1,0 +1,10 @@
+general_report:
+  name: "General finance report"
+  description: "General!"
+  started_at: <%= Time.new(2015, 05, 01, 10, 00, 00, "-00:00") %>
+  finished_at: <%= Time.new(2016, 05, 01, 10, 00, 00, "-00:00") %>
+special_report:
+  name: "Special finance report"
+  description: "Special!"
+  started_at: <%= Time.new(2015, 05, 01, 10, 00, 00, "-00:00") %>
+  finished_at: <%= Time.new(2016, 05, 01, 10, 00, 00, "-00:00") %>

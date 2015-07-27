@@ -1,0 +1,65 @@
+- breadcrumb :'finance/budget', @report, @budget
+
+- content_for :header
+  h2= Finance::Budget.model_name.human
+  h3= t("subheading.finance.budget")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.edit", resource: Finance::Budget.model_name.human.downcase), edit_finance_report_budget_path(@report)
+
+.finance.budget
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report, budget: @budget
+      .main.pure-g
+        .pure-u-1-1
+          h5= Finance::Budget.model_name.human
+        .pure-u-1-2
+          .field.left
+            h6= Finance::Category.human_types[:expense]
+            table.table.pure-table.pure-table-bordered
+              thead
+                tr
+                  th Category
+                  th Current amount
+                  th Estimated amount
+              tbody
+                tr
+                  td Network
+                  td 10,202,000
+                  td 20,200,200
+                tr
+                  td Event
+                  td 302,000
+                  td 200,200
+                tr
+                  td Carryover
+                  td 302,000
+                  td 200,200
+        .pure-u-1-2
+          .field.right
+            h6= Finance::Category.human_types[:income]
+            table.table.pure-table.pure-table-bordered
+              thead
+                tr
+                  th Category
+                  th Current amount
+                  th Estimated amount
+              tbody
+                tr
+                  td Network
+                  td 10,202,000
+                  td 20,200,200
+                tr
+                  td Event
+                  td 302,000
+                  td 200,200
+                tr
+                  td Carryover
+                  td 302,000
+                  td 200,200

@@ -53,10 +53,11 @@ en:
     filter_by:
       tag: 'Filtered by %{tag}'
   subheading:
-    protokoll: Protokoll, Memo
-    finance: Fiscal record
-    overview: Overview
-    category: Category
-    ledger: Ledger, Accounting book
-    budget: Budget
+    note: Protokoll, Memo
+    finance:
+      report: Fiscal record
+      overview: Overview
+      category: Category
+      account_book: Account book
+      budget: Budget
     person: Member
