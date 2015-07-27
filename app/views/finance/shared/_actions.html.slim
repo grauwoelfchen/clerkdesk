@@ -1,0 +1,11 @@
+nav.btn.pure-menu.pure-menu-horizontal
+  ul.pure-menu-list
+    li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+      = link_to t("action.resource.show", resource: Finance::Report.model_name.human.downcase), "#", class: "pure-menu-link"
+      ul.pure-menu-children
+        li.pure-menu-item
+          = link_to t("action.index"), finance_reports_path, class: "pure-menu-link"
+        li.pure-menu-item
+          = link_to t("action.edit"), edit_finance_report_path(report), class: "pure-menu-link"
+        li.pure-menu-item.delimiter
+          = link_to t("action.new"), new_finance_report_path, class: "pure-menu-link"

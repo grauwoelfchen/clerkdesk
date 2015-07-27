@@ -1,0 +1,8 @@
+general_journalizing_miscellaneous_expense:
+  account_book: general_money
+  category: miscellaneous_expense
+  entries_count: 2
+general_journalizing_assistance:
+  account_book: general_money
+  category: assistance
+  entries_count: 1

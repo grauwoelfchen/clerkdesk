@@ -9,14 +9,20 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
-    resources :finances do
-      resource :budget, only: [:show, :edit, :update]
-      resource :ledger, only: [:show, :edit, :update]
-      resources :categories, controller: :finance_categories
-      resources :entries,    controller: :ledger_entries, as: :ledger_entries
+    scope module: :finance, as: :finance do
+      resources :reports, path: "finances", except: [:show] do
+        # finance_reports
+        get "/overview", action: :show, on: :member
 
-      resources :journalizings, only: [:index],
-        constraints: {type: /income|expense/, format: :json}
+        resource :budget, only: [:show, :edit, :update]
+
+        resources :categories
+        resources :account_books do
+          resources :entries
+          resources :journalizings, only: [:index],
+            constraints: {type: /income|expense/, format: :json}
+        end
+      end
     end
 
     post "/locale", to: "locales#switch", as: :switch_locale

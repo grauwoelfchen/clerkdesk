@@ -1,0 +1,20 @@
+miscellaneous_expense:
+  report: general_report
+  type: <%= :expense %>
+  name: 'Miscellaneous expense'
+correspondence:
+  report: general_report
+  type: <%= :expense %>
+  name: 'Correspondence'
+event:
+  report: general_report
+  type: <%= :expense %>
+  name: 'Event'
+assistance:
+  report: general_report
+  type: <%= :income %>
+  name: 'Assistance'
+membepship_fee:
+  report: general_report
+  type: <%= :income %>
+  name: 'Membership fee'

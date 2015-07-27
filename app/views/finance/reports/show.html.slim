@@ -1,0 +1,100 @@
+- breadcrumb :'finance/report', @report
+
+- content_for :header
+  h2= Finance::Report.model_name.human
+  h3= t("subheading.finance.overview")
+
+- content_for :actions
+  nav.btn.pure-menu.pure-menu-horizontal
+    = render "finance/shared/actions", report: @report
+
+.finance.report
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report
+      .main.pure-g
+        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+          .field.left
+            h5 Current status
+            table.table.pure-table.pure-table-bordered
+              thead
+                tr
+                  th Category
+                  th Current
+                  th Budget
+              tbody
+                tr
+                  td XXXXX
+                  td 103204
+                  td 39302040
+                tr
+                  td XXXXX
+                  td 103204
+                  td 39302040
+                tr
+                  td XXXXX
+                  td 12200
+                  td 22000
+                tr
+                  td XXXXX
+                  td 3200
+                  td 202000
+                tr
+                  td XXXXX
+                  td 3200
+                  td 202000
+            ul
+              li.more
+                = link_to "more", "#"
+        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+          .field.left
+            h5 Recent entries
+            table.table.pure-table.pure-table-bordered
+              thead
+                tr
+                  th Datetime
+                  th Category
+                  th Mony
+                  th Ledger
+                  th Memo
+              tbody
+                tr
+                  td 2015/05/13
+                  td XXXX
+                  td -204
+                  td @wallet
+                  td NNNNNNN
+                tr
+                  td 2015/04/29
+                  td XXXX
+                  td 10200
+                  td @bank
+                  td
+                tr
+                  td 2015/04/10
+                  td XXXX
+                  td -124
+                  td @wallet
+                  td
+                tr
+                  td 2015/04/03
+                  td XXXX
+                  td -10394
+                  td @wallet
+                  td NNNNNN...
+                tr
+                  td 2015/04/01
+                  td XXXX
+                  td -10394
+                  td @wallet
+                  td NNNNNN...
+            ul
+              li.more
+                = link_to "more", "#"
+        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
+          .field
+            h5 Total assets
+            .wall.left
+              p.asset
+                | 20,2292,0293

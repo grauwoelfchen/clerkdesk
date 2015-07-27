@@ -1,0 +1,8 @@
+second_piano_budget:
+  report: general_report
+  description: 'Second piano budget'
+  memo: ''
+unicycle_budget:
+  report: special_report
+  description: 'Unicycle budget'
+  memo: ''

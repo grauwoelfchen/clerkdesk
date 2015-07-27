@@ -1,0 +1,68 @@
+- breadcrumb :'finance/entry', @report, @account_book, @entry
+
+- content_for :header
+  h2= Finance::Entry.model_name.human
+  h3= t("subheading.finance.entry")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.edit",  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
+    li= link_to t("action.resource.index", resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_path(@report, @account_book)
+    li= link_to t("action.resource.edit",  resource: Finance::Entry.model_name.human.downcase), edit_finance_report_account_book_entry_path(@report, @account_book, @entry)
+    li= link_to t("action.resource.new",   resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_book_entry_path(@report, @account_book)
+
+section.block.entry
+  .finance-header
+    = render "finance/shared/report", report: @report
+  .box
+    = render "finance/shared/tab", report: @report, account_book: @account_book, entry: @entry
+    .main.pure-g
+      .pure-u-16-24
+        = render "finance/shared/account_book", account_book: @account_book
+        h6= Finance::AccountBook.model_name.human
+        hr
+        legend= t("legend.id")
+        .group
+          .category
+            = label_tag Finance::AccountBook.human_attribute_name(:category_id)
+            - if @entry.category
+              = @entry.category.name
+        .group
+          .title
+            = label_tag Finance::AccountBook.human_attribute_name(:title)
+            = @entry.title
+        .group
+          .type
+            = label_tag Finance::AccountBook.human_attribute_name(:type)
+            span class="label label-#{@entry.type}"
+              = @entry.type
+        .group
+          .total_amount
+            = label_tag Finance::AccountBook.human_attribute_name(:total_amount)
+            span#ledger_entry_total_amount
+              = @entry.total_amount
+        .group
+          .memo
+            = label_tag Finance::AccountBook.human_attribute_name(:memo)
+            = simple_format(@entry.memo, {}, wrapper_tag: 'span')
+        .group
+          .people
+            = label_tag Finance::AccountBook.human_attribute_name(:people)
+            - @entry.people.each do |person|
+              span.tag
+                = link_to person.label, person_path(person)
+        .group
+          .created_at
+            = label_tag Finance::AccountBook.human_attribute_name(:created_at)
+            = @entry.created_at
+        .group
+          .updated_at
+            = label_tag Finance::AccountBook.human_attribute_name(:updated_at)
+            = @entry.updated_at
+        .actions
+          = link_to t("action.edit"), edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: "pure-button"
+          | &nbsp;&nbsp;
+          = link_to t("action.destroy"), finance_report_account_book_entry_path(@report, @account_book, @entry), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}

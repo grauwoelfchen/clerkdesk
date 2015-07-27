@@ -8,7 +8,6 @@ html lang=current_locale
     title= t("app.name")
     = stylesheet_link_tag "application", media: "all"
     = yield :style
-    = javascript_include_tag "application"
     = csrf_meta_tags
     link type="text/plain" rel="author" href="/humans.txt"
   body#content
@@ -71,4 +70,5 @@ html lang=current_locale
               li= link_to 'policy', root_path
             p.copyright
                | &#0169; 2015 Yasuhiro Asaka All rights reserved.
+  = javascript_include_tag "application"
   = yield :script
