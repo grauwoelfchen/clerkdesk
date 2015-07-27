@@ -1,0 +1,16 @@
+general_money:
+  report: general_report
+  name: 'Money'
+  description: ''
+general_bank:
+  report: general_report
+  name: 'Bank'
+  description: ''
+special_money:
+  report: special_report
+  name: 'Mony'
+  description: ''
+special_bank:
+  report: special_report
+  name: 'Bank'
+  description: ''

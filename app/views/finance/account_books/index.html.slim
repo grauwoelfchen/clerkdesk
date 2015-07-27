@@ -1,0 +1,53 @@
+- breadcrumb :'finance/account_books', @report
+
+- content_for :header
+  h2= Finance::AccountBook.model_name.human
+  h3= t("subheading.finance.account_book")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.new", resource: Finance::AccountBook.model_name.human.downcase), new_finance_report_account_book_path(@report)
+
+.finance.account_book
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report
+      .main.pure-g
+        .pure-u-1-1
+          h5= Finance::AccountBook.model_name.human.pluralize
+          = render "shared/pagination", resource: @account_books, info: true
+          table.table.pure-table.pure-table-horizontal
+            thead
+              tr
+                th
+                  span.attribute
+                    = Finance::AccountBook.human_attribute_name(:name)
+                  = sort_links_for(:name)
+                th
+                  span.attribute
+                    = Finance::AccountBook.human_attribute_name(:description)
+                  = sort_links_for(:description)
+                th
+                  span.attribute
+                    = Finance::AccountBook.human_attribute_name(:created_at)
+                  = sort_links_for(:created_at)
+                th
+                  span.attribute
+                    = Finance::AccountBook.human_attribute_name(:updated_at)
+                  = sort_links_for(:updated_at, :desc)
+                th
+            tbody
+              - @account_books.each do |account_book|
+                tr
+                  td= link_to truncate(account_book.name, length: 18), finance_report_account_book_path(@report, account_book)
+                  td= truncate(account_book.description, length: 27)
+                  td.created_at= account_book.created_at
+                  td.updated_at= account_book.updated_at
+                  td.operations
+                    ul
+                      li= link_to t("action.edit"), edit_finance_report_account_book_path(@report, account_book)
+                      li= link_to t("action.destroy"), finance_report_account_book_path(@report, account_book), method: :delete, data: {confirm: "Are you sure?"}

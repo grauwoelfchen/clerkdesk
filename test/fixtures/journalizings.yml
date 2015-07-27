@@ -1,8 +1,0 @@
-general_journalizing_miscellaneous_expense:
-  ledger: general_ledger
-  category: miscellaneous_expense
-  entries_count: 2
-general_journalizing_assistance:
-  ledger: general_ledger
-  category: assistance
-  entries_count: 1

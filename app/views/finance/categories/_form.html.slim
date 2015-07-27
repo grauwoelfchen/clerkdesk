@@ -1,0 +1,12 @@
+= form_for [:finance, report, category], html: {class: "form pure-form"} do |f|
+  - if category.errors.any?
+    = render "shared/error", resource: category
+  fieldset.group.pure-group
+    = f.text_field :name, class: "pure-input-1", placeholder: "Name"
+  fieldset.group.pure-group
+    = f.select :type, Finance::Category.human_types.invert
+  .actions
+    - action = category.persisted? ? "update" : "create"
+    = f.submit t("action.#{action}"), class: "pure-button button"
+    - if action == "update"
+      = link_to t("action.destroy"), finance_report_category_path(report, category), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}

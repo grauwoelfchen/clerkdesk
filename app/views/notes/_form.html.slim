@@ -5,7 +5,6 @@
   = javascript_include_tag "jquery-tag-editor/jquery.caret.min"
   = javascript_include_tag "jquery-tag-editor/jquery.tag-editor.min"
 
-- action = note.persisted? ? "update" : "create"
 = form_for note, html: {class: "form pure-form"} do |f|
   - if note.errors.any?
     = render "shared/error", resource: note
@@ -13,7 +12,8 @@
     = f.text_field :title, class: "pure-input-1", placeholder: "A title"
     = f.text_area :content, class: "pure-input-1", rows: 18, placeholder: "Content"
   = f.text_field :tag_list, class: "pure-input-1", value: note.tag_list.join(","), placeholder: "Tag"
-  .action
+  .actions
+    - action = note.persisted? ? "update" : "create"
     = f.submit t("action.#{action}"), class: "pure-button button"
     - if action == "update"
-      = link_to t("action.destroy"), note_path(note), class: "pure-button button button-error", data: {method: :delete, confirm: "Are you sure?"}
+      = link_to t("action.destroy"), note_path(note), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}

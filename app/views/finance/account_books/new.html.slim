@@ -1,0 +1,22 @@
+- breadcrumb :'finance/account_book', @report, @account_book
+
+- content_for :header
+  h2= Finance::AccountBook.model_name.human
+  h3= t("subheading.finance.account_book")
+
+- content_for :actions
+  = render "finance/shared/actions", report: @report
+
+- content_for :links
+  ul.links
+    li= link_to t("action.resource.index", resource: Finance::AccountBook.model_name.human.pluralize.downcase), finance_report_account_books_path(@report)
+
+.finance.account_book
+  section.block
+    = render "finance/shared/report", report: @report
+    .box
+      = render "finance/shared/tab", report: @report, account_book: @account_book
+      .main.pure-g
+        .pure-u-1-1
+          h5= t("action.new")
+          = render "form", report: @report, account_book: @account_book

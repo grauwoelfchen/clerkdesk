@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PersonTest < ActiveSupport::TestCase
   locker_room_fixtures(:teams, :users, :memberships)
