@@ -14,6 +14,9 @@
             = link_to t("action.index"), people_path, class: "pure-menu-link"
           li.pure-menu-item
             = link_to t("action.edit"), edit_person_path(@person), class: "pure-menu-link"
+          li.pure-menu-item.delimiter
+          li.pure-menu-item
+            = link_to t("action.new"), new_person_path(@person), class: "pure-menu-link"
 
 .person
   section.block.pure-g
