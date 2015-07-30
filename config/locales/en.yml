@@ -52,6 +52,9 @@ en:
   result:
     filter_by:
       tag: 'Filtered by %{tag}'
+  heading:
+    current_status: Current status
+    recent_entries: Recent entries
   subheading:
     note: Protokoll, Memo
     finance:
@@ -62,3 +65,8 @@ en:
       budget: Budget
       entry: Entry
     person: Member
+  misc:
+    status: Status
+    datetime: Datetime
+    money: Money
+    memo: Memo
