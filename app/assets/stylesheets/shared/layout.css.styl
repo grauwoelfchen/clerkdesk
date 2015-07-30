@@ -1,8 +1,16 @@
 @import "_mixin.css.styl"
 
+*::before,
+*::after
+  box-sizing border-box
+
+*
+  box-sizing border-box
+
 body
   background-color #FAF9F8
-  color #777777
+  color            #777777
+  min-width        320px
 
 .pure-img-responsive
   max-width 100%
@@ -139,16 +147,26 @@ body
 
 $width = 212px
 
+#content
+  position     relative
+  padding-left 0
+  &.active
+    #menu
+      left  $width
+      width $width
+    .menu-link
+      left $width
+
 #content,
 #menu,
 .menu-link
-  -webkit-transition all 0.2s ease-out
-  -moz-transition    all 0.2s ease-out
-  -ms-transition     all 0.2s ease-out
-  -o-transition      all 0.2s ease-out
-  transition         all 0.2s ease-out
+  -webkit-transition all 0.2s ease-out 0s
+  -moz-transition    all 0.2s ease-out 0s
+  -ms-transition     all 0.2s ease-out 0s
+  -o-transition      all 0.2s ease-out 0s
+  transition         all 0.2s ease-out 0s
 
-#menu_link
+.menu-link
   position fixed
   display  block
   top      0
@@ -160,14 +178,14 @@ $width = 212px
   height     1.7em
   padding    1.1em
   span
-    position   relative
-    display    block
-    margin     0.7em 0 0 0
+    position relative
+    display  block
+    margin   0.7em 0 0 0
   span:before,
   span:after
-    position         absolute
-    top              -0.49em
-    content          " "
+    position absolute
+    top      -0.49em
+    content  " "
   span:after
     top 0.55em
   span,
@@ -193,16 +211,6 @@ $width = 212px
     display inline-block
     padding 0
     margin  0 7px 0 0
-
-#content
-  position     relative
-  padding-left 0
-  &.active
-    #menu
-      left  $width
-      width $width
-    .menu-link
-      left $width
 
 #menu
   margin-left -($width)
@@ -236,9 +244,9 @@ $width = 212px
     background #4C331A
   .pure-menu-heading
     text-align     left
-    padding        33px 0 0 18px
+    padding        34px 0 0 19px
     display        block
-    height         53px
+    height         85px
     font-size      18px
     color          #FFFFFF
     margin         0
