@@ -1,15 +1,17 @@
-(function($, moment) {
+(function($) {
   'use strict';
+
+  if (window.moment == undefined) { return; }
 
   moment.locale('ja', {
     longDateFormat: {
-      LT:   "HH:mm",
-      LTS:  "HH:mm:ss",
-      L:    "YYYY-MM-DD",
-      LL:   "YYYY年 MM月 DD日",
-      LLL:  "YYYY MMMM D LT",
-      LLLL: "YYYY年 M月 D日 a h:mm:s dddd",
-      LLLL: "YYYY年MM月DD日 hh:mm:ss dddd"
+      LT:   'HH:mm'
+    , LTS:  'HH:mm:ss'
+    , L:    'YYYY-MM-DD'
+    , LL:   'YYYY年 MM月 DD日'
+    , LLL:  'YYYY MMMM D LT'
+    , LLLL: 'YYYY年 M月 D日 a h:mm:s dddd'
+    , LLLL: 'YYYY年MM月DD日 hh:mm:ss dddd'
     }
   });
 
@@ -20,9 +22,9 @@
       moment.locale(locale);
 
       var datetime =
-        ".created_at, .updated_at," +
-        ".started_at, .finished_at," +
-        ".joined_at, .left_at"
+        '.created_at,.updated_at,' +
+        '.started_at,.finished_at,' +
+        '.joined_at,.left_at'
       $(datetime).each(function() {
         var field = $(this)
           , value = moment.utc(field.html(), [
@@ -34,7 +36,8 @@
           value.local();
           var data = field.attr('data-format');
           switch (data) {
-            case 'relative', 'fromNow':
+            case 'relative':
+            case 'fromNow':
               field.html(value.fromNow());
               break;
             case 'calendar':
@@ -54,6 +57,6 @@
       localizeTime();
     };
     $(document).ready(startup);
-    //$(document).on("page:load", startup);
+    //$(document).on('page:load', startup);
   });
-})(jQuery, moment);
+})(jQuery);

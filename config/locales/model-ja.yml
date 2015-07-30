@@ -7,7 +7,7 @@ ja:
       finance/category: 分類
       finance/account_book: 帳簿
       finance/budget: 予算
-      finance/entry: エントリ
+      finance/entry: 記帳
       person: メンバー
       locker_room/user: 管理者
     attributes:
