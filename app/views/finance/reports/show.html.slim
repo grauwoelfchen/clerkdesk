@@ -1,5 +1,8 @@
 - breadcrumb :'finance/report', @report
 
+- content_for :script
+  = javascript_include_tag 'autoNumeric/autoNumeric'
+
 - content_for :header
   h2= Finance::Report.model_name.human
   h3= t("subheading.finance.overview")
@@ -14,87 +17,71 @@
     .box
       = render "finance/shared/tab", report: @report
       .main.pure-g
+        / Recent entries
         .pure-u-1-2.pure-md-1-2.pure-sm-1-2
           .field.left
-            h5 Current status
+            h5= t("heading.recent_entries")
             table.table.pure-table.pure-table-bordered
               thead
                 tr
-                  th Category
-                  th Current
-                  th Budget
+                  th= t("misc.datetime")
+                  th= Finance::AccountBook.model_name.human
+                  th= Finance::Category.model_name.human
+                  th= Finance::Entry.human_attribute_name(:title)
+                  th= Finance::Entry.human_attribute_name(:type)
+                  th= Finance::Entry.human_attribute_name(:total_amount)
               tbody
-                tr
-                  td XXXXX
-                  td 103204
-                  td 39302040
-                tr
-                  td XXXXX
-                  td 103204
-                  td 39302040
-                tr
-                  td XXXXX
-                  td 12200
-                  td 22000
-                tr
-                  td XXXXX
-                  td 3200
-                  td 202000
-                tr
-                  td XXXXX
-                  td 3200
-                  td 202000
+                - 5.times do |i|
+                  - entry = @entries[i]
+                  - if entry
+                    tr
+                      td
+                        span.created_at data-format='fromNow'= entry.created_at
+                      td.account_book
+                        = link_to truncate(entry.account_book.name, length: 8), finance_report_account_book_path(@report, entry.account_book)
+                      td.category= truncate(entry.category.name, length: 8)
+                      td.title
+                        = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
+                      td.type
+                        span class="label label-#{entry.type}"= entry.human_type
+                      td.total_amount
+                        span= entry.total_amount
+                  - else
+                    tr.blank
+                      td
+                      td
+                      td
+                      td
+                      td
+                      td
             ul
               li.more
-                = link_to "more", "#"
+                = link_to "more", finance_report_account_books_path(@report)
+
+        / Current status
         .pure-u-1-2.pure-md-1-2.pure-sm-1-2
           .field.left
-            h5 Recent entries
+            h5= t("heading.current_status")
             table.table.pure-table.pure-table-bordered
               thead
                 tr
-                  th Datetime
-                  th Category
-                  th Mony
-                  th Ledger
-                  th Memo
+                  th= Finance::Category.model_name.human
+                  th= t("misc.status")
+                  th= Finance::Budget.model_name.human
               tbody
-                tr
-                  td 2015/05/13
-                  td XXXX
-                  td -204
-                  td @wallet
-                  td NNNNNNN
-                tr
-                  td 2015/04/29
-                  td XXXX
-                  td 10200
-                  td @bank
-                  td
-                tr
-                  td 2015/04/10
-                  td XXXX
-                  td -124
-                  td @wallet
-                  td
-                tr
-                  td 2015/04/03
-                  td XXXX
-                  td -10394
-                  td @wallet
-                  td NNNNNN...
-                tr
-                  td 2015/04/01
-                  td XXXX
-                  td -10394
-                  td @wallet
-                  td NNNNNN...
+                - @categories.each do |category|
+                  tr
+                    td= category.name
+                    td= category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
+                    td 0
             ul
               li.more
                 = link_to "more", "#"
+
+        / Total
         .pure-u-1-2.pure-md-1-2.pure-sm-1-2
           .field
-            h5 Total assets
+            h5 Total
             .wall.left
               p.asset
                 | 20,2292,0293

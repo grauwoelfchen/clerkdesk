@@ -29,6 +29,14 @@ module Finance
     end
 
     def show
+      @categories = @report.categories
+        .includes(:journalizings)
+        .order(updated_at: :desc).limit(5)
+      journalizing_ids = @report.journalizings.select(:id).pluck(:id)
+      @entries = Finance::Entry
+        .includes(:account_book, :category)
+        .where(journalizing_id: journalizing_ids)
+        .order(created_at: :desc).limit(4)
     end
 
     def edit
