@@ -52,6 +52,9 @@ ja:
   result:
     filter_by:
       tag: '%{tag} タグの一覧'
+  heading:
+    current_status: 現在の状態
+    recent_entries: 最近の記帳
   subheading:
     note: プロトコル・メモ
     finance:
@@ -62,3 +65,8 @@ ja:
       budget: 予算
       entry: 記帳・入力
     person: メンバー
+  misc:
+    status: 状態
+    datetime: 日時
+    money: お金
+    memo: メモ

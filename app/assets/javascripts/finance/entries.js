@@ -2,9 +2,7 @@
   'use strict';
 
   $(function() {
-    if (!location.href.match(/entries/)) {
-      return;
-    }
+    if (!location.href.match(/entries/)) { return; }
 
     (function() {
       var type         = $('#entry_type')
@@ -90,16 +88,17 @@
 
     // total_amount (currency)
     (function() {
-      var amount = $('#entry_total_amount');
+      if ($.fn.autoNumeric == undefined) { return; }
 
+      var amount = $('#entry_total_amount');
       // TODO currency setting
       amount.autoNumeric('init', {
-        aSign:  '¥ ',
-        pSign:  'p',
-        vMin:   '-100000000',
-        vMax:   '100000000',
-        wEmpty: 'zero',
-        lZero:  'deny'
+        aSign:  '¥ '
+      , pSign:  'p'
+      , vMin:   '-100000000'
+      , vMax:   '100000000'
+      , wEmpty: 'zero'
+      , lZero:  'deny'
       });
 
       $('#entry_type').change(function() {
@@ -107,15 +106,15 @@
         amount.autoNumeric('set', 0);
         if ($(this).val() === 'income') {
           amount.autoNumeric('update', {
-            vMin: '0',
-            vMax: '100000000'
+            vMin: '0'
+          , vMax: '100000000'
           });
           var value = (current_value < 0) ? current_value * -1 : current_value;
           amount.autoNumeric('set', value);
         } else {
           amount.autoNumeric('update', {
-            vMin: '-100000000',
-            vMax: '0'
+            vMin: '-100000000'
+          , vMax: '0'
           });
           var value = (current_value > 0) ? current_value * -1 : current_value;
           amount.autoNumeric('set', value);
@@ -125,17 +124,16 @@
       $('form.form').submit(function() {
         var current_value = amount.autoNumeric('get');
         amount.autoNumeric('update', {
-          aSign: '',
-          aSep:  '',
-          aDeg:  ''
+          aSign: ''
+        , aSep:  ''
+        , aDeg:  ''
         });
       });
     })();
 
     (function() {
-      if (!$.fn.tagEditor) {
-        return;
-      }
+      if ($.fn.tagEditor == undefined) { return; }
+
       var tagList = $('#labels');
 
       $.ajax({

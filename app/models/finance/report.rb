@@ -14,6 +14,7 @@ module Finance
     has_one :budget
     has_many :account_books
     has_many :categories
+    has_many :journalizings, through: :categories
 
     validates :name,
       presence: true
