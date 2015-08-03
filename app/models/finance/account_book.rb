@@ -10,14 +10,16 @@ module Finance
     has_many :entries
 
     validates :name,
-      presence: true
-    validates :name,
-      uniqueness: true
-    validates :name,
-      length: {maximum: 128}
-
+      presence:   true,
+      uniqueness: true,
+      length:     {maximum: 128}
+    validates :icon,
+      presence:   true
+    validates :icon,
+      inclusion:   {in: Rails.application.config.icons.values},
+      allow_blank: true
     validates :description,
-      length:      {maximum: 256},
+      length:      {maximum: 255},
       allow_blank: true
   end
 end

@@ -36,7 +36,7 @@ module Finance
       @entries = Finance::Entry
         .includes(:account_book, :category)
         .where(journalizing_id: journalizing_ids)
-        .order(created_at: :desc).limit(4)
+        .order(created_at: :desc).limit(5)
     end
 
     def edit
