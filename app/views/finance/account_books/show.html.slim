@@ -32,6 +32,10 @@
                 = label_tag Finance::AccountBook.human_attribute_name(:name)
                 = @account_book.name
             .group
+              .icon
+                = label_tag Finance::AccountBook.human_attribute_name(:icon)
+                i.fa.fa-fw.fa-1g= @account_book.icon.to_s.html_safe
+            .group
               .description
                 = label_tag Finance::AccountBook.human_attribute_name(:description)
                 = @account_book.description
