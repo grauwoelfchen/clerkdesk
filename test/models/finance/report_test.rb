@@ -1,6 +1,6 @@
 require "test_helper"
 
 module Finance
-  class FinanceTest < ActiveSupport::TestCase
+  class ReportTest < ActiveSupport::TestCase
   end
 end

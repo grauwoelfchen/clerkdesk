@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715185513) do
+ActiveRecord::Schema.define(version: 20150803173249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "finance_account_books", force: :cascade do |t|
-    t.integer  "report_id",   null: false
-    t.string   "name",        null: false
+    t.integer  "report_id",             null: false
+    t.string   "name",                  null: false
     t.string   "description"
     t.text     "memo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "icon",        limit: 8
   end
 
   add_index "finance_account_books", ["report_id"], name: "index_finance_account_books_on_report_id", using: :btree

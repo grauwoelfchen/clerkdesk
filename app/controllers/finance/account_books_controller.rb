@@ -53,7 +53,7 @@ module Finance
     end
 
     def account_book_params
-      params.require(:account_book).permit(:name, :description)
+      params.require(:account_book).permit(:name, :description, :icon)
     end
   end
 end

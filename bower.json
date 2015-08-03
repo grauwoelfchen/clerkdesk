@@ -12,6 +12,8 @@
     "jquery-ujs": "~> 1.0",
     "jquery-autosize": "1.18.18",
     "jquery-tag-editor": "1.0.14",
+    "jquery-selectric": "~> 1.9",
+    "chosen": "~> 1.4",
     "autoNumeric": "1.9.30",
     "pickmeup": "~> 2.8",
     "moment": "2.10.2",
