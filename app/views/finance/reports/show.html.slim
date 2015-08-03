@@ -38,7 +38,8 @@
                       td
                         span.created_at data-format='fromNow'= entry.created_at
                       td.account_book
-                        = link_to truncate(entry.account_book.name, length: 8), finance_report_account_book_path(@report, entry.account_book)
+                        = link_to finance_report_account_book_path(@report, entry.account_book) do
+                          i.fa.fa-fw.fa-lg= entry.account_book.icon.to_s.html_safe
                       td.category= truncate(entry.category.name, length: 8)
                       td.title
                         = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)

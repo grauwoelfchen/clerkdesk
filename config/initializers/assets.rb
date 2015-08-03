@@ -14,6 +14,10 @@ Rails.application.config.assets.precompile += %w(
   jquery-ui/ui/minified/autocomplete.min.js
   jquery-tag-editor/jquery.caret.min.js
   jquery-tag-editor/jquery.tag-editor.min.js
-  pickmeup/js/jquery.pickmeup.min.js
+  jquery-selectric/public/jquery.selectric.min.js
+  jquery-selectric/public/selectric.css
   autoNumeric/autoNumeric.js
+  pickmeup/js/jquery.pickmeup.min.js
+  chosen/chosen.jquery.min.js
+  chosen/chosen.min.css
 )

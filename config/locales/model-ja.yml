@@ -34,6 +34,7 @@ ja:
         updated_at: 更新日時
       finance/account_book:
         name: 名前
+        icon: アイコン
         description: 説明
         memo: メモ
         created_at: 作成日時
