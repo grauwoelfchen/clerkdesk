@@ -18,7 +18,9 @@
       = render "finance/shared/tab", report: @report
       .main.pure-g
         .pure-u-1-1
-          h5= Finance::Category.model_name.human.pluralize
+          .sub-header
+            h5= Finance::Category.model_name.human.pluralize
+            hr
           = render "shared/pagination", resource: @categories, info: true
           table.table.pure-table.pure-table-horizontal
             thead

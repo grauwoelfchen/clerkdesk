@@ -17,6 +17,10 @@
     .box
       = render "finance/shared/tab", report: @report, account_book: @account_book
       .main.pure-g
-        .pure-u-1-1
-          h5= t("action.new")
-          = render "form", report: @report, account_book: @account_book
+        .pure-u-16-24
+          .sub-header
+            h5= Finance::AccountBook.model_name.human.pluralize
+            hr
+          .container
+            h6= t("action.new")
+            = render "form", report: @report, account_book: @account_book
