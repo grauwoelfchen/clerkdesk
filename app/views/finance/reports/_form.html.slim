@@ -2,6 +2,9 @@
   = javascript_include_tag "jquery-autosize/jquery.autosize.min"
   = javascript_include_tag "pickmeup/js/jquery.pickmeup.min"
 
+- content_for :style do
+  = stylesheet_link_tag "pickmeup/css/pickmeup.min"
+
 = form_for [:finance, report], html: {class: "form pure-form pure-form-stacked"} do |f|
   - if report.errors.any?
     = render "shared/error", resource: report

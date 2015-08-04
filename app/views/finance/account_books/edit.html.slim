@@ -19,6 +19,9 @@
       = render "finance/shared/tab", report: @report, account_book: @account_book
       .main.pure-g
         .pure-u-16-24
-          h5= t("action.edit")
-          hr
-          = render "form", report: @report, account_book: @account_book
+          .sub-header
+            h5= Finance::AccountBook.model_name.human
+            hr
+          .container
+            h6= t("action.edit")
+            = render "form", report: @report, account_book: @account_book

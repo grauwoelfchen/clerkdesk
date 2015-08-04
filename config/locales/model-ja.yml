@@ -4,10 +4,10 @@ ja:
     models:
       note: ノート
       finance/report: 会計
-      finance/category: 分類
+      finance/category: 費目
       finance/account_book: 帳簿
       finance/budget: 予算
-      finance/entry: 記帳
+      finance/entry: 記録
       person: メンバー
       locker_room/user: 管理者
     attributes:
