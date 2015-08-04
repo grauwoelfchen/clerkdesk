@@ -1,8 +1,7 @@
-.account_book-header
-  h5.name
-    i.fa.fa-fw= account_book.icon.to_s.html_safe
-    = account_book.name
+.sub-header
+  h5= account_book.name
   p.description
+    i.fa.fa-fw.fa-lg= account_book.icon.to_s.html_safe
     = account_book.description
 hr
 nav.switch.pure-menu.pure-menu-horizontal

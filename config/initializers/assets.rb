@@ -18,6 +18,7 @@ Rails.application.config.assets.precompile += %w(
   jquery-selectric/public/selectric.css
   autoNumeric/autoNumeric.js
   pickmeup/js/jquery.pickmeup.min.js
+  pickmeup/css/pickmeup.min.css
   chosen/chosen.jquery.min.js
   chosen/chosen.min.css
 )

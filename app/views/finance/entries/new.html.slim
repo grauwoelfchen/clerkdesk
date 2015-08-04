@@ -1,7 +1,7 @@
 - breadcrumb :'finance/entry', @report, @account_book, @entry
 
 - content_for :header
-  h2= Finance::Entry.model_name.human
+  h2= Finance::AccountBook.model_name.human
   h3= t("subheading.finance.entry")
 
 - content_for :actions
@@ -11,7 +11,7 @@
   ul.links
     li= link_to t("action.resource.index", resource: Finance::AccountBook.model_name.human.downcase), finance_report_account_books_path(@report)
     li= link_to t("action.resource.edit",  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
-    li= link_to t("action.resource.index", resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_path(@report, @account_book)
+    li= link_to t("action.resource.index", resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_entries_path(@report, @account_book)
 
 section.block.entry
   = render "finance/shared/report", report: @report

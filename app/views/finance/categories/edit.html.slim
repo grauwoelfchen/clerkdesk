@@ -19,6 +19,8 @@
       = render "finance/shared/tab", report: @report
       .main.pure-g
         .pure-u-16-24
-          h5= t("action.edit")
-          hr
+          .sub-header
+            h5= Finance::Category.model_name.human
+            hr
+          h6= t("action.edit")
           = render "form", report: @report, category: @category

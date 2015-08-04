@@ -9,7 +9,4 @@
       = f.label :memo
       = f.text_area :memo, class: "pure-input-2-3", rows: 3, placeholder: "Memo"
   .actions
-    - action = budget.persisted? ? "update" : "create"
-    = f.submit t("action.#{action}"), class: "pure-button button"
-    - if action == "update"
-      = link_to t("action.destroy"), finance_report_budget_path(report), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
+    = f.submit t("action.update"), class: "pure-button button"
