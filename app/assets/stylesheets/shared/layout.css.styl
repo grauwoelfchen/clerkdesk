@@ -10,16 +10,14 @@
 body
   background-color #FAF9F8
   color            #777777
-  min-width        320px
+  min-width        (980 - 528)px
 
-.pure-img-responsive
-  max-width 100%
-  height    auto
 
-.rightbox
-  .languages
-    padding 11px 0 13px 0
+// vars
+$menu-width = 212px
 
+
+// sections
 #main
   .content
     background-color #FFFFFF
@@ -35,130 +33,18 @@ body
     min-height       760px
     line-height      1.444
 
-.rightbar
-  background none
-  min-height 760px
-  .actions,
-  .links
-    padding 6px 0 21px 0
-  .links
-    ul
-      padding-left 1px
-      li
-        list-style none
-        margin     0 0 11px 0
-
-.rightbox
-  padding 0 9px
-
-.rightbar
-  padding 13px 9px
-
-.rightbox,
-.rightbar
-  h6
-    margin      3px 0 6px 0
-    font-weight normal
-  nav.btn
-    ul
-      background-color #FFFFFF
-      li
-        form
-          display inline-block
-          width   100%
-          height  100%
-          input[type='submit']
-            display    inline
-            text-align left
-            width      100%
-            padding    13px 18px
-            background none
-            border     none
-            cursor     pointer
-            &:hover
-              background-color #EEEEEE
-
-.header
-  height        86px
-  margin        0 auto
-  color         #CCCCCC
-  text-align    left
-  border-bottom 1px solid #EEEEEE
-  h2
-    color       #190318
-    margin      0 0 6px 0
-    font-size   29px
-    font-weight normal
-  h3
-    color       #CCCCCC
-    font-weight normal
-    padding     0
-    margin      0
-  .user
-    display    inline
-    margin     0 5px 0 23px
-    text-align right
-  .login
-    text-align right
-  .header-content
-    padding 0 18px 0 18px
-
-.header > div:first-child
-  background-color #FFFFFF
-  height           100%
-  .pure-g
-    height       100%
-    padding-top  16px
-    border-right 1px solid #F3F3F3
-
-.navigation
-  margin 0
-  .breadcrumbs
-    margin 3px 0 18px 0
-    a
-      color           #ABAB9B
-      text-decoration none
-      &:hover
-        color #5F5F5F
-    span.current
-      color #5F5F5F
-
-.footer
-  background-color #FAFAF8
-  border-top       1px solid #EEEEEE
-  font-size        87.5%
-  padding          21px 21px 21px 26px
-  line-height      1.6
-  margin           0 auto
-  ul.legal-links,
-  p.copyright
-    text-align right
-    margin     5px 6px 3px 0
-    padding    0
-  ul.legal-links
-    li
-      list-style    none
-      padding-right 6px
-
-.footer.public
-  ul.legal-links,
-  p.copyright
-    text-align left
-
-$width = 212px
-
 #content
   position     relative
   padding-left 0
   &.active
     #menu
-      left  $width
-      width $width
+      left  $menu-width
+      width $menu-width
     .menu-link
-      left $width
+      left $menu-width
 
-#content,
-#menu,
+
+// menu link
 .menu-link
   -webkit-transition all 0.2s ease-out 0s
   -moz-transition    all 0.2s ease-out 0s
@@ -202,10 +88,12 @@ $width = 212px
     span
       background  transparent
       &:before
-        transform rotate(45deg) translate(0.44em, 0.48em)
+        transform rotate(45deg)  translate(0.44em, 0.48em)
       &:after
         transform rotate(-45deg) translate(0.24em, -0.3em)
 
+
+// side menu
 #menu
   i
     display inline-block
@@ -213,8 +101,8 @@ $width = 212px
     margin  0 7px 0 0
 
 #menu
-  margin-left -($width)
-  width       $width
+  margin-left -($menu-width)
+  width       $menu-width
   position    fixed
   top         0
   left        0
@@ -227,49 +115,139 @@ $width = 212px
     color   #F3F3F3
     border  none
     padding 21px 18px
-  .pure-menu,
-  .pure-menu ul
-    border     none
-    background transparent
-  .pure-menu ul,
-  .pure-menu .menu-item-divided
-    border-top 1px solid #55391D
-  .pure-menu li a:hover,
-  .pure-menu li a:focus
-    background #55391D
-  .pure-menu-heading
-    background #93765A
-  .pure-menu-selected a
-    color      #FFFFFF
-    background #4C331A
-  .pure-menu-heading
-    text-align     left
-    padding        34px 0 0 19px
-    display        block
-    height         85px
-    font-size      18px
-    color          #FFFFFF
-    margin         0
 
 
-@media(min-width 88em)
+// right box|bar
+.rightbox
+  padding 0 9px
+
+.rightbar
+  background none
+  min-height 760px
+  padding    13px 9px
+  .actions,
+  .links
+    padding 6px 0 21px 0
+  .links
+    ul
+      li
+        list-style none
+        margin     0 0 11px 0
+
+.rightbox,
+.rightbar
+  h6
+    margin      3px 0 6px 0
+    font-weight normal
+  nav.btn
+    ul
+      background-color #FFFFFF
+      li
+        form
+          display inline-block
+          width   100%
+          height  100%
+          input[type='submit']
+            display    inline
+            text-align left
+            width      100%
+            padding    13px 18px
+            background none
+            border     none
+            cursor     pointer
+            &:hover
+              background-color #EEEEEE
+
+
+// header area
+.header
+  height        86px
+  margin        0 auto
+  color         #CCCCCC
+  text-align    left
+  border-bottom 1px solid #EEEEEE
+  h2
+    color       #190318
+    margin      0 0 6px 0
+    font-size   29px
+    font-weight normal
+  h3
+    color       #CCCCCC
+    font-weight normal
+    padding     0
+    margin      0
+  .user
+    display    inline
+    margin     0 5px 0 23px
+    text-align right
+  .login
+    text-align right
+  .header-content
+    padding 0 18px 0 18px
+
+.header > div:first-child
+  background-color #FFFFFF
+  height           100%
+
+
+// navigation
+.navigation
+  margin 0
+  .breadcrumbs
+    margin 3px 0 18px 0
+    a
+      line-height     26px
+      color           #ABAB9B
+      text-decoration none
+      &:hover
+        color #5F5F5F
+    span.current
+      color #5F5F5F
+
+
+// footer area
+.footer
+  background-color #FAFAF8
+  border-top       1px solid #EEEEEE
+  font-size        87.5%
+  padding          21px 21px 21px 26px
+  line-height      1.6
+  margin           0 auto
+  ul.legal-links,
+  p.copyright
+    text-align right
+    margin     5px 6px 3px 0
+    padding    0
+  ul.legal-links
+    li
+      list-style    none
+      padding-right 6px
+
+.footer.public
+  ul.legal-links,
+  p.copyright
+    text-align left
+
+
+// responsive specs
+@media(min-width 99em)
   .rightbox,
   .rightbar
      padding-left  17px
      padding-right 17px
   #content
-     padding-left $width
+     padding-left $menu-width
      left         0
   #menu
-      left $width
+      left $menu-width
   .menu-link
       position fixed
-      left     $width
+      left     $menu-width
       display  none
   #content.active .menu-link
-    left $width
+    left $menu-width
 
-@media(max-width 88em)
+@media(max-width 99em)
   #content.active
     position relative
-    left     $width
+    left     $menu-width
