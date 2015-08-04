@@ -18,17 +18,17 @@ html lang=current_locale
         = render "shared/menu"
       #main
         .header.pure-g
-          .pure-u-20-24.pure-u-md-21-24
+          .pure-u-1.pure-u-lg-23-24.pure-u-xl-21-24
             .pure-g
-              .pure-u-16-24
+              .pure-u-15-24.pure-u-lg-16-24
                 .header-content
                   = yield :header
-              .pure-u-8-24
+              .pure-u-9-24.pure-u-lg-8-24
                 .header-content
                   .sticky
                     .user= render "locker_room/shared/login"
                     span.logout= link_to "logout", locker_room.logout_path, method: :delete
-          .pure-u-4-24.pure-u-md-3-24
+          .pure-u-1.pure-u-lg-1-24.pure-u-xl-3-24
             .rightbox
               .languages
                 h6 LANGUAGE
@@ -43,16 +43,16 @@ html lang=current_locale
                               = hidden_field_tag 'user[locale]', locale_name
                               = submit_tag t("locale.#{locale_name}"), class: "pure-menu-link"
         .container.pure-g
-          .pure-u-20-24.pure-u-md-21-24
+          .pure-u-1.pure-u-md-1.pure-u-lg-23-24.pure-u-xl-21-24
             .content
               - if flash.any?
                 = render "shared/flash", flash: flash
               .navigation.pure-g
-                .nav.pure-u-3-5
+                .nav.pure-u-3-5.pure-u-md-5-5
                   = breadcrumbs pretext: "", separator: " &rsaquo; "
-                .nav.pure-u-2-5
+                .nav.pure-u-2-5.pure-u-md-0-5
               = yield
-          .pure-u-4-24.pure-u-md-3-24
+          .pure-u-1.pure-u-md-1.pure-u-lg-1-24.pure-u-xl-3-24
             .rightbar
               .actions
                 h6 ACTIONS
@@ -62,11 +62,11 @@ html lang=current_locale
                 = yield :links
         .footer
           .pure-g
-            .pure-u-1.u-sm-1-2
+            .pure-u-1-2.pure-u-md-1-1
               | <a href="/">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
               | <br>
               | If you have any question or found a bug, please tell me :)
-            .pure-u-1.u-sm-1-2
+            .pure-u-1-2.pure-u-md-1-1
               ul.legal-links
                 li= link_to 'policy', root_path
               p.copyright

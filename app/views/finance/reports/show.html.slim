@@ -17,12 +17,19 @@
     .box
       = render "finance/shared/tab", report: @report
       .main.pure-g
-        / Recent entries
-        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-          .field.left
+        .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
+          - if params[:segment] != 'status'
+            / Recent entries
             .sub-header
-              h5= t("heading.recent_entries")
+              h5= t("subheading.finance.overview")
+              p.description= t("subheading.recent_entries")
               hr
+            nav.segment-control.pure-menu.pure-menu-horizontal
+              ul.pure-menu-list
+                li.pure-menu-item.pure-menu-selected
+                  = link_to t("misc.entry"), url_for(segment: :entries), class: "pure-menu-link"
+                li.pure-menu-item
+                  = link_to t("misc.status"), url_for(segment: :status), class: "pure-menu-link"
             table.table.pure-table.pure-table-bordered
               thead
                 tr
@@ -42,6 +49,7 @@
                       td.account_book
                         = link_to finance_report_account_book_path(@report, entry.account_book) do
                           i.fa.fa-fw.fa-lg= entry.account_book.icon.to_s.html_safe
+                          span= entry.account_book.name
                       td.category= truncate(entry.category.name, length: 8)
                       td.title
                         = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
@@ -60,13 +68,18 @@
             ul
               li.more
                 = link_to "more", finance_report_account_books_path(@report)
-
-        / Current status
-        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-          .field.left
+          - else
+            / Current status
             .sub-header
-              h5= t("heading.current_status")
+              h5= t("subheading.finance.overview")
+              p.description= t("subheading.current_status")
               hr
+            nav.segment-control.pure-menu.pure-menu-horizontal
+              ul.pure-menu-list
+                li.pure-menu-item
+                  = link_to t("misc.entry"), url_for(segment: :entries), class: "pure-menu-link"
+                li.pure-menu-item.pure-menu-selected
+                  = link_to t("misc.status"), url_for(segment: :status), class: "pure-menu-link"
             table.table.pure-table.pure-table-bordered
               thead
                 tr
@@ -84,11 +97,11 @@
                 = link_to "more", "#"
 
         / Total
-        .pure-u-1-2.pure-md-1-2.pure-sm-1-2
-          .field
-            .sub-header
-              h5 Total
-              hr
-            .wall.left
-              p.asset
-                | 20,2292,0293
+        /.pure-u-1-2.pure-md-1-2.pure-sm-1-2
+        /  .field
+        /    .sub-header
+        /      h5 Total
+        /      hr
+        /    .wall.left
+        /      p.asset
+        /        | 20,2292,0293
