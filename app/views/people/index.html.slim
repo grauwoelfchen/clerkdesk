@@ -43,7 +43,7 @@
         tr
           td= link_to truncate(person.name, length: 18), person_path(person)
           td
-            span.label.label-default= truncate(person.slug, length: 12)
+            span.label.label-highlight= truncate(person.slug, length: 12)
           td= truncate(person.property, length: 12)
           td= truncate(person.memo, length: 12)
           td.created_at= person.created_at

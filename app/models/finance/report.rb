@@ -40,7 +40,6 @@ module Finance
             end
           end
         end
-        result
       end
     end
 
@@ -53,11 +52,10 @@ module Finance
     end
 
     def create_initial_account_books
-      %w{
-        cash bank
-      }.map do |account_book|
-        name = I18n.t(account_book, :scope => [:finance, :account_book])
-        account_books.create(:name => name)
+      {cash: 'briefcase', bank: 'bank'}.map do |book, icon|
+        name = I18n.t(book, :scope => [:finance, :account_book])
+        icons = Rails.application.config.icons
+        account_books.create(:name => name, :icon => icons[icon])
       end
     end
 

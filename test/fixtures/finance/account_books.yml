@@ -1,16 +1,20 @@
 general_money:
   report: general_report
   name: 'Money'
+  icon: '&#xf187;'
   description: ''
 general_bank:
   report: general_report
   name: 'Bank'
+  icon: '&#xf19c;'
   description: ''
 special_money:
   report: special_report
   name: 'Mony'
+  icon: '&#xf187;'
   description: ''
 special_bank:
   report: special_report
   name: 'Bank'
+  icon: '&#xf19c;'
   description: ''
