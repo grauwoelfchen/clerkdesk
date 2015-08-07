@@ -1,6 +1,9 @@
 ---
 ja:
   finance:
+    account_book:
+      bank: 銀行
+      cash: 現金
     category:
       accumulation: 積立金
       carry-over: 繰越金

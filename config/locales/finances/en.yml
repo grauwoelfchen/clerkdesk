@@ -1,6 +1,9 @@
 ---
 en:
   finance:
+    account_book:
+      bank: Bank
+      cash: Cash
     category:
       accumulation: Accumulation
       carry-over: Carry-over
