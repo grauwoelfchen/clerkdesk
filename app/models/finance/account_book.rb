@@ -11,7 +11,7 @@ module Finance
 
     validates :name,
       presence:   true,
-      uniqueness: true,
+      uniqueness: {scope: :report_id},
       length:     {maximum: 128}
     validates :icon,
       presence:   true

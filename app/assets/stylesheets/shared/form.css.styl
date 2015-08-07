@@ -13,6 +13,12 @@
   textarea
     resize none
 
+// color
+input,
+textarea,
+select
+  color darken($primary-color, 4%)
+
 
 // style
 .form
@@ -80,7 +86,19 @@ div.actions
   a.button
     margin-right 47px
 
-  .button-danger
-    color            #FFFFFF
-    background-color $error-color
 
+.button
+  color $text-color
+  text-decoration none
+  &:hover
+    text-decoration none
+  &:visited
+    color $text-color
+
+.button-danger
+  background-color $error-color
+  color            #FFFFFF
+  &:hover
+    text-decoration none
+  &:visited
+    color #FFFFFF

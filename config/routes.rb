@@ -34,5 +34,9 @@ Rails.application.routes.draw do
     root to: "desktop#index"
   end
 
+  constraints(Constraints::WithoutSubdomain) do
+    get "/", to: "locker_room/entrance#index", as: :global_root
+  end
+
   mount LockerRoom::Engine, at: "/"
 end

@@ -60,6 +60,6 @@ section.block.entry
               = label_tag Finance::AccountBook.human_attribute_name(:updated_at)
               = @entry.updated_at
           .actions
-            = link_to t("action.edit"), edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: "pure-button"
+            = link_to t("action.edit"), edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: "pure-button button"
             | &nbsp;&nbsp;
             = link_to t("action.destroy"), finance_report_account_book_entry_path(@report, @account_book, @entry), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
