@@ -12,9 +12,10 @@ module Finance
       assert_equal([message], account_book.errors[:name])
     end
 
-    def test_validation_with_duplicated_name
+    def test_validation_with_duplicated_name_under_same_report
       other_account_book = finance_account_books(:general_bank)
-      account_book = Finance::AccountBook.new(:name => other_account_book.name)
+      report = other_account_book.report
+      account_book = report.account_books.new(:name => other_account_book.name)
       refute(account_book.valid?)
       message = "has already been taken"
       assert_equal([message], account_book.errors[:name])

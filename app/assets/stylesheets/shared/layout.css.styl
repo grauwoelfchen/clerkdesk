@@ -17,7 +17,7 @@ body
 $menu-width = 212px
 
 
-// sections
+// content area
 #main
   .content
     background-color #FFFFFF
@@ -95,12 +95,6 @@ $menu-width = 212px
 
 // side menu
 #menu
-  i
-    display inline-block
-    padding 0
-    margin  0 7px 0 0
-
-#menu
   margin-left -($menu-width)
   width       $menu-width
   position    fixed
@@ -111,15 +105,23 @@ $menu-width = 212px
   background  #6C5035
   overflow-y  auto
   -webkit-overflow-scrolling touch
+  i
+    display inline-block
+    padding 0
+    margin  0 7px 0 0
   a
     color   #F3F3F3
     border  none
     padding 21px 18px
+    &:hover
+      text-decoration none
 
 
 // right box|bar
 .rightbox
   padding 0 9px
+  .locales
+    margin-top 13px
 
 .rightbar
   background none
@@ -196,13 +198,38 @@ $menu-width = 212px
   .breadcrumbs
     margin 3px 0 18px 0
     a
-      line-height     26px
-      color           #ABAB9B
-      text-decoration none
+      line-height 26px
+      color       $gray-color
       &:hover
-        color #5F5F5F
+        color $dark-gray-color
     span.current
-      color #5F5F5F
+      color $dark-gray-color
+
+
+// section
+section.block
+  padding 0
+  .group
+    label
+      width 10em
+    margin 8px 0
+  hr
+    background #C6BEB6
+    border     medium none
+    height     0.16em
+    margin     10px 0 21px 0
+  label
+    display      inline-block
+    margin-right 13px
+    min-width    90px
+    text-align   right
+
+section.block .container
+  margin 9px 0
+  legend
+    {legend-style}
+  .action
+    margin-top 42px
 
 
 // footer area
