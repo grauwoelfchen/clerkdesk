@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class FinanceReportDestroyTest < Capybara::Rails::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:'finance/reports', :'finance/categories')
 
   def test_destroy_finance

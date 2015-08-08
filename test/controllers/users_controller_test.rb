@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UsersControllerTest < ActionController::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
 
   def test_get_index
     user = locker_room_users(:oswald)
