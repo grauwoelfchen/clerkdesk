@@ -1,4 +1,4 @@
-/- breadcrumb :user, @user
+- breadcrumb :user, @user
 
 - content_for :header
   h2= LockerRoom::User.model_name.human
@@ -18,13 +18,13 @@
 .user
   section.block.pure-g
     .container.pure-u-16-24
-      h4= @user.email
+      h4= @user.username
       hr
-      legend= t("legend.account_book")
+      legend= t("legend.account")
       .group
         .slug
-          = label_tag LockerRoom::User.human_attribute_name(:email)
-          = @user.email
+          = label_tag LockerRoom::User.human_attribute_name(:username)
+          = @user.username
       .group
         .email
           = label_tag LockerRoom::User.human_attribute_name(:email)
