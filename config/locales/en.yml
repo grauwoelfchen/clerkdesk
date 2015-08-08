@@ -12,9 +12,7 @@ en:
     desktop: Desktop
     actions: Actions
     settings: Settings
-  tab:
-    finance:
-      overview: Overview
+    overview: Overview
   crumb:
     desktop: Top
     new: New
