@@ -20,8 +20,8 @@
     thead
       tr
         th
-          span.attribute= LockerRoom::User.human_attribute_name(:email)
-          = sort_links_for(:email)
+          span.attribute= LockerRoom::User.human_attribute_name(:username)
+          = sort_links_for(:username)
         th
           span.attribute= LockerRoom::User.human_attribute_name(:created_at)
           = sort_links_for(:created_at)
@@ -32,7 +32,7 @@
     tbody
       - @users.each do |user|
         tr
-          td= link_to truncate(user.email, length: 24), user_path(user)
+          td= link_to truncate(user.username, length: 24), user_path(user)
           td.created_at= user.created_at
           td.updated_at= user.updated_at
           td.operations

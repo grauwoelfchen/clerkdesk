@@ -42,6 +42,7 @@ ja:
       phone: 例） 00-0000-0000
       email: 例） john@example.org
   legend:
+    account: アカウント
     id: 識別子
     name: 名前
     contact: 連絡先

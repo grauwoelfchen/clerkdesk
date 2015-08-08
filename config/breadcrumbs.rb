@@ -104,3 +104,12 @@ end
 crumb :users do
   link LockerRoom::User.model_name.human.pluralize, users_path
 end
+
+crumb :user do |user|
+  unless user.persisted?
+    link t("crumb.new"), nil
+  else
+    link user.username, user_path(user)
+  end
+  parent :users
+end
