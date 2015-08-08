@@ -12,9 +12,7 @@ ja:
     desktop: デスクトップ
     actions: アクション
     settings: 設定
-  tab:
-    finance:
-      overview: 概要
+    overview: 概要
   crumb:
     desktop: トップ
     new: 作成

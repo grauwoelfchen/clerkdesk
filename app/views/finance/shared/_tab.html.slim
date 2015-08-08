@@ -3,10 +3,10 @@ nav.tab.pure-menu.pure-menu-horizontal
     / Finance::Report
     - if controller_path == "finance/reports"
       li.pure-menu-item.pure-menu-selected
-        = link_to t("tab.finance.overview"), overview_finance_report_path(report), class: "pure-menu-link"
+        = link_to t("nav.overview"), overview_finance_report_path(report), class: "pure-menu-link"
     - else
       li.pure-menu-item
-        = link_to t("tab.finance.overview"), overview_finance_report_path(report), class: "pure-menu-link"
+        = link_to t("nav.overview"), overview_finance_report_path(report), class: "pure-menu-link"
 
 
     / Finance::Budget
