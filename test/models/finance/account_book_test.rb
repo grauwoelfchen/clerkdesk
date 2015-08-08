@@ -2,7 +2,7 @@ require "test_helper"
 
 module Finance
   class AccountBookTest < ActiveSupport::TestCase
-    locker_room_fixtures(:teams, :users, :memberships)
+    locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/reports', :'finance/account_books')
 
     def test_validation_with_blank_name

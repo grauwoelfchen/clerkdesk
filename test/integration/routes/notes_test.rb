@@ -1,7 +1,7 @@
 require "test_helper"
 
 class NotesRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:notes, :people)
 
   def test_route_to_notes

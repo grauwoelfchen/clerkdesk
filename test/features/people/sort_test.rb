@@ -1,7 +1,7 @@
 require "test_helper"
 
 class PersonSortTest < Capybara::Rails::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:people)
 
   def test_sort_with_name_desc

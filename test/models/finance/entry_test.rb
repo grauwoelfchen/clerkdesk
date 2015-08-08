@@ -2,7 +2,7 @@ require "test_helper"
 
 module Finance
   class EntryTest < ActiveSupport::TestCase
-    locker_room_fixtures(:teams, :users, :memberships)
+    locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/entries',
              :'finance/reports', :'finance/categories',
              :'finance/account_books', :'finance/journalizings')
