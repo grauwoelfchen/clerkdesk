@@ -1,7 +1,7 @@
 require "test_helper"
 
 class PeopleRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:people)
 
   def test_route_to_people

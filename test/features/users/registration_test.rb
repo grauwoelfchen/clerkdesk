@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UserRegistrationTest < Capybara::Rails::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
 
   def test_validation_with_duplicated_email
     team = team_with_schema(:penguin_patrol)
@@ -11,6 +11,7 @@ class UserRegistrationTest < Capybara::Rails::TestCase
       click_link("New User?")
       assert_equal(locker_room.registration_url, page.current_url)
       fill_in("Email",                 :with => "henry@example.org")
+      fill_in("Name",                  :with => "Henry the Penguin")
       fill_in("Username",              :with => "henry")
       fill_in("Password",              :with => "slowandsteady")
       fill_in("Password confirmation", :with => "slowandsteady")
@@ -29,6 +30,7 @@ class UserRegistrationTest < Capybara::Rails::TestCase
       click_link("New User?")
       assert_equal(locker_room.registration_url, page.current_url)
       fill_in("Email",                 :with => "louie@example.org")
+      fill_in("Name",                  :with => "Louie the Penguin")
       fill_in("Username",              :with => "louie")
       fill_in("Password",              :with => "nomorenoless")
       fill_in("Password confirmation", :with => "nomorenoless")

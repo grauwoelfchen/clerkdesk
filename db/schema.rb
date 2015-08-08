@@ -111,17 +111,16 @@ ActiveRecord::Schema.define(version: 20150803173249) do
   add_index "involvements", ["holder_type", "holder_id"], name: "index_involvements_on_holder_type_and_holder_id", using: :btree
   add_index "involvements", ["matter_type", "matter_id"], name: "index_involvements_on_matter_type_and_matter_id", using: :btree
 
-  create_table "locker_room_memberships", force: :cascade do |t|
+  create_table "locker_room_mateships", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "role",       limit: 2, default: 1
-    t.string   "name"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
-  add_index "locker_room_memberships", ["team_id"], name: "index_locker_room_memberships_on_team_id", using: :btree
-  add_index "locker_room_memberships", ["user_id"], name: "index_locker_room_memberships_on_user_id", using: :btree
+  add_index "locker_room_mateships", ["team_id"], name: "index_locker_room_mateships_on_team_id", using: :btree
+  add_index "locker_room_mateships", ["user_id"], name: "index_locker_room_mateships_on_user_id", using: :btree
 
   create_table "locker_room_teams", force: :cascade do |t|
     t.string   "name"
@@ -135,6 +134,7 @@ ActiveRecord::Schema.define(version: 20150803173249) do
   create_table "locker_room_users", force: :cascade do |t|
     t.integer  "team_id"
     t.string   "username"
+    t.string   "name"
     t.string   "email",                                     null: false
     t.string   "crypted_password"
     t.string   "salt"

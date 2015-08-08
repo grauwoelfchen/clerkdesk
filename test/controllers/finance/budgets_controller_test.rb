@@ -2,7 +2,7 @@ require "test_helper"
 
 module Finance
   class BudgetsControllerTest < ActionController::TestCase
-    locker_room_fixtures(:teams, :users, :memberships)
+    locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/reports', :'finance/budgets')
 
     def test_get_show
