@@ -1,8 +1,10 @@
 class UsersController < WorkspaceController
-  before_action :load_user, :only => [:show, :edit, :update, :destroy]
+  before_action :load_user, :only => [:show]
 
   def index
-    @users = LockerRoom::User.all
+    @users = current_team.users
+        .sort(params[:field], params[:direction])
+        .page(params[:page])
   end
 
   def show
@@ -11,7 +13,7 @@ class UsersController < WorkspaceController
   private
 
   def load_user
-    @user = LockerRoom::User.find(params[:id])
+    @user = current_team.users.find(params[:id])
   end
 
   def user_params
