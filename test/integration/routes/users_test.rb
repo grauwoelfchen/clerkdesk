@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UsersRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
 
   def test_route_to_users
     within_subdomain_host do |host|

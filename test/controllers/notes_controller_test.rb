@@ -1,7 +1,7 @@
 require "test_helper"
 
 class NotesControllerTest < ActionController::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:notes)
 
   def test_get_index

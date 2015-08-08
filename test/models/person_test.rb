@@ -1,7 +1,7 @@
 require "test_helper"
 
 class PersonTest < ActiveSupport::TestCase
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:people)
 
   def test_validation_without_slug

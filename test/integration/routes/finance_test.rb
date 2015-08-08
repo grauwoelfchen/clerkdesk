@@ -1,7 +1,7 @@
 require "test_helper"
 
 class FinanceRouteTest < ActionDispatch::IntegrationTest
-  locker_room_fixtures(:teams, :users, :memberships)
+  locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:'finance/reports', :'finance/budgets', :'finance/account_books',
            :'finance/entries', :'finance/categories', :'finance/categories')
 
