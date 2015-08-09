@@ -2,8 +2,7 @@
   'use strict';
 
   $(function() {
-    if (!location.href.match(/finances/)) { return; }
-
+    // setup pickmeup
     (function() {
       if ($.fn.pickmeup == undefined) { return; }
 
@@ -33,7 +32,7 @@
       });
     })();
 
-
+    // setup autosize
     (function() {
       if ($.fn.autosize == undefined) { return; }
 
@@ -41,5 +40,4 @@
       textarea.autosize();
     })();
   });
-
 })(jQuery);
