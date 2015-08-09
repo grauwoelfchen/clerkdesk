@@ -2,14 +2,10 @@
   'use strict';
 
   $(function() {
-    if (!location.href.match(/entries/)) { return; }
-
+    // indicator
     (function() {
-      var type         = $('#entry_type')
-        , journalizing = $('#entry_journalizing_id')
-        ;
+      var journalizing = $('#entry_journalizing_id');
 
-      // indicator
       $(journalizing).parent().append(
         '<span id="indicator"><img src="/assets/loading.gif"></div>'
       );
@@ -27,8 +23,14 @@
         $('#indicator').hide();
         journalizing.show();
       });
+    })();
 
-      // journalizings updater
+    // journalizings updater
+    (function() {
+      var type         = $('#entry_type')
+        , journalizing = $('#entry_journalizing_id')
+        ;
+
       var setJournalizingOptions = function(type_val, journalizing_val) {
         var report      = $('#report')
           , accountBook = $('#account_book')
@@ -86,7 +88,7 @@
       });
     })();
 
-    // total_amount (currency)
+    // set total_amount (currency)
     (function() {
       if ($.fn.autoNumeric == undefined) { return; }
 
@@ -131,6 +133,7 @@
       });
     })();
 
+    // tag editor
     (function() {
       if ($.fn.tagEditor == undefined) { return; }
 

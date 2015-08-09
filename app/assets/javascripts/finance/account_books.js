@@ -1,8 +1,8 @@
 (function($) {
   'use strict';
-  $(function() {
-    if (!location.href.match(/account_books/)) { return; }
 
+  $(function() {
+    // set icon
     (function() {
       if ($.fn.selectric == undefined) { return; }
 
