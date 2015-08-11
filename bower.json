@@ -14,7 +14,7 @@
     "jquery-tag-editor": "1.0.14",
     "jquery-selectric": "~> 1.9",
     "chosen": "~> 1.4",
-    "autoNumeric": "1.9.30",
+    "autoNumeric": "git://github.com/BobKnothe/autoNumeric.git#0c676d2b20",
     "pickmeup": "~> 2.8",
     "moment": "2.10.2",
     "purecss": "~0.6.0",
