@@ -17,12 +17,12 @@
     .box
       = render "finance/shared/tab", report: @report
       .main.pure-g
-        .pure-u-1-1
+        .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
           .sub-header
             h5= Finance::Category.model_name.human.pluralize
             hr
           = render "shared/pagination", resource: @categories, info: true
-          table.table.pure-table.pure-table-horizontal
+          table.table.pure-table.pure-table-bordered
             thead
               tr
                 th
@@ -35,10 +35,6 @@
                   = sort_links_for(:type)
                 th
                   span.attribute
-                    = Finance::Category.human_attribute_name(:created_at)
-                  = sort_links_for(:created_at)
-                th
-                  span.attribute
                     = Finance::Category.human_attribute_name(:updated_at)
                   = sort_links_for(:updated_at, :desc)
                 th
@@ -47,7 +43,6 @@
                 tr
                   td= category.name
                   td= category.human_type
-                  td.created_at= category.created_at
                   td.updated_at= category.updated_at
                   td.operations
                     ul

@@ -4,17 +4,12 @@
 *::after
   box-sizing border-box
 
-*
-  box-sizing border-box
-
 body
   background-color #FAF9F8
   color            #777777
-  min-width        (980 - 528)px
-
 
 // vars
-$menu-width = 212px
+$menu-width = 195px
 
 
 // content area
@@ -22,9 +17,10 @@ $menu-width = 212px
   .content
     background-color #FFFFFF
     padding          13px 18px 39px 18px
-    min-height       760px
+    min-height       800px
     line-height      1.444
     border-right     1px solid #F3F3F3
+    min-width        964px
 
 #public
   .content
@@ -115,26 +111,40 @@ $menu-width = 212px
     padding 21px 18px
     &:hover
       text-decoration none
-
+  .bottom
+    height   60px
+    position absolute
+    left     0
+    bottom   0
+    width    100%
+    margin   0
+    background-color #1F0F00
+    a
+      margin  0
+      padding 23px 27px
+      &:hover
+        color            #FFFFFF
+        background-color #3D2915
 
 // right box|bar
 .rightbox
   padding 0 9px
-  .locales
-    margin-top 13px
 
 .rightbar
   background none
   min-height 760px
   padding    13px 9px
-  .actions,
-  .links
+  .locales
     padding 6px 0 21px 0
-  .links
-    ul
+    margin  13px 0 0 3px
+  .navs
+    padding 6px 0 21px 0
+    margin  18px 0 0 3px
+    ul.links
+      padding 0 0 0 2px
       li
         list-style none
-        margin     0 0 11px 0
+        margin     13px 0
 
 .rightbox,
 .rightbar
@@ -185,7 +195,7 @@ $menu-width = 212px
   .login
     text-align right
   .header-content
-    padding 0 18px 0 18px
+    padding 0 18px
 
 .header > div:first-child
   background-color #FFFFFF
@@ -258,7 +268,8 @@ section.block .container
 
 // responsive specs
 @media(min-width 99em)
-  .rightbox,
+  .rightbox
+     padding-left 0
   .rightbar
      padding-left  17px
      padding-right 17px

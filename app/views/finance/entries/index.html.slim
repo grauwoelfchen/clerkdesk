@@ -19,7 +19,7 @@
     .box
       = render "finance/shared/tab", report: @report, account_book: @account_book
       .main.pure-g
-        .pure-u-1-1
+        .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
           = render "finance/shared/account_book", report: @report, account_book: @account_book
           .container
             = render "shared/pagination", resource: @entries, info: true
@@ -45,10 +45,6 @@
                     = sort_links_for(:total_amount)
                   th
                     span.attribute
-                      = Finance::Entry.human_attribute_name(:created_at)
-                    = sort_links_for(:created_at)
-                  th
-                    span.attribute
                       = Finance::Entry.human_attribute_name(:updated_at)
                     = sort_links_for(:updated_at, :desc)
                   th
@@ -64,7 +60,6 @@
                       span class="label label-#{entry.type}"= entry.human_type
                     td.total_amount
                       span.currency= entry.total_amount
-                    td.created_at= entry.created_at
                     td.updated_at= entry.updated_at
                     td.operations
                       ul
