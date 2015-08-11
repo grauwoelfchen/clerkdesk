@@ -13,48 +13,43 @@
           li.pure-menu-item
             = link_to t("action.new"), new_finance_report_path, class: "pure-menu-link"
 
-= render "shared/pagination", resource: @reports, info: true
-
-.finance.report
-  table.table.pure-table.pure-table-horizontal
-    thead
-      tr
-        th
-        th
-          span.attribute
-            = Finance::Report.human_attribute_name(:name)
-          = sort_links_for(:name)
-        th
-          span.attribute
-            = Finance::Report.human_attribute_name(:state)
-          = sort_links_for(:state)
-        th
-          span.attribute
-            = Finance::Report.human_attribute_name(:description)
-          = sort_links_for(:description)
-        th
-          span.attribute
-            = Finance::Report.human_attribute_name(:created_at)
-          = sort_links_for(:created_at)
-        th
-          span.attribute
-            = Finance::Report.human_attribute_name(:updated_at)
-          = sort_links_for(:updated_at, :desc)
-        th
-    tbody
-      - @reports.each do |report|
+.finance.report.pure-g
+  .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
+    = render "shared/pagination", resource: @reports, info: true
+    table.table.pure-table.pure-table-horizontal
+      thead
         tr
-          td.check
-            - if report.state_primary?
-              i.fa.fa-check
-          td.name= link_to truncate(report.name, length: 20), overview_finance_report_path(report)
-          td.state= report_label(report, :state)
-          td.description= truncate(report.description, length: 25)
-          td.created_at= report.created_at
-          td.updated_at= report.updated_at
-          td.operations
-            ul
-              li= link_to t("action.edit"), edit_finance_report_path(report)
-              li= link_to t("action.destroy"), finance_report_path(report), method: :delete, data: {confirm: "Are you sure?"}
+          th
+          th
+            span.attribute
+              = Finance::Report.human_attribute_name(:name)
+            = sort_links_for(:name)
+          th
+            span.attribute
+              = Finance::Report.human_attribute_name(:state)
+            = sort_links_for(:state)
+          th
+            span.attribute
+              = Finance::Report.human_attribute_name(:description)
+            = sort_links_for(:description)
+          th
+            span.attribute
+              = Finance::Report.human_attribute_name(:updated_at)
+            = sort_links_for(:updated_at, :desc)
+          th
+      tbody
+        - @reports.each do |report|
+          tr
+            td.check
+              - if report.state_primary?
+                i.fa.fa-check
+            td.name= link_to truncate(report.name, length: 20), overview_finance_report_path(report)
+            td.state= report_label(report, :state)
+            td.description= truncate(report.description, length: 25)
+            td.updated_at= report.updated_at
+            td.operations
+              ul
+                li= link_to t("action.edit"), edit_finance_report_path(report)
+                li= link_to t("action.destroy"), finance_report_path(report), method: :delete, data: {confirm: "Are you sure?"}
 
-  = render "shared/pagination", resource: @reports, info: false
+    = render "shared/pagination", resource: @reports, info: false

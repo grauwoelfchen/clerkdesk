@@ -17,7 +17,7 @@
     .box
       = render "finance/shared/tab", report: @report
       .main.pure-g
-        .pure-u-1-1
+        .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
           .sub-header
             h5= Finance::AccountBook.model_name.human.pluralize
             hr
@@ -35,10 +35,6 @@
                   = sort_links_for(:description)
                 th
                   span.attribute
-                    = Finance::AccountBook.human_attribute_name(:created_at)
-                  = sort_links_for(:created_at)
-                th
-                  span.attribute
                     = Finance::AccountBook.human_attribute_name(:updated_at)
                   = sort_links_for(:updated_at, :desc)
                 th
@@ -49,7 +45,6 @@
                     i.icon.fa.fa-fw.fa-lg= account_book.icon.to_s.html_safe
                     = link_to truncate(account_book.name, length: 18), finance_report_account_book_entries_path(@report, account_book)
                   td= truncate(account_book.description, length: 27)
-                  td.created_at= account_book.created_at
                   td.updated_at= account_book.updated_at
                   td.operations
                     ul

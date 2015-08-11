@@ -8,7 +8,7 @@ module Finance
 
     enum_accessor :type, [:expense, :income]
     paginates_per 16
-    sortable :name, :type, :created_at, :updated_at
+    sortable :name, :type, :updated_at
 
     belongs_to :report
     has_many :journalizings, dependent: :destroy
