@@ -1,8 +1,5 @@
 - content_for :script do
-  = javascript_include_tag "jquery-selectric/public/jquery.selectric.min"
-
-- content_for :style do
-  = stylesheet_link_tag "jquery-selectric/public/selectric"
+  = javascript_include_tag "forms/account_book"
 
 = form_for [:finance, report, account_book], html: {class: "form pure-form pure-form-aligned"} do |f|
   - if account_book.errors.any?
