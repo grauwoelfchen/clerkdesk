@@ -66,7 +66,6 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     click_button("Create Team")
     assert_equal("http://vanilla-dog-biscuits.example.org/", page.current_url)
     assert_content("Your team has been successfully created.")
-    assert_content("Signed in as weenie@example.com")
     logout_user
   end
 end

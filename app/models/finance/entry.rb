@@ -27,8 +27,7 @@ module Finance
 
     acts_as_taggable
     paginates_per 25
-    sortable :title, :type, :journalizing_id, :total_amount,
-      :created_at, :updated_at
+    sortable :title, :type, :journalizing_id, :total_amount, :updated_at
 
     validates :title,
       presence: true
