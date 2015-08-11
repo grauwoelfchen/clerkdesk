@@ -27,5 +27,16 @@ module Finance
       message = "is too long (maximum is 1024 characters)"
       assert_equal([message], entry.errors[:memo])
     end
+
+    def test_force_sign_callback_with_invalid_sign
+      # income with minus value
+      entry = Finance::Entry.new(:type => :income, :total_amount => -1000)
+      refute(entry.valid?)
+      assert_equal(1000, entry.total_amount)
+      # expense with plus value
+      entry = Finance::Entry.new(:type => :expense, :total_amount => 1000)
+      refute(entry.valid?)
+      assert_equal(-1000, entry.total_amount)
+    end
   end
 end
