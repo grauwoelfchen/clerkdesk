@@ -1,9 +1,5 @@
 - content_for :script do
-  = javascript_include_tag "jquery-autosize/jquery.autosize.min"
-  = javascript_include_tag "jquery-ui/jquery-ui.min"
-  = javascript_include_tag "jquery-ui/ui/minified/autocomplete.min"
-  = javascript_include_tag "jquery-tag-editor/jquery.caret.min"
-  = javascript_include_tag "jquery-tag-editor/jquery.tag-editor.min"
+  = javascript_include_tag "resources/notes"
 
 = form_for note, html: {class: "form pure-form"} do |f|
   - if note.errors.any?

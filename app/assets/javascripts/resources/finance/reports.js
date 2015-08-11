@@ -1,3 +1,6 @@
+//= require jquery-autosize/jquery.autosize.min.js
+//= require pickmeup/js/jquery.pickmeup.min.js
+
 (function($) {
   'use strict';
 

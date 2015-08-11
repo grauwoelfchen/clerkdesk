@@ -9,18 +9,20 @@ gem "locker_room", git: "https://github.com/grauwoelfchen/locker_room.git"
 
 gem "acts-as-taggable-on", "~> 3.4"
 gem "friendly_id"
+gem "date_validator"
 
 gem "countries"
 gem "country_select"
-gem "date_validator"
 
 gem "rails-i18n", "4.0.4"
 gem "gretel"
 gem "redcarpet"
 gem "kaminari"
 
-gem "jbuilder"
+gem "browserify-rails"
 gem "uglifier"
+
+gem "jbuilder"
 gem "slim"
 gem "stylus"
 

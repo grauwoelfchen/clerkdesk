@@ -1,3 +1,6 @@
+- content_for :script do
+  = javascript_include_tag "resources/people"
+
 = form_for person, html: {class: "form pure-form pure-form-aligned"} do |f|
   - if person.errors.any?
     = render "shared/error", resource: person

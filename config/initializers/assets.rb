@@ -9,16 +9,8 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
-  jquery-autosize/jquery.autosize.min.js
-  jquery-ui/jquery-ui.min.js
-  jquery-ui/ui/minified/autocomplete.min.js
-  jquery-tag-editor/jquery.caret.min.js
-  jquery-tag-editor/jquery.tag-editor.min.js
-  jquery-selectric/public/jquery.selectric.min.js
-  jquery-selectric/public/selectric.css
-  autoNumeric/autoNumeric.js
-  pickmeup/js/jquery.pickmeup.min.js
-  pickmeup/css/pickmeup.min.css
-  chosen/chosen.jquery.min.js
-  chosen/chosen.min.css
+  font-awesome/fonts/*
+  jquery-tag-editor/delete.*
+  resources/*
+  resources/finance/*
 )
