@@ -1,3 +1,5 @@
+//= require jquery-selectric/public/jquery.selectric.min.js
+
 (function($) {
   'use strict';
 

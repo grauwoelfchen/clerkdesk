@@ -1,28 +1,20 @@
+//= require jquery-ui/jquery-ui.min.js
+//= require jquery-ui/ui/minified/autocomplete.min.js
+//= require jquery-tag-editor/jquery.caret.min.js
+//= require jquery-tag-editor/jquery.tag-editor.min.js
+
 (function($) {
   'use strict';
 
   $(function() {
     // indicator
     (function() {
-      var journalizing = $('#entry_journalizing_id');
-
-      $(journalizing).parent().append(
-        '<span id="indicator"><img src="/assets/loading.gif"></div>'
+      var container = $('#entry_journalizing_id');
+      container.parent().append(
+        '<span id="indicator"><img src="<%= asset_path('loading.gif') %>"></div>'
       );
-      $('#indicator').css({
-        display:          'none',
-        margin:           '7px 0 2px 0',
-        padding:          '0',
-        'vertical-align': 'middle'
-      });
-
-      $(document).ajaxStart(function() {
-        journalizing.hide();
-        $('#indicator').css({display: 'inline-block'});
-      }).ajaxStop(function() {
-        $('#indicator').hide();
-        journalizing.show();
-      });
+      var Indicator = require('../../modules/indicator');
+      Indicator.setup($, container);
     })();
 
     // journalizings updater
@@ -88,48 +80,30 @@
       });
     })();
 
-    // set total_amount (currency)
     (function() {
       if ($.fn.autoNumeric == undefined) { return; }
 
-      var amount = $('#entry_total_amount');
-      // TODO currency setting
-      amount.autoNumeric('init', {
-        aSign:  '¥ '
-      , pSign:  'p'
-      , vMin:   '-100000000'
-      , vMax:   '100000000'
-      , wEmpty: 'zero'
-      , lZero:  'deny'
-      });
+      var field = $('#entry_total_amount.currency');
+
+      field.autoNumeric('set', 0);
 
       $('#entry_type').change(function() {
-        var current_value = amount.autoNumeric('get');
-        amount.autoNumeric('set', 0);
+        var current_value = field.autoNumeric('get');
         if ($(this).val() === 'income') {
-          amount.autoNumeric('update', {
+          field.autoNumeric('update', {
             vMin: '0'
           , vMax: '100000000'
           });
           var value = (current_value < 0) ? current_value * -1 : current_value;
-          amount.autoNumeric('set', value);
+          field.autoNumeric('set', value);
         } else {
-          amount.autoNumeric('update', {
+          field.autoNumeric('update', {
             vMin: '-100000000'
           , vMax: '0'
           });
           var value = (current_value > 0) ? current_value * -1 : current_value;
-          amount.autoNumeric('set', value);
+          field.autoNumeric('set', value);
         }
-      });
-
-      $('form.form').submit(function() {
-        var current_value = amount.autoNumeric('get');
-        amount.autoNumeric('update', {
-          aSign: ''
-        , aSep:  ''
-        , aDeg:  ''
-        });
       });
     })();
 

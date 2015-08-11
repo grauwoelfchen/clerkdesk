@@ -65,12 +65,14 @@ module Finance
     end
 
     def entry_params
-      params.require(:entry).permit(
+      permitted_params = params.require(:entry).permit(
         :title, :type, :journalizing_id, :total_amount, :memo,
         :involvements_attributes => [
           :id, :holder_id, :holder_type, :_destroy
         ]
       )
+      permitted_params[:total_amount].to_s.gsub!(/[^0-9\-]/, '')
+      permitted_params
     end
   end
 end

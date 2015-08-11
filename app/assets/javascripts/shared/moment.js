@@ -1,7 +1,7 @@
-(function($) {
+(function($, moment) {
   'use strict';
 
-  if (window.moment == undefined) { return; }
+  if (moment == undefined) { return; }
 
   moment.locale('ja', {
     longDateFormat: {
@@ -15,51 +15,41 @@
     }
   });
 
+  // setup localized time
   $(function() {
-    // setup localized time
-    (function() {
-      var localizeTime = function() {
-        var locale = $('html').attr('lang');
-        moment().format();
-        moment.locale(locale);
+    var locale = $('html').attr('lang');
+    moment().format();
+    moment.locale(locale);
 
-        var datetime =
-          '.created_at,.updated_at,' +
-          '.started_at,.finished_at,' +
-          '.joined_at,.left_at'
-        $(datetime).each(function() {
-          var field = $(this)
-            , value = moment.utc(field.html(), [
-                'YYYY-MM-DD HH:mm:ssZ', moment.ISO_8601
-              ])
-            ;
-          if (value.isValid()) {
-            value.locale(locale); // local locale
-            value.local();
-            var data = field.attr('data-format');
-            switch (data) {
-              case 'relative':
-              case 'fromNow':
-                field.html(value.fromNow());
-                break;
-              case 'calendar':
-                field.html(value.calendar());
-                break;
-              case undefined: // full
-                field.html(value.format('LLLL'));
-                break;
-              default:
-                field.html(value.format(data));
-                break;
-            }
-          }
-        });
-      };
-      var startup = function() {
-        localizeTime();
-      };
+    var datetime = '.created_at,.updated_at,' +
+      '.started_at,.finished_at,.joined_at,.left_at';
 
-      return startup();
-    })();
+    $(datetime).each(function() {
+      var field = $(this)
+        , value = moment.utc(field.html(), [
+            'YYYY-MM-DD HH:mm:ssZ', moment.ISO_8601
+          ])
+        ;
+      if (value.isValid()) {
+        value.locale(locale); // local locale
+        value.local();
+        var data = field.attr('data-format');
+        switch (data) {
+          case 'relative':
+          case 'fromNow':
+            field.html(value.fromNow());
+            break;
+          case 'calendar':
+            field.html(value.calendar());
+            break;
+          case undefined: // full
+            field.html(value.format('LLLL'));
+            break;
+          default:
+            field.html(value.format(data));
+            break;
+        }
+      }
+    });
   });
-})(jQuery);
+})(jQuery, moment);
