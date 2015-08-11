@@ -61,7 +61,9 @@ module Finance
     end
 
     def load_entry
-      @entry = @account_book.entries.find(params[:id])
+      @entry = @account_book.entries
+        .includes(:people, :involvements, :category)
+        .find(params[:id])
     end
 
     def entry_params

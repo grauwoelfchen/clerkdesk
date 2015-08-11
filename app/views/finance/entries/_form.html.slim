@@ -36,12 +36,11 @@
         - entry.involvements.each do |involvement|
           - if involvement.holder_type == 'Person'
             div.holder
-              - person = involvement.holder
-              = f.hidden_field :people, id: "holder_#{person.id}",      value: person.id, name: 'entry[involvements_attributes][][holder_id]'
-              = f.hidden_field :people, id: "holder_#{person.id}_type", value: 'Person',  name: 'entry[involvements_attributes][][holder_type]'
+              = f.hidden_field :people, id: "holder_#{involvement.holder_id}",      value: involvement.holder_id, name: 'entry[involvements_attributes][][holder_id]'
+              = f.hidden_field :people, id: "holder_#{involvement.holder_id}_type", value: 'Person',              name: 'entry[involvements_attributes][][holder_type]'
               - if involvement.persisted?
-                = f.hidden_field :people, id: "holder_#{person.id}_id",      value: involvement.id, class: 'id',      name: 'entry[involvements_attributes][][id]'
-                = f.hidden_field :people, id: "holder_#{person.id}_destroy", value: "0",            class: 'destroy', name: 'entry[involvements_attributes][][_destroy]'
+                = f.hidden_field :people, id: "holder_#{involvement.holder_id}_id",      value: involvement.id, class: 'id',      name: 'entry[involvements_attributes][][id]'
+                = f.hidden_field :people, id: "holder_#{involvement.holder_id}_destroy", value: "0",            class: 'destroy', name: 'entry[involvements_attributes][][_destroy]'
     .actions
       - action = entry.persisted? ? "update" : "create"
       = f.submit t("action.#{action}"), class: "pure-button button"

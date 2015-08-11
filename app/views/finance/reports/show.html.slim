@@ -52,8 +52,8 @@
                         = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
                       td.type
                         span class="label label-#{entry.type}"= entry.human_type
-                      td.total_amount.currency
-                        span= entry.total_amount
+                      td.total_amount
+                        span.currency= entry.total_amount
                   - else
                     tr.blank
                       td
