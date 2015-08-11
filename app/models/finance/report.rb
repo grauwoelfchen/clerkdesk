@@ -7,9 +7,8 @@ module Finance
 
     enum_accessor :state, [:closed, :opened, :primary]
     paginates_per 6
-    sortable :name, :description, :state, :started_at,
-             :updated_at, :finished_at,
-             :created_at, :updated_at
+    sortable :name, :description, :state, :updated_at,
+             :started_at, :finished_at
 
     has_one :budget
     has_many :account_books

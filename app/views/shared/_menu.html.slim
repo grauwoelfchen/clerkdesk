@@ -30,3 +30,7 @@
       = link_to "#", class: "pure-menu-link" do
         i.fa.fa-cog
         = t("nav.settings")
+
+  .bottom
+    = link_to locker_room.logout_path, method: :delete, class: "pure-menu-link" do
+      = "logout"
