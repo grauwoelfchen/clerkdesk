@@ -39,10 +39,19 @@ module Finance
       length:      {maximum: 1024},
       allow_blank: true
 
+    before_validation :force_sign
+
     private
 
     def reject_involvements(attributes)
       attributes[:_destroy] == "0"
+    end
+
+    def force_sign
+      if (type_income?  && total_amount < 0) ||
+         (type_expense? && total_amount > 0)
+        self.total_amount *= -1
+      end
     end
   end
 end
