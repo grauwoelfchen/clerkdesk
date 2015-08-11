@@ -1,8 +1,5 @@
 - breadcrumb :'finance/entries', @report, @account_book
 
-- content_for :script
-  = javascript_include_tag 'autoNumeric/autoNumeric'
-
 - content_for :header
   h2= Finance::AccountBook.model_name.human
   h3= t("subheading.finance.entry")
@@ -66,7 +63,7 @@
                     td.type
                       span class="label label-#{entry.type}"= entry.human_type
                     td.total_amount
-                      span= entry.total_amount
+                      span.currency= entry.total_amount
                     td.created_at= entry.created_at
                     td.updated_at= entry.updated_at
                     td.operations

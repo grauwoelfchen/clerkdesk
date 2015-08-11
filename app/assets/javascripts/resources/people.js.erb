@@ -4,24 +4,12 @@
   $(function() {
     // indicator
     (function() {
-      var division = $('#person_division');
-
-      $(division).parent().append(
-        '<span id="indicator"><img src="/assets/loading.gif"></div>'
+      var container = $('#person_division');
+      container.parent().append(
+        '<span id="indicator"><img src="<%= asset_path('loading.gif') %>"></div>'
       );
-      $('#indicator').css({
-        display:          'none',
-        margin:           '7px 0 2px 0',
-        padding:          '0',
-        'vertical-align': 'middle'
-      });
-      $(document).ajaxStart(function() {
-        division.hide();
-        $('#indicator').css({display: 'inline-block'});
-      }).ajaxStop(function() {
-        $('#indicator').hide();
-        division.show();
-      });
+      var Indicator = require('../modules/indicator');
+      Indicator.setup($, container);
     })();
 
     // division codes updater

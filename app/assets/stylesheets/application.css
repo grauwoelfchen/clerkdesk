@@ -12,8 +12,11 @@
  *
  *= require purecss/build/pure-min
  *= require purecss/build/grids-responsive-min
- *= require font-awesome/css/font-awesome.min
- *= require jquery-tag-editor/jquery.tag-editor
- *= require_tree .
+ *= require jquery-selectric/public/selectric
+ *= require pickmeup/css/pickmeup.min
+ *= require chosen/chosen.min
+ *= require vendor/font-awesome
+ *= require vendor/jquery.tag-editor
+ *= require_tree ./resources
  *= require_self
  */

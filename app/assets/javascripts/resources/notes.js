@@ -1,3 +1,9 @@
+//= require jquery-autosize/jquery.autosize.min.js
+//= require jquery-ui/jquery-ui.min.js
+//= require jquery-ui/ui/minified/autocomplete.min.js
+//= require jquery-tag-editor/jquery.caret.min.js
+//= require jquery-tag-editor/jquery.tag-editor.min.js
+
 (function($) {
   'use strict';
 
