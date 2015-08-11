@@ -6,10 +6,10 @@ class Person < ActiveRecord::Base
   has_many :involvements,
     ->{ order(:id => :asc) },
     as: :holder
-  has_many :ledger_entries,
+  has_many :finance_entries,
     through:     :involvements,
     source:      :matter,
-    source_type: 'LedgerEntry'
+    source_type: 'Finance::Entry'
   has_one :identity, foreign_key: :user_id
   has_one :user, through: :identity, source: :person
 
@@ -30,7 +30,7 @@ class Person < ActiveRecord::Base
     presence: true,
     length:   {maximum: 128}
   validates :country,
-    inclusion:   {in: Country.all.map { |_, alpha2| alpha2 } },
+    inclusion:   {in: Country.all.map { |_, alpha2| alpha2 }},
     allow_blank: true
   validates :city,
     length: {maximum: 64}

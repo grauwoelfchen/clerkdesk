@@ -1,5 +1,5 @@
 - content_for :script do
-  = javascript_include_tag "forms/account_book"
+  = javascript_include_tag "resources/finance/account_books"
 
 = form_for [:finance, report, account_book], html: {class: "form pure-form pure-form-aligned"} do |f|
   - if account_book.errors.any?

@@ -31,9 +31,12 @@
           journalizing_val = null;
         }
         $.ajax({
-          dataType: 'json',
-          url:      '/finances/' + report.attr('data-id') +
-                    '/account_books/' + accountBook.attr('data-id') +
+          async:    true
+        , type:     'GET'
+        , dataType: 'json'
+        , accepts:  'application/json'
+        , url:      '/finances/' + report.attr('data-id') +
+            '/account_books/' + accountBook.attr('data-id') +
             '/journalizings.json?type=' + encodeURIComponent(type_val)
         })
         .fail(function() {
@@ -80,28 +83,26 @@
       });
     })();
 
+    // currency input
     (function() {
       if ($.fn.autoNumeric == undefined) { return; }
 
-      var field = $('#entry_total_amount.currency');
-
-      field.autoNumeric('set', 0);
-
       $('#entry_type').change(function() {
-        var current_value = field.autoNumeric('get');
+        var field = $('#entry_total_amount.currency')
+          , currentValue = field.autoNumeric('get');
         if ($(this).val() === 'income') {
           field.autoNumeric('update', {
             vMin: '0'
           , vMax: '100000000'
           });
-          var value = (current_value < 0) ? current_value * -1 : current_value;
+          var value = (currentValue < 0) ? currentValue * -1 : currentValue;
           field.autoNumeric('set', value);
         } else {
           field.autoNumeric('update', {
             vMin: '-100000000'
           , vMax: '0'
           });
-          var value = (current_value > 0) ? current_value * -1 : current_value;
+          var value = (currentValue > 0) ? currentValue * -1 : currentValue;
           field.autoNumeric('set', value);
         }
       });
@@ -114,7 +115,10 @@
       var tagList = $('#labels');
 
       $.ajax({
-        dataType: 'json'
+        async:    true
+      , type:     'GET'
+      , dataType: 'json'
+      , accepts:  'application/json'
       , url:      '/people/search.json'
       })
       .done(function(data) {
