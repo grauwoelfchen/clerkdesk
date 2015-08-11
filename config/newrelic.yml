@@ -1,0 +1,17 @@
+common: &default_settings
+  license_key: <%= ENV['NEWRELIC_LICENSE_KEY'] %>
+  app_name: Clerkdesk
+  agent_enabled: true
+  log_level: info
+development:
+  <<: *default_settings
+  app_name: Clerkdesk (Development)
+  developer_mode: true
+test:
+  <<: *default_settings
+  monitor_mode: false
+staging:
+  <<: *default_settings
+  app_name: Clerkdesk (Staging)
+production:
+  <<: *default_settings

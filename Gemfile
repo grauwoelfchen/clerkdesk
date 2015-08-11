@@ -26,6 +26,8 @@ gem "jbuilder"
 gem "slim"
 gem "stylus"
 
+gem "newrelic_rpm"
+
 group :doc do
   gem "sdoc", "~> 0.4.0"
 end
