@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class NotesControllerTest < ActionController::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
@@ -34,7 +34,7 @@ class NotesControllerTest < ActionController::TestCase
       get(:new)
       assert_kind_of(Note, assigns[:note])
       assert_template(:new)
-      assert_template(:partial => "_form")
+      assert_template(:partial => '_form')
       assert_response(:success)
     end
   end
@@ -44,19 +44,19 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(user.team.subdomain) do
       login_user(user)
       params = {
-        :note  => {
-          :title => ""
+        :note => {
+          :title => ''
         }
       }
-      assert_no_difference("Note.count", 1) do
+      assert_no_difference('Note.count', 1) do
         post(:create, params)
       end
       assert_instance_of(Note, assigns[:note])
       refute(assigns[:note].persisted?)
       assert_nil(flash[:notice])
       assert_template(:new)
-      assert_template(:partial => "shared/_error")
-      assert_template(:partial => "_form")
+      assert_template(:partial => 'shared/_error')
+      assert_template(:partial => '_form')
       assert_response(:success)
     end
   end
@@ -66,17 +66,17 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(user.team.subdomain) do
       login_user(user)
       params = {
-        :note  => {
-          :title => "New note"
+        :note => {
+          :title => 'New note'
         }
       }
-      assert_difference("Note.count", 1) do
+      assert_difference('Note.count', 1) do
         post(:create, params)
       end
       assert_instance_of(Note, assigns[:note])
       assert(assigns[:note].persisted?)
       assert_equal(
-        "Note has been successfully created.",
+        'Note has been successfully created.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)
@@ -92,7 +92,7 @@ class NotesControllerTest < ActionController::TestCase
       get(:edit, :id => note.id)
       assert_equal(note, assigns[:note])
       assert_template(:edit)
-      assert_template(:partial => "_form")
+      assert_template(:partial => '_form')
       assert_response(:success)
     end
   end
@@ -103,17 +103,17 @@ class NotesControllerTest < ActionController::TestCase
       login_user(user)
       note = notes(:favorite_song)
       params = {
-        :id     => note.id,
+        :id   => note.id,
         :note => {
-          :title => ""
+          :title => ''
         }
       }
       put(:update, params)
       assert_equal(note, assigns[:note])
       assert_nil(flash[:notice])
       assert_template(:edit)
-      assert_template(:partial => "shared/_error")
-      assert_template(:partial => "_form")
+      assert_template(:partial => 'shared/_error')
+      assert_template(:partial => '_form')
       assert_response(:success)
     end
   end
@@ -124,15 +124,15 @@ class NotesControllerTest < ActionController::TestCase
       login_user(user)
       note = notes(:favorite_song)
       params = {
-        :id     => note.id,
+        :id   => note.id,
         :note => {
-          :title => "Violin note"
+          :title => 'Violin note'
         }
       }
       put(:update, params)
       assert_equal(params[:note][:title], assigns[:note].title)
       assert_equal(
-        "Note has been successfully updated.",
+        'Note has been successfully updated.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)
@@ -145,13 +145,13 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(user.team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
-      assert_difference("Note.count", -1) do
+      assert_difference('Note.count', -1) do
         delete(:destroy, :id => note.id)
       end
       assert_equal(note, assigns[:note])
       refute(assigns[:note].persisted?)
       assert_equal(
-        "Note has been successfully destroyed.",
+        'Note has been successfully destroyed.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)

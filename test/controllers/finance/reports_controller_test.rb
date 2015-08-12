@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Finance
-  class BooksControllerTest < ActionController::TestCase
+  class ReportsControllerTest < ActionController::TestCase
     # test "the truth" do
     #   assert true
     # end

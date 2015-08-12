@@ -1,5 +1,5 @@
 class LocalesController < WorkspaceController
-  before_action :load_user
+  before_action :set_user
 
   def switch
     @user.skip_password = true
@@ -11,7 +11,7 @@ class LocalesController < WorkspaceController
 
   private
 
-  def load_user
+  def set_user
     @user = current_user
   end
 

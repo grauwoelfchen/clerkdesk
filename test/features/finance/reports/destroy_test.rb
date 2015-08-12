@@ -10,7 +10,7 @@ class FinanceReportDestroyTest < Capybara::Rails::TestCase
       report = finance_reports(:general_report)
       visit(finance_reports_url)
       assert_equal(finance_reports_url, page.current_url)
-      assert_difference("Finance::Report.count", -1) do
+      assert_difference('Finance::Report.count', -1) do
         visit(finance_reports_url)
         href = "/finances/#{report.id}"
         link = find(:xpath, "//a[@href='#{href}' and text()='Delete']")

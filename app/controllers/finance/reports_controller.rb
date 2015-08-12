@@ -1,6 +1,6 @@
 module Finance
   class ReportsController < WorkspaceController
-    before_action :load_report, :only => [:show, :edit, :update, :destroy]
+    before_action :set_report, only: [:show, :edit, :update, :destroy]
 
     def index
       @reports = Report
@@ -9,34 +9,26 @@ module Finance
     end
 
     def new
-      today = Time.zone.today
-      default = {
-        :started_at  => today,
-        :finished_at => today + 1.year
-      }
-      @report = Report.new(default)
+      @report = Report.new
     end
 
     def create
       @report = Report.new(report_params)
       if @report.save_with_fiscal_objects
-        redirect_to [:overview, :finance, @report],
-          :notice => "Finance report has been successfully created."
+        redirect_to([:overview, :finance, @report],
+          :notice => 'Finance report has been successfully created.')
       else
-        flash.now[:alert] = "Finance report could not be created."
-        render :new
+        flash.now[:alert] = 'Finance report could not be created.'
+        render(:new)
       end
     end
 
     def show
-      @categories = @report.categories
-        .includes(:journalizings)
-        .order(updated_at: :desc).limit(5)
-      journalizing_ids = @report.journalizings.select(:id).pluck(:id)
-      @entries = Finance::Entry
-        .includes(:account_book, :category)
-        .where(journalizing_id: journalizing_ids)
-        .order(created_at: :desc).limit(5)
+      if params[:segment] == 'status'
+        @categories = @report.recent_categories
+      else # entries
+        @entries = @report.recent_entries
+      end
     end
 
     def edit
@@ -44,23 +36,23 @@ module Finance
 
     def update
       if @report.update_attributes(report_params)
-        redirect_to [:overview, :finance, @report],
-          :notice => "Finance report has been successfully updated."
+        redirect_to([:overview, :finance, @report],
+          :notice => 'Finance report has been successfully updated.')
       else
-        flash.now[:alert] = "Finance report could not be updated."
-        render :edit
+        flash.now[:alert] = 'Finance report could not be updated.'
+        render(:edit)
       end
     end
 
     def destroy
       @report.destroy
-      redirect_to finance_reports_url,
-        :notice => "Finance report has been successfully destroyed."
+      redirect_to(finance_reports_url,
+        :notice => 'Finance report has been successfully destroyed.')
     end
 
     private
 
-    def load_report
+    def set_report
       @report = Report.find(params[:id])
     end
 

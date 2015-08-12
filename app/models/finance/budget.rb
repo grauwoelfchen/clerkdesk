@@ -2,7 +2,7 @@ module Finance
   class Budget < ActiveRecord::Base
     extend FiscalPolicyExtension
 
-    self.table_name = "finance_budgets"
+    self.table_name = 'finance_budgets'
 
     belongs_to :report
 

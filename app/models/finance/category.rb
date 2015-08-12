@@ -3,8 +3,8 @@ module Finance
     extend FiscalPolicyExtension
     include Sortable
 
-    self.table_name = "finance_categories"
-    self.inheritance_column = "null"
+    self.table_name = 'finance_categories'
+    self.inheritance_column = 'null'
 
     enum_accessor :type, [:expense, :income]
     paginates_per 16
@@ -16,6 +16,18 @@ module Finance
 
     def self.to_param
       self.class.name
+    end
+
+    def save_with_journalizings
+      transaction do
+        result = save
+        if result
+          report.account_books.map do |account_book|
+            journalizings.create!(:account_book => account_book)
+          end
+        end
+        result
+      end
     end
 
     def to_s
