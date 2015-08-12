@@ -7,7 +7,7 @@ class UserBehavior(TaskSet):
         self.login(self)
 
     def login(self):
-        self.client.post('/login', {"username":"grauwoelfchen", "password":"secret"})
+        self.client.post('/login', {'username':'grauwoelfchen', 'password':'secret'})
 
     @task(1)
     def index(self):

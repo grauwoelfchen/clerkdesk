@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 module Finance
   class AccountBookTest < ActiveSupport::TestCase
@@ -17,14 +17,14 @@ module Finance
       report = other_account_book.report
       account_book = report.account_books.new(:name => other_account_book.name)
       refute(account_book.valid?)
-      message = "has already been taken"
+      message = 'has already been taken'
       assert_equal([message], account_book.errors[:name])
     end
 
     def test_validation_with_too_long_name
-      account_book = Finance::AccountBook.new(:name => "long" * 33)
+      account_book = Finance::AccountBook.new(:name => 'long' * 33)
       refute(account_book.valid?)
-      message = "is too long (maximum is 128 characters)"
+      message = 'is too long (maximum is 128 characters)'
       assert_equal([message], account_book.errors[:name])
     end
 
@@ -36,9 +36,9 @@ module Finance
     end
 
     def test_validation_with_too_long_description
-      account_book = Finance::AccountBook.new(:description => "long" * 64)
+      account_book = Finance::AccountBook.new(:description => 'long' * 64)
       refute(account_book.valid?)
-      message = "is too long (maximum is 255 characters)"
+      message = 'is too long (maximum is 255 characters)'
       assert_equal([message], account_book.errors[:description])
     end
   end

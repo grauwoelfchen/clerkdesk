@@ -3,7 +3,7 @@ module Finance
     extend FiscalPolicyExtension
     include Sortable
 
-    self.table_name = "finance_reports"
+    self.table_name = 'finance_reports'
 
     enum_accessor :state, [:closed, :opened, :primary]
     paginates_per 6
@@ -14,6 +14,7 @@ module Finance
     has_many :account_books
     has_many :categories
     has_many :journalizings, through: :categories
+    has_many :entries, through: :journalizings
 
     validates :name,
       presence: true
@@ -25,17 +26,40 @@ module Finance
       length: {maximum: 256}
     validate :check_period
 
+    def initialize
+      today = Time.zone.today
+      defaults = {
+        :started_at  => today,
+        :finished_at => today + 1.year
+      }
+      super(defaults)
+    end
+
+    def recent_categories(limit_count=5)
+      categories
+        .includes(:journalizings)
+        .order(:updated_at => :desc)
+        .limit(limit_count)
+    end
+
+    def recent_entries(limit_count=5)
+      entries
+        .includes(:account_book, :category)
+        .order(:updated_at => :desc)
+        .limit(limit_count)
+    end
+
     def save_with_fiscal_objects
-      self.class.transaction do
+      transaction do
         result = save
         if result
-          create_budget
-          create_initial_account_books
-          create_initial_categories
+          create_budget!
+          create_initial_account_books!
+          create_initial_categories!
 
-          account_books.map do |b|
-            categories.map do |c|
-              c.journalizings.create(:account_book => b)
+          account_books.map do |account_book|
+            categories.map do |category|
+              category.journalizings.create!(:account_book => account_book)
             end
           end
         end
@@ -50,20 +74,22 @@ module Finance
       end
     end
 
-    def create_initial_account_books
-      {cash: 'briefcase', bank: 'bank'}.map do |book, icon|
-        name = I18n.t(book, :scope => [:finance, :account_book])
+    def create_initial_account_books!
+      {
+        :cash => 'briefcase', :bank => 'bank'
+      }.map do |book_name, icon_name|
+        name = I18n.t(book_name, :scope => [:finance, :account_book])
         icons = Rails.application.config.icons
-        account_books.create(:name => name, :icon => icons[icon])
+        account_books.create!(:name => name, :icon => icons[icon_name])
       end
     end
 
-    def create_initial_categories
+    def create_initial_categories!
       %w{
         accumulation carry-over membership-fee correspondence
       }.map do |category|
         name = I18n.t(category, :scope => [:finance, :category])
-        categories.create(:name => name)
+        categories.create!(:name => name)
       end
     end
   end

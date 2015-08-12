@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 module Finance
   class BudgetsControllerTest < ActionController::TestCase
@@ -27,7 +27,7 @@ module Finance
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.report, assigns[:report])
         assert_template(:edit)
-        assert_template(:partial => "_form")
+        assert_template(:partial => '_form')
         assert_response(:success)
       end
     end
@@ -39,8 +39,8 @@ module Finance
         budget = finance_budgets(:second_piano_budget)
         params = {
           :report_id => budget.report_id,
-          :budget  => {
-            :description => "Long description" * 100
+          :budget    => {
+            :description => 'Long description' * 100
           }
         }
         put(:update, params)
@@ -49,12 +49,12 @@ module Finance
         assert_equal(budget.report, assigns[:report])
         assert_nil(flash[:notice])
         assert_equal(
-          "Budget could not be updated.",
+          'Budget could not be updated.',
           ActionController::Base.helpers.strip_tags(flash[:alert])
         )
         assert_template(:edit)
-        assert_template(:partial => "shared/_error")
-        assert_template(:partial => "_form")
+        assert_template(:partial => 'shared/_error')
+        assert_template(:partial => '_form')
         assert_response(:success)
       end
     end
@@ -66,8 +66,8 @@ module Finance
         budget = finance_budgets(:second_piano_budget)
         params = {
           :report_id => budget.report_id,
-          :budget  => {
-            :description => "Violin budget"
+          :budget    => {
+            :description => 'Violin budget'
           }
         }
         put(:update, params)
@@ -75,7 +75,7 @@ module Finance
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.report, assigns[:report])
         assert_equal(
-          "Budget has been successfully updated.",
+          'Budget has been successfully updated.',
           ActionController::Base.helpers.strip_tags(flash[:notice])
         )
         assert_nil(flash[:alert])

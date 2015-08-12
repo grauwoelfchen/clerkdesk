@@ -3,9 +3,9 @@ module Finance
     extend FiscalPolicyExtension
     include Sortable
 
-    self.table_name = "finance_entries"
+    self.table_name = 'finance_entries'
 
-    self.inheritance_column = "null"
+    self.inheritance_column = 'null'
     enum_accessor :type, [:expense, :income]
 
     belongs_to :account_book
@@ -17,7 +17,7 @@ module Finance
     has_many :people,
       through:     :involvements,
       source:      :holder,
-      source_type: "Person"
+      source_type: 'Person'
     has_one :category,
       through: :journalizing
 
@@ -43,7 +43,7 @@ module Finance
     private
 
     def reject_involvements(attributes)
-      attributes[:_destroy] == "0"
+      attributes[:_destroy] == '0'
     end
 
     def force_sign

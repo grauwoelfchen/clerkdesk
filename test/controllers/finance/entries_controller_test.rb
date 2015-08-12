@@ -1,6 +1,6 @@
 require 'test_helper'
 
 module Finance
-  class LedgerEntriesControllerTest < ActionController::TestCase
+  class EntriesControllerTest < ActionController::TestCase
   end
 end

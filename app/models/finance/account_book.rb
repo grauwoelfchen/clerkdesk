@@ -2,7 +2,7 @@ module Finance
   class AccountBook < ActiveRecord::Base
     extend FiscalPolicyExtension
 
-    self.table_name = "finance_account_books"
+    self.table_name = 'finance_account_books'
 
     belongs_to :report
     has_many :journalizings
@@ -21,5 +21,17 @@ module Finance
     validates :description,
       length:      {maximum: 255},
       allow_blank: true
+
+    def save_with_category
+      transaction do
+        result = save
+        if result
+          report.categories.map do |category|
+            journalizings.create!(:category => category)
+          end
+        end
+        result
+      end
+    end
   end
 end

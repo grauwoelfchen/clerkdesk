@@ -6,10 +6,10 @@ ActiveRecord::Migrator.migrations_paths = [
 ]
 
 require 'rails/test_help'
-require "minitest/mock"
-require "minitest/rails/capybara"
-require "minitest/pride" if ENV["TEST_PRIDE"].present?
-require "database_cleaner"
+require 'minitest/mock'
+require 'minitest/rails/capybara'
+require 'minitest/pride' if ENV['TEST_PRIDE'].present?
+require 'database_cleaner'
 
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 Minitest.after_run {
@@ -24,7 +24,7 @@ ActiveRecord::Migration.check_pending!
 DatabaseCleaner.clean_with(:truncation)
 DatabaseCleaner.strategy = :transaction
 
-Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
 
 class ActiveSupport::TestCase
   include LockerRoom::Testing::FixtureHelpers
@@ -61,11 +61,11 @@ class ActionController::TestCase
 end
 
 Capybara.configure do |config|
-  config.app_host = "http://example.org"
+  config.app_host = 'http://example.org'
 end
 
 Capybara.register_driver :rack_test do |app|
-  headers = {"HTTP_ACCEPT_LANGUAGE" => "en"}
+  headers = {'HTTP_ACCEPT_LANGUAGE' => 'en'}
   Capybara::RackTest::Driver.new(app, headers: headers)
 end
 

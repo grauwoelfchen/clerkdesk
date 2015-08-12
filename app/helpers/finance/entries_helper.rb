@@ -5,10 +5,7 @@ module Finance
         entry.people.map(&:label)
       else
         entry.involvements.inject([]) { |acc, involvement|
-          if involvement.holder_type == 'Person'
-            acc << involvement.holder
-          end
-          acc
+          acc << involvement.holder if involvement.holder_type == 'Person'
         }.map(&:label)
       end
     end
