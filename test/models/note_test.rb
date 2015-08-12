@@ -32,4 +32,38 @@ class NoteTest < ActiveSupport::TestCase
     message = "is too long (maximum is 4096 characters)"
     assert_equal([message], note.errors[:content])
   end
+
+  def test_html_conversion_after_save
+    note = Note.new(:title => "test", :content => <<-CONTENT)
+# Heading
+
+* list1
+* list2
+* list3
+    CONTENT
+    assert_nil(note.content_html)
+    assert(note.save)
+    expected_html = <<-HTML
+<h1>Heading</h1>
+
+<ul>
+<li>list1</li>
+<li>list2</li>
+<li>list3</li>
+</ul>
+    HTML
+    assert_equal(expected_html, note.content_html)
+  end
+
+  def test_tag_creation
+    example_tag = "example"
+    attrs = {
+      title:    "Test",
+      tag_list: [example_tag]
+    }
+    note = Note.new(attrs)
+    note.save
+    tag = Note.tags_on(:tags).find_by!(name: example_tag)
+    assert_equal(tag.name, example_tag)
+  end
 end
