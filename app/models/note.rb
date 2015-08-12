@@ -12,6 +12,5 @@ class Note < ActiveRecord::Base
     uniqueness: true,
     length:     {maximum: 192}
   validates :content,
-    length:      {maximum: 1024 * 4},
-    allow_blank: true
+    length: {maximum: 1024 * 4}
 end
