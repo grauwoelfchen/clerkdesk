@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 module Finance
   class EntryTest < ActiveSupport::TestCase
@@ -15,16 +15,16 @@ module Finance
     end
 
     def test_validation_with_too_long_title
-      entry = Finance::Entry.new(:title => "long" * 33)
+      entry = Finance::Entry.new(:title => 'long' * 33)
       refute(entry.valid?)
-      message = "is too long (maximum is 128 characters)"
+      message = 'is too long (maximum is 128 characters)'
       assert_equal([message], entry.errors[:title])
     end
 
     def test_validation_with_too_long_memo
-      entry = Finance::Entry.new(:memo => "long" * 257)
+      entry = Finance::Entry.new(:memo => 'long' * 257)
       refute(entry.valid?)
-      message = "is too long (maximum is 1024 characters)"
+      message = 'is too long (maximum is 1024 characters)'
       assert_equal([message], entry.errors[:memo])
     end
 

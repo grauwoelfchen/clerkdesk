@@ -1,10 +1,10 @@
 class UsersController < WorkspaceController
-  before_action :load_user, :only => [:show]
+  before_action :set_user, only: [:show]
 
   def index
     @users = current_team.users
-        .sort(params[:field], params[:direction])
-        .page(params[:page])
+      .sort(params[:field], params[:direction])
+      .page(params[:page])
   end
 
   def show
@@ -12,7 +12,7 @@ class UsersController < WorkspaceController
 
   private
 
-  def load_user
+  def set_user
     @user = current_team.users.find(params[:id])
   end
 

@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class TeamScopTest < Capybara::Rails::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
@@ -9,10 +9,10 @@ class TeamScopTest < Capybara::Rails::TestCase
 
     Apartment::Tenant.switch!(@team_piano.subdomain)
     Note.delete_all
-    Note.create(:id => 12345, :title => "Musical instrument")
+    Note.create(:id => 12345, :title => 'Musical instrument')
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     Note.delete_all
-    Note.create(:id => 54321, :title => "The ice")
+    Note.create(:id => 54321, :title => 'The ice')
     Apartment::Tenant.reset
   end
 
@@ -24,16 +24,16 @@ class TeamScopTest < Capybara::Rails::TestCase
     user = @team_piano.owners.first
     login_user(user)
     visit(notes_url(:subdomain => @team_piano.subdomain))
-    assert_content("Musical instrument")
-    refute_content("The ice")
+    assert_content('Musical instrument')
+    refute_content('The ice')
   end
 
   def test_scoped_visibility_on_team_penguin
     user = @team_penguin.owners.first
     login_user(user)
     visit(notes_url(:subdomain => @team_penguin.subdomain))
-    refute_content("Musical instrument")
-    assert_content("The ice")
+    refute_content('Musical instrument')
+    assert_content('The ice')
   end
 
   def test_scope_for_a_note_on_exact_team_piano
@@ -42,7 +42,7 @@ class TeamScopTest < Capybara::Rails::TestCase
     user = @team_piano.owners.first
     login_user(user)
     visit(note_url(note, :subdomain => @team_piano.subdomain))
-    assert_content("Musical instrument")
+    assert_content('Musical instrument')
   end
 
   def test_scope_for_a_note_on_other_team_penguin
@@ -53,7 +53,7 @@ class TeamScopTest < Capybara::Rails::TestCase
     assert_raise(ActiveRecord::RecordNotFound) do
       visit(note_url(note, :subdomain => @team_penguin.subdomain))
     end
-    refute_content("Musical instrument")
+    refute_content('Musical instrument')
   end
 
   def test_scope_for_a_note_on_exact_team_penguin
@@ -62,7 +62,7 @@ class TeamScopTest < Capybara::Rails::TestCase
     user = @team_penguin.owners.first
     login_user(user)
     visit(note_url(note, :subdomain => @team_penguin.subdomain))
-    assert_content("The ice")
+    assert_content('The ice')
   end
 
   def test_scope_for_a_note_on_other_team_piano
@@ -73,6 +73,6 @@ class TeamScopTest < Capybara::Rails::TestCase
     assert_raise(ActiveRecord::RecordNotFound) do
       visit(note_url(note, :subdomain => @team_piano.subdomain))
     end
-    refute_content("The ice")
+    refute_content('The ice')
   end
 end

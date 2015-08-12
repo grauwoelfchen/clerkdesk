@@ -14,12 +14,12 @@ module Sortable
   included do
     scope :sort, ->(field = nil, direction = nil) {
       fields = field.to_s.split(',')
-      option = fields.inject({}) do |opt, fld|
-                 if fld.in?(self.sortable_attributes)
-                   opt[fld] = (direction == "desc") ? :desc : :asc
-                 end
-                 opt
-               end
+      option = fields.inject({}) { |opt, fld|
+        if fld.in?(self.sortable_attributes)
+          opt[fld] = (direction == 'desc') ? :desc : :asc
+        end
+        opt
+      }
       option[:updated_at] = :desc if option.empty?
       order(option)
     }

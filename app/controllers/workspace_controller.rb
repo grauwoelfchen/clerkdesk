@@ -1,3 +1,3 @@
 class WorkspaceController < ApplicationController
-  layout "application"
+  layout 'application'
 end

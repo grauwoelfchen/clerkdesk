@@ -31,7 +31,7 @@ module HtmlConvertable
           :disable_indented_code_blocks => true,
           :fence_code_blocks            => false
         )
-        source= self.send(attribute)
+        source = self.send(attribute)
         unless source.blank?
           self.send("#{attribute}_html=", markdown.render(source))
         end

@@ -1,6 +1,6 @@
 class PeopleController < WorkspaceController
-  before_filter :xhr_only,    only: [:search]
-  before_action :load_person, only: [:show, :edit, :update, :destroy]
+  before_filter :xhr_only,   only: [:search]
+  before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
     @people = Person
@@ -22,10 +22,10 @@ class PeopleController < WorkspaceController
   def create
     @person = Person.new(person_params)
     if @person.save
-      redirect_to @person, :notice => "Person has been successfully created."
+      redirect_to(@person, :notice => 'Person has been successfully created.')
     else
-      flash.now[:alert] = "Person could not be created."
-      render :new
+      flash.now[:alert] = 'Person could not be created.'
+      render(:new)
     end
   end
 
@@ -37,17 +37,17 @@ class PeopleController < WorkspaceController
 
   def update
     if @person.update_attributes(person_params)
-      redirect_to @person, :notice => "Person has been successfully updated."
+      redirect_to(@person, :notice => 'Person has been successfully updated.')
     else
-      flash.now[:alert] = "Person could not be updated."
-      render :edit
+      flash.now[:alert] = 'Person could not be updated.'
+      render(:edit)
     end
   end
 
   def destroy
     @person.destroy
-    redirect_to people_url,
-      :notice => "Person has been successfully destroyed."
+    redirect_to(people_url,
+      :notice => 'Person has been successfully destroyed.')
   end
 
   private
@@ -61,7 +61,7 @@ class PeopleController < WorkspaceController
     render(not_found) unless request.xhr?
   end
 
-  def load_person
+  def set_person
     @person = Person.friendly.find(params[:id])
   end
 

@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class FinanceRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
@@ -8,74 +8,74 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
   def test_route_to_finance_reports
     within_subdomain_host do |host|
       assert_routing({
-        method: "get",
+        method: 'get',
         path:   "#{host}/finances"
       }, {
-        controller: "finance/reports",
-        action:     "index"
+        controller: 'finance/reports',
+        action:     'index'
       })
       assert_routing({
-        method: "get",
+        method: 'get',
         path:   "#{host}/finances/new"
       }, {
-        controller: "finance/reports",
-        action:     "new"
+        controller: 'finance/reports',
+        action:     'new'
       })
       assert_routing({
-        method: "post",
+        method: 'post',
         path:   "#{host}/finances"
       }, {
-        controller: "finance/reports",
-        action:     "create"
+        controller: 'finance/reports',
+        action:     'create'
       })
       assert_routing({
-        method: "get",
+        method: 'get',
         path:   "#{host}/finances/1/overview"
       }, {
-        controller: "finance/reports",
-        action:     "show",
-        id:         "1"
+        controller: 'finance/reports',
+        action:     'show',
+        id:         '1'
       })
       assert_routing({
-        method: "get",
+        method: 'get',
         path:   "#{host}/finances/1/edit"
       }, {
-        controller: "finance/reports",
-        action:     "edit",
-        id:         "1"
+        controller: 'finance/reports',
+        action:     'edit',
+        id:         '1'
       })
       assert_routing({
-        method: "patch",
+        method: 'patch',
         path:   "#{host}/finances/1"
       }, {
-        controller: "finance/reports",
-        action:     "update",
-        id:         "1"
+        controller: 'finance/reports',
+        action:     'update',
+        id:         '1'
       })
       assert_routing({
-        method: "put",
+        method: 'put',
         path:   "#{host}/finances/1"
       }, {
-        controller: "finance/reports",
-        action:     "update",
-        id:         "1"
+        controller: 'finance/reports',
+        action:     'update',
+        id:         '1'
       })
       assert_routing({
-        method: "delete",
+        method: 'delete',
         path:   "#{host}/finances/1"
       }, {
-        controller: "finance/reports",
-        action:     "destroy",
-        id:         "1"
+        controller: 'finance/reports',
+        action:     'destroy',
+        id:         '1'
       })
       assert_raise(Minitest::Assertion) do
         assert_routing({
-          method: "get",
+          method: 'get',
           path:   "#{host}/finances/1"
         }, {
-          controller: "finance/reports",
-          action:     "show",
-          id:         "1"
+          controller: 'finance/reports',
+          action:     'show',
+          id:         '1'
         })
       end
     end
@@ -84,14 +84,14 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
   def test_route_to_finance_journalizings
     within_subdomain_host do |host|
       assert_routing({
-        method: "get",
+        method: 'get',
         path:   "#{host}/finances/1/account_books/1/journalizings.json?type=income"
       }, {
-        controller:      "finance/journalizings",
-        action:          "index",
-        report_id:       "1",
-        account_book_id: "1",
-        format:          "json"
+        controller:      'finance/journalizings',
+        action:          'index',
+        report_id:       '1',
+        account_book_id: '1',
+        format:          'json'
       })
     end
   end
