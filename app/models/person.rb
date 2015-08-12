@@ -57,9 +57,8 @@ class Person < ActiveRecord::Base
     date: {
       after:   :joined_at,
       message: I18n.t(
-        "activerecord.errors.attributes.left_at.after_field",
-        field: self.human_attribute_name(:joined_at).downcase
-      )
+        'activerecord.errors.attributes.left_at.after_field',
+        field: self.human_attribute_name(:joined_at).downcase)
     },
     allow_blank: true
 
@@ -73,13 +72,13 @@ class Person < ActiveRecord::Base
 
   def division_must_be_in_valid_country
     if division.present? && !valid_division?
-      errors.add(:division, "is not included in the list")
+      errors.add(:division, 'is not included in the list')
     end
   end
 
   def valid_division?
     return false unless country.present?
-    # this finder does not raise any exception (returns nil)
+    # because this finder does not raise any exception (returns nil)
     country_data = Country.find_country_by_alpha2(country)
     return false unless (country_data && country_data.subdivisions?)
     divisions = country_data.subdivisions

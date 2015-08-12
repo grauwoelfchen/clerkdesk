@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   locker_room_fixtures(:teams, :users, :mateships)

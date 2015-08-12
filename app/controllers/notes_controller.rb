@@ -1,12 +1,12 @@
 class NotesController < WorkspaceController
-  before_action :load_note, :only => [:show, :edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
     @notes = Note.includes(:tags)
       .sort(params[:field], params[:direction])
       .page(params[:page])
     if params[:tag]
-      @tag = Note.tags_on(:tags).find_by!(name: params[:tag])
+      @tag = Note.tags_on(:tags).find_by!(:name => params[:tag])
       @notes = @notes.tagged_with(@tag.name)
     end
   end
@@ -18,10 +18,10 @@ class NotesController < WorkspaceController
   def create
     @note = Note.new(note_params)
     if @note.save
-      redirect_to @note, :notice => "Note has been successfully created."
+      redirect_to(@note, :notice => 'Note has been successfully created.')
     else
-      flash.now[:alert] = "Note could not be created."
-      render :new
+      flash.now[:alert] = 'Note could not be created.'
+      render(:new)
     end
   end
 
@@ -33,22 +33,22 @@ class NotesController < WorkspaceController
 
   def update
     if @note.update_attributes(note_params)
-      redirect_to @note, :notice => "Note has been successfully updated."
+      redirect_to(@note, :notice => 'Note has been successfully updated.')
     else
-      flash.now[:alert] = "Note could not be updated."
-      render :edit
+      flash.now[:alert] = 'Note could not be updated.'
+      render(:edit)
     end
   end
 
   def destroy
     @note.destroy
-    redirect_to notes_url,
-      :notice => "Note has been successfully destroyed."
+    redirect_to(notes_url,
+      :notice => 'Note has been successfully destroyed.')
   end
 
   private
 
-  def load_note
+  def set_note
     @note = Note.find(params[:id])
   end
 

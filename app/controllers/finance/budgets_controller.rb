@@ -1,7 +1,7 @@
 module Finance
   class BudgetsController < WorkspaceController
-    before_action :load_report
-    before_action :load_budget
+    before_action :set_report
+    before_action :set_budget
 
     def show
     end
@@ -11,21 +11,21 @@ module Finance
 
     def update
       if @budget.update_attributes(budget_params)
-        redirect_to finance_report_budget_url(@report),
-          :notice => "Budget has been successfully updated."
+        redirect_to(finance_report_budget_url(@report),
+          :notice => 'Budget has been successfully updated.')
       else
-        flash.now[:alert] = "Budget could not be updated."
-        render :edit
+        flash.now[:alert] = 'Budget could not be updated.'
+        render(:edit)
       end
     end
 
     private
 
-    def load_report
+    def set_report
       @report = Report.find(params[:report_id])
     end
 
-    def load_budget
+    def set_budget
       @budget = @report.budget or
         raise ActiveRecord::RecordNotFound
     end

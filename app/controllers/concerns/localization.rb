@@ -22,7 +22,7 @@ module Localization
     end
 
     def extract_lang_from_http_accept_language
-      request.env["HTTP_ACCEPT_LANGUAGE"].to_s.scan(/^[a-z]{2}/).first
+      request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
     end
 
     def accept_lang

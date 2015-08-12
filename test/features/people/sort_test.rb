@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class PersonSortTest < Capybara::Rails::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
@@ -10,12 +10,12 @@ class PersonSortTest < Capybara::Rails::TestCase
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
-      href = "/people?direction=desc&field=name"
+      href = '/people?direction=desc&field=name'
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => "name", :direction => "desc"}
+      params = {:field => 'name', :direction => 'desc'}
       assert_equal(people_url(params), page.current_url)
-      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ""))
+      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
         //ul[@class='sort-links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
@@ -30,12 +30,12 @@ class PersonSortTest < Capybara::Rails::TestCase
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
-      href = "/people?direction=asc&field=name"
+      href = '/people?direction=asc&field=name'
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => "name", :direction => "asc"}
+      params = {:field => 'name', :direction => 'asc'}
       assert_equal(people_url(params), page.current_url)
-      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ""))
+      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
         //ul[@class='sort-links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-up active')]
@@ -50,12 +50,12 @@ class PersonSortTest < Capybara::Rails::TestCase
       login_user(user)
       visit(people_url)
       assert_equal(people_url, page.current_url)
-      href = "/people?direction=desc&field=slug"
+      href = '/people?direction=desc&field=slug'
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => "slug", :direction => "desc"}
+      params = {:field => 'slug', :direction => 'desc'}
       assert_equal(people_url(params), page.current_url)
-      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ""))
+      assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
         //ul[@class='sort-links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
