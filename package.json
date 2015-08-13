@@ -1,21 +1,22 @@
 {
-  "name": "clerkdesk",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-  },
-  "dependencies": {
-    "bower": "~> 1.4.1",
-    "browserify": "~> 10.2.4",
-    "browserify-incremental": "^3.0.1",
-    "gulp-bower": "0.0.10",
-    "gulp-shell": "0.4.0",
-    "grunt": "0.4.5",
-    "grunt-contrib-clean": "0.6.0",
-    "grunt-shell": "1.1.2",
-    "run-sequence": "1.1.0"
-  },
-  "devDependencies": {
+  "name": "clerkdesk"
+, "version": "0.0.1"
+, "private": true
+, "scripts": {
+  }
+, "dependencies": {
+    "bower": "~> 1.4.1"
+  , "browserify": "~> 10.2.4"
+  , "browserify-incremental": "^3.0.1"
+  , "gulp-bower": "0.0.10"
+  , "gulp-shell": "0.4.0"
+  , "grunt": "0.4.5"
+  , "grunt-contrib-clean": "0.6.0"
+  , "grunt-shell": "1.1.2"
+  , "run-sequence": "1.1.0"
+  }
+, "devDependencies": {
     "gulp-watch": "*"
+  , "phantomjs": "~> 1.9"
   }
 }
