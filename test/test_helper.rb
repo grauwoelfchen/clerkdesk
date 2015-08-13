@@ -1,14 +1,20 @@
 ENV['RAILS_ENV'] ||= 'test'
+ENV['TEST_HOST'] ||= 'example.org'
 
 require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migrator.migrations_paths = [
   File.expand_path('../../db/migrate', __FILE__)
 ]
 
+
+include ActionDispatch::TestProcess
+
 require 'rails/test_help'
+
 require 'minitest/mock'
 require 'minitest/rails/capybara'
 require 'minitest/pride' if ENV['TEST_PRIDE'].present?
+require 'capybara/poltergeist'
 require 'database_cleaner'
 
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
@@ -60,8 +66,10 @@ class ActionController::TestCase
   include LockerRoom::Testing::Controller::AuthenticationHelpers
 end
 
+# Capybara
+
 Capybara.configure do |config|
-  config.app_host = 'http://example.org'
+  config.app_host = "http://#{ENV['TEST_HOST']}"
 end
 
 Capybara.register_driver :rack_test do |app|
@@ -69,7 +77,24 @@ Capybara.register_driver :rack_test do |app|
   Capybara::RackTest::Driver.new(app, headers: headers)
 end
 
+Capybara.register_driver :poltergeist do |app|
+  phantomjs_path = '../../node_modules/.bin/phantomjs'
+  Capybara::Poltergeist::Driver.new(app, {
+    timeout:           900,
+    debug:             ENV['TEST_DEBUG'],
+    js_erros:          ENV['TEST_DEBUG'],
+    phantomjs:         File.expand_path(phantomjs_path, __FILE__),
+    phantomjs_logger:  $stdout,
+    phantomjs_options: [
+      '--load-images=no',
+      '--ignore-ssl-errors=yes',
+      '--ssl-protocol=TLSv1'
+    ]
+  })
+end
+
 class Capybara::Rails::TestCase
   include LockerRoom::Testing::Integration::SubdomainHelpers
   include LockerRoom::Testing::Integration::AuthenticationHelpers
+  include Integration
 end
