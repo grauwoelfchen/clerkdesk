@@ -1,111 +1,25 @@
-@import "_mixin.css.styl"
-
-*::before,
-*::after
-  box-sizing border-box
+@import("_mixin.css.styl")
 
 body
+  display          flex
+  flex-direction   row
   background-color #FAF9F8
   color            #777777
 
-// vars
-$menu-width = 195px
-
-
-// content area
-#main
-  .content
-    background-color #FFFFFF
-    padding          13px 18px 39px 18px
-    min-height       800px
-    line-height      1.444
-    border-right     1px solid #F3F3F3
-    min-width        964px
-
-#public
-  .content
-    background-color #FFFFFF
-    padding          0 0 39px 0
-    min-height       760px
-    line-height      1.444
-
-#content
-  position     relative
-  padding-left 0
-  &.active
-    #menu
-      left  $menu-width
-      width $menu-width
-    .menu-link
-      left $menu-width
-
-
-// menu link
-.menu-link
-  -webkit-transition all 0.2s ease-out 0s
-  -moz-transition    all 0.2s ease-out 0s
-  -ms-transition     all 0.2s ease-out 0s
-  -o-transition      all 0.2s ease-out 0s
-  transition         all 0.2s ease-out 0s
-
-.menu-link
-  position fixed
-  display  block
-  top      0
-  left     0
-  background #000001
-  font-size  11px
-  z-index    10
-  width      1.7em
-  height     1.7em
-  padding    1.1em
-  span
-    position relative
-    display  block
-    margin   0.7em 0 0 0
-  span:before,
-  span:after
-    position absolute
-    top      -0.49em
-    content  " "
-  span:after
-    top 0.55em
-  span,
-  span:before,
-  span:after
-    background-color #FFFFFF
-    width            100%
-    height           0.16em
-    transition       all 0.3s
-  &:hover,
-  &:focus
-    background-color #000000
-  &.active
-    span
-      background  transparent
-      &:before
-        transform rotate(45deg)  translate(0.44em, 0.48em)
-      &:after
-        transform rotate(-45deg) translate(0.24em, -0.3em)
-
-
-// side menu
-#menu
-  margin-left -($menu-width)
-  width       $menu-width
-  position    fixed
-  top         0
-  left        0
-  bottom      0
-  z-index     1000
-  background  #6C5035
-  overflow-y  auto
-  -webkit-overflow-scrolling touch
+// side-menu
+.side-menu
+  flex       0 0 auto
+  position   relative
+  width      14rem
+  z-index    1
+  overflow-y auto
   i
     display inline-block
     padding 0
-    margin  0 7px 0 0
-  a
+    margin  0 8px 0 0
+  .icon
+    height 85px
+  .item
     color   #F3F3F3
     border  none
     padding 21px 18px
@@ -126,11 +40,16 @@ $menu-width = 195px
         color            #FFFFFF
         background-color #3D2915
 
-// right box|bar
-.rightbox
-  padding 0 9px
+.main
+  flex             1 1 auto
+  min-width        0
+  background-color #FFFFFF
+  min-height       800px
+  line-height      1.444
+  border-right     1px solid #F3F3F3
 
-.rightbar
+
+.right-menu
   background none
   min-height 760px
   padding    13px 9px
@@ -146,8 +65,8 @@ $menu-width = 195px
         list-style none
         margin     13px 0
 
-.rightbox,
-.rightbar
+.right-box,
+.right-menu
   h6
     margin      3px 0 6px 0
     font-weight normal
@@ -172,7 +91,7 @@ $menu-width = 195px
 
 
 // header area
-.header
+.content-header
   height        86px
   margin        0 auto
   color         #CCCCCC
@@ -180,26 +99,15 @@ $menu-width = 195px
   border-bottom 1px solid #EEEEEE
   h2
     color       #190318
-    margin      0 0 6px 0
+    margin      9px 0 3px 0
     font-size   29px
     font-weight normal
   h3
     color       #CCCCCC
+    margin      3px 0 0 0
     font-weight normal
     padding     0
     margin      0
-  .user
-    display    inline
-    margin     0 5px 0 23px
-    text-align right
-  .login
-    text-align right
-  .header-content
-    padding 0 18px
-
-.header > div:first-child
-  background-color #FFFFFF
-  height           100%
 
 
 // navigation
@@ -243,7 +151,7 @@ section.block .container
 
 
 // footer area
-.footer
+.content-footer
   background-color #FAFAF8
   border-top       1px solid #EEEEEE
   font-size        87.5%
@@ -260,32 +168,7 @@ section.block .container
       list-style    none
       padding-right 6px
 
-.footer.public
+.content-footer.public
   ul.legal-links,
   p.copyright
     text-align left
-
-
-// responsive specs
-@media(min-width 99em)
-  .rightbox
-     padding-left 0
-  .rightbar
-     padding-left  17px
-     padding-right 17px
-  #content
-     padding-left $menu-width
-     left         0
-  #menu
-      left $menu-width
-  .menu-link
-      position fixed
-      left     $menu-width
-      display  none
-  #content.active .menu-link
-    left $menu-width
-
-@media(max-width 99em)
-  #content.active
-    position relative
-    left     $menu-width

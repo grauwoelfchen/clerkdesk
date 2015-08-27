@@ -2,54 +2,52 @@ doctype html
 html lang=current_locale
   head
     meta charset="utf-8"
-    meta name="title" content=t("meta.title")
-    meta name="description" content=t("meta.description")
+    meta name="title" content=t('meta.title')
+    meta name="description" content=t('meta.description')
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
-    title= t("app.name")
+    title= t('app.name')
     = stylesheet_link_tag "application", media: "all"
     = yield :style
     link type="text/plain" rel="author" href="/humans.txt"
   body
-    #content
-      a#menu_link.menu-link href="#menu"
-        span
-      #menu
-        = render "shared/menu"
-      #main
-        .header.pure-g
-          .pure-u-1.pure-u-lg-1-1.pure-u-xl-21-24
-            .pure-g
-              .pure-u-15-24.pure-u-lg-18-24
-                .header-content
-                  = yield :header
-              .pure-u-9-24.pure-u-lg-6-24
-                .header-content
-                  .sticky
-                    p PUBLIC BETA !
-          .pure-u-1.pure-u-lg-1-1.pure-u-xl-3-24
-            .rightbox
-        .container.pure-g
-          .pure-u-1.pure-u-lg-1-1.pure-u-xl-21-24
-            .content
+    .side-menu
+      = render 'shared/menu'
+    .main
+      .content-header
+        .ui.grid
+          .fourteen.wide.column
+            .ui.two.column.grid
+              .column
+                = yield :header
+              .column
+                .sticky
+                  p PUBLIC BETA !
+          .two.wide.column
+            .right-box
+      .content
+        .ui.grid
+          .fourteen.wide.column
+            .inner-content
               - if flash.any?
-                = render "shared/flash", flash: flash
-              .navigation.pure-g
-                .nav.pure-u-3-5.pure-u-md-5-5
-                  = breadcrumbs pretext: "", separator: " &rsaquo; "
-                .nav.pure-u-2-5.pure-u-md-0-5
+                = render 'shared/flash', flash: flash
+              .navigation
+                .ui.grid
+                  .ten.wide.column
+                    = breadcrumbs pretext: '', separator: ' &rsaquo; '
+                  .six.wide.column
               = yield
-          .pure-u-1.pure-u-lg-1-1.pure-u-xl-3-24
-            .rightbar
+          .two.wide.column
+            .right-menu
               .locales
                 h6 LANGUAGE
-                nav.btn.pure-menu.pure-menu-horizontal
-                  ul.pure-menu-list
-                    li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
+                nav
+                  ul
+                    li
                       = link_to t("locale.#{current_locale}"), "#", class: "pure-menu-link"
-                      ul.pure-menu-children
+                      ul
                         - (Rails.application.config.i18n.available_locales - [current_locale]).each do |locale_name|
-                          li.pure-menu-item
+                          li
                             = form_tag switch_locale_path do |f|
                               = hidden_field_tag 'user[locale]', locale_name
                               = submit_tag t("locale.#{locale_name}"), class: "pure-menu-link"
@@ -59,16 +57,15 @@ html lang=current_locale
               .navs
                 h6 LINKS
                 = yield :links
-        .footer
-          .pure-g
-            .pure-u-1-2.pure-u-md-1-1
-              | <a href="#{global_root_url(host: request.domain)}">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
-              | <br>
-              | If you have any question or found a bug, please tell me :)
-            .pure-u-1-2.pure-u-md-1-1
-              ul.legal-links
-                li= link_to 'policy', root_path
-              p.copyright
-                 | &#0169; 2015 Yasuhiro Asaka All rights reserved.
+      .content-footer
+        .fourteen.wide.column
+          | <a href="#{global_root_url(host: request.domain)}">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
+          | <br>
+          | If you have any question or found a bug, please tell me :)
+        .two.wide.column
+          ul.legal-links
+            li= link_to 'policy', root_path
+          p.copyright
+             | &#0169; 2015 Yasuhiro Asaka All rights reserved.
   = javascript_include_tag "application"
   = yield :script
