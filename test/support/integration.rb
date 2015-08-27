@@ -1,4 +1,21 @@
 module Integration
+  def signin_user(user, password="secret")
+    visit(locker_room.login_url)
+    fill_in("Email",    :with => user.email)
+    fill_in("Password", :with => password)
+    click_button("Signin")
+    user
+  end
+
+  def signout_user
+    #visit(locker_room.logout_url)
+    current_driver = Capybara.current_driver
+    Capybara.current_driver = :rack_test
+    page.driver.submit(:delete, locker_room.logout_url, {})
+    Capybara.current_driver = current_driver
+    nil
+  end
+
   def within_js_driver
     Capybara.current_driver = :poltergeist
 
@@ -27,11 +44,20 @@ module Integration
   private
 
   def test_host
-    ENV['TEST_HOST'].to_s
+    current_host = locker_room.scope.default_url_options[:host]
+    if current_host
+      if current_host =~ /^http/
+        URI.parse(current_host).host
+      else
+        current_host
+      end
+    else
+      ENV["TEST_HOST"].to_s
+    end
   end
 
   def test_port
     test_host =~ /:([0-9]+)/
-    $1 || '3001'
+    $1 || 3002
   end
 end
