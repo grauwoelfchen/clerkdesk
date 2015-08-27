@@ -5,11 +5,10 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
 
   def test_subdomain_uniqueness_ensuring
     penguin = locker_room_teams(:penguin_patrol)
-
     visit '/'
     click_link('GET STARTED')
     find(:id, 'team_name').set('Penguin Octupus Patrol')
-    fill_in('Subdomain', :with => 'penguin')
+    fill_in('Subdomain', :with => penguin.subdomain)
     fill_in('Username',  :with => 'oswald')
     find(:id, 'team_owners_attributes_0_name').set('Oswald')
     fill_in('Email',                 :with => 'oswald@example.com')

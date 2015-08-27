@@ -6,9 +6,6 @@ ActiveRecord::Migrator.migrations_paths = [
   File.expand_path('../../db/migrate', __FILE__)
 ]
 
-
-include ActionDispatch::TestProcess
-
 require 'rails/test_help'
 
 require 'minitest/mock'
@@ -16,6 +13,10 @@ require 'minitest/rails/capybara'
 require 'minitest/pride' if ENV['TEST_PRIDE'].present?
 require 'capybara/poltergeist'
 require 'database_cleaner'
+
+Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
+
+include ActionDispatch::TestProcess
 
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 Minitest.after_run {
@@ -29,8 +30,6 @@ Minitest.after_run {
 ActiveRecord::Migration.check_pending!
 DatabaseCleaner.clean_with(:truncation)
 DatabaseCleaner.strategy = :transaction
-
-Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
 
 class ActiveSupport::TestCase
   include LockerRoom::Testing::FixtureHelpers
@@ -66,26 +65,36 @@ class ActionController::TestCase
   include LockerRoom::Testing::Controller::AuthenticationHelpers
 end
 
+Rails.application.routes.default_url_options[:host] = ENV['TEST_HOST']
+
 # Capybara
 
 Capybara.configure do |config|
-  config.app_host = "http://#{ENV['TEST_HOST']}"
+  config.app_host            = "http://#{ENV['TEST_HOST']}"
+  config.run_server          = true
+  config.always_include_port = true
 end
 
 Capybara.register_driver :rack_test do |app|
-  headers = {'HTTP_ACCEPT_LANGUAGE' => 'en'}
-  Capybara::RackTest::Driver.new(app, headers: headers)
+  Capybara::RackTest::Driver.new(app, {
+    :headers => {
+      'HTTP_ACCEPT_LANGUAGE' => 'en'
+    }
+  })
 end
 
 Capybara.register_driver :poltergeist do |app|
   phantomjs_path = '../../node_modules/.bin/phantomjs'
   Capybara::Poltergeist::Driver.new(app, {
-    timeout:           900,
-    debug:             ENV['TEST_DEBUG'],
-    js_erros:          ENV['TEST_DEBUG'],
-    phantomjs:         File.expand_path(phantomjs_path, __FILE__),
-    phantomjs_logger:  $stdout,
-    phantomjs_options: [
+    :timeout           => 900,
+    :debug             => ENV['TEST_DEBUG'],
+    :js_erros          => ENV['TEST_DEBUG'],
+    :phantomjs         => File.expand_path(phantomjs_path, __FILE__),
+    :phantomjs_logger  => $stdout,
+    :phantomjs_options => [
+      '--local-to-remote-url-access=yes',
+      '--proxy=localhost:3001',
+      '--proxy-type=none',
       '--load-images=no',
       '--ignore-ssl-errors=yes',
       '--ssl-protocol=TLSv1'
