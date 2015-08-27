@@ -31,7 +31,7 @@ gulp.task('bower', function() {
 
 gulp.task('build-purecss', function() {
   process.chdir('./vendor/assets/components/purecss');
-  return gulp.src('*')
+  return gulp.src('./src')
     .pipe(shell([
       'npm install'
     , 'grunt'
@@ -39,5 +39,5 @@ gulp.task('build-purecss', function() {
 });
 
 gulp.task('default', function(callback) {
-  sequence('bower', 'build-purecss', callback);
+  return sequence('bower', 'build-purecss', callback);
 });
