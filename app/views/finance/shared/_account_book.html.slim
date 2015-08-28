@@ -4,9 +4,9 @@
     i.icon.fa.fa-fw.fa-lg= account_book.icon.to_s.html_safe
     = account_book.description
   hr
-nav.segment-control.pure-menu.pure-menu-horizontal
-  ul.pure-menu-list
-    li class=(controller_path == 'finance/account_books' ? 'pure-menu-item pure-menu-selected' : 'pure-menu-item')
-      = link_to t("nav.overview"), finance_report_account_book_path(report, account_book), class: "pure-menu-link"
-    li class=(controller_path == 'finance/entries' && action_name == 'index' ? 'pure-menu-item pure-menu-selected' : 'pure-menu-item')
-      = link_to t("action.index"), finance_report_account_book_entries_path(report, account_book), class: "pure-menu-link"
+
+.ui.grid
+  .four.wide.column
+    .ui.secondary.pointing.menu
+      = active_link_to t('nav.overview'), finance_report_account_book_path(report, account_book),         class: 'item', active: /account_books\/[0-9]$/
+      = active_link_to t('action.index'), finance_report_account_book_entries_path(report, account_book), class: 'item', active: /entr(y|ies)/

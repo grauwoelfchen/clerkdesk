@@ -12,4 +12,5 @@ Rails.application.config.assets.precompile += %w(
   font-awesome/fonts/*
   jquery-tag-editor/delete.*
   src/**/*
+  src/*
 )

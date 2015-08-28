@@ -1,5 +1,5 @@
 crumb :root do
-  link t("crumb.desktop"), root_path
+  link t('crumb.desktop'), root_path
 end
 
 # notes
@@ -9,13 +9,13 @@ crumb :notes do
 end
 
 crumb :notes_with_tag  do |tag|
-  link t("crumb.tag", tag: truncate(tag, length: 8)), nil
+  link t('crumb.tag', tag: truncate(tag, length: 8)), nil
   parent :notes
 end
 
 crumb :note do |note|
   unless note.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link truncate(note.title, length: 27), note
   end
@@ -30,7 +30,7 @@ end
 
 crumb :'finance/report' do |report|
   unless report.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link report.name, [:overview, :finance, report]
   end
@@ -44,7 +44,7 @@ end
 
 crumb :'finance/category' do |report, category|
   unless category.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link category.name, finance_report_category_path(report, category)
   end
@@ -58,7 +58,7 @@ end
 
 crumb :'finance/account_book' do |report, account_book|
   unless account_book.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link account_book.name, finance_report_account_book_path(report, account_book)
   end
@@ -72,7 +72,7 @@ end
 
 crumb :'finance/entry' do |report, account_book, entry|
   unless entry.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link entry.title, finance_report_account_book_entry_path(report, account_book, entry)
   end
@@ -92,7 +92,7 @@ end
 
 crumb :person do |person|
   unless person.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link person.name, person_path(person)
   end
@@ -107,7 +107,7 @@ end
 
 crumb :user do |user|
   unless user.persisted?
-    link t("crumb.new"), nil
+    link t('crumb.new'), nil
   else
     link user.username, user_path(user)
   end

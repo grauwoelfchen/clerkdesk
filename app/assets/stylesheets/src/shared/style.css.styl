@@ -2,12 +2,12 @@
 
 // basic element
 a
-  color           $link-text-color
+  color           $blue-ink-color
   text-decoration none
   &:visited
-    color $link-visited-color
+    color $blue-ink-color
   &:hover
-    color           $link-hover-color
+    color           $light-blue-ink-color
     text-decoration underline
 
 
@@ -27,13 +27,17 @@ a
     color            #AF5A3E
 
 
-.content
+.container
   h3
     margin 0 0 18px 2px
   h4
     font-size   27px
     font-weight normal
     margin      0 0 9px 0
+  h5
+    font-size   21px
+    font-weight normal
+    margin      0 0 6px 0
   h6
     font-size   17px
     font-weight normal
@@ -80,7 +84,7 @@ th
     padding        1px 3px
     text-align     center
     vertical-align middle
-    color          #777777
+    color          $dark-gray-color
     &:hover
       background-color #F3F3F3
     &.active
@@ -162,7 +166,7 @@ nav.pagination,
     padding    9px 18px
     background $field-color
 
-.box
+.container
   margin 7px 0 13px 0
   .main
     padding 12px 2px 36px 2px
@@ -202,69 +206,8 @@ nav.btn
   input[type="submit"]
     color $text-color
 
-nav.tab
-  border-radius 2px 2px 0 0
-  background    #EBE7E4
-  line-height   9px
-  ul.pure-menu-list
-    background #EBE7E4
-    li.pure-menu-item
-      float      left
-      list-style none
-      a
-        color       $text-color
-        line-height 29px
-      a:hover
-        background      $plain-color
-        color           $text-color
-        text-decoration none
-    li.pure-menu-selected
-      a
-        background #B8AEA4
-        &:hover
-          background #B8AEA4
-          color      $text-color
-  .pure-menu-has-children
-    .pure-menu-children
-      width     auto
-      min-width 120px
-  ul.pure-menu-children
-    li.pure-menu-item
-      float none
-      a
-        background none
-      a:hover
-        background $plain-color
-  ul.pure-menu-children
-    padding       0
-    border        1px solid $plain-color
-    border-radius 0 0 2px 2px
 
-nav.segment-control
-  margin-left 2px
-  ul.pure-menu-list
-    li:first-child
-      border-left  1px solid $plain-color
-    li:last-child
-      border-left  1px solid $plain-color
-      border-right 1px solid $plain-color
-    li.pure-menu-item
-      float  left
-      margin 0
-      a
-        color      $gray-color
-        background none
-        display    inline-block
-        padding    0 12px
-        &:hover
-          color $dark-gray-color
-    li.pure-menu-selected
-      a
-        color $text-color
-        &:hover
-          color $text-color
-
-// others
+// misc
 ul.actions
   display inline-block
   padding 0
@@ -288,3 +231,19 @@ span.more
   margin      0 2px 0 0
   padding     0 5px
   white-space nowrap
+
+td.total_amount
+  text-align  right
+  color       $text-color
+
+
+.inner-content
+  .ui.breadcrumb
+    margin 2px 0 13px 0
+    a
+      line-height 26px
+      color       $gray-color
+      &:hover
+        color $dark-gray-color
+    span.current
+      color $dark-gray-color

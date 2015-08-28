@@ -1,27 +1,26 @@
-.ui.secondary.vertical.menu
-  .item.icon
-    = link_to t("app.name"), root_path, class: 'heading'
+.item.top
+  = link_to t("app.name"), root_path, class: 'heading'
 
-  = active_link_to notes_path, class: 'item' do
-    i.fa.fa-file-text-o
-    = Note.model_name.human
+= active_link_to notes_path, class: 'item' do
+  i.fa.fa-file-text-o
+  = Note.model_name.human
 
-  = active_link_to finance_reports_path, class: 'item', active: /^\/finance/ do
-    i.fa.fa-calculator
-    = Finance::Report.model_name.human
+= active_link_to finance_reports_path, class: 'item', active: /^\/finance/ do
+  i.fa.fa-calculator
+  = Finance::Report.model_name.human
 
-  = active_link_to people_path, class: 'item' do
-    i.fa.fa-tag
-    = Person.model_name.human
+= active_link_to people_path, class: 'item' do
+  i.fa.fa-tag
+  = Person.model_name.human
 
-  = active_link_to users_path, class: 'item' do
-    i.fa.fa-user
-    = LockerRoom::User.model_name.human
+= active_link_to users_path, class: 'item' do
+  i.fa.fa-user
+  = LockerRoom::User.model_name.human
 
-  = active_link_to '#', class: 'item', active: /^$/ do
-    i.fa.fa-cog
-    = t('nav.settings')
+= active_link_to '#', class: 'item', active: /^$/ do
+  i.fa.fa-cog
+  = t('nav.settings')
 
-  .item.bottom
-    = link_to locker_room.logout_path, method: :delete, class: 'item' do
-      = 'logout'
+/.item.bottom
+/  = link_to locker_room.logout_path, method: :delete, class: 'item' do
+/    = 'logout'
