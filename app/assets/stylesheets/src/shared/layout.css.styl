@@ -1,56 +1,46 @@
-@import("_mixin.css.styl")
+@import('_mixin.css.styl')
+
+$navbar-height    = 81px
+$side-menu-height = 13rem
 
 body
-  display          flex
-  flex-direction   row
-  background-color #FAF9F8
-  color            #777777
+  display        flex
+  flex-direction row
+  color          #777777
 
-// side-menu
 .side-menu
-  flex       0 0 auto
-  position   relative
-  width      14rem
-  z-index    1
-  overflow-y auto
-  i
-    display inline-block
-    padding 0
-    margin  0 8px 0 0
-  .icon
-    height 85px
-  .item
-    color   #F3F3F3
-    border  none
-    padding 21px 18px
-    &:hover
-      text-decoration none
-  .bottom
-    height   60px
-    position absolute
-    left     0
-    bottom   0
-    width    100%
-    margin   0
-    background-color #1F0F00
-    a
-      margin  0
-      padding 23px 27px
+  flex    0 0 auto
+  z-index 1
+  width   $side-menu-height
+  .menu
+    width      $side-menu-height
+    background $chocolate-color !important
+    i
+      display inline-block
+      padding 0
+      margin  0 9px 0 0
+    .item.top
+      height $navbar-height / 2
+    .item
+      color   $gray-color
+      border  none
+      padding 16px 9px 16px 18px
       &:hover
-        color            #FFFFFF
-        background-color #3D2915
+        color      $light-gray-color !important
+        background darken($chocolate-color, 13%) !important
+      &.active
+        color      $light-gray-color !important
+        background darken($chocolate-color, 27%) !important
+
 
 .main
-  flex             1 1 auto
-  min-width        0
-  background-color #FFFFFF
-  min-height       800px
-  line-height      1.444
-  border-right     1px solid #F3F3F3
+  flex         1 1 auto
+  min-height   800px
+  line-height  1.333
 
 
 .right-menu
-  background none
+  background-color #FAF9F8
   min-height 760px
   padding    13px 9px
   .locales
@@ -65,7 +55,6 @@ body
         list-style none
         margin     13px 0
 
-.right-box,
 .right-menu
   h6
     margin      3px 0 6px 0
@@ -90,9 +79,8 @@ body
               background-color #EEEEEE
 
 
-// header area
 .content-header
-  height        86px
+  height        $navbar-height
   margin        0 auto
   color         #CCCCCC
   text-align    left
@@ -110,18 +98,15 @@ body
     margin      0
 
 
-// navigation
+.inner-content
+  padding-top   13px
+  padding-left  9px
+  padding-right 9px
+  min-height    837px
+
+
 .navigation
   margin 0
-  .breadcrumbs
-    margin 3px 0 18px 0
-    a
-      line-height 26px
-      color       $gray-color
-      &:hover
-        color $dark-gray-color
-    span.current
-      color $dark-gray-color
 
 
 // section
@@ -150,8 +135,8 @@ section.block .container
     margin-top 42px
 
 
-// footer area
-.content-footer
+.footer
+  flex         0 0 auto
   background-color #FAFAF8
   border-top       1px solid #EEEEEE
   font-size        87.5%
@@ -168,7 +153,7 @@ section.block .container
       list-style    none
       padding-right 6px
 
-.content-footer.public
+.footer.public
   ul.legal-links,
   p.copyright
     text-align left

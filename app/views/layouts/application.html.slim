@@ -7,57 +7,44 @@ html lang=current_locale
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
     title= t('app.name')
-    = stylesheet_link_tag "application", media: "all"
+    = stylesheet_link_tag 'application', media: 'all'
     = yield :style
     link type="text/plain" rel="author" href="/humans.txt"
   body
     .side-menu
-      = render 'shared/menu'
+      .ui.left.fixed.vertical.sticky.menu
+        = render 'shared/menu'
     .main
-      .content-header
-        .ui.grid
-          .fourteen.wide.column
-            .ui.two.column.grid
-              .column
-                = yield :header
-              .column
-                .sticky
-                  p PUBLIC BETA !
-          .two.wide.column
-            .right-box
-      .content
-        .ui.grid
-          .fourteen.wide.column
-            .inner-content
-              - if flash.any?
-                = render 'shared/flash', flash: flash
-              .navigation
-                .ui.grid
-                  .ten.wide.column
-                    = breadcrumbs pretext: '', separator: ' &rsaquo; '
-                  .six.wide.column
-              = yield
-          .two.wide.column
-            .right-menu
-              .locales
-                h6 LANGUAGE
-                nav
-                  ul
-                    li
-                      = link_to t("locale.#{current_locale}"), "#", class: "pure-menu-link"
-                      ul
-                        - (Rails.application.config.i18n.available_locales - [current_locale]).each do |locale_name|
-                          li
-                            = form_tag switch_locale_path do |f|
-                              = hidden_field_tag 'user[locale]', locale_name
-                              = submit_tag t("locale.#{locale_name}"), class: "pure-menu-link"
+      .ui.grid.content-header
+        .thirteen.wide.column
+          .ui.two.column.grid
+            .column
+              = yield :header
+            .column
+              .sticky-note
+                p PUBLIC BETA !
+        .three.wide.column
+      .ui.grid.content
+        .thirteen.wide.column
+          .inner-content
+            - if flash.any?
+              = render 'shared/flash', flash: flash
+            .navigation
+              .ui.grid
+                .ten.wide.column
+                  = breadcrumbs pretext: '', separator: '<span class="divider">/</span>', class: 'ui breadcrumb'
+                .six.wide.column
+            = yield
+        .three.wide.column
+          #right_menu.right-menu.ui.dividing.rail
+            .ui.sticky
               .navs
                 h6 ACTIONS
                 = yield :actions
               .navs
                 h6 LINKS
                 = yield :links
-      .content-footer
+      .footer
         .fourteen.wide.column
           | <a href="#{global_root_url(host: request.domain)}">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
           | <br>
@@ -67,5 +54,5 @@ html lang=current_locale
             li= link_to 'policy', root_path
           p.copyright
              | &#0169; 2015 Yasuhiro Asaka All rights reserved.
-  = javascript_include_tag "application"
+  = javascript_include_tag 'application'
   = yield :script

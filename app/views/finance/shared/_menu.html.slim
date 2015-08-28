@@ -1,0 +1,9 @@
+.ui.inverted.menu
+  / Finance::Report
+  = active_link_to t('nav.overview'), overview_finance_report_path(report), class: 'item'
+  / Finance::Budget
+  = active_link_to Finance::Budget.model_name.human, finance_report_budget_path(report), class: 'item'
+  / Finance::AccountBook, Finance::Entry
+  = active_link_to Finance::AccountBook.model_name.human.pluralize, finance_report_account_books_path(report), class: 'item', active: /account_book/
+  / Finance::Category
+  = active_link_to Finance::Category.model_name.human.pluralize, finance_report_categories_path(report), class: 'item'

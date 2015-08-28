@@ -1,8 +1,8 @@
-@import("_mixin.css.styl")
+@import('_mixin.css.styl')
 
 // icon
 i.icon
-  color   lighten($dark-color, 7%)
+  color   lighten($blue-ink-color, 7%)
   display inline-block
   margin  0 6px 0 4px
 
@@ -16,7 +16,7 @@ i.icon
   font-size 3.2em
 
 // sticky
-.sticky
+.sticky-note
   float            right
   margin           18px 2px 0 0
   height           38px
@@ -24,7 +24,7 @@ i.icon
   background-color $yellow-color
   padding          9px 19px 2px 27px
   position         relative
-  color            $dark-color
+  color            $blue-ink-color
   font-size        14px
   p
     margin  0
@@ -41,11 +41,9 @@ label.label
   line-height   0.8em
   text-align    center
   &.label-expense
-    background $red-color
+    background $pink-color
   &.label-income
-    background $green-color
-  &.label-highlight
-    background $highlight-color
+    background $turquoise-color
   &.label-primary
     background $primary-color
   &.label-active

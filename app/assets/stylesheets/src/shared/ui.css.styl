@@ -1,15 +1,13 @@
-// Customize
+@import('_mixin.css.styl')
 
 // Collections - Menu
-.side-menu
-  .ui.secondary.vertical.menu
-    width        14rem
-    margin-left  0
-    margin-right 0
-    .item,
-    .item.active
-      border-radius 0 !important
-      margin        0
+.ui.vertical.menu
+  box-shadow none
+  width      13rem
+
+.ui.inverted.menu
+  border-radius 2px
+  background    darken($chocolate-color, 27%)
 
 // Collections - Grid
 .ui.grid
@@ -18,21 +16,33 @@
     padding-top    0
     padding-bottom 0
 
-.content-header
-  .ui.grid
-    .column
-      padding-left  6px
-      padding-right 6px
+.ui.grid.content-header
+  .column
+    padding-left  9px
+    padding-right 9px
+
+.ui.grid.inner-content
+  margin 0
+  > .column:not(.row)
+    padding-top    6px
+    padding-bottom 6px
+    padding-left   0
+    padding-right  0
 
 .inner-content
   .ui.grid
-    margin 0
-    > .column:not(.row)
-      padding-top    6px
-      padding-bottom 6px
-      padding-left   0
-      padding-right  0
+    .column:not(.row)
+      padding-left  0
+      padding-right 0
 
+.ui.grid + .grid
+  margin-top 0
+
+
+// Collections - Breadcrumb
+.ui.breadcrumb
+  span.divider
+    margin 0 6px
 
 // Views - Item
 .ui.items > .item > .image:not(.ui)
