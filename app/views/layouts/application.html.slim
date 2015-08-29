@@ -19,7 +19,10 @@ html lang=current_locale
         .thirteen.wide.column
           .ui.two.column.grid
             .column
-              = yield :header
+              .icon
+                = image_tag 'clerkdesk.jpeg', size: '90x75'
+              .heading
+                = yield :header
             .column
               .sticky-note
                 p PUBLIC BETA !

@@ -15,12 +15,16 @@ body
   .menu
     width      $side-menu-height
     background $chocolate-color !important
+    border     none
     i
       display inline-block
       padding 0
       margin  0 9px 0 0
     .item.top
-      height $navbar-height / 2
+      background $light-brown-color
+      .heading
+        color       $cream-color
+        font-weight bold
     .item
       color   $gray-color
       border  none
@@ -80,22 +84,30 @@ body
 
 
 .content-header
-  height        $navbar-height
-  margin        0 auto
-  color         #CCCCCC
-  text-align    left
-  border-bottom 1px solid #EEEEEE
-  h2
-    color       #190318
-    margin      9px 0 3px 0
-    font-size   29px
-    font-weight normal
-  h3
-    color       #CCCCCC
-    margin      3px 0 0 0
-    font-weight normal
-    padding     0
-    margin      0
+  height           $navbar-height
+  margin           0 auto
+  color            #CCCCCC
+  text-align       left
+  border-bottom    1px solid $pale-gray-color
+  background-color $cream-color
+  .icon
+    width          108px
+    display        inline-block
+    vertical-align middle
+  .heading
+    display        inline-block
+    vertical-align middle
+    h2
+      color       #190318
+      margin      3px 0 3px 0
+      font-size   29px
+      font-weight normal
+    h3
+      color       #CCCCCC
+      margin      3px 0 0 0
+      font-weight normal
+      padding     0
+      margin      0
 
 
 .inner-content
@@ -138,7 +150,7 @@ section.block .container
 .footer
   flex         0 0 auto
   background-color #FAFAF8
-  border-top       1px solid #EEEEEE
+  border-top       1px solid $pale-gray-color
   font-size        87.5%
   padding          21px 21px 21px 26px
   line-height      1.6
