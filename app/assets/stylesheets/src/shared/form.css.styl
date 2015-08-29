@@ -1,12 +1,10 @@
 @import("_mixin.css.styl")
 
-// overwrite
 .form
   input[type="text"],
   textarea,
   select
-    border-radius 2px
-    padding       0.6em 0.6em
+    padding 0.6em 0.6em
   select
     height    auto
     min-width 128px
@@ -14,10 +12,11 @@
     resize none
 
 // color
-input,
-textarea,
-select
-  color darken($primary-color, 4%)
+.form
+  input[type="text"],
+  textarea,
+  select
+    color $blue-ink-color !important
 
 
 // style
@@ -56,35 +55,37 @@ select
     margin-bottom 0
     padding-right 3px
 
-ul.tag-editor
-  padding 4px 0
-  border  1px solid #CCCCCC
-  width   100%
-  li.ui-sortable-handle,
-  li.placeholder
-    margin 0
-  li
-    margin  0
-    padding 0
-    .tag-editor-spacer,
-    .tag-editor-tag,
-    .tag-editor-delete
-      margin 0px
-    .tag-editor-spacer
-      width 3px
-    input[type="text"]
-      padding 0
+.form
+  ul.tag-editor
+    padding       6px 0
+    border        1px solid $light-gray-color
+    border-radius 2px
+    width   100%
+    li.ui-sortable-handle,
+    li.placeholder
+      margin 0
+    li
       margin  0
-      border  none
-      width   100% !important
+      padding 0
+      .tag-editor-spacer,
+      .tag-editor-tag,
+      .tag-editor-delete
+        margin 0px
+      .tag-editor-spacer
+        width 3px
+      input[type="text"]
+        padding 0
+        margin  0
+        border  none
+        width   100% !important
 
 
 div.actions
-  margin 21px 0 18px 144px
+  margin 27px 0 18px 1px
   input[type="submit"].button,
   button.button,
   a.button
-    margin-right 47px
+    margin-right 54px
 
 
 .button

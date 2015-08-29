@@ -24,8 +24,6 @@ html lang=current_locale
               .heading
                 = yield :header
             .column
-              .sticky-note
-                p PUBLIC BETA !
         .three.wide.column
       .ui.grid.content
         .thirteen.wide.column
@@ -43,10 +41,16 @@ html lang=current_locale
             .ui.sticky
               .navs
                 h6 ACTIONS
-                = yield :actions
+                .ui.vertical.text.menu
+                  = yield :actions
+              .navs
+                h6 STICKIES
+                .sticky-note
+                  p PUBLIC BETA !
               .navs
                 h6 LINKS
-                = yield :links
+                .ui.vertical.menu
+                  = yield :links
       .footer
         .fourteen.wide.column
           | <a href="#{global_root_url(host: request.domain)}">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
