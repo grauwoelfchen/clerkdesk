@@ -8,11 +8,11 @@
     = f.label :title
     = f.text_field :title, placeholder: 'A title'
   .field
-    = f.label :content
-    = f.text_area :content, rows: 18, placeholder: 'Content'
-  .field
     = f.label :tag_list
     = f.text_field :tag_list, value: note.tag_list.join(","), placeholder: 'Tag'
+  .field
+    = f.label :content
+    = f.text_area :content, rows: 18, placeholder: 'Content'
   .actions
     - action = note.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui submit button'

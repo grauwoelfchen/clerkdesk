@@ -1,7 +1,7 @@
 module Shared
   module SortLinkHelper
-    def sort_links_for(field, default=nil)
-      content_tag(:ul, :class => 'sort-links') do
+    def sort_links_for(field, default=nil, css_class='links')
+      content_tag(:ul, :class => css_class) do
         concat content_tag(:li, sort_link_for(field, :asc,  default == :asc))
         concat content_tag(:li, sort_link_for(field, :desc, default == :desc))
       end
@@ -9,7 +9,7 @@ module Shared
 
     def sort_link_for(field, direction, default_link=false)
       link = url_for(params.merge(field: field, direction: direction))
-      icon = <<-ICON.gsub(/^\s*|\n/, "")
+      icon = <<-ICON.gsub(/^\s*|\n/, '')
         <i class="#{sort_link_class_for(field, direction, default_link)}"></i>
       ICON
       link_to(icon.html_safe, link)

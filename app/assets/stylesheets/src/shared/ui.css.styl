@@ -9,6 +9,7 @@
   border-radius 2px
   background    darken($chocolate-color, 27%)
 
+
 // Collections - Grid
 .ui.grid
   margin 0
@@ -44,6 +45,41 @@
   span.divider
     margin 0 6px
 
+.ui.text.menu .item .menu
+  margin 9px 0 0 18px
+  .item
+    padding 0.5em 0.25em
+    margin  0 0
+
+
+// Colletions - Form
+.ui.form
+  input[type="text"],
+  input[type="text"]:focus,
+  textarea,
+  textarea:focus
+    border-radius 2px
+
+.ui.dropdown.selection
+  border-radius 2px
+  .menu
+    border-radius 0 0 2px 2px
+
+
 // Views - Item
 .ui.items > .item > .image:not(.ui)
   width 100px
+
+.ui.items > .item .meta
+  margin 0.3em 0
+
+.ui.items > .item > .content
+  margin-bottom 21px
+
+.ui.items > .item > .content > a.header,
+.ui.items > .item > .content > .description
+  color $blue-ink-color
+
+.ui.items > .item > .content > .description,
+.ui.items > .item > .content > .extra
+  margin-top 0.4em

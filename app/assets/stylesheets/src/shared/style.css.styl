@@ -27,23 +27,6 @@ a
     color            #AF5A3E
 
 
-.container
-  h3
-    margin 0 0 18px 2px
-  h4
-    font-size   27px
-    font-weight normal
-    margin      0 0 9px 0
-  h5
-    font-size   21px
-    font-weight normal
-    margin      0 0 6px 0
-  h6
-    font-size   17px
-    font-weight normal
-    margin      3px 0 3px 1px
-
-
 // table
 table.table
   width  100%
@@ -63,12 +46,11 @@ table.table
         list-style none
         margin     0 3px
 
-// sort
 th
   span.attribute
     display      inline-block
     margin-right 4px
-  ul.sort-links
+  ul.links
     display inline
     padding 0
     margin  0
@@ -105,7 +87,7 @@ pagination = @block {
 div.pagination > div
   vertical-align middle
 
-nav.pagination,
+.pagination,
 .pagination-info
   margin 4px 0 0 1px
   &.right
@@ -167,47 +149,34 @@ nav.pagination,
     background $field-color
 
 .container
-  margin 7px 0 13px 0
+  margin 9px 0 21px 0
+  h3
+    margin 0 0 18px 2px
+  h4
+    color       $blue-ink-color
+    font-size   27px
+    font-weight normal
+    margin      0 0 9px 0
+  h5
+    font-size   21px
+    font-weight normal
+    margin      0 0 6px 0
+  h6
+    font-size   17px
+    font-weight normal
+    margin      3px 0 3px 1px
   .main
     padding 12px 2px 36px 2px
     h5
       margin         8px 0 13px 1px
       vertical-align middle
       font-size      21px
-    nav.nav
-      margin 0 0 3px 3px
-
-.nav
-  margin 0
-  ul
-    padding 0
-    margin  0
-    li
-      list-style none
-
-
-// nav
-nav.btn
-  ul
-    border        1px solid #EEEEEE
-    border-radius 2px
-    &:hover
-      border-radius 2px 2px 0 0
-  ul.pure-menu-children
-    padding       0
-    border        1px solid #E3E3E3
-    border-radius 0 0 2px 2px
-    li.delimiter
-      border-top 1px solid #EEEEEE
-  a
-    color           $text-color
-    border          none
-    text-decoration none
-  input[type="submit"]
-    color $text-color
 
 
 // misc
+.right
+  float right
+
 ul.actions
   display inline-block
   padding 0
@@ -229,7 +198,7 @@ span.tag,
 span.more
   display     inline-block
   margin      0 2px 0 0
-  padding     0 5px
+  padding     2px 4px
   white-space nowrap
 
 td.total_amount
@@ -239,7 +208,7 @@ td.total_amount
 
 .inner-content
   .ui.breadcrumb
-    margin 2px 0 13px 0
+    margin 2px 0 9px 0
     a
       line-height 26px
       color       $gray-color
