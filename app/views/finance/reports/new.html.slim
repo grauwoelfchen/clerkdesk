@@ -5,18 +5,17 @@
   h3= t("subheading.finance.report")
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.new", resource: Finance::Report.model_name.human.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.index"), finance_reports_path, class: "pure-menu-link"
+  .item
+    = Finance::Report.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_path, class: 'item'
+      = link_to t('action.index'), finance_reports_path, class: 'item'
 
 .finance.report
-  section.block.pure-g
-    .container.pure-u-16-24
-      h4= t("action.new")
-      hr
-      = render "form", report: @report
-    .pure-u-8-24
+  section
+    .container
+      .ui.grid
+        .seven.wide.column
+          h4= t('action.new')
+          hr
+          = render 'form', report: @report

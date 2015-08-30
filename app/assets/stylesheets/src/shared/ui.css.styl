@@ -1,5 +1,15 @@
 @import('_mixin.css.styl')
 
+fieldset
+  border  none
+  padding 0
+  margin  18px 0px
+
+legend
+  {legend-style}
+  width 100%
+
+
 // Collections - Menu
 .ui.vertical.menu
   box-shadow none
@@ -8,6 +18,13 @@
 .ui.inverted.menu
   border-radius 2px
   background    darken($chocolate-color, 27%)
+
+.ui.compact.menu
+  box-shadow    none
+  border-radius 2px
+  min-height    2.7em
+  .item
+    padding 0 1.1em
 
 
 // Collections - Grid
@@ -41,9 +58,13 @@
 
 
 // Collections - Breadcrumb
-.ui.breadcrumb
-  span.divider
-    margin 0 6px
+.ui
+  .ui.breadcrumb
+    margin-bottom 18px
+    span.divider
+      margin 0 6px
+    a
+      line-height 26px
 
 .ui.text.menu .item .menu
   margin 9px 0 0 18px
@@ -65,6 +86,9 @@
   .menu
     border-radius 0 0 2px 2px
 
+// Elements - Button
+.ui.button
+  border-radius 2px
 
 // Views - Item
 .ui.items > .item > .image:not(.ui)

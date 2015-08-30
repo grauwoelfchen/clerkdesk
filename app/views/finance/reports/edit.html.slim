@@ -18,9 +18,10 @@
             = link_to t("action.new"), new_finance_report_path, class: "pure-menu-link"
 
 .finance.report
-  section.block.pure-g
-    .container.pure-u-16-24
-      h4= t("action.edit")
-      hr
-      = render "form", report: @report
-    .pure-u-8-24
+  section
+    .container
+      .ui.grid
+        .seven.wide.column
+          h4= t('action.edit')
+          hr
+          = render 'form', report: @report

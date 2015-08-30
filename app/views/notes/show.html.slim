@@ -14,7 +14,7 @@
       = link_to t('action.edit'), edit_note_path(@note), class: 'item'
 
 .ui.grid.note
-  .fourteen.wide.column
+  .twelve.wide.column
     .container
       h4= @note.title
       .tags
@@ -23,4 +23,11 @@
             = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
       .meta
         span.updated_at= @note.updated_at
+      .ui.compact.menu
+        = link_to edit_note_path(@note), class: 'item'
+          i.icon.fa.fa-pencil
+          = t('action.edit')
+        = link_to nil, class: 'item disabled'
+          i.icon.fa.fa-print
+          = t('action.print')
       .html== @note.content_html
