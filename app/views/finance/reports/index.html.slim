@@ -5,19 +5,17 @@
   h3= t('subheading.finance.report')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t('action.resource.index', resource: Finance::Report.model_name.human.pluralize.downcase), '#', class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.new"), new_finance_report_path, class: "pure-menu-link"
+  .item
+    = Finance::Report.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_path, class: 'item'
+      = link_to t('action.index'), finance_reports_path, class: 'item active'
 
 .finance.report
   section.block
     .container
       .ui.grid
-        .sixteen.wide.column
+        .twelve.wide.column
           = render 'shared/pagination', resource: @reports, info: true
           table.ui.very.basic.compact.table
             thead

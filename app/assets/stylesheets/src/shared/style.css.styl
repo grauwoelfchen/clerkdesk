@@ -121,32 +121,13 @@ div.pagination > div
     &:hover
       background-color lighten($field-color, 2%)
 
+// right-menu
+.ui.right-menu
+  h6
+    font-size   13px
+    font-weight bold
+    color       darken($gray-color, 9%)
 
-// widgets
-.field
-  padding 0
-  &.left
-    margin 0 6px 0 0
-  &.right
-    margin 0 0 0 6px
-  h5
-    margin 3px 0 13px 0
-  ul
-    font-size 15px
-    padding   0
-    li
-      list-style none
-    li.more
-      text-align right
-  p.asset
-    padding    0
-    margin     134px 0 0 0
-    text-align right
-    font-size  38px
-  .wall
-    min-height 175px
-    padding    9px 18px
-    background $field-color
 
 .container
   margin 9px 0 21px 0
@@ -184,10 +165,6 @@ ul.actions
     display    inline
     list-style none
 
-li.divider
-  border-top 1px solid #EEEEEE
-  height 0
-
 span.tag
   background    #E0EAF1
   border-radius 2px
@@ -204,15 +181,3 @@ span.more
 td.total_amount
   text-align  right
   color       $text-color
-
-
-.inner-content
-  .ui.breadcrumb
-    margin 2px 0 9px 0
-    a
-      line-height 26px
-      color       $gray-color
-      &:hover
-        color $dark-gray-color
-    span.current
-      color $dark-gray-color
