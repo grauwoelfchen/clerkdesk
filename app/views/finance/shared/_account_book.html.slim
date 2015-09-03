@@ -5,8 +5,9 @@
     = account_book.description
   hr
 
-.ui.grid
-  .four.wide.column
-    .ui.secondary.pointing.menu
-      = active_link_to t('nav.overview'), finance_report_account_book_path(report, account_book),         class: 'item', active: /account_books\/[0-9]$/
-      = active_link_to t('action.index'), finance_report_account_book_entries_path(report, account_book), class: 'item', active: /entr(y|ies)/
+- if controller_path != 'finance/entries'
+  .ui.grid
+    .four.wide.column
+      .ui.secondary.pointing.menu
+        = active_link_to t('nav.overview'), finance_report_account_book_path(report, account_book),         class: 'item', active: /account_books\/[0-9]$/
+        = active_link_to t('action.index'), finance_report_account_book_entries_path(report, account_book), class: 'item', active: /entries$/

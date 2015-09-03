@@ -5,46 +5,53 @@
   h3= t('subheading.finance.category')
 
 - content_for :actions
-  = render 'finance/shared/actions', report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Category.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_category_path(@report), class: 'item'
+      = link_to t('action.index'), finance_report_categories_path(@report), class: 'item active'
 
 - content_for :links
   ul.links
     li= link_to t('action.resource.new', resource: Finance::Category.model_name.human.downcase), new_finance_report_category_path(@report)
 
 .finance.category
-  section.block
+  section
     = render 'finance/shared/report', report: @report
     .container
       = render 'finance/shared/menu', report: @report
       .ui.grid
-        .sixteen.wide.column
+        .twelve.wide.column
           .sub-header
             h5= Finance::Category.model_name.human.pluralize
             hr
           = render 'shared/pagination', resource: @categories, info: true
-          table.ui.very.basic.compact.table
-            thead
-              tr
-                th
-                  span.attribute
-                    = Finance::Category.human_attribute_name(:name)
-                  = sort_links_for(:name)
-                th
-                  span.attribute
-                    = Finance::Category.human_attribute_name(:type)
-                  = sort_links_for(:type)
-                th
-                  span.attribute
-                    = Finance::Category.human_attribute_name(:updated_at)
-                  = sort_links_for(:updated_at, :desc)
-                th
-            tbody
-              - @categories.each do |category|
+          .ui.embedded.segment
+            table.ui.very.basic.compact.table
+              thead
                 tr
-                  td= category.name
-                  td= category.human_type
-                  td.updated_at= category.updated_at
-                  td.operations
-                    ul
-                      li= link_to t('action.edit'), edit_finance_report_category_path(@report, category)
-                      li= link_to t('action.destroy'), finance_report_category_path(@report, category), method: :delete, data: {confirm: "Are you sure?"}
+                  th
+                    span.attribute
+                      = Finance::Category.human_attribute_name(:name)
+                    = sort_links_for(:name)
+                  th
+                    span.attribute
+                      = Finance::Category.human_attribute_name(:type)
+                    = sort_links_for(:type)
+                  th
+                    span.attribute
+                      = Finance::Category.human_attribute_name(:updated_at)
+                    = sort_links_for(:updated_at, :desc)
+                  th
+              tbody
+                - @categories.each do |category|
+                  tr
+                    td= category.name
+                    td= category.human_type
+                    td.updated_at= category.updated_at
+                    td.operations
+                      ul
+                        li= link_to t('action.edit'), edit_finance_report_category_path(@report, category)
+                        li= link_to t('action.destroy'), finance_report_category_path(@report, category), method: :delete, data: {confirm: 'Are you sure?'}

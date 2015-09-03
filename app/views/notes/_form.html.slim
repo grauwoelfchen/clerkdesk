@@ -14,7 +14,7 @@
     = f.text_field :title, placeholder: 'A title'
   .field
     = f.label :tag_list
-    = f.text_field :tag_list, value: note.tag_list.join(","), placeholder: 'Tag'
+    = f.text_field :tag_list, value: note.tag_list.join(','), placeholder: 'Tag'
   .field
     = f.label :content
     = f.text_area :content, rows: 18, placeholder: 'Content'

@@ -2,7 +2,7 @@
 
 - content_for :header
   h2= Note.model_name.human
-  h3= t("subheading.note")
+  h3= t('subheading.note')
 
 - content_for :actions
   .item
@@ -13,24 +13,25 @@
       = link_to t('action.show'), note_path(@note), class: 'item active'
       = link_to t('action.edit'), edit_note_path(@note), class: 'item'
 
-.ui.grid.note
-  .twelve.wide.column
-    .container
-      .ui.grid
-        .eleven.wide.column
-          h4= @note.title
-          .tags
-            - @note.tags.each do |tag|
-              span.tag
-                = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
-          .meta
-            span.updated_at= @note.updated_at
-        .five.wide.column
-          .ui.compact.menu.right
-            = link_to edit_note_path(@note), class: 'item'
-              i.icon.fa.fa-pencil
-              = t('action.edit')
-            = link_to nil, class: 'item disabled'
-              i.icon.fa.fa-print
-              = t('action.print')
-      .html== @note.content_html
+.note
+  .ui.grid
+    .twelve.wide.column
+      .container
+        .ui.grid
+          .eleven.wide.column
+            h4= @note.title
+            .tags
+              - @note.tags.each do |tag|
+                span.tag
+                  = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
+            .meta
+              span.updated_at= @note.updated_at
+          .five.wide.column
+            .ui.compact.menu.right
+              = link_to edit_note_path(@note), class: 'item'
+                i.icon.fa.fa-pencil
+                = t('action.edit')
+              = link_to nil, class: 'item disabled'
+                i.icon.fa.fa-print
+                = t('action.print')
+        .html== @note.content_html
