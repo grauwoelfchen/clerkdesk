@@ -29,8 +29,16 @@
 .note
   .container
     .meta
+      min-height 1em
       .updated_at
         font-size 90%
+  .ui.stacked.segment
+    border 1px solid lighten($light-brown-color, 27%)
+  .ui.stacked.segment:after,
+  .ui.stacked.segment:before
+    border-top 1px solid lighten($light-brown-color, 27%)
+  .attached.label
+    background-color lighten($light-brown-color, 27%)
 
 .note
   .container
