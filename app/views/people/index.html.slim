@@ -5,19 +5,17 @@
   h3= t('subheading.person')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.index", resource: Person.model_name.human.pluralize.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.new"), new_person_path, class: "pure-menu-link"
+  .item
+    = Person.model_name.human
+    .menu
+      = link_to t('action.new'), new_person_path, class: 'item'
+      = link_to t('action.index'), people_path, class: 'item active'
 
 .person
-  section.block
+  section
     .container
       .ui.grid
-        .sixteen.wide.column
+        .twelve.wide.column
           = render 'shared/pagination', resource: @people, info: true
           table.ui.very.basic.compact.table
             thead
@@ -29,9 +27,6 @@
                   span.attribute= Person.human_attribute_name(:slug)
                   = sort_links_for(:slug)
                 th
-                  span.attribute= Person.human_attribute_name(:memo)
-                  = sort_links_for(:memo)
-                th
                   span.attribute= Person.human_attribute_name(:updated_at)
                   = sort_links_for(:updated_at, :desc)
                 th
@@ -41,11 +36,10 @@
                   td= link_to truncate(person.name, length: 18), person_path(person)
                   td
                     span.label= truncate(person.slug, length: 12)
-                  td= truncate(person.memo, length: 12)
                   td.updated_at= person.updated_at
                   td.operations
                     ul
-                      li= link_to t("action.edit"), edit_person_path(person)
-                      li= link_to t("action.destroy"), person_path(person), method: :delete, data: {confirm: "Are you sure?"}
+                      li= link_to t('action.edit'), edit_person_path(person)
+                      li= link_to t('action.destroy'), person_path(person), method: :delete, data: {confirm: 'Are you sure?'}
 
-          = render "shared/pagination", resource: @people, info: false
+          = render 'shared/pagination', resource: @people, info: false

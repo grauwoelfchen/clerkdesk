@@ -19,7 +19,7 @@
 
 .finance.account_book
   section
-    = render "finance/shared/report", report: @report
+    = render 'finance/shared/report', report: @report
     .container
       = render 'finance/shared/menu', report: @report
       .ui.grid
@@ -55,4 +55,4 @@
                   td.operations
                     ul
                       li= link_to t('action.edit'), edit_finance_report_account_book_path(@report, account_book)
-                      li= link_to t('action.destroy'), finance_report_account_book_path(@report, account_book), method: :delete, data: {confirm: "Are you sure?"}
+                      li= link_to t('action.destroy'), finance_report_account_book_path(@report, account_book), method: :delete, data: {confirm: 'Are you sure?'}

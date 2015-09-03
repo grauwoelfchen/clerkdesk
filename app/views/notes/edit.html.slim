@@ -13,8 +13,9 @@
       = link_to t('action.show'), note_path(@note), class: 'item'
       = link_to t('action.edit'), edit_note_path(@note), class: 'item active'
 
-.ui.grid.note
-  .thirteen.wide.column
-    h3= t('action.edit')
-    .container
-      = render 'form', note: @note
+.note
+  .ui.grid
+    .thirteen.wide.column
+      h3= t('action.edit')
+      .container
+        = render 'form', note: @note
