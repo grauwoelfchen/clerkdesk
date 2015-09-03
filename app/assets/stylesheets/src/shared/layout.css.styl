@@ -44,15 +44,12 @@ body
 
 
 .right-menu
-  background-color #FAF9F8
-  min-height 760px
-  padding    13px 9px
-  .locales
-    padding 6px 0 21px 0
-    margin  13px 0 0 3px
-  .navs
-    padding 6px 0 21px 0
-    margin  18px 0 0 3px
+  background-color lighten($pale-gray-color, 63%)
+  min-height       760px
+  padding          0 9px 0 18px
+  .nav
+    padding 3px 0 21px 0
+    margin  13px 0 0 0
     ul.links
       padding 0 0 0 2px
       li
@@ -139,8 +136,8 @@ section .container
 
 .footer
   flex         0 0 auto
-  background-color #FAFAF8
-  border-top       1px solid $pale-gray-color
+  background-color $pale-gray-color
+  border-top       1px solid lighten($light-gray-color, 27%)
   font-size        87.5%
   padding          21px 21px 21px 26px
   line-height      1.6

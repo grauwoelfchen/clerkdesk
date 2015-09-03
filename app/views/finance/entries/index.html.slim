@@ -5,7 +5,13 @@
   h3= t('subheading.finance.entry')
 
 - content_for :actions
-  = render 'finance/shared/actions', report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Entry.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_account_book_entry_path(@report, @account_book), class: 'item'
+      = link_to t('action.index'), finance_report_account_book_entries_path(@report, @account_book), class: 'item active'
 
 - content_for :links
   ul.links

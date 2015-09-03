@@ -5,14 +5,20 @@
   h3= t('subheading.finance.budget')
 
 - content_for :actions
-  = render 'finance/shared/actions', report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Budget.model_name.human
+    .menu
+      = link_to t('action.show'), finance_report_budget_path(@report), class: 'item active'
+      = link_to t('action.edit'), edit_finance_report_budget_path(@report), class: 'item'
 
 - content_for :links
   ul.links
     li= link_to t('action.resource.edit', resource: Finance::Budget.model_name.human.downcase), edit_finance_report_budget_path(@report)
 
 .finance.budget
-  section.block
+  section
     = render 'finance/shared/report', report: @report
     .container
       = render 'finance/shared/menu', report: @report, budget: @budget
@@ -22,7 +28,7 @@
             h5= Finance::Budget.model_name.human
             hr
         .eight.wide.column
-          .field.left
+          .field
             h6= Finance::Category.human_types[:expense]
             table.ui.very.basic.compact.table
               thead
@@ -44,7 +50,7 @@
                   td 302,000
                   td 200,200
         .eight.wide.column
-          .field.right
+          .field
             h6= Finance::Category.human_types[:income]
             table.ui.very.basic.compact.table
               thead

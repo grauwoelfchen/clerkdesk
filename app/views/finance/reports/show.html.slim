@@ -5,8 +5,8 @@
   h3= t('subheading.finance.overview')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    = render 'finance/shared/actions', report: @report
+  .item
+    = render 'finance/shared/actions', report: @report, overview: true
 
 .finance.report
   section

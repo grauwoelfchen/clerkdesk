@@ -5,19 +5,25 @@
   h3= t('subheading.finance.account_book')
 
 - content_for :actions
-  = render 'finance/shared/actions', report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::AccountBook.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_account_book_path(@report), class: 'item'
+      = link_to t('action.index'), finance_report_account_books_path(@report), class: 'item active'
 
 - content_for :links
   ul.links
     li= link_to t('action.resource.new', resource: Finance::AccountBook.model_name.human.downcase), new_finance_report_account_book_path(@report)
 
 .finance.account_book
-  section.block
+  section
     = render "finance/shared/report", report: @report
     .container
       = render 'finance/shared/menu', report: @report
       .ui.grid
-        .sixteen.wide.column
+        .twelve.wide.column
           .sub-header
             h5= Finance::AccountBook.model_name.human.pluralize
             hr
