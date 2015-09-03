@@ -25,6 +25,7 @@ en:
     show: View
     edit: Edit
     new: New
+    print: Print
     resource:
       index: 'All %{resource}'
       show: 'View %{resource}'

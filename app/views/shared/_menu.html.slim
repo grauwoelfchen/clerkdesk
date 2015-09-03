@@ -1,36 +1,26 @@
-.pure-menu
-  = link_to t("app.name"), root_path, class: "pure-menu-heading"
-  ul.pure-menu-list
-    - selected = controller_path == "notes" ? "pure-menu-selected" : ""
-    li.pure-menu-item class=selected
-      = link_to notes_path, class: "pure-menu-link" do
-        i.fa.fa-file-text-o
-        = Note.model_name.human
+.item.top
+  = link_to t('app.name'), root_path, class: 'heading'
 
-    - selected = controller_path.in?(%w{finance/reports finance/account_books finance/categories finance/entries finance/budgets}) ? "pure-menu-selected" : ""
-    li.pure-menu-item class=selected
-      = link_to finance_reports_path, class: "pure-menu-link" do
-        i.fa.fa-calculator
-        = Finance::Report.model_name.human
+= active_link_to notes_path, class: 'item' do
+  i.fa.fa-file-text-o
+  = Note.model_name.human
 
-    - selected = controller_path == "people" ? "pure-menu-selected" : ""
-    li.pure-menu-item class=selected
-      = link_to people_path, class: "pure-menu-link" do
-        i.fa.fa-tag
-        = Person.model_name.human
+= active_link_to finance_reports_path, class: 'item', active: /^\/finance/ do
+  i.fa.fa-calculator
+  = Finance::Report.model_name.human
 
-    - selected = controller_path == "users" ? "pure-menu-selected" : ""
-    li.pure-menu-item class=selected
-      = link_to users_path, class: "pure-menu-link" do
-        i.fa.fa-user
-        = LockerRoom::User.model_name.human
+= active_link_to people_path, class: 'item' do
+  i.fa.fa-tag
+  = Person.model_name.human
 
-    - selected = controller_path == "settings" ? "pure-menu-selected" : ""
-    li.pure-menu-item class=selected
-      = link_to "#", class: "pure-menu-link" do
-        i.fa.fa-cog
-        = t("nav.settings")
+= active_link_to users_path, class: 'item' do
+  i.fa.fa-user
+  = LockerRoom::User.model_name.human
 
-  .bottom
-    = link_to locker_room.logout_path, method: :delete, class: "pure-menu-link" do
-      = "logout"
+= active_link_to '#', class: 'item', active: /^$/ do
+  i.fa.fa-cog
+  = t('nav.settings')
+
+/.item.bottom
+/  = link_to locker_room.logout_path, method: :delete, class: 'item' do
+/    = 'logout'

@@ -16,7 +16,7 @@ class PersonSortTest < Capybara::Rails::TestCase
       params = {:field => 'name', :direction => 'desc'}
       assert_equal(people_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
-        //ul[@class='sort-links']/li
+        //ul[@class='links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
       ICON
@@ -36,7 +36,7 @@ class PersonSortTest < Capybara::Rails::TestCase
       params = {:field => 'name', :direction => 'asc'}
       assert_equal(people_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
-        //ul[@class='sort-links']/li
+        //ul[@class='links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-up active')]
       ICON
@@ -56,7 +56,7 @@ class PersonSortTest < Capybara::Rails::TestCase
       params = {:field => 'slug', :direction => 'desc'}
       assert_equal(people_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
-        //ul[@class='sort-links']/li
+        //ul[@class='links']/li
          /a[@href='#{people_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
       ICON

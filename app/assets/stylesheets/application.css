@@ -10,13 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require purecss/build/pure-min
- *= require purecss/build/grids-responsive-min
+ *= require semantic-ui/dist/semantic.min
  *= require jquery-selectric/public/selectric
  *= require pickmeup/css/pickmeup.min
  *= require chosen/chosen.min
  *= require vendor/font-awesome
  *= require vendor/jquery.tag-editor
- *= require_tree ./resources
+ *= require_tree ./src
  *= require_self
  */

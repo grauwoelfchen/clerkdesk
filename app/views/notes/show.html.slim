@@ -2,32 +2,36 @@
 
 - content_for :header
   h2= Note.model_name.human
-  h3= t("subheading.note")
+  h3= t('subheading.note')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.show", resource: Note.model_name.human.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.index"), notes_path, class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to t("action.edit"), edit_note_path(@note), class: "pure-menu-link"
-          li.pure-menu-item.delimiter
-            = link_to t("action.new"), new_note_path, class: "pure-menu-link"
+  .item
+    = Note.model_name.human
+    .menu
+      = link_to t('action.new'), new_note_path, class: 'item'
+      = link_to t('action.index'), notes_path, class: 'item'
+      = link_to t('action.show'), note_path(@note), class: 'item active'
+      = link_to t('action.edit'), edit_note_path(@note), class: 'item'
 
 .note
-  section.block
-    h4= @note.title
-    .text== @note.content_html
-    .created
-      label.label.label-default= Note.human_attribute_name(:created_at)
-      span.created_at= @note.created_at
-    .updated
-      label.label.label-default= Note.human_attribute_name(:updated_at)
-      span.updated_at= @note.updated_at
-    .tags
-      - @note.tags.each do |tag|
-        span.tag
-          = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
+  .ui.grid
+    .twelve.wide.column
+      .container
+        .ui.grid
+          .eleven.wide.column
+            h4= @note.title
+            .tags
+              - @note.tags.each do |tag|
+                span.tag
+                  = link_to truncate(tag.name, length: 8), notes_path(tag: tag.name)
+            .meta
+              span.updated_at= @note.updated_at
+          .five.wide.column
+            .ui.compact.menu.right
+              = link_to edit_note_path(@note), class: 'item'
+                i.icon.fa.fa-pencil
+                = t('action.edit')
+              = link_to nil, class: 'item disabled'
+                i.icon.fa.fa-print
+                = t('action.print')
+        .html== @note.content_html

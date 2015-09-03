@@ -1,12 +1,14 @@
-= form_for [:finance, report, category], html: {class: "form pure-form"} do |f|
+= form_for [:finance, report, category], html: {class: 'ui form'} do |f|
   - if category.errors.any?
-    = render "shared/error", resource: category
-  fieldset.group.pure-group
-    = f.text_field :name, class: "pure-input-1", placeholder: "Name"
-  fieldset.group.pure-group
-    = f.select :type, Finance::Category.human_types.invert
+    = render 'shared/error', resource: category
+  .field
+    = f.label :name
+    = f.text_field :name, placeholder: 'Name'
+  .field
+    = f.label :type
+    = f.select :type, Finance::Category.human_types.invert, {}, class: 'ui dropdown'
   .actions
-    - action = category.persisted? ? "update" : "create"
-    = f.submit t("action.#{action}"), class: "pure-button button"
-    - if action == "update"
-      = link_to t("action.destroy"), finance_report_category_path(report, category), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
+    - action = category.persisted? ? 'update' : 'create'
+    = f.submit t("action.#{action}"), class: 'ui button'
+    - if action == 'update'
+      = link_to t('action.destroy'), finance_report_category_path(report, category), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
