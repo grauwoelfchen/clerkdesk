@@ -51,7 +51,7 @@ legend
 // Collections - Breadcrumb
 .ui
   .ui.breadcrumb
-    margin-bottom 18px
+    margin-bottom 11px
     span.divider
       margin 0 6px
     a
@@ -77,6 +77,13 @@ legend
   .menu
     border-radius 0 0 2px 2px
 
+.ui.action.input
+  input
+    min-width     284px
+    border-radius 2px 0 0 2px
+  & > .ui.button
+    border-radius 0 2px 2px 0px !important
+
 // Elements - Button
 .ui.button
   border-radius 2px
@@ -94,7 +101,8 @@ legend
 
 // Views - Item
 .ui.items > .item > .image:not(.ui)
-  width 100px
+  width      100px
+  text-align center
 
 .ui.items > .item .meta
   margin 0.3em 0

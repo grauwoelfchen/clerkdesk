@@ -15,11 +15,6 @@
 
 .ui.grid.note
   .thirteen.wide.column
-    .ui.two.column.grid
-      .column
-        h3= t('action.edit')
-      .column
-        .right
-          = select_tag :syntax, options_for_select(['Markdown'], 'Markdown'), class: 'ui dropdown'
+    h3= t('action.edit')
     .container
       = render 'form', note: @note

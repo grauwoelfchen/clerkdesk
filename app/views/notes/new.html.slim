@@ -11,13 +11,9 @@
       = link_to t('action.new'), new_note_path, class: 'item active'
       = link_to t('action.index'), notes_path, class: 'item'
 
-.note.ui.grid
-  .fourteen.wide.column
-    .ui.two.column.grid
-      .column
-        h3= t("action.new")
-      .column
-        .right
-          = select_tag :syntax, options_for_select(["Markdown"], "Markdown")
-    .container
-      = render "form", note: @note
+section.note
+  .ui.grid
+    .twelve.wide.column
+      h3= t("action.new")
+      .container
+        = render "form", note: @note
