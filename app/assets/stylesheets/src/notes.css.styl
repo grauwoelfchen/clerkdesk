@@ -1,0 +1,81 @@
+@import('./shared/_mixin.css.styl')
+
+.note
+  .nav ul.links
+    display inline-block
+    margin  0 1px 6px 1px
+    padding 2px 0
+    li
+      list-style none
+      display    inline-block
+      i.fa.fa-angle-up,
+      i.fa.fa-angle-down
+        font-weight    bold
+        border-radius  2px
+        display        inline-block
+        margin         0
+        padding        1px 3px
+        text-align     center
+        vertical-align middle
+        color          $dark-gray-color
+        &:hover
+          background-color $pale-gray-color
+        &.active
+          color $pink-color
+  .filter
+    display inline-block
+    margin  0 0 0 13px
+
+.note
+  .container
+    .meta
+      min-height 1em
+      .updated_at
+        font-size 90%
+  .ui.stacked.segment
+    border 1px solid lighten($light-brown-color, 27%)
+  .ui.stacked.segment:after,
+  .ui.stacked.segment:before
+    border-top 1px solid lighten($light-brown-color, 27%)
+  .attached.label
+    background-color lighten($light-brown-color, 27%)
+
+.note
+  .container
+    .meta
+      margin 9px 0 13px 0
+    .html
+      color         $blue-ink-color
+      min-height    690px
+      margin        18px 0 36px 0
+      padding       6px 3px
+      border-top    1px solid $pale-gray-color
+      h1
+        font-size 27px
+        margin    18px 0
+      h2
+        font-size 19px
+        margin    18px 0
+      table
+        border 1px solid #CCCCCC
+        margin 2px 0 3px 1px
+      th,
+      td
+        padding 3px 9px
+        border  1px solid #CCCCCC
+      th
+        background-color #F3F3F3
+        text-align       center
+      ul,
+      ol
+        padding 0
+        margin  9px 0 6px 21px
+
+
+.note
+  form
+    textarea#note_content
+      overflow  hidden
+      resize    none
+      word-wrap break-word
+      padding   6px 9px

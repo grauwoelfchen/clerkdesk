@@ -2,24 +2,32 @@
 
 - content_for :header
   h2= Finance::AccountBook.model_name.human
-  h3= t("subheading.finance.entry")
+  h3= t('subheading.finance.entry')
 
 - content_for :actions
-  = render "finance/shared/actions", report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Entry.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_account_book_entry_path(@report, @account_book), class: 'item active'
+      = link_to t('action.index'), finance_report_account_book_entries_path(@report, @account_book), class: 'item'
 
 - content_for :links
   ul.links
-    li= link_to t("action.resource.index", resource: Finance::AccountBook.model_name.human.downcase), finance_report_account_books_path(@report)
-    li= link_to t("action.resource.edit",  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
-    li= link_to t("action.resource.index", resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_entries_path(@report, @account_book)
+    li= link_to t('action.resource.index', resource: Finance::AccountBook.model_name.human.downcase), finance_report_account_books_path(@report)
+    li= link_to t('action.resource.edit',  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
+    li= link_to t('action.resource.index', resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_entries_path(@report, @account_book)
 
-section.block.entry
-  = render "finance/shared/report", report: @report
-  .box
-    = render "finance/shared/tab", report: @report, account_book: @account_book
-    .main.pure-g
-      .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
-        = render "finance/shared/account_book", report: @report, account_book: @account_book
-        .container
-          h6= t("action.new")
-          = render "form", report: @report, account_book: @account_book, entry: @entry, journalizings: @journalizings
+.finance.entry
+  section
+    = render 'finance/shared/report', report: @report
+    .container
+      = render 'finance/shared/menu', report: @report, account_book: @account_book
+      .ui.grid
+        .twelve.wide.column
+          = render 'finance/shared/account_book', report: @report, account_book: @account_book
+      .ui.grid
+        .seven.wide.column
+          .container
+            = render 'form', report: @report, account_book: @account_book, entry: @entry, journalizings: @journalizings

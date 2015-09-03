@@ -2,20 +2,20 @@
 
 - content_for :header
   h2= Person.model_name.human
-  h3= t("subheading.person")
+  h3= t('subheading.person')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.new", resource: Person.model_name.human.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.index"), people_path, class: "pure-menu-link"
+  .item
+    = Person.model_name.human
+    .menu
+      = link_to t('action.new'), new_person_path, class: 'item active'
+      = link_to t('action.index'), people_path, class: 'item'
 
-section.block.person
-  .container.pure-g
-    .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
-      h4= t("action.new")
-      hr
-      = render "form", person: @person
+.person
+  section
+    .container
+      .ui.grid
+        .twelve.wide.column
+          h4= t('action.new')
+          hr
+          = render 'form', person: @person

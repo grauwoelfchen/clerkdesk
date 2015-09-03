@@ -2,28 +2,20 @@
 
 - content_for :header
   h2= Note.model_name.human
-  h3= t("subheading.note")
+  h3= t('subheading.note')
 
 - content_for :actions
-  nav.btn.pure-menu.pure-menu-horizontal
-    ul.pure-menu-list
-      li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-        = link_to t("action.resource.edit", resource: Note.model_name.human.downcase), "#", class: "pure-menu-link"
-        ul.pure-menu-children
-          li.pure-menu-item
-            = link_to t("action.index"), notes_path, class: "pure-menu-link"
-          li.pure-menu-item
-            = link_to t("action.show"), note_path(@note), class: "pure-menu-link"
-          li.pure-menu-item.delimiter
-            = link_to t("action.new"), new_note_path, class: "pure-menu-link"
+  .item
+    = Note.model_name.human
+    .menu
+      = link_to t('action.new'), new_note_path, class: 'item'
+      = link_to t('action.index'), notes_path, class: 'item'
+      = link_to t('action.show'), note_path(@note), class: 'item'
+      = link_to t('action.edit'), edit_note_path(@note), class: 'item active'
 
-.note.pure-g
-  .pure-u-1-1.pure-u-lg-1-1.pure-u-xl-3-4
-    .pure-g
-      .pure-u-3-4
-        h3= t("action.edit")
-      .pure-u-1-4
-        .pure-form.select-form.right
-          = select_tag :syntax, options_for_select(["Markdown"], "Markdown")
-
-    = render "form", note: @note
+.note
+  .ui.grid
+    .thirteen.wide.column
+      h3= t('action.edit')
+      .container
+        = render 'form', note: @note

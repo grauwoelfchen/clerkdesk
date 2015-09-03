@@ -1,27 +1,29 @@
 - content_for :script do
-  = javascript_include_tag "resources/finance/reports"
+  = javascript_include_tag 'src/finance/reports'
 
-= form_for [:finance, report], html: {class: "form pure-form pure-form-stacked"} do |f|
+= form_for [:finance, report], html: {class: 'ui form'} do |f|
   - if report.errors.any?
-    = render "shared/error", resource: report
-  fieldset.pure-group
-    legend= Finance::Report.human_attribute_name(:name)
-    .pure-control-group
-      = f.text_field :name,  class: "pure-input-1", placeholder: "Name"
-      = f.text_area :description,  class: "pure-input-1", rows: 4, placeholder: "Description"
-    .pure-control-group
-      = f.label :state
-      = f.select :state, Finance::Report.human_states.invert
+    = render 'shared/error', resource: report
+  .field
+    = f.label :name
+    = f.text_field :name, placeholder: 'Name'
+  .field
+    = f.label :description
+    = f.text_area :description, rows: 4, placeholder: 'Description'
+  .field
+    = f.label :state
+    = f.select :state, Finance::Report.human_states.invert, class: 'ui dropdown'
   fieldset
-    legend= t('legend.period')
-    .pure-control-group
-      = f.label :started_at
-      = f.text_field :started_at, class: 'date'
-    .pure-control-group
-      = f.label :finished_at
-      = f.text_field :finished_at, class: 'date'
+    .field
+      legend= t('legend.period')
+      .field
+        = f.label :started_at
+        = f.text_field :started_at, class: 'date'
+      .field
+        = f.label :finished_at
+        = f.text_field :finished_at, class: 'date'
   .actions
-    - action = report.persisted? ? "update" : "create"
-    = f.submit t("action.#{action}"), class: "pure-button button"
-    - if action == "update"
-      = link_to t("action.destroy"), finance_report_path(report), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
+    - action = report.persisted? ? 'update' : 'create'
+    = f.submit t("action.#{action}"), class: 'ui button'
+    - if action == 'update'
+      = link_to t('action.destroy'), finance_report_path(report), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
