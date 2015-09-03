@@ -14,44 +14,89 @@
       = link_to t('action.new'), new_note_path, class: 'item'
       = link_to t('action.index'), notes_path, class: 'item active'
 
-.ui.grid.note
-  .twelve.wide.column
-    .nav
-      ul.links
-        li
-          span.attribute
-            = Note.human_attribute_name(:title)
-          = sort_links_for(:title)
-        li
-          span.attribute
-            = Note.human_attribute_name(:updated_at)
-          = sort_links_for(:updated_at, :desc)
-      .filter
-        - if params[:tag]
-          - capture_to_local tag=:tag
-            span.tag= params[:tag]
-          = t('result.filter_by.tag', tag: tag).html_safe
-    .container
-      = render 'shared/pagination', resource: @notes, info: true
-      .ui.items
-        - @notes.each do |note|
-          .item
-            .image
-              = link_to note_path(note) do
-                i.fa.fa-file-o.fa-6
-            .content
-              = link_to truncate(note.title, length: 22), note_path(note), class: 'header'
-              .meta
-                .tags
-                  - note.tags.take(3).each do |tag|
-                    span.tag
-                      = link_to truncate(tag.name, length: 8), url_for(params.merge(tag: tag.name))
-                  - if note.tags.length > 3
-                    span.more
-                      = link_to '... more', note_path(note)
-              .meta
-                span.updated_at= note.updated_at
-              .description
-                = truncate(note.content, length: 30)
-              .extra
-      = render 'shared/pagination', resource: @notes, info: false
+.note
+  section
+    .ui.grid
+      .eleven.wide.column
+        .nav
+          ul.links
+            li
+              span.attribute
+                = Note.human_attribute_name(:title)
+              = sort_links_for(:title)
+            li
+              span.attribute
+                = Note.human_attribute_name(:updated_at)
+              = sort_links_for(:updated_at, :desc)
+          .filter
+            - if params[:tag]
+              - capture_to_local tag=:tag
+                span.tag= params[:tag]
+              = t('result.filter_by.tag', tag: tag).html_safe
+        .container
+          = render 'shared/pagination', resource: @notes, info: true
+          hr
+          .ui.embedded.segment
+            .ui.items
+              - @notes.each do |note|
+                .item
+                  .image
+                    = link_to note_path(note) do
+                      i.fa.fa-file-o.fa-6
+                  .content
+                    = link_to truncate(note.title, length: 22), note_path(note), class: 'header'
+                    .meta
+                      .tags
+                        - note.tags.take(3).each do |tag|
+                          span.tag
+                            = link_to truncate(tag.name, length: 8), url_for(params.merge(tag: tag.name))
+                        - if note.tags.length > 3
+                          span.more
+                            = link_to '... more', note_path(note)
+                    .meta
+                      span.updated_at= note.updated_at
+                    .description
+                      = truncate(strip_tags(note.content_html), length: 30)
+                    .extra
+          = render 'shared/pagination', resource: @notes, info: false
+      .five.wide.column
+        .item
+          .right
+            .ui.action.input
+              input type="text" placeholder="Search..."
+              .ui.button
+                i.search.link.icon
+          .foo style="clear:both;"
+        .ui.stacked.segment.top
+          .ui.top.attached.label ACTIVITY
+          .ui.feed
+            .event
+              .label
+                i.fa.fa-user.fa-2
+              .content
+                .summary
+                  = link_to nil, 'Joe'
+                  |  created new note
+                .extra
+                  .date 3 days ago
+                  .text
+                    | FOO FOO
+                .meta
+                  = link_to nil, class: 'star' do
+                    i.star.icon
+                  | 5 Stars
+            .event
+              .label
+                i.fa.fa-user.fa-2
+              .content
+                .summary
+                  = link_to nil, 'Joe'
+                  |  updated a note
+                .extra
+                  .date 3 days ago
+                  .text
+                    | FOO FOO
+                .meta
+                  = link_to nil, class: 'star' do
+                    i.star.icon
+                  | 5 Stars

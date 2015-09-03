@@ -2,8 +2,13 @@
   = javascript_include_tag 'src/notes'
 
 = form_for note, html: {class: 'ui form'} do |f|
-  - if note.errors.any?
-    = render 'shared/error', resource: note
+  .ui.two.column.grid
+    .column
+      - if note.errors.any?
+        = render 'shared/error', resource: note
+    .column
+      .right
+        = select_tag :syntax, options_for_select(['Markdown'], 'Markdown'), class: 'ui dropdown'
   .field
     = f.label :title
     = f.text_field :title, placeholder: 'A title'

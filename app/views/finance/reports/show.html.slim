@@ -26,7 +26,7 @@
                 .ui.secondary.pointing.menu
                   = active_link_to t('misc.entry'), url_for(segment: :entries), class: 'item', active: true
                   = active_link_to t('misc.status'), url_for(segment: :status), class: 'item', active: false
-            .ui.segment.none
+            .ui.embedded.segment
               table.ui.very.basic.compact.table
                 thead
                   tr
@@ -73,7 +73,7 @@
                 .ui.secondary.pointing.menu
                   = active_link_to t('misc.entry'), url_for(segment: :entries), class: 'item', active: false
                   = active_link_to t('misc.status'), url_for(segment: :status), class: 'item', active: true
-            .ui.segment.none
+            .ui.embedded.segment
               table.ui.very.basic.compact.table
                 thead
                   tr
