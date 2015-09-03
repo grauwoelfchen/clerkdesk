@@ -26,7 +26,6 @@ legend
   .item
     padding 0 1.1em
 
-
 // Collections - Grid
 .ui.grid
   margin 0
@@ -36,26 +35,18 @@ legend
 
 .ui.grid.content-header
   .column
-    padding-left  3px
-    padding-right 3px
-
-.ui.grid.inner-content
-  margin 0
-  > .column:not(.row)
-    padding-top    6px
-    padding-bottom 6px
-    padding-left   0
-    padding-right  0
+    padding-left  2px
+    padding-right 2px
 
 .inner-content
   .ui.grid
-    .column:not(.row)
-      padding-left  0
-      padding-right 0
+    .column:not(.row):first-child
+      padding-left  2px
+    .column:not(.row):last-child
+      padding-right 2px
 
 .ui.grid + .grid
   margin-top 0
-
 
 // Collections - Breadcrumb
 .ui
@@ -89,6 +80,17 @@ legend
 // Elements - Button
 .ui.button
   border-radius 2px
+
+// Elements - Segment
+.ui.segment
+  border-radius 2px
+  box-shadow    none
+
+// Elements - Label
+.ui.attached.label,
+.ui.top.attached.label
+  border-radius 2px
+
 
 // Views - Item
 .ui.items > .item > .image:not(.ui)
