@@ -9,12 +9,12 @@
     = render 'finance/shared/actions', report: @report
 
 .finance.report
-  section.block
+  section
     = render 'finance/shared/report', report: @report
     .container
-      = render "finance/shared/menu", report: @report
+      = render 'finance/shared/menu', report: @report
       .ui.grid
-        .sixteen.wide.column
+        .twelve.wide.column
           - if params[:segment] != 'status'
             / Recent entries
             .sub-header
@@ -26,44 +26,42 @@
                 .ui.secondary.pointing.menu
                   = active_link_to t('misc.entry'), url_for(segment: :entries), class: 'item', active: true
                   = active_link_to t('misc.status'), url_for(segment: :status), class: 'item', active: false
-            table.ui.very.basic.compact.table
-              thead
-                tr
-                  th= t("misc.datetime")
-                  th= Finance::AccountBook.model_name.human
-                  th= Finance::Category.model_name.human
-                  th= Finance::Entry.human_attribute_name(:title)
-                  th= Finance::Entry.human_attribute_name(:type)
-                  th= Finance::Entry.human_attribute_name(:total_amount)
-              tbody
-                - 5.times do |i|
-                  - entry = @entries[i]
-                  - if entry
-                    tr
-                      td
-                        span.created_at data-format='fromNow'= entry.created_at
-                      td.account_book
-                        = link_to finance_report_account_book_path(@report, entry.account_book) do
-                          i.icon.fa.fa-fw.fa-lg= entry.account_book.icon.to_s.html_safe
-                          span= entry.account_book.name
-                      td.category= truncate(entry.category.name, length: 8)
-                      td.title
-                        = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
-                      td.type
-                        span class="label label-#{entry.type}"= entry.human_type
-                      td.total_amount
-                        span.currency= entry.total_amount
-                  - else
-                    tr.blank
-                      td
-                      td
-                      td
-                      td
-                      td
-                      td
-            ul
-              li.more
-                = link_to "more", finance_report_account_books_path(@report)
+            .ui.segment.none
+              table.ui.very.basic.compact.table
+                thead
+                  tr
+                    th= t("misc.datetime")
+                    th= Finance::AccountBook.model_name.human
+                    th= Finance::Category.model_name.human
+                    th= Finance::Entry.human_attribute_name(:title)
+                    th= Finance::Entry.human_attribute_name(:type)
+                    th= Finance::Entry.human_attribute_name(:total_amount)
+                tbody
+                  - 5.times do |i|
+                    - entry = @entries[i]
+                    - if entry
+                      tr
+                        td
+                          span.created_at data-format='fromNow'= entry.created_at
+                        td.account_book
+                          = link_to finance_report_account_book_path(@report, entry.account_book) do
+                            i.icon.fa.fa-fw.fa-lg= entry.account_book.icon.to_s.html_safe
+                            span= entry.account_book.name
+                        td.category= truncate(entry.category.name, length: 8)
+                        td.title
+                          = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
+                        td.type
+                          span class="label label-#{entry.type}"= entry.human_type
+                        td.total_amount
+                          span.currency= entry.total_amount
+                    - else
+                      tr.blank
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
           - else
             / Current status
             .sub-header
@@ -75,28 +73,27 @@
                 .ui.secondary.pointing.menu
                   = active_link_to t('misc.entry'), url_for(segment: :entries), class: 'item', active: false
                   = active_link_to t('misc.status'), url_for(segment: :status), class: 'item', active: true
-            table.ui.very.basic.compact.table
-              thead
-                tr
-                  th= Finance::Category.model_name.human
-                  th= t('misc.status')
-                  th= Finance::Budget.model_name.human
-              tbody
-                - @categories.each do |category|
+            .ui.segment.none
+              table.ui.very.basic.compact.table
+                thead
                   tr
-                    td= category.name
-                    td= category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
-                    td 0
-            ul
-              li.more
-                = link_to 'more', '#'
-
-        / Total
-        /.pure-u-1-2.pure-md-1-2.pure-sm-1-2
-        /  .field
-        /    .sub-header
-        /      h5 Total
-        /      hr
-        /    .wall.left
-        /      p.asset
-        /        | 20,2292,0293
+                    th= Finance::Category.model_name.human
+                    th= Finance::Budget.model_name.human
+                tbody
+                  - @categories.each do |category|
+                    tr
+                      td
+                        = category.name
+                        .ui.label
+                          = category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
+                      td 0
+        .four.wide.column
+          .ui.stacked.segment
+            .ui.top.attached.label TOTAL
+            .ui.divided.list
+              .item
+                .ui.horizontal.label Expense
+                | 20,2292,0293
+              .item
+                .ui.horizontal.label Income
+                | 20,2292,0293
