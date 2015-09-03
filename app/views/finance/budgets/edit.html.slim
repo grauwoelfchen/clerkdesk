@@ -5,7 +5,13 @@
   h3= t("subheading.finance.budget")
 
 - content_for :actions
-  = render "finance/shared/actions", report: @report
+  .item
+    = render "finance/shared/actions", report: @report
+  .item
+    = Finance::Budget.model_name.human
+    .menu
+      = link_to t('action.show'), finance_report_budget_path(@report), class: 'item'
+      = link_to t('action.edit'), edit_finance_report_budget_path(@report), class: 'item active'
 
 - content_for :links
   ul.links
