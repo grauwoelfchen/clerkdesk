@@ -17,8 +17,6 @@ class FinanceReportDestroyTest < Capybara::Rails::TestCase
           href = "/finances/#{report.id}"
           link = find(:xpath, "//a[@href='#{href}' and text()='Delete']")
           link.click
-          # TODO: js driver
-          #page.driver.submit(:delete, link['href'], {})
         end
       end
     end
