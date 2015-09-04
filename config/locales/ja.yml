@@ -25,6 +25,7 @@ ja:
     show: 詳細
     edit: 編集
     new: 新規作成
+    print: 印刷
     resource:
       index: '%{resource}: 一覧'
       show: '%{resource}: 詳細'

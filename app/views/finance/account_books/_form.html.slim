@@ -1,21 +1,20 @@
 - content_for :script do
-  = javascript_include_tag "resources/finance/account_books"
+  = javascript_include_tag 'src/finance/account_books'
 
-= form_for [:finance, report, account_book], html: {class: "form pure-form pure-form-aligned"} do |f|
+= form_for [:finance, report, account_book], html: {class: 'ui form'} do |f|
   - if account_book.errors.any?
-    = render "shared/error", resource: account_book
-  fieldset
-    .pure-control-group
-      = f.label :name
-      = f.text_field :name, class: "pure-input-2-3", placeholder: "Name"
-    .pure-control-group
-      = f.label :icon, class: 'top'
-      = f.select :icon, options_for_select(account_book_icons, account_book.icon), class: "pure-input-2-3"
-    .pure-control-group
-      = f.label :description
-      = f.text_area :description, class: "pure-input-2-3", rows: 2, placeholder: "Description"
+    = render 'shared/error', resource: account_book
+  .field
+    = f.label :name
+    = f.text_field :name, placeholder: 'Name'
+  .field
+    = f.label :icon
+    = f.select :icon, options_for_select(account_book_icons, account_book.icon)
+  .field
+    = f.label :description
+    = f.text_area :description, rows: 2, placeholder: 'Description'
   .actions
-    - action = account_book.persisted? ? "update" : "create"
-    = f.submit t("action.#{action}"), class: "pure-button button"
-    - if action == "update"
-      = link_to t("action.destroy"), finance_report_account_book_path(report, account_book), class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
+    - action = account_book.persisted? ? 'update' : 'create'
+    = f.submit t("action.#{action}"), class: 'ui submit button'
+    - if action == 'update'
+      = link_to t('action.destroy'), finance_report_account_book_path(report, account_book), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

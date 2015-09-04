@@ -1,58 +1,63 @@
 - content_for :script do
-  = javascript_include_tag "resources/people"
+  = javascript_include_tag 'src/people'
 
-= form_for person, html: {class: "form pure-form pure-form-aligned"} do |f|
+= form_for person, html: {class: 'ui form'} do |f|
   - if person.errors.any?
-    = render "shared/error", resource: person
+    = render 'shared/error', resource: person
   fieldset
-    legend= t("legend.id")
-    .pure-control-group
+    legend= t('legend.id')
+    .field
       = f.label :slug
-      = f.text_field :slug, class: "pure-u-7-24", placeholder: t("example.person.slug")
-    .pure-control-group
+      = f.text_field :slug, placeholder: t('example.person.slug')
+    .field
       = f.label :name
-      = f.text_field :name, placeholder: t("example.person.name")
+      = f.text_field :name, placeholder: t('example.person.name')
   fieldset
-    legend= t("legend.contact")
-    .pure-control-group
-      = f.label :country
-      / AI and AN has wrong translaton cache (at least)
-      = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}
-    .pure-control-group
-      = f.label :division
-      - divisions = person.division.present? ? [['', person.division]] : []
-      = f.select :division, divisions, {prompt: '---', value: person.division}
-    .pure-control-group
-      = f.label :city
-      = f.text_field :city, placeholder: t("example.person.city")
-    .pure-control-group
-      = f.label :address
-      = f.text_field :address, class: "pure-u-7-24", placeholder: t("example.person.address")
-    .pure-control-group
-      = f.label :postcode
-      = f.text_field :postcode, placeholder: t("example.person.postcode")
-    .pure-control-group
-      = f.label :phone
-      = f.text_field :phone, placeholder: t("example.person.phone")
-    .pure-control-group
-      = f.label :email
-      = f.text_field :email, class: "pure-u-7-24", placeholder: t("example.person.email")
+    legend= t('legend.contact')
+    .fields
+      .eight.wide.field
+        = f.label :country
+        / AI and AN has wrong translaton cache (at least)
+        = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}, class: 'ui dropdown'
+      .eight.wide.field
+        = f.label :postcode
+        = f.text_field :postcode, placeholder: t('example.person.postcode')
+    .fields
+      .five.wide.field
+        = f.label :division
+        - divisions = person.division.present? ? [['', person.division]] : []
+        = f.select :division, divisions, {prompt: '---', value: person.division}, class: 'ui dropdown'
+      .eleven.wide.field
+        = f.label :city
+        = f.text_field :city, placeholder: t('example.person.city')
+    .field
+        = f.label :address
+        = f.text_field :address, placeholder: t('example.person.address')
+    .fields
+      .eight.wide.field
+        = f.label :phone
+        = f.text_field :phone, placeholder: t('example.person.phone')
+      .eight.wide.field
+        = f.label :email
+        = f.text_field :email, placeholder: t('example.person.email')
   fieldset
-    legend= t("legend.additional_info")
-    .pure-control-group
+    legend= t('legend.additional_info')
+    .field
       = f.label :property
-      = f.text_field :property, class: "pure-u-7-24", placeholder: t("example.person.property")
-    .pure-control-group
+      = f.text_field :property, placeholder: t('example.person.property')
+    .field
       = f.label :memo
-      = f.text_field :memo, class: "pure-u-7-24", placeholder: t("example.person.memo")
-    .pure-control-group
+      = f.text_field :memo, placeholder: t('example.person.memo')
+    .field
       = f.label :joined_at
-      = f.date_select :joined_at, use_two_digit_numbers: true, prompt: true
-    .pure-control-group
+      .fields
+        = f.date_select :joined_at, use_two_digit_numbers: true, prompt: true
+    .field
       = f.label :left_at
-      = f.date_select :left_at, use_two_digit_numbers: true, prompt: true
+      .fields
+        = f.date_select :left_at, use_two_digit_numbers: true, prompt: true
   .actions
-    - action = person.persisted? ? "update" : "create"
-    = f.submit t("action.#{action}"), class: "pure-button button"
-    - if action == "update"
-      = link_to t("action.destroy"), person_path, class: "pure-button button button-danger", data: {method: :delete, confirm: "Are you sure?"}
+    - action = person.persisted? ? 'update' : 'create'
+    = f.submit t("action.#{action}"), class: 'ui submit button'
+    - if action == 'update'
+      = link_to t('action.destroy'), person_path, class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

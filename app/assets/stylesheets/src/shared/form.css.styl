@@ -1,0 +1,86 @@
+@import("_mixin.css.styl")
+
+.form
+  input[type="text"],
+  textarea,
+  select
+    padding 0.6em 0.6em
+  select
+    height    auto
+    min-width 128px
+  textarea
+    resize none
+
+// color
+.form
+  input[type="text"],
+  textarea,
+  select
+    color $blue-ink-color !important
+
+
+.form
+  width  100%
+  margin 3px 0 19px 0
+  input[type="submit"]
+    margin 19px 0
+
+.error-messages
+  ul
+    margin  9px 0 18px 0
+    padding 0
+    li
+      list-style none
+      color      $error-color
+
+.field_with_errors
+  display inline
+  input[type="text"]
+    color #CA3C3C
+
+// extras
+.form
+  ul.tag-editor
+    padding       6px 0
+    border        1px solid $light-gray-color
+    border-radius 2px
+    width   100%
+    color $blue-ink-color
+    &:focus
+      border 1px solid $dark-gray-color
+    li.ui-sortable-handle,
+    li.placeholder
+      margin 0
+    li
+      margin  0
+      padding 0
+      .tag-editor-spacer,
+      .tag-editor-tag,
+      .tag-editor-delete
+        margin 0px
+      .tag-editor-spacer
+        width 3px
+      .tag-editor-tag:hover
+        color darken($tag-text-color, 21%)
+      input[type="text"]
+        padding 0
+        margin  0
+        border  none
+        width   100% !important
+
+
+div.actions
+  margin 27px 0 18px 1px
+  input[type="submit"].button,
+  button.button,
+  a.button
+    margin-right 54px
+
+
+.button
+  color $text-color
+  text-decoration none
+  &:hover
+    text-decoration none
+  &:visited
+    color $text-color

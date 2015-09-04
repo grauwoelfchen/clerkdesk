@@ -29,15 +29,6 @@ gulp.task('bower', function() {
   return bower('./vendor/assets/components');
 });
 
-gulp.task('build-purecss', function() {
-  process.chdir('./vendor/assets/components/purecss');
-  return gulp.src('*')
-    .pipe(shell([
-      'npm install'
-    , 'grunt'
-    ]));
-});
-
 gulp.task('default', function(callback) {
-  sequence('bower', 'build-purecss', callback);
+  return sequence('bower', callback);
 });
