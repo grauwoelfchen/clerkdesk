@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['TEST_HOST'] ||= 'example.org'
+ENV['TEST_HOST'] ||= 'example.org:80'
 
 require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migrator.migrations_paths = [
@@ -70,16 +70,14 @@ Rails.application.routes.default_url_options[:host] = ENV['TEST_HOST']
 # Capybara
 
 Capybara.configure do |config|
-  config.app_host            = "http://#{ENV['TEST_HOST']}"
-  config.run_server          = true
-  config.always_include_port = true
+  config.app_host              = "http://#{ENV['TEST_HOST']}"
+  config.always_include_port   = true
+  config.default_max_wait_time = 6
 end
 
 Capybara.register_driver :rack_test do |app|
   Capybara::RackTest::Driver.new(app, {
-    :headers => {
-      'HTTP_ACCEPT_LANGUAGE' => 'en'
-    }
+    :headers => {'HTTP_ACCEPT_LANGUAGE' => 'en'}
   })
 end
 
@@ -93,8 +91,8 @@ Capybara.register_driver :poltergeist do |app|
     :phantomjs_logger  => $stdout,
     :phantomjs_options => [
       '--local-to-remote-url-access=yes',
-      '--proxy=localhost:3001',
-      '--proxy-type=none',
+      "--proxy=#{ENV['TEST_HOST']}",
+      '--proxy-type=http',
       '--load-images=no',
       '--ignore-ssl-errors=yes',
       '--ssl-protocol=TLSv1'
