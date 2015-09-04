@@ -1,0 +1,121 @@
+@import('_mixin.css.styl')
+
+fieldset
+  border  none
+  padding 0
+  margin  18px 0px
+
+legend
+  {legend-style}
+  width 100%
+
+
+// Collections - Menu
+.ui.vertical.menu
+  box-shadow none
+  width      13rem
+
+.ui.inverted.menu
+  border-radius 2px
+  background    darken($chocolate-color, 27%)
+
+.ui.compact.menu
+  box-shadow    none
+  border-radius 2px
+  min-height    2.7em
+  .item
+    padding 0 1.1em
+
+// Collections - Grid
+.ui.grid
+  margin 0
+  > .column:not(.row)
+    padding-top    0
+    padding-bottom 0
+
+.ui.grid.content-header
+  .column
+    padding-left  2px
+    padding-right 2px
+
+.inner-content
+  .ui.grid
+    .column:not(.row):first-child
+      padding-left  2px
+      padding-right 13px
+    .column:not(.row)
+      padding-left  18px
+      padding-right 0
+
+.ui.grid + .grid
+  margin-top 0
+
+// Collections - Breadcrumb
+.ui
+  .ui.breadcrumb
+    margin-bottom 11px
+    span.divider
+      margin 0 6px
+    a
+      line-height 26px
+
+.ui.text.menu .item .menu
+  margin 9px 0 0 18px
+  .item
+    padding 0.5em 0.25em
+    margin  0 0
+
+
+// Colletions - Form
+.ui.form
+  input[type="text"],
+  input[type="text"]:focus,
+  textarea,
+  textarea:focus
+    border-radius 2px
+
+.ui.dropdown.selection
+  border-radius 2px
+  .menu
+    border-radius 0 0 2px 2px
+
+.ui.action.input
+  input
+    min-width     284px
+    border-radius 2px 0 0 2px
+  & > .ui.button
+    border-radius 0 2px 2px 0px !important
+
+// Elements - Button
+.ui.button
+  border-radius 2px
+
+// Elements - Segment
+.ui.segment
+  border-radius 2px
+  box-shadow    none
+
+// Elements - Label
+.ui.attached.label,
+.ui.top.attached.label
+  border-radius 0
+
+
+// Views - Item
+.ui.items > .item > .image:not(.ui)
+  width      100px
+  text-align center
+
+.ui.items > .item .meta
+  margin 0.3em 0
+
+.ui.items > .item > .content
+  margin-bottom 21px
+
+.ui.items > .item > .content > a.header,
+.ui.items > .item > .content > .description
+  color $blue-ink-color
+
+.ui.items > .item > .content > .description,
+.ui.items > .item > .content > .extra
+  margin-top 0.4em

@@ -26,13 +26,14 @@ module Finance
       length: {maximum: 256}
     validate :check_period
 
-    def initialize
+    def initialize(attributes=nil, options={})
       today = Time.zone.today
+      attributes ||= {}
       defaults = {
         :started_at  => today,
         :finished_at => today + 1.year
       }
-      super(defaults)
+      super(attributes.merge(defaults), options)
     end
 
     def recent_categories(limit_count=5)

@@ -2,25 +2,32 @@
 
 - content_for :header
   h2= Finance::Budget.model_name.human
-  h3= t("subheading.finance.budget")
+  h3= t('subheading.finance.budget')
 
 - content_for :actions
-  = render "finance/shared/actions", report: @report
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Budget.model_name.human
+    .menu
+      = link_to t('action.show'), finance_report_budget_path(@report), class: 'item'
+      = link_to t('action.edit'), edit_finance_report_budget_path(@report), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t("action.resource.show", resource: Finance::Budget.model_name.human.downcase), finance_report_budget_path(@report)
+    li= link_to t('action.resource.show', resource: Finance::Budget.model_name.human.downcase), finance_report_budget_path(@report)
 
 .finance.budget
-  section.block
-    = render "finance/shared/report", report: @report
-    .box
-      = render "finance/shared/tab", report: @report, budget: @budget
-      .main.pure-g
-        .pure-u-16-24
+  section
+    = render 'finance/shared/report', report: @report
+    .container
+      = render 'finance/shared/menu', report: @report, budget: @budget
+      .ui.grid
+        .twelve.wide.column
           .sub-header
             h5= Finance::Budget.model_name.human
             hr
+      .ui.grid
+        .seven.wide.column
           .container
-            h6= t("action.edit")
-            = render "form", report: @report, budget: @budget
+            = render 'form', report: @report, budget: @budget

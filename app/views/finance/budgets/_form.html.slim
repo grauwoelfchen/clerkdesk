@@ -1,12 +1,12 @@
-= form_for [:finance, report, budget], html: {class: "form pure-form pure-form-aligned"} do |f|
+= form_for [:finance, report, budget], html: {class: 'ui form'} do |f|
   - if budget.errors.any?
-    = render "shared/error", resource: budget
+    = render 'shared/error', resource: budget
   fieldset
-    .pure-control-group
+    .field
       = f.label :description
-      = f.text_field :description, class: "pure-input-2-3", placeholder: "Description"
-    .pure-control-group
+      = f.text_field :description, placeholder: 'Description'
+    .field
       = f.label :memo
-      = f.text_area :memo, class: "pure-input-2-3", rows: 3, placeholder: "Memo"
+      = f.text_area :memo, rows: 3, placeholder: 'Memo'
   .actions
-    = f.submit t("action.update"), class: "pure-button button"
+    = f.submit t('action.update'), class: 'ui submit button'

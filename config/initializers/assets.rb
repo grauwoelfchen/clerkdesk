@@ -11,6 +11,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   font-awesome/fonts/*
   jquery-tag-editor/delete.*
-  resources/*
-  resources/finance/*
+  src/**/*
+  src/*
 )

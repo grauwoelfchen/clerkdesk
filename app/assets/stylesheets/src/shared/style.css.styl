@@ -1,0 +1,192 @@
+@import("_mixin.css.styl")
+
+// basic element
+a
+  color           $blue-ink-color
+  text-decoration none
+  &:visited
+    color $blue-ink-color
+  &:hover
+    color           $light-blue-ink-color
+    text-decoration underline
+
+
+// flash
+.flash-messages
+  ul
+    margin        0 0 13px 0
+    padding       12px 22px
+    border-radius 2px
+    li
+      list-style none
+  ul.notice
+    background-color #D6E0CC
+    color            #336600
+  ul.alert
+    background-color #FDF5F2
+    color            #AF5A3E
+
+
+// table
+table.table
+  width  100%
+  margin 11px 0 18px 0
+  th,
+  td
+    line-height 1.7em
+  th
+    font-weight normal
+  td.operations
+    text-align center
+    ul
+      margin  0
+      padding 0
+      li
+        display    inline
+        list-style none
+        margin     0 3px
+
+th
+  span.attribute
+    display      inline-block
+    margin-right 4px
+  ul.links
+    display inline
+    padding 0
+    margin  0
+    li
+      display    inline
+      list-style none
+  i.fa.fa-angle-up,
+  i.fa.fa-angle-down
+    font-weight    bold
+    border-radius  2px
+    display        inline-block
+    margin         0
+    padding        1px 3px
+    text-align     center
+    vertical-align middle
+    color          $dark-gray-color
+    &:hover
+      background-color #F3F3F3
+    &.active
+      color #CC0000
+
+// pagination
+pagination-link = @block {
+  color   #777777
+  display inline-block
+  margin  0
+}
+
+pagination = @block {
+  border-radius   2px
+  text-decoration none
+}
+
+div.pagination > div
+  vertical-align middle
+
+.pagination,
+.pagination-info
+  margin 0
+  &.right
+    text-align    right
+    margin-bottom 0
+    padding-right 3px
+  span
+    line-height 27px
+  span.prev
+  span.next,
+  span.current,
+  span.page
+    {pagination-link}
+    {pagination}
+    padding 0
+    a
+      {pagination-link}
+      padding         0px 8px
+      border          none
+      text-decoration none
+    &:hover
+      background-color darken($field-color, 4%)
+  span.page.gap
+    border none
+    &:hover
+      background-color $white-color
+  span.current
+    padding          0px 8px
+    color            $text-color
+    background-color lighten($field-color, 2%)
+    &:hover
+      background-color lighten($field-color, 2%)
+
+.container
+  margin 9px 0 21px 0
+  h3
+    margin 0 0 18px 2px
+  h4
+    color       $blue-ink-color
+    font-size   27px
+    font-weight normal
+    margin      0 0 9px 0
+  h5
+    font-size   21px
+    font-weight normal
+    margin      0 0 6px 0
+  h6
+    font-size   17px
+    font-weight normal
+    margin      3px 0 3px 1px
+  .main
+    padding 12px 2px 36px 2px
+    h5
+      margin         8px 0 13px 1px
+      vertical-align middle
+      font-size      21px
+
+
+// + semantic ui
+.ui.right-menu
+  h6
+    font-size   13px
+    font-weight bold
+    color       darken($gray-color, 9%)
+
+.ui.segment.embedded
+  border-radius 0
+  border        none
+  padding       1.5em 0.9em 0 0.9em
+
+.ui.segment.top
+  margin-top 28px
+
+
+
+// misc
+.right
+  float right
+
+ul.actions
+  display inline-block
+  padding 0
+  li
+    display    inline
+    list-style none
+
+span.tag
+  background    #E0EAF1
+  border-radius 2px
+  a
+    color           #46799B
+    text-decoration none
+span.tag,
+span.more
+  display     inline-block
+  margin      0 2px 0 0
+  padding     2px 4px
+  white-space nowrap
+
+td.total_amount
+  text-align  right
+  color       $text-color

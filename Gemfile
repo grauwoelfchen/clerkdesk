@@ -15,6 +15,7 @@ gem 'countries'
 gem 'country_select'
 
 gem 'rails-i18n', '4.0.4'
+gem 'active_link_to'
 gem 'gretel'
 gem 'redcarpet'
 gem 'kaminari'
