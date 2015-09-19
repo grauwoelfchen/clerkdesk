@@ -1,4 +1,15 @@
 module Integration
+  def before_setup
+    @default_host = locker_room.scope.default_url_options[:host]
+    locker_room.scope.default_url_options[:host] = Capybara.app_host
+    super
+  end
+
+  def after_teardown
+    super
+    locker_room.scope.default_url_options[:host] = @default_host
+  end
+
   def signin_user(user, password="secret")
     visit(locker_room.login_url)
     fill_in("Email",    :with => user.email)
@@ -8,56 +19,49 @@ module Integration
   end
 
   def signout_user
-    #visit(locker_room.logout_url)
-    current_driver = Capybara.current_driver
-    Capybara.current_driver = :rack_test
-    page.driver.submit(:delete, locker_room.logout_url, {})
-    Capybara.current_driver = current_driver
+    visit(locker_room.logout_url)
     nil
   end
 
   def within_js_driver
-    Capybara.current_driver = :poltergeist
+    tld_length          = Rails.application.config.action_dispatch.tld_length
+    default_url_options = Rails.application.routes.default_url_options
+    # set subdomain host for phantomjs using xip.io
+    Rails.application.config.action_dispatch.tld_length = JS_HOST.scan(/\./).length
+    Rails.application.routes.default_url_options[:host] = JS_HOST
 
-    default_url_host    = default_url_options[:host]
+    current_driver      = Capybara.current_driver
     default_app_host    = Capybara.app_host
     default_server_port = Capybara.server_port
 
-    default_url_options[:host] = test_host
-    Capybara.app_host          = "http://#{test_host}"
-    Capybara.server_port       = test_port
+    Capybara.current_driver = :poltergeist
+    Capybara.app_host       = "http://#{test_host}/"
+    Capybara.server_port    = test_port
 
     page.driver.browser.url_blacklist = [
+      'fontawesome-webfont.woff',
+      'fontawesome-webfont.ttf',
+      'fontawesome-webfont.svg'
     ]
-
-    visit('/assets/application.js')
-    visit('/assets/application.css')
 
     yield
 
-    default_url_options[:host] = default_url_host
-    Capybara.app_host          = default_app_host
-    Capybara.server_port       = default_server_port
-    Capybara.use_default_driver
+    Capybara.server_port    = default_server_port
+    Capybara.app_host       = default_app_host
+    Capybara.current_driver = current_driver
+
+    Rails.application.routes.default_url_options        = default_url_options
+    Rails.application.config.action_dispatch.tld_length = tld_length
   end
 
   private
 
   def test_host
-    current_host = locker_room.scope.default_url_options[:host]
-    if current_host
-      if current_host =~ /^http/
-        URI.parse(current_host).host
-      else
-        current_host
-      end
-    else
-      ENV["TEST_HOST"].to_s
-    end
+    locker_room.scope.default_url_options[:host]
   end
 
   def test_port
     test_host =~ /:([0-9]+)/
-    $1 || 3002
+    $1 || 3000
   end
 end

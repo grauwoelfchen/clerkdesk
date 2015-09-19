@@ -50,7 +50,6 @@
                   td.updated_at= report.updated_at
                   td.operations
                     ul
-                      li= link_to t('action.edit'),    edit_finance_report_path(report)
+                      li= link_to t('action.edit'), edit_finance_report_path(report)
                       li= link_to t('action.destroy'), finance_report_path(report), method: :delete, data: {confirm: 'Are you sure?'}
-
           = render 'shared/pagination', resource: @reports, info: false

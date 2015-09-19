@@ -1,5 +1,4 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['TEST_HOST'] ||= 'example.org:80'
 
 require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migrator.migrations_paths = [
@@ -49,14 +48,14 @@ class ActiveSupport::TestCase
     end
     Apartment::Tenant.switch!(team.subdomain)
     DatabaseCleaner.start
-    # normal fixtures
+    # load normal fixtures
     super
   end
 
   def after_teardown
+    #super
     DatabaseCleaner.clean
     Apartment::Tenant.reset
-    # super
   end
 end
 
@@ -65,39 +64,47 @@ class ActionController::TestCase
   include LockerRoom::Testing::Controller::AuthenticationHelpers
 end
 
-Rails.application.routes.default_url_options[:host] = ENV['TEST_HOST']
+# NOTE
+# host and subdomain handling depend tld_length in environments/test.rb
+# foo.127.0.0.1.xip.io
+#
+# * Rails.application.config.action_dispatch.tld_length
+# * ActionDispatch::Http::URL.tld_length
 
 # Capybara
 
+RACK_HOST = '127.0.0.1.xip.io:3000'
+JS_HOST   = '127.0.0.1.xip.io:3001'
+
 Capybara.configure do |config|
-  config.app_host              = "http://#{ENV['TEST_HOST']}"
+  config.app_host              = "http://#{RACK_HOST}"
+  config.run_server            = true
   config.always_include_port   = true
-  config.default_max_wait_time = 6
+  config.default_max_wait_time = 6 # seconds (default: 2)
 end
 
 Capybara.register_driver :rack_test do |app|
-  Capybara::RackTest::Driver.new(app, {
-    :headers => {'HTTP_ACCEPT_LANGUAGE' => 'en'}
-  })
+  Capybara::RackTest::Driver.new(app,
+    :headers => {'HTTP_ACCEPT_LANGUAGE' => 'en'})
 end
 
 Capybara.register_driver :poltergeist do |app|
   phantomjs_path = '../../node_modules/.bin/phantomjs'
-  Capybara::Poltergeist::Driver.new(app, {
-    :timeout           => 900,
+  Capybara::Poltergeist::Driver.new(app,
+    :timeout           => 90, # seconds (default: 30)
     :debug             => ENV['TEST_DEBUG'],
-    :js_erros          => ENV['TEST_DEBUG'],
+    :js_errors         => true,
     :phantomjs         => File.expand_path(phantomjs_path, __FILE__),
     :phantomjs_logger  => $stdout,
     :phantomjs_options => [
       '--local-to-remote-url-access=yes',
-      "--proxy=#{ENV['TEST_HOST']}",
+      '--script-encoding=utf8',
+      "--proxy=#{JS_HOST}",
       '--proxy-type=http',
       '--load-images=no',
       '--ignore-ssl-errors=yes',
       '--ssl-protocol=TLSv1'
-    ]
-  })
+    ])
 end
 
 class Capybara::Rails::TestCase

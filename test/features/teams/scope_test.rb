@@ -16,63 +16,77 @@ class TeamScopTest < Capybara::Rails::TestCase
     Apartment::Tenant.reset
   end
 
-  def teardown
-    logout_user
-  end
-
   def test_scoped_visibility_on_team_piano
     user = @team_piano.owners.first
-    login_user(user)
-    visit(notes_url(:subdomain => @team_piano.subdomain))
-    assert_content('Musical instrument')
-    refute_content('The ice')
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      visit(notes_url(:subdomain => @team_piano.subdomain))
+      assert_content('Musical instrument')
+      refute_content('The ice')
+      signout_user
+    end
   end
 
   def test_scoped_visibility_on_team_penguin
     user = @team_penguin.owners.first
-    login_user(user)
-    visit(notes_url(:subdomain => @team_penguin.subdomain))
-    refute_content('Musical instrument')
-    assert_content('The ice')
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      visit(notes_url(:subdomain => @team_penguin.subdomain))
+      refute_content('Musical instrument')
+      assert_content('The ice')
+      signout_user
+    end
   end
 
   def test_scope_for_a_note_on_exact_team_piano
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
     user = @team_piano.owners.first
-    login_user(user)
-    visit(note_url(note, :subdomain => @team_piano.subdomain))
-    assert_content('Musical instrument')
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      visit(note_url(note, :subdomain => @team_piano.subdomain))
+      assert_content('Musical instrument')
+      signout_user
+    end
   end
 
   def test_scope_for_a_note_on_other_team_penguin
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
     user = @team_penguin.owners.first
-    login_user(user)
-    assert_raise(ActiveRecord::RecordNotFound) do
-      visit(note_url(note, :subdomain => @team_penguin.subdomain))
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      assert_raise(ActiveRecord::RecordNotFound) do
+        visit(note_url(note, :subdomain => @team_penguin.subdomain))
+      end
+      refute_content('Musical instrument')
+      signout_user
     end
-    refute_content('Musical instrument')
   end
 
   def test_scope_for_a_note_on_exact_team_penguin
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
     user = @team_penguin.owners.first
-    login_user(user)
-    visit(note_url(note, :subdomain => @team_penguin.subdomain))
-    assert_content('The ice')
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      visit(note_url(note, :subdomain => @team_penguin.subdomain))
+      assert_content('The ice')
+      signout_user
+    end
   end
 
   def test_scope_for_a_note_on_other_team_piano
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
     user = @team_piano.owners.first
-    login_user(user)
-    assert_raise(ActiveRecord::RecordNotFound) do
-      visit(note_url(note, :subdomain => @team_piano.subdomain))
+    within_subdomain(user.team.subdomain) do
+      signin_user(user)
+      assert_raise(ActiveRecord::RecordNotFound) do
+        visit(note_url(note, :subdomain => @team_piano.subdomain))
+      end
+      refute_content('The ice')
+      signout_user
     end
-    refute_content('The ice')
   end
 end
