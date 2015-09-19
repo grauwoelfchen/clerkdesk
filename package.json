@@ -18,5 +18,6 @@
   }
 , "devDependencies": {
     "gulp-watch": "*"
+  , "phantomjs": "~> 1.9"
   }
 }

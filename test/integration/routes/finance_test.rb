@@ -100,7 +100,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
 
   def within_subdomain_host
     user = locker_room_users(:oswald)
-    host = "http://#{user.team.subdomain}.example.org"
+    host = "http://#{user.team.subdomain}.#{RACK_HOST}"
     yield(host)
   end
 end

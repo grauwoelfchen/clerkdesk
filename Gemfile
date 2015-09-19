@@ -5,7 +5,9 @@ gem 'foreman'
 gem 'rails', '4.2.1'
 gem 'pg'
 
+# TODO: release locker_room gem
 gem 'locker_room', git: 'https://github.com/grauwoelfchen/locker_room.git'
+# gem 'locker_room', path: '../locker_room'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'friendly_id'
@@ -27,7 +29,7 @@ gem 'jbuilder'
 gem 'slim'
 gem 'stylus'
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -40,7 +42,10 @@ end
 group :test do
   gem 'minitest', '~> 5.5'
   gem 'minitest-rails-capybara'
+  gem 'test_after_commit'
   gem 'database_cleaner'
+  gem 'connection_pool'
+  gem 'poltergeist'
 end
 
 rock = File.expand_path('../Gemfile.rock', __FILE__)

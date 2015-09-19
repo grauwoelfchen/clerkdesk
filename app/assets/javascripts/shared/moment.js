@@ -5,12 +5,11 @@
 
   moment.locale('ja', {
     longDateFormat: {
-      LT:   'HH:mm'
-    , LTS:  'HH:mm:ss'
-    , L:    'YYYY-MM-DD'
-    , LL:   'YYYY年 MM月 DD日'
-    , LLL:  'YYYY MMMM D LT'
-    , LLLL: 'YYYY年 M月 D日 a h:mm:s dddd'
+      LT: 'HH:mm'
+    , LTS: 'HH:mm:ss'
+    , L: 'YYYY-MM-DD'
+    , LL: 'YYYY年 MM月 DD日'
+    , LLL: 'YYYY MMMM D LT'
     , LLLL: 'YYYY年MM月DD日 hh:mm:ss dddd'
     }
   });
