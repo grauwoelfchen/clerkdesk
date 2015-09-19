@@ -5,12 +5,12 @@ class FinanceReportDestroyTest < Capybara::Rails::TestCase
   fixtures(:'finance/reports', :'finance/categories')
 
   def test_destroy_finance
-    user = locker_room_users(:oswald)
-    as_logged_in_user(user) do
-      within_js_driver do
+    within_js_driver do
+      user = locker_room_users(:oswald)
+      within_subdomain(user.team.subdomain) do
+        signin_user(user)
         report = finance_reports(:general_report)
         visit(finance_reports_url)
-        return
         assert_equal(finance_reports_url, page.current_url)
         assert_difference('Finance::Report.count', -1) do
           visit(finance_reports_url)
@@ -18,17 +18,8 @@ class FinanceReportDestroyTest < Capybara::Rails::TestCase
           link = find(:xpath, "//a[@href='#{href}' and text()='Delete']")
           link.click
         end
+        signout_user
       end
-    end
-  end
-
-  private
-
-  def as_logged_in_user(user)
-    within_subdomain(user.team.subdomain) do
-      signin_user(user)
-      yield
-      signout_user
     end
   end
 end
