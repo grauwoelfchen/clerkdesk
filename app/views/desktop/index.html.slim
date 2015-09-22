@@ -1,3 +1,11 @@
 - content_for :header
   h2 Desktop
   h3 Workspace
+
+.desktop
+  section
+    .ui.grid
+      .sixteen.wide.column
+        .ui.embedded.segment
+          .ui.feed
+            = render_activities(@activities)

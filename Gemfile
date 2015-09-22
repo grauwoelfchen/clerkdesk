@@ -10,6 +10,7 @@ gem 'locker_room', git: 'https://github.com/grauwoelfchen/locker_room.git'
 # gem 'locker_room', path: '../locker_room'
 
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'public_activity'
 gem 'friendly_id'
 gem 'date_validator'
 
