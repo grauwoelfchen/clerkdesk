@@ -31,6 +31,10 @@ ja:
       show: '%{resource}: 詳細'
       edit: '%{resource}: 編集'
       new: '%{resource}: 作成'
+  activity:
+    create: '%{owner} が %{trackable} を作成しました'
+    update: '%{owner} が %{trackable} を更新しました'
+    destroy: '%{owner} が %{trackable} を削除しました'
   example:
     person:
       slug: 例） 01A001X
