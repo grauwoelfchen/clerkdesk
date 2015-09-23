@@ -4,6 +4,14 @@ class NoteTest < ActiveSupport::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:notes)
 
+  def setup
+    Note.public_activity_off
+  end
+
+  def teardown
+    Note.public_activity_on
+  end
+
   def test_validation_with_without_title
     note = Note.new(:title => nil)
     refute(note.valid?)
