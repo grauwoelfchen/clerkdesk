@@ -1,7 +1,7 @@
-require 'locker_room/concerns/models/user'
+require 'locker_room/models/user'
 
 class LockerRoom::User < ActiveRecord::Base
-  include LockerRoom::Concerns::Models::User
+  include LockerRoom::Models::User
   include Sortable
 
   paginates_per 10
