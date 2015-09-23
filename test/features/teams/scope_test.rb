@@ -8,12 +8,14 @@ class TeamScopTest < Capybara::Rails::TestCase
     @team_penguin = team_with_schema(:penguin_patrol)
 
     Apartment::Tenant.switch!(@team_piano.subdomain)
+    Note.public_activity_off
     Note.delete_all
     Note.create(:id => 12345, :title => 'Musical instrument')
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     Note.delete_all
     Note.create(:id => 54321, :title => 'The ice')
     Apartment::Tenant.reset
+    Note.public_activity_on
   end
 
   def test_scoped_visibility_on_team_piano

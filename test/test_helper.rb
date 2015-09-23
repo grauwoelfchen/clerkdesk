@@ -12,6 +12,7 @@ require 'minitest/rails/capybara'
 require 'minitest/pride' if ENV['TEST_PRIDE'].present?
 require 'capybara/poltergeist'
 require 'database_cleaner'
+require 'public_activity/testing'
 
 Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
 
