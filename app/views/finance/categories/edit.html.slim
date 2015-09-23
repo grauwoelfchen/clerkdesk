@@ -27,9 +27,8 @@
       .ui.grid
         .twelve.wide.column
           .sub-header
-            h5= Finance::Category.model_name.human
-            span= t('action.edit')
-            hr
+            h5= t('action.edit')
       .ui.grid
         .seven.wide.column
-          = render 'form', report: @report, category: @category
+          .container
+            = render 'form', report: @report, category: @category

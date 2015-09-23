@@ -23,36 +23,34 @@
     .container
       = render 'finance/shared/menu', report: @report
       .ui.grid
-        .twelve.wide.column
-          .sub-header
-            h5= Finance::AccountBook.model_name.human.pluralize
-            hr
-          = render 'shared/pagination', resource: @account_books, info: true
-          table.ui.very.basic.compact.table
-            thead
-              tr
-                th
-                  span.attribute
-                    = Finance::AccountBook.human_attribute_name(:name)
-                  = sort_links_for(:name)
-                th
-                  span.attribute
-                    = Finance::AccountBook.human_attribute_name(:description)
-                  = sort_links_for(:description)
-                th
-                  span.attribute
-                    = Finance::AccountBook.human_attribute_name(:updated_at)
-                  = sort_links_for(:updated_at, :desc)
-                th
-            tbody
-              - @account_books.each do |account_book|
+        .sixteen.wide.column
+          .container
+            = render 'shared/pagination', resource: @account_books, info: true
+            table.ui.very.basic.compact.table
+              thead
                 tr
-                  td.name
-                    i.icon.fa.fa-fw.fa-lg= account_book.icon.to_s.html_safe
-                    = link_to truncate(account_book.name, length: 18), finance_report_account_book_entries_path(@report, account_book)
-                  td= truncate(account_book.description, length: 27)
-                  td.updated_at= account_book.updated_at
-                  td.operations
-                    ul
-                      li= link_to t('action.edit'), edit_finance_report_account_book_path(@report, account_book)
-                      li= link_to t('action.destroy'), finance_report_account_book_path(@report, account_book), method: :delete, data: {confirm: 'Are you sure?'}
+                  th
+                    span.attribute
+                      = Finance::AccountBook.human_attribute_name(:name)
+                    = sort_links_for(:name)
+                  th
+                    span.attribute
+                      = Finance::AccountBook.human_attribute_name(:description)
+                    = sort_links_for(:description)
+                  th
+                    span.attribute
+                      = Finance::AccountBook.human_attribute_name(:updated_at)
+                    = sort_links_for(:updated_at, :desc)
+                  th
+              tbody
+                - @account_books.each do |account_book|
+                  tr
+                    td.name
+                      i.icon.fa.fa-fw.fa-lg= account_book.icon.to_s.html_safe
+                      = link_to truncate(account_book.name, length: 18), finance_report_account_book_entries_path(@report, account_book)
+                    td= truncate(account_book.description, length: 27)
+                    td.updated_at= account_book.updated_at
+                    td.operations
+                      ul
+                        li= link_to t('action.edit'), edit_finance_report_account_book_path(@report, account_book)
+                        li= link_to t('action.destroy'), finance_report_account_book_path(@report, account_book), method: :delete, data: {confirm: 'Are you sure?'}

@@ -1,6 +1,3 @@
 = Finance::Report.model_name.human
 .menu
-  = link_to t('action.new'), new_finance_report_path, class: 'item'
-  = link_to t('action.index'), finance_reports_path, class: 'item'
   = link_to t('nav.overview'), overview_finance_report_path(report), class: "item#{defined?(overview) ? ' active' : ''}"
-  = link_to t('action.edit'), edit_finance_report_path(report), class: 'item'
