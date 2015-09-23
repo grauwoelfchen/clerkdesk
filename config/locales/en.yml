@@ -31,6 +31,10 @@ en:
       show: 'View %{resource}'
       edit: 'Edit %{resource}'
       new: 'New %{resource}'
+  activity:
+    create: '%{owner} has created %{trackable}'
+    update: '%{owner} has created %{trackable}'
+    destroy: '%{owner} has destroyed %{trackable}'
   example:
     person:
       slug: e.g. 01A001X

@@ -1,0 +1,19 @@
+.event
+  .content
+    .extra
+      .date.created_at(data-format='relative')= activity.created_at
+    .summary
+      i.fa.fa-file-text-o.fa-1.icon
+      - owner = link_to(truncate(activity.owner.name, length: 30), user_path(activity.owner))
+      - trackable_name = truncate(activity.trackable_name, length: 45)
+      - if activity.trackable
+        - trackable = link_to(trackable_name, note_path(activity.trackable))
+      - else
+        - trackable = link_to("<del>#{trackable_name}</del>".html_safe, note_path(activity.trackable_id)).to_s + ' (deleted)'
+      = t('activity.update', owner: owner, trackable: trackable).html_safe
+    /.extra
+    /  .text
+    .meta
+      = link_to nil, class: 'star' do
+        i.star.icon
+      | 5 Stars
