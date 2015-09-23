@@ -26,12 +26,12 @@
         , journalizing = $('#entry_journalizing_id')
         ;
 
-      var setJournalizingOptions = function(type_val, journalizing_val) {
+      var setJournalizingOptions = function(typeVal, journalizingVal) {
         var report      = $('#report')
           , accountBook = $('#account_book')
           ;
-        if (typeof journalizing_val === "undefined") {
-          journalizing_val = null;
+        if (typeof journalizingVal === "undefined") {
+          journalizingVal = null;
         }
         $.ajax({
           async:    true
@@ -40,12 +40,15 @@
         , accepts:  'application/json'
         , url:      '/finances/' + report.attr('data-id') +
             '/account_books/' + accountBook.attr('data-id') +
-            '/journalizings.json?type=' + encodeURIComponent(type_val)
+            '/journalizings.json?type=' + encodeURIComponent(typeVal)
         })
         .fail(function() {
           journalizing.empty();
           journalizing.html('<option value="">---</option>');
           type.val('');
+          // dropdown
+          journalizing.dropdown('clear');
+          journalizing.dropdown('set text', '---');
           alert("Sorry, please retry :'(");
         })
         .done(function(data) {
@@ -55,34 +58,44 @@
             var id   = $('<div/>').text(value.id).html()
               , name = $('<div/>').text(value.name).html()
               ;
-            journalizing.append(
-              '<option value="' + id + '">' + name + '</option>'
-            );
+            if (id == journalizingVal) {
+              journalizing.append(
+                '<option value="' + id + '" selected="selected">' + name + '</option>'
+              );
+              journalizing.dropdown('set selected', journalizingVal);
+              journalizing.dropdown('set text', name);
+            } else {
+              journalizing.append(
+                '<option value="' + id + '">' + name + '</option>'
+              );
+            }
           });
-          if (journalizing_val) {
-            journalizing.val(journalizing_val).prop('selected', true);
+          // dropdown
+          if (journalizingVal == null || journalizingVal == '') {
+            journalizing.dropdown('clear');
+            journalizing.dropdown('set text', '---');
           }
           return true;
         });
       };
 
-      var type_val         = type.val()
-        , journalizing_val = journalizing.val()
+      var typeVal         = type.val()
+        , journalizingVal = journalizing.val()
         ;
 
       // initialize
-      if (type_val) {
-        setJournalizingOptions(type_val, journalizing_val);
+      if (typeVal) {
+        setJournalizingOptions(typeVal, journalizingVal);
       }
 
       type.change(function() {
-        var type_val = $(this).val(); // refetch
-        if (type_val == '') {
+        var typeVal = $(this).val(); // refetch
+        if (typeVal == '') {
           journalizing.empty();
           journalizing.html('<option value="">---</option>');
           return true;
         }
-        return setJournalizingOptions(type_val);
+        return setJournalizingOptions(typeVal);
       });
     })();
 
