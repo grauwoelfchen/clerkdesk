@@ -23,12 +23,9 @@
     .container
       = render 'finance/shared/menu', report: @report
       .ui.grid
-        .twelve.wide.column
-          .sub-header
-            h5= Finance::Category.model_name.human.pluralize
-            hr
-          = render 'shared/pagination', resource: @categories, info: true
-          .ui.embedded.segment
+        .sixteen.wide.column
+          .container
+            = render 'shared/pagination', resource: @categories, info: true
             table.ui.very.basic.compact.table
               thead
                 tr
