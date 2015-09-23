@@ -16,6 +16,7 @@
  *= require chosen/chosen.min
  *= require vendor/font-awesome
  *= require vendor/jquery.tag-editor
+ *= require_tree ./shared
  *= require_tree ./src
  *= require_self
  */
