@@ -20,13 +20,14 @@
 .finance.category
   section
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report
-      .ui.grid
-        .twelve.wide.column
-          .sub-header
-            h5= t('action.new')
-      .ui.grid
-        .seven.wide.column
-          .container
-            = render 'form', report: @report, category: @category
+      .page-content
+        .ui.grid
+          .twelve.wide.column
+            .sub-header
+              h5= t('action.new')
+        .ui.grid
+          .seven.wide.column
+            .container
+              = render 'form', report: @report, category: @category

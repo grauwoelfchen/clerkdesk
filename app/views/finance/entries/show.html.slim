@@ -25,56 +25,57 @@
 .finance.entry
   section
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report, account_book: @account_book, entry: @entry
-      .ui.grid
-        .twelve.wide.column
-          .container
-            = render 'finance/shared/account_book', report: @report, account_book: @account_book
-            .ui.segment
-              .container.right
-                .ui.compact.menu
-                  = link_to edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: 'item'
-                    i.icon.fa.fa-pencil
-                    = t('action.edit')
-                  = link_to nil, class: 'item', data: {method: :delete, confirm: 'Are you sure?'}
-                    i.icon.fa.fa-trash
-                    = t('action.destroy')
-              .container
-                .group
-                  .category
-                    = label_tag Finance::AccountBook.human_attribute_name(:category_id)
-                    - if @entry.category
-                      = @entry.category.name
-                .group
-                  .title
-                    = label_tag Finance::AccountBook.human_attribute_name(:title)
-                    = @entry.title
-                .group
-                  .type
-                    = label_tag Finance::AccountBook.human_attribute_name(:type)
-                    span class="label label-#{@entry.type}"
-                      = @entry.type
-                .group
-                  .total_amount
-                    = label_tag Finance::AccountBook.human_attribute_name(:total_amount)
-                    span#entry_total_amount
-                      = @entry.total_amount
-                .group
-                  .memo
-                    = label_tag Finance::AccountBook.human_attribute_name(:memo)
-                    = simple_format(@entry.memo, {}, wrapper_tag: 'span')
-                .group
-                  .people
-                    = label_tag Finance::AccountBook.human_attribute_name(:people)
-                    - @entry.people.each do |person|
-                      span.tag
-                        = link_to person.label, person_path(person)
-                .group
-                  .created_at
-                    = label_tag Finance::AccountBook.human_attribute_name(:created_at)
-                    = @entry.created_at
-                .group
-                  .updated_at
-                    = label_tag Finance::AccountBook.human_attribute_name(:updated_at)
-                    = @entry.updated_at
+      .page-content
+        .ui.grid
+          .twelve.wide.column
+            .container
+              = render 'finance/shared/account_book', report: @report, account_book: @account_book
+              .ui.segment
+                .container.right
+                  .ui.compact.menu
+                    = link_to edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: 'item'
+                      i.icon.fa.fa-pencil
+                      = t('action.edit')
+                    = link_to nil, class: 'item', data: {method: :delete, confirm: 'Are you sure?'}
+                      i.icon.fa.fa-trash
+                      = t('action.destroy')
+                .container
+                  .group
+                    .category
+                      = label_tag Finance::AccountBook.human_attribute_name(:category_id)
+                      - if @entry.category
+                        = @entry.category.name
+                  .group
+                    .title
+                      = label_tag Finance::AccountBook.human_attribute_name(:title)
+                      = @entry.title
+                  .group
+                    .type
+                      = label_tag Finance::AccountBook.human_attribute_name(:type)
+                      span class="label label-#{@entry.type}"
+                        = @entry.type
+                  .group
+                    .total_amount
+                      = label_tag Finance::AccountBook.human_attribute_name(:total_amount)
+                      span#entry_total_amount
+                        = @entry.total_amount
+                  .group
+                    .memo
+                      = label_tag Finance::AccountBook.human_attribute_name(:memo)
+                      = simple_format(@entry.memo, {}, wrapper_tag: 'span')
+                  .group
+                    .people
+                      = label_tag Finance::AccountBook.human_attribute_name(:people)
+                      - @entry.people.each do |person|
+                        span.tag
+                          = link_to person.label, person_path(person)
+                  .group
+                    .created_at
+                      = label_tag Finance::AccountBook.human_attribute_name(:created_at)
+                      = @entry.created_at
+                  .group
+                    .updated_at
+                      = label_tag Finance::AccountBook.human_attribute_name(:updated_at)
+                      = @entry.updated_at
