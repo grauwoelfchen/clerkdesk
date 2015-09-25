@@ -22,53 +22,54 @@
 .finance.account_book
   section.block
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report, account_book: @account_book
-      .ui.grid
-        .sixteen.wide.column
-          = render 'finance/shared/account_book', report: @report, account_book: @account_book
-          .container
-            = render 'shared/pagination', resource: @entries, info: true
-            table.ui.very.basic.compact.table
-              thead
-                tr
-                  th
-                    span.attribute
-                      = Finance::Category.model_name.human
-                    = sort_links_for(:journalizing_id)
-                  th
-                    span.attribute
-                      = Finance::Entry.human_attribute_name(:title)
-                    = sort_links_for(:title)
-                  th
-                    span.attribute
-                      = Finance::Entry.human_attribute_name(:type)
-                    = sort_links_for(:type)
-                  th
-                    span.attribute
-                      = Finance::Entry.human_attribute_name(:total_amount)
-                    = sort_links_for(:total_amount)
-                  th
-                    span.attribute
-                      = Finance::Entry.human_attribute_name(:updated_at)
-                    = sort_links_for(:updated_at, :desc)
-                  th
-              tbody
-                - @entries.each do |entry|
+      .page-content
+        .ui.grid
+          .sixteen.wide.column
+            = render 'finance/shared/account_book', report: @report, account_book: @account_book
+            .container
+              = render 'shared/pagination', resource: @entries, info: true
+              table.ui.very.basic.compact.table
+                thead
                   tr
-                    td.category
-                      - if entry.category
-                        = link_to entry.category.name, finance_report_account_book_entry_path(@report, @account_book, entry)
-                    td.title
-                      = link_to entry.title, finance_report_account_book_entry_path(@report, @account_book, entry)
-                    td.type
-                      span class="label label-#{entry.type}"= entry.human_type
-                    td.total_amount
-                      span.currency= entry.total_amount
-                    td.updated_at= entry.updated_at
-                    td.operations
-                      ul
-                        li= link_to t('action.edit'),    edit_finance_report_account_book_entry_path(@report, @account_book, entry)
-                        li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: "Are you sure?"}
+                    th
+                      span.attribute
+                        = Finance::Category.model_name.human
+                      = sort_links_for(:journalizing_id)
+                    th
+                      span.attribute
+                        = Finance::Entry.human_attribute_name(:title)
+                      = sort_links_for(:title)
+                    th
+                      span.attribute
+                        = Finance::Entry.human_attribute_name(:type)
+                      = sort_links_for(:type)
+                    th
+                      span.attribute
+                        = Finance::Entry.human_attribute_name(:total_amount)
+                      = sort_links_for(:total_amount)
+                    th
+                      span.attribute
+                        = Finance::Entry.human_attribute_name(:updated_at)
+                      = sort_links_for(:updated_at, :desc)
+                    th
+                tbody
+                  - @entries.each do |entry|
+                    tr
+                      td.category
+                        - if entry.category
+                          = link_to entry.category.name, finance_report_account_book_entry_path(@report, @account_book, entry)
+                      td.title
+                        = link_to entry.title, finance_report_account_book_entry_path(@report, @account_book, entry)
+                      td.type
+                        span class="label label-#{entry.type}"= entry.human_type
+                      td.total_amount
+                        span.currency= entry.total_amount
+                      td.updated_at= entry.updated_at
+                      td.operations
+                        ul
+                          li= link_to t('action.edit'),    edit_finance_report_account_book_entry_path(@report, @account_book, entry)
+                          li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: "Are you sure?"}
 
-            = render 'shared/pagination', resource: @entries, info: false
+              = render 'shared/pagination', resource: @entries, info: false

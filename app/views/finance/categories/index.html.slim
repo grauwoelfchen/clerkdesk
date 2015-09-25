@@ -20,35 +20,36 @@
 .finance.category
   section
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report
-      .ui.grid
-        .sixteen.wide.column
-          .container
-            = render 'shared/pagination', resource: @categories, info: true
-            table.ui.very.basic.compact.table
-              thead
-                tr
-                  th
-                    span.attribute
-                      = Finance::Category.human_attribute_name(:name)
-                    = sort_links_for(:name)
-                  th
-                    span.attribute
-                      = Finance::Category.human_attribute_name(:type)
-                    = sort_links_for(:type)
-                  th
-                    span.attribute
-                      = Finance::Category.human_attribute_name(:updated_at)
-                    = sort_links_for(:updated_at, :desc)
-                  th
-              tbody
-                - @categories.each do |category|
+      .page-content
+        .ui.grid
+          .sixteen.wide.column
+            .container
+              = render 'shared/pagination', resource: @categories, info: true
+              table.ui.very.basic.compact.table
+                thead
                   tr
-                    td= category.name
-                    td= category.human_type
-                    td.updated_at= category.updated_at
-                    td.operations
-                      ul
-                        li= link_to t('action.edit'), edit_finance_report_category_path(@report, category)
-                        li= link_to t('action.destroy'), finance_report_category_path(@report, category), method: :delete, data: {confirm: 'Are you sure?'}
+                    th
+                      span.attribute
+                        = Finance::Category.human_attribute_name(:name)
+                      = sort_links_for(:name)
+                    th
+                      span.attribute
+                        = Finance::Category.human_attribute_name(:type)
+                      = sort_links_for(:type)
+                    th
+                      span.attribute
+                        = Finance::Category.human_attribute_name(:updated_at)
+                      = sort_links_for(:updated_at, :desc)
+                    th
+                tbody
+                  - @categories.each do |category|
+                    tr
+                      td= category.name
+                      td= category.human_type
+                      td.updated_at= category.updated_at
+                      td.operations
+                        ul
+                          li= link_to t('action.edit'), edit_finance_report_category_path(@report, category)
+                          li= link_to t('action.destroy'), finance_report_category_path(@report, category), method: :delete, data: {confirm: 'Are you sure?'}

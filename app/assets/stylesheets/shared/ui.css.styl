@@ -11,12 +11,17 @@ legend
 
 
 // Collections - Menu
+.ui.pointing.menu
+  min-height    2.5em
+  margin-bottom 0
+  border-left   none
+
 .ui.vertical.menu
   box-shadow none
   width      $side-menu-width
 
 .container > .ui.menu
-  border-radius 2px
+  border-radius 0
   box-shadow    none
   border-top    none
   border-right  none
@@ -45,7 +50,7 @@ legend
 
 // Collections - Grid
 .ui.grid
-  margin 0
+  margin  0
   > .column:not(.row)
     padding-top    0
     padding-bottom 0
@@ -57,6 +62,7 @@ legend
 
 .inner-content
   .ui.grid
+    padding 6px 3px 6px 3px
     .column:not(.row):first-child
       padding-left  2px
       padding-right 13px
@@ -70,7 +76,7 @@ legend
 // Collections - Breadcrumb
 .ui
   .ui.breadcrumb
-    margin-bottom 11px
+    margin 0px
     span.divider
       margin 0 6px
     a

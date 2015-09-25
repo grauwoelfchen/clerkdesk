@@ -26,25 +26,26 @@
 .finance.account_book
   section
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report, account_book: @account_book
-      .ui.grid
-        .thirteen.wide.column
-          = render 'finance/shared/account_book', report: @report, account_book: @account_book
-          .container
-            .group
-              .name
-                = label_tag Finance::AccountBook.human_attribute_name(:name)
-                = @account_book.name
-            .group
-              .icon
-                = label_tag Finance::AccountBook.human_attribute_name(:icon)
-                i.fa.fa-fw.fa-1g= @account_book.icon.to_s.html_safe
-            .group
-              .description
-                = label_tag Finance::AccountBook.human_attribute_name(:description)
-                = @account_book.description
-            .group
-              .memo
-                = label_tag Finance::AccountBook.human_attribute_name(:memo)
-                = simple_format(@account_book.memo)
+      .page-content
+        .ui.grid
+          .thirteen.wide.column
+            = render 'finance/shared/account_book', report: @report, account_book: @account_book
+            .container
+              .group
+                .name
+                  = label_tag Finance::AccountBook.human_attribute_name(:name)
+                  = @account_book.name
+              .group
+                .icon
+                  = label_tag Finance::AccountBook.human_attribute_name(:icon)
+                  i.fa.fa-fw.fa-1g= @account_book.icon.to_s.html_safe
+              .group
+                .description
+                  = label_tag Finance::AccountBook.human_attribute_name(:description)
+                  = @account_book.description
+              .group
+                .memo
+                  = label_tag Finance::AccountBook.human_attribute_name(:memo)
+                  = simple_format(@account_book.memo)

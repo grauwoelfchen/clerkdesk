@@ -20,13 +20,14 @@
 .finance.account_book
   section
     = render 'finance/shared/report', report: @report
-    .container
+    .container.index
       = render 'finance/shared/menu', report: @report, account_book: @account_book
-      .ui.grid
-        .twelve.wide.column
-          .sub-header
-            h5= t('action.new')
-      .ui.grid
-        .seven.wide.column
-          .container
-            = render 'form', report: @report, account_book: @account_book
+      .page-content
+        .ui.grid
+          .twelve.wide.column
+            .sub-header
+              h5= t('action.new')
+        .ui.grid
+          .seven.wide.column
+            .container
+              = render 'form', report: @report, account_book: @account_book
