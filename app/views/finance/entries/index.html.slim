@@ -70,6 +70,6 @@
                       td.operations
                         ul
                           li= link_to t('action.edit'),    edit_finance_report_account_book_entry_path(@report, @account_book, entry)
-                          li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: "Are you sure?"}
+                          li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: 'Are you sure?'}
 
               = render 'shared/pagination', resource: @entries, info: false
