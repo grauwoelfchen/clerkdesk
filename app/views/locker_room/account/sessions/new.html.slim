@@ -1,0 +1,27 @@
+.ui.middle.aligned.center.aligned.grid style="height:100%;"
+  .column style="max-width:390px;"
+    h2.ui.image.header
+      = image_tag 'clerkdesk.jpeg', size: '90x75', class: 'image'
+      .content
+        | Signin to #{h current_subdomain}
+    - if flash.any?
+      = render 'shared/flash', flash: flash
+    = form_tag login_path, method: :post, class: 'ui form', novalidate: 'novalidate' do
+      .ui.segment
+        p.text
+          | Enter your account credentials
+        .ui.hidden.divider
+        .field
+          .ui.left.icon.input
+            i.user.icon
+            = email_field_tag :email, nil, placeholder: 'Email'
+        .field
+          .ui.left.icon.input
+            i.lock.icon
+            = password_field_tag :password, nil, placeholder: 'Password'
+        = submit_tag 'Signin', class: 'ui fluid large submit button'
+    .ui.message
+      = link_to 'New User?', registration_path
+      span
+        | &nbsp;&nbsp;or&nbsp;&nbsp;
+      = link_to 'Signin to another Team?', login_url(subdomain: nil)
