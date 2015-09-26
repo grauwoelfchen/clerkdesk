@@ -10,7 +10,7 @@ module Finance
     def test_validation_with_without_title
       entry = Finance::Entry.new(:title => nil)
       refute(entry.valid?)
-      message = "can't be blank"
+      message = 'can\'t be blank'
       assert_equal([message], entry.errors[:title])
     end
 
