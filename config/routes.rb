@@ -1,5 +1,5 @@
-require "locker_room/constraints/subdomain_required"
-require "locker_room/engine"
+require 'locker_room/constraints/subdomain_required'
+require 'locker_room/engine'
 
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     end
 
     scope module: :finance, as: :finance do
-      resources :reports, path: "finances", except: [:show] do
+      resources :reports, path: 'finances', except: [:show] do
         # finance_reports
-        get "/overview", action: :show, on: :member
+        get '/overview', action: :show, on: :member
 
         resource :budget, only: [:show, :edit, :update]
 
@@ -25,18 +25,18 @@ Rails.application.routes.draw do
       end
     end
 
-    post "/locale", to: "locales#switch", as: :switch_locale
+    post '/locale', to: 'locales#switch', as: :switch_locale
 
-    get  "/countries/:code/divisions", to: "countries#divisions",
+    get  '/countries/:code/divisions', to: 'countries#divisions',
       constraints: {code: /[A-Z]{2}/},
       defaults:    {format: :json}
 
-    root to: "desktop#index"
+    root to: 'desktop#index'
   end
 
   constraints(Constraints::WithoutSubdomain) do
-    get "/", to: "locker_room/entrance#index", as: :global_root
+    get '/', to: 'locker_room/entrance#index', as: :global_root
   end
 
-  mount LockerRoom::Engine, at: "/"
+  mount LockerRoom::Engine, at: '/'
 end
