@@ -1,0 +1,74 @@
+@import('../shared/_mixin.css.styl')
+
+.following.bar
+  position   fixed
+  padding    0.3em 0
+  top        0
+  left       0
+  box-shadow 0 0 0 0 transparent
+  transition padding 0.5s ease 0s, background 0.5s ease 0s, box-shadow 0.5s ease 0s, border 0.5s ease 0s
+  width      100%
+  z-index    900
+
+.following.bar.light
+  background-color white
+  border-bottom    1px solid $light-gray-color
+
+.masthread
+  background-color    black
+  background-position 50% 50%
+  overflow            hidden
+  padding             0
+  text-align          center
+
+.masthread.bg3::after
+  background-image url('/assets/7103303237_5a11354e8b_x.jpg')
+
+.masthread::after
+  content         ''
+  background-size cover
+  opacity         0.65
+  position        absolute
+  top             0
+  left            0
+  width           100%
+  height          100%
+  transition      background 6s cubic-bezier(0.68, -0.55, 0.265, 1.4) 0s, opacity 6s cubic-bezier(0.68, -0.55, 0.265, 1.4) 0s
+  z-index         -1
+
+.masthread.segment
+  margin     0
+  min-height 550px
+  padding    3em 0
+  position   relative
+  z-index    1
+
+.masthread h1.header
+  margin  0
+  padding 0
+  span.application
+    display     block
+    font-size   3em
+    line-height 1.2
+    font-weight bold
+
+.masthread > .container
+  align-items     center
+  display         flex
+  height          55vh
+  justify-content center
+  margin          auto auto
+  min-height      600px
+
+.masthread .strip .row
+  margin 2rem 0
+
+.version.label
+  border-radius 2px
+
+.email.alternate.stripe
+  background-color $pale-gray-color
+  .input
+    width 310px
+  .submit.button
+    margin-left 0.3em

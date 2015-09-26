@@ -1,105 +1,89 @@
-- content_for :banner do
-  .header.pure-menu.pure-menu-horizontal.pure-menu-fixed
-    h1 Clerkdesk
-  .banner
-  .description
-    p.link
-      = link_to 'GET STARTED', registration_path, class: 'ui button'
-      span or
-      = link_to 'Signin', login_url
-    p.text
-      | <strike>We will send you a account_book related email occasionally.</strike>
-      | <br>
-      | Currently, closed beta :)
-
-.concepts
-  .container.office.pure-g
-    .pure-u-1.pure-u-md-1-2
-      .concept
-        p Document & Office work as a Service
-    .pure-u-1.pure-u-md-1-2
-      .concept
-        p Lorem ipsum
-  .container.infra.pure-g
-    .pure-u-1.pure-u-md-1-2
-      .concept
-        p Lorem ipsum
-    .pure-u-1.pure-u-md-1-2
-      .concept
-        p Focus on your creative task
-.features
-  .container.pure-g
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-  .container.pure-g
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-    .pure-u-1.pure-u-md-1-3
-      .feature
-        p Lorem ipsum
-.second-banner
-
-.pricing-tables.pure-g
-  .pure-u-1.pure-u-md-1-4
-    .pricing-table
-      .pricing-table-header.free
-        h3.plan
-          | <strike>FREE</strike>
-        span.price
-          | $0
-      ul.pricing-table-list
-        li Public data
-        li Custom subdomain
-        li 5 users
-        li SSL
-        li &nbsp;
-  .pure-u-1.pure-u-md-1-4
-    .pricing-table
-      .pricing-table-header.basic
-        h3.plan
-          | <strike>BASIC</strike>
-        span.price
-          | $0
-      ul.pricing-table-list
-        li Public data
-        li Custom subdomain
-        li 5 users
-        li SSL
-        li &nbsp;
-  .pure-u-1.pure-u-md-1-4
-    .pricing-table
-      .pricing-table-header.premium
-        h3.plan
-          | <strike>PREMIUM</strike>
-        span.price
-          | $0
-      ul.pricing-table-list
-        li Private data
-        li Custom subdomain
-        li 5 users
-        li SSL
-        li &nbsp;
-  .pure-u-1.pure-u-md-1-4
-    .pricing-table
-      .pricing-table-header.enterprise
-        h3.plan
-          | <strike>ENTERPRISE</strike>
-        span.price
-          | $0
-      ul.pricing-table-list
-        li Private data
-        li Custom subdomain
-        li Unlimited users
-        li SSL
-        li Public Key Encryption
+.full.height
+  .following.bar
+    .ui.container
+      .ui.large.secondary.network.inverted.menu
+        .item
+          .ui.logo.shape
+            h1 C
+        .item
+        .right.menu
+          .item
+            #languages.ui.language.floating.dropdown.link.item
+  .masthread.segment.bg3
+    .ui.container
+      .introduction
+        .ui.orange.version.label PRIVATE BETA
+        h1.ui.inverted.header
+          span.application Clerkdesk
+          span.tagline Drop the Office-Suite
+        p.text
+          | For small team's office work
+        .ui.hidden.divider
+        = link_to 'GET STARTED', registration_path, class: 'ui huge signup inverted button'
+        span
+          | &nbsp;or&nbsp;&nbsp;
+        = link_to 'SIGNIN', login_url, class: 'ui small signin button'
+  .ui.vertical.stripe.intro.segment
+    .ui.very.relaxed.center.aligned.grid.container
+      .row
+        .thirteen.wide.column
+          h2.ui.header
+            | Create Beautiful Documents Quicker
+          p Foo Bar
+    .ui.very.relaxed.grid.container
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | OFFICE WORK AS A SERVICE
+          p Foo Bar
+        .nine.wide.column
+      .ui.divider
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | FOCUS ON YOUR CREATIVE WORK
+          p Foo Bar
+        .nine.wide.column
+      .ui.divider
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | ENCRYPTED DATA
+          p Foo Bar
+        .nine.wide.column
+  .ui.email.alternate.stripe.vertical.segment
+    .ui.center.aligned.grid.container
+      .column
+        h4.ui.header
+          | SIGNUP REQUEST
+        p.text
+          | <del>We will send you instruction to requested email, occasionally.</del>
+          | <br>
+          | Currently, closed beta :)
+        form.ui.form
+          .field
+            .ui.huge.input
+              input(type="text" placeholder="Email" disabled="disabled")
+            button.ui.huge.secondary.submit.disabled.button(type="submit") REQUEST
+  .ui.vertical.stripe.feature.segment
+    .ui.very.relaxed.grid.container
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | SIMPLE NOTE SHARING
+          p Markdown note
+        .nine.wide.column
+      .ui.divider
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | FLEXIBLE FINANCE MODULE
+          p Finance record
+        .nine.wide.column
+      .ui.divider
+      .row
+        .seven.wide.column
+          h2.ui.header
+            | STRONGLY ENCRYPTED DATA
+          p Encrypted data
+        .nine.wide.column
