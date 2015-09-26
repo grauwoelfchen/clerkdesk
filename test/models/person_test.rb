@@ -7,7 +7,7 @@ class PersonTest < ActiveSupport::TestCase
   def test_validation_without_slug
     person = Person.new(:slug => '')
     refute(person.valid?)
-    message = "can't be blank"
+    message = 'can\'t be blank'
     assert_equal([message], person.errors[:slug])
   end
 
@@ -43,7 +43,7 @@ class PersonTest < ActiveSupport::TestCase
   def test_validation_error_without_name
     person = Person.new(:name => nil)
     refute(person.valid?)
-    message = "can't be blank"
+    message = 'can\'t be blank'
     assert_equal([message], person.errors[:name])
   end
 

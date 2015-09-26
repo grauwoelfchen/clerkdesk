@@ -15,7 +15,7 @@ class NoteTest < ActiveSupport::TestCase
   def test_validation_with_without_title
     note = Note.new(:title => nil)
     refute(note.valid?)
-    message = "can't be blank"
+    message = 'can\'t be blank'
     assert_equal([message], note.errors[:title])
   end
 

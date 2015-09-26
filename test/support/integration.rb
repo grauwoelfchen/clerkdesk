@@ -10,11 +10,11 @@ module Integration
     locker_room.scope.default_url_options[:host] = @default_host
   end
 
-  def signin_user(user, password="secret")
+  def signin_user(user, password='secret')
     visit(locker_room.login_url)
-    fill_in("Email",    :with => user.email)
-    fill_in("Password", :with => password)
-    click_button("Signin")
+    fill_in('Email',    :with => user.email)
+    fill_in('Password', :with => password)
+    click_button('Signin')
     user
   end
 
