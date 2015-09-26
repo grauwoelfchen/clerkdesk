@@ -41,7 +41,10 @@ module Integration
     page.driver.browser.url_blacklist = [
       'fontawesome-webfont.woff',
       'fontawesome-webfont.ttf',
-      'fontawesome-webfont.svg'
+      'fontawesome-webfont.svg',
+      'icons.woff',
+      'icons.ttf',
+      'icons.svg'
     ]
 
     yield
