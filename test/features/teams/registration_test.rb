@@ -5,7 +5,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
 
   def test_subdomain_uniqueness_ensuring
     penguin = locker_room_teams(:penguin_patrol)
-    visit root_url
+    visit root_url(subdomain: nil)
     click_link('GET STARTED')
     find(:id, 'team_name').set('Penguin Octupus Patrol')
     fill_in('Subdomain', :with => penguin.subdomain)
@@ -21,7 +21,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
   end
 
   def test_subdomain_restriction_with_reserved_word
-    visit root_url
+    visit root_url(subdomain: nil)
     click_link('GET STARTED')
     find(:id, 'team_name').set('Vanilla dog biscuits')
     fill_in('Subdomain', :with => 'admin')
@@ -37,7 +37,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
   end
 
   def test_subdomain_restriction_with_invalid_word
-    visit root_url
+    visit root_url(subdomain: nil)
     click_link('GET STARTED')
     find(:id, 'team_name').set('Vanilla dog biscuits')
     fill_in('Subdomain', :with => '<test>')
@@ -53,7 +53,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
   end
 
   def test_team_registration
-    visit root_url
+    visit root_url(subdomain: nil)
     click_link('GET STARTED')
     find(:id, 'team_name').set('Vanilla dog biscuits')
     fill_in('Subdomain', :with => 'vanilla-dog-biscuits')
