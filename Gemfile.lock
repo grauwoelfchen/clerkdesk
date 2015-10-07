@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/grauwoelfchen/locker_room.git
-  revision: ad7539838bf8e75371f1adb549bbe553a08fce11
+  revision: 09a279f026a293e2163823a840207124ec9284b3
   specs:
     locker_room (0.0.1)
       apartment (~> 1.0.2)
+      braintree (= 2.49.0)
       enum_accessor (~> 2.0)
       houser (~> 2.0)
       pg (~> 0.18)
@@ -57,6 +58,8 @@ GEM
       rack (>= 1.3.6)
     arel (6.0.3)
     bcrypt (3.1.10)
+    braintree (2.49.0)
+      builder (>= 2.0.0)
     browserify-rails (1.2.0)
       railties (>= 4.0.0, < 5.0)
       sprockets (> 3.0.2)
@@ -83,7 +86,7 @@ GEM
       activesupport (>= 3.0.0)
     erubis (2.7.0)
     execjs (2.5.2)
-    faraday (0.9.1)
+    faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     foreman (0.78.0)
       thor (~> 0.19.1)

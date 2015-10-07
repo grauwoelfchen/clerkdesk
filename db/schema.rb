@@ -143,11 +143,25 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   create_table "locker_room_teams", force: :cascade do |t|
     t.string   "name"
     t.string   "subdomain"
+    t.integer  "type_id"
+    t.string   "subscription_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "locker_room_teams", ["subdomain"], name: "index_locker_room_teams_on_subdomain", using: :btree
+  add_index "locker_room_teams", ["subscription_id"], name: "index_locker_room_teams_on_subscription_id", using: :btree
+  add_index "locker_room_teams", ["type_id"], name: "index_locker_room_teams_on_type_id", using: :btree
+
+  create_table "locker_room_types", force: :cascade do |t|
+    t.string   "plan_id"
+    t.string   "name"
+    t.float    "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "locker_room_teams", ["subdomain"], name: "index_locker_room_teams_on_subdomain", using: :btree
+  add_index "locker_room_types", ["plan_id"], name: "index_locker_room_types_on_plan_id", using: :btree
 
   create_table "locker_room_users", force: :cascade do |t|
     t.integer  "team_id"

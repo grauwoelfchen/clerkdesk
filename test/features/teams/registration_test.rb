@@ -16,7 +16,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     fill_in('Password confirmation', :with => 'ohmygosh')
     click_button('Create Team')
     assert_equal("http://#{RACK_HOST}/signup", page.current_url)
-    assert_content('Your team could not be created.')
+    assert_content('Team could not be created.')
     assert_content('Subdomain has already been taken')
   end
 
@@ -32,7 +32,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     fill_in('Password confirmation', :with => 'bowwow')
     click_button('Create Team')
     assert_equal("http://#{RACK_HOST}/signup", page.current_url)
-    assert_content('Your team could not be created.')
+    assert_content('Team could not be created.')
     assert_content('Subdomain admin is not allowed')
   end
 
@@ -48,7 +48,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     fill_in('Password confirmation', :with => 'bowwow')
     click_button('Create Team')
     assert_equal("http://#{RACK_HOST}/signup", page.current_url)
-    assert_content('Your team could not be created.')
+    assert_content('Team could not be created.')
     assert_content('Subdomain <test> is not allowed')
   end
 
@@ -64,7 +64,7 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     fill_in('Password confirmation', :with => 'bowwow')
     click_button('Create Team')
     assert_equal("http://vanilla-dog-biscuits.#{RACK_HOST}/", page.current_url)
-    assert_content('Your team has been successfully created.')
+    assert_content('Team has been successfully created.')
     logout_user
   end
 end
