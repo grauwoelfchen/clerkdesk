@@ -2,7 +2,7 @@ class UsersController < WorkspaceController
   before_action :set_user, only: [:show]
 
   def index
-    @users = current_team.users
+    @users = current_team.mates
       .sort(params[:field], params[:direction])
       .page(params[:page])
   end
@@ -13,7 +13,7 @@ class UsersController < WorkspaceController
   private
 
   def set_user
-    @user = current_team.users.find(params[:id])
+    @user = current_team.mates.find(params[:id])
   end
 
   def user_params

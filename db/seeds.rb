@@ -16,9 +16,7 @@ if Apartment::Tenant.current == 'public'
       password_confirmation: 'secret'
     }]
   }
-
-  team = LockerRoom::Team.create_with_owner(team_params)
-  team.create_schema
+  LockerRoom::Team.create_with_owner(team_params)
 end
 
 if Apartment::Tenant.current == 'grauwoelfchen'
@@ -48,6 +46,8 @@ if Apartment::Tenant.current == 'grauwoelfchen'
   CONTENT
   }
 
+  Note.public_activity_off
   note = Note.new(note_params)
   note.save!
+  Note.public_activity_on
 end
