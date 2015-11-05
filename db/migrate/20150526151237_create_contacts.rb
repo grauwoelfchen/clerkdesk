@@ -1,6 +1,6 @@
-class CreatePeople < ActiveRecord::Migration
+class CreateContacts < ActiveRecord::Migration
   def change
-    create_table :people do |t|
+    create_table :contacts do |t|
       t.string  :slug,       null: false
       t.string  :property
       t.string  :name,       null: false, default: ''
@@ -18,6 +18,6 @@ class CreatePeople < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :people, :slug, unique: true
+    add_index :contacts, :slug, unique: true
   end
 end

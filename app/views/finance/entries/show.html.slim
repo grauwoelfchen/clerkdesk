@@ -66,11 +66,11 @@
                       = label_tag Finance::AccountBook.human_attribute_name(:memo)
                       = simple_format(@entry.memo, {}, wrapper_tag: 'span')
                   .group
-                    .people
-                      = label_tag Finance::AccountBook.human_attribute_name(:people)
-                      - @entry.people.each do |person|
+                    .contacts
+                      = label_tag Finance::AccountBook.human_attribute_name(:contacts)
+                      - @entry.contacts.each do |contact|
                         span.tag
-                          = link_to person.label, person_path(person)
+                          = link_to contact.label, contact_path(contact)
                   .group
                     .created_at
                       = label_tag Finance::AccountBook.human_attribute_name(:created_at)

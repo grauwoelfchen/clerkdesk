@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Contact < ActiveRecord::Base
   include FriendlyId
   include Sortable
   include Searchable
@@ -11,7 +11,7 @@ class Person < ActiveRecord::Base
     source:      :matter,
     source_type: 'Finance::Entry'
   has_one :identity, foreign_key: :user_id
-  has_one :user, through: :identity, source: :person
+  has_one :user, through: :identity, source: :contact
 
   friendly_id :slug, use: :slugged
   paginates_per 20

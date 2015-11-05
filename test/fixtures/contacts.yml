@@ -1,53 +1,53 @@
 # https://en.wikipedia.org/wiki/Oswald_(TV_series)#Characters
-oswald_as_person:
+oswald_contact:
   slug: '01AI0001A'
   name: 'Oswald'
   country: 'US'
   division: 'AR'
   city: 'Big'
-weenie_as_person:
+weenie_contact:
   slug: '01AI0002A'
   name: 'Weenie'
   country: 'US'
   division: 'AR'
   city: 'Big'
-henry_as_person:
+henry_contact:
   slug: '01AI0003A'
   name: 'Henry the Penguin'
   country: 'US'
   division: 'AR'
   city: 'Big'
-daisy_as_person:
+daisy_contact:
   slug: '01AI0004A'
   name: 'Daisy'
   country: 'US'
   division: 'AR'
   city: 'Big'
-johnny_as_person:
+johnny_contact:
   slug: '01AI0005B'
   name: 'Johnny Snowman'
   country: 'US'
   division: 'AR'
   city: 'Big'
-egbert:
+egbert_contact:
   slug: '01AI0006B'
   name: 'Egbert'
   country: 'US'
   division: 'AR'
   city: 'Big'
-leo:
+leo_contact:
   slug: '01AI0007B'
   name: 'Leo'
   country: 'US'
   division: 'AR'
   city: 'Big'
-madame:
+madame_contact:
   slug: '01AI0008B'
   name: 'Madame Butterfly'
   country: 'US'
   division: 'AR'
   city: 'Big'
-catrina:
+catrina_contact:
   slug: '01AI0009B'
   name: 'Catrina'
   country: 'US'

@@ -62,7 +62,7 @@ module Finance
 
     def set_entry
       @entry = @account_book.entries
-        .includes(:people, :involvements, :category)
+        .includes(:contacts, :involvements, :category)
         .find(params[:id])
     end
 

@@ -7,7 +7,6 @@ en:
       finance/account_book: Account book
       finance/budget: Budget
       finance/entry: Entry
-      person: Member
     attributes:
       note:
         title: Title
@@ -27,8 +26,9 @@ en:
       finance/entry:
         created_at: Created
         updated_at: Updated
-      person:
+      contact:
         joined_at: Joined
+        left_at: Left
         created_at: Created
         updated_at: Updated
     errors:
