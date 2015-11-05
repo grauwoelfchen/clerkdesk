@@ -1,6 +1,6 @@
 module Finance
   class EntriesController < WorkspaceController
-    before_action :set_report
+    before_action :set_ledger
     before_action :set_account
     before_action :set_journalizings, only: [:new, :create, :edit, :update]
     before_action :set_entry,         only: [:show, :edit, :update, :destroy]
@@ -19,7 +19,7 @@ module Finance
     def create
       @entry = @account.entries.build(entry_params)
       if @entry.save
-        redirect_to([:finance, @report, @account, @entry],
+        redirect_to([:finance, @ledger, @account, @entry],
           :notice => 'Entry has been successfully created.')
       else
         flash.now[:alert] = 'Entry could not be created.'
@@ -35,7 +35,7 @@ module Finance
 
     def update
       if @entry.update_attributes(entry_params)
-        redirect_to([:finance, @report, @account, @entry],
+        redirect_to([:finance, @ledger, @account, @entry],
           :notice => 'Entry has been successfully updated.')
       else
         flash.now[:alert] = 'Entry could not be updated.'
@@ -48,12 +48,12 @@ module Finance
 
     private
 
-    def set_report
-      @report = Report.find(params[:report_id])
+    def set_ledger
+      @ledger = Ledger.find(params[:ledger_id])
     end
 
     def set_account
-      @account = @report.accounts.find(params[:account_id])
+      @account = @ledger.accounts.find(params[:account_id])
     end
 
     def set_journalizings

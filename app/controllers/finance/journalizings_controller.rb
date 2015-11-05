@@ -1,6 +1,6 @@
 module Finance
   class JournalizingsController < WorkspaceController
-    before_action :set_report
+    before_action :set_ledger
     before_action :set_account
 
     def index
@@ -12,12 +12,12 @@ module Finance
 
     private
 
-    def set_report
-      @report = Report.find(params[:report_id])
+    def set_ledger
+      @ledger = Ledger.find(params[:ledger_id])
     end
 
     def set_account
-      @account = @report.accounts.find(params[:account_id])
+      @account = @ledger.accounts.find(params[:account_id])
     end
   end
 end

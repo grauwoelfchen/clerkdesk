@@ -59,7 +59,7 @@ en:
   subheading:
     note: Protokoll, Memo
     finance:
-      report: Fiscal record
+      ledger: Fiscal record
       overview: Overview
       category: Category
       account: Account

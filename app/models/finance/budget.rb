@@ -4,7 +4,7 @@ module Finance
 
     self.table_name = 'finance_budgets'
 
-    belongs_to :report
+    belongs_to :ledger
 
     validates :description,
       length: {maximum: 256}

@@ -10,7 +10,7 @@ module Finance
     paginates_per 16
     sortable :name, :type, :updated_at
 
-    belongs_to :report
+    belongs_to :ledger
     has_many :journalizings, dependent: :destroy
     has_many :entries, through: :journalizings
 
@@ -22,7 +22,7 @@ module Finance
       transaction do
         result = save
         if result
-          report.accounts.map do |account|
+          ledger.accounts.map do |account|
             journalizings.create!(:account => account)
           end
         end

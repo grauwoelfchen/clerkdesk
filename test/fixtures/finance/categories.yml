@@ -1,20 +1,20 @@
 miscellaneous_expense:
-  report: general_report
+  ledger: general_ledger
   type: <%= :expense %>
   name: 'Miscellaneous expense'
 correspondence:
-  report: general_report
+  ledger: general_ledger
   type: <%= :expense %>
   name: 'Correspondence'
 event:
-  report: general_report
+  ledger: general_ledger
   type: <%= :expense %>
   name: 'Event'
 assistance:
-  report: general_report
+  ledger: general_ledger
   type: <%= :income %>
   name: 'Assistance'
 membepship_fee:
-  report: general_report
+  ledger: general_ledger
   type: <%= :income %>
   name: 'Membership fee'

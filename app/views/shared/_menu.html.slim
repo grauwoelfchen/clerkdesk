@@ -5,9 +5,9 @@
   i.fa.fa-file-text-o
   = Note.model_name.human
 
-= active_link_to finance_reports_path, class: 'item', active: /^\/finance/ do
+= active_link_to finance_ledgers_path, class: 'item', active: /^\/finance/ do
   i.fa.fa-calculator
-  = Finance::Report.model_name.human
+  = Finance::Ledger.model_name.human
 
 = active_link_to contacts_path, class: 'item' do
   i.fa.fa-tag

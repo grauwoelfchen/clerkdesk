@@ -2,37 +2,37 @@ require 'test_helper'
 
 class FinanceRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:'finance/reports', :'finance/budgets', :'finance/accounts',
+  fixtures(:'finance/ledgers', :'finance/budgets', :'finance/accounts',
            :'finance/entries', :'finance/categories', :'finance/categories')
 
-  def test_route_to_finance_reports
+  def test_route_to_finance_ledgers
     within_subdomain_host do |host|
       assert_routing({
         method: 'get',
         path:   "#{host}/finances"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'index'
       })
       assert_routing({
         method: 'get',
         path:   "#{host}/finances/new"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'new'
       })
       assert_routing({
         method: 'post',
         path:   "#{host}/finances"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'create'
       })
       assert_routing({
         method: 'get',
         path:   "#{host}/finances/1/overview"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'show',
         id:         '1'
       })
@@ -40,7 +40,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         method: 'get',
         path:   "#{host}/finances/1/edit"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'edit',
         id:         '1'
       })
@@ -48,7 +48,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         method: 'patch',
         path:   "#{host}/finances/1"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'update',
         id:         '1'
       })
@@ -56,7 +56,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         method: 'put',
         path:   "#{host}/finances/1"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'update',
         id:         '1'
       })
@@ -64,7 +64,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         method: 'delete',
         path:   "#{host}/finances/1"
       }, {
-        controller: 'finance/reports',
+        controller: 'finance/ledgers',
         action:     'destroy',
         id:         '1'
       })
@@ -73,7 +73,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
           method: 'get',
           path:   "#{host}/finances/1"
         }, {
-          controller: 'finance/reports',
+          controller: 'finance/ledgers',
           action:     'show',
           id:         '1'
         })
@@ -89,7 +89,7 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
       }, {
         controller: 'finance/journalizings',
         action:     'index',
-        report_id:  '1',
+        ledger_id:  '1',
         account_id: '1',
         format:     'json'
       })

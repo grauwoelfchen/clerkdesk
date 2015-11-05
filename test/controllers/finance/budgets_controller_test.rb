@@ -3,7 +3,7 @@ require 'test_helper'
 module Finance
   class BudgetsControllerTest < ActionController::TestCase
     locker_room_fixtures(:teams, :users, :mateships)
-    fixtures(:'finance/reports', :'finance/budgets')
+    fixtures(:'finance/ledgers', :'finance/budgets')
 
     def test_get_show
       user = locker_room_users(:oswald)
@@ -11,9 +11,9 @@ module Finance
       within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
-        get(:show, :report_id => budget.report_id)
+        get(:show, :ledger_id => budget.ledger_id)
         assert_equal(budget, assigns[:budget])
-        assert_equal(budget.report, assigns[:report])
+        assert_equal(budget.ledger, assigns[:ledger])
         assert_template(:show)
         assert_response(:success)
       end
@@ -25,9 +25,9 @@ module Finance
       within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
-        get(:edit, :report_id => budget.report_id)
+        get(:edit, :ledger_id => budget.ledger_id)
         assert_equal(budget, assigns[:budget])
-        assert_equal(budget.report, assigns[:report])
+        assert_equal(budget.ledger, assigns[:ledger])
         assert_template(:edit)
         assert_template(:partial => '_form')
         assert_response(:success)
@@ -41,7 +41,7 @@ module Finance
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         params = {
-          :report_id => budget.report_id,
+          :ledger_id => budget.ledger_id,
           :budget    => {
             :description => 'Long description' * 100
           }
@@ -49,7 +49,7 @@ module Finance
         put(:update, params)
         budget.reload
         assert_equal(budget, assigns[:budget])
-        assert_equal(budget.report, assigns[:report])
+        assert_equal(budget.ledger, assigns[:ledger])
         assert_nil(flash[:notice])
         assert_equal(
           'Budget could not be updated.',
@@ -69,7 +69,7 @@ module Finance
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         params = {
-          :report_id => budget.report_id,
+          :ledger_id => budget.ledger_id,
           :budget    => {
             :description => 'Violin budget'
           }
@@ -77,14 +77,14 @@ module Finance
         put(:update, params)
         budget.reload
         assert_equal(budget, assigns[:budget])
-        assert_equal(budget.report, assigns[:report])
+        assert_equal(budget.ledger, assigns[:ledger])
         assert_equal(
           'Budget has been successfully updated.',
           ActionController::Base.helpers.strip_tags(flash[:notice])
         )
         assert_nil(flash[:alert])
         assert_response(:redirect)
-        assert_redirected_to(finance_report_budget_url(assigns[:report]))
+        assert_redirected_to(finance_ledger_budget_url(assigns[:ledger]))
       end
     end
   end

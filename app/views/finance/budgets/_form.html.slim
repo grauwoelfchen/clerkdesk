@@ -1,4 +1,4 @@
-= form_for [:finance, report, budget], html: {class: 'ui form'} do |f|
+= form_for [:finance, ledger, budget], html: {class: 'ui form'} do |f|
   - if budget.errors.any?
     = render 'shared/error', resource: budget
   fieldset

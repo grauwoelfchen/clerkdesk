@@ -1,10 +1,10 @@
-general_report:
-  name: 'General finance report'
+general_ledger:
+  name: 'General finance ledger'
   description: 'General!'
   started_at: '2015-05-01 10:00:00 +00:00'
   finished_at: '2016-03-31 10:00:00 +00:00'
-special_report:
-  name: 'Special finance report'
+special_ledger:
+  name: 'Special finance ledger'
   description: 'Special!'
   started_at: '2015-04-01 10:00:00 +00:00'
   finished_at: '2016-03-31 10:00:00 +00:00'

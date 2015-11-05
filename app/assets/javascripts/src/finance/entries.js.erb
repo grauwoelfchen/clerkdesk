@@ -27,7 +27,7 @@
         ;
 
       var setJournalizingOptions = function(typeVal, journalizingVal) {
-        var report  = $('#report')
+        var ledger  = $('#ledger')
           , account = $('#account')
           ;
         if (typeof journalizingVal === "undefined") {
@@ -38,7 +38,7 @@
         , type:     'GET'
         , dataType: 'json'
         , accepts:  'application/json'
-        , url:      '/finances/' + report.attr('data-id') +
+        , url:      '/finances/' + ledger.attr('data-id') +
             '/accounts/' + account.attr('data-id') +
             '/journalizings.json?type=' + encodeURIComponent(typeVal)
         })
