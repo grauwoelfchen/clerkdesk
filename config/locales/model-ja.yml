@@ -5,7 +5,7 @@ ja:
       note: ノート
       finance/report: 会計
       finance/category: 費目
-      finance/account_book: 帳簿
+      finance/account: 帳簿
       finance/budget: 予算
       finance/entry: 記録
       locker_room/user: 管理者
@@ -32,7 +32,7 @@ ja:
         type: 種類
         created_at: 作成日時
         updated_at: 更新日時
-      finance/account_book:
+      finance/account:
         name: 名前
         icon: アイコン
         description: 説明

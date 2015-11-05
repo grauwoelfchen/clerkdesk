@@ -1,6 +1,6 @@
 module Finance
   module EntriesHelper
-    def account_book_entry_contact_labels(entry)
+    def account_entry_contact_labels(entry)
       if entry.persisted?
         entry.contacts.map(&:label)
       else

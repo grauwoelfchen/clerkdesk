@@ -1,0 +1,51 @@
+- breadcrumb :'finance/account', @report, @account
+
+- content_for :header
+  h2= Finance::Account.model_name.human
+  h3= t('subheading.finance.account')
+
+- content_for :actions
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Account.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_account_path(@report), class: 'item'
+      = link_to t('action.index'), finance_report_accounts_path(@report), class: 'item'
+      = link_to t('action.show'), finance_report_account_path(@report, @account), class: 'item active'
+      = link_to t('action.edit'), edit_finance_report_account_path(@report, @account), class: 'item'
+
+- content_for :links
+  ul.links
+    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.downcase), finance_report_accounts_path(@report)
+    li= link_to t('action.resource.edit', resource: Finance::Account.model_name.human.downcase), edit_finance_report_account_path(@report, @account)
+    li= link_to t('action.resource.new', resource: Finance::Account.model_name.human.downcase), new_finance_report_account_path(@report)
+    li= link_to t('action.resource.index', resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_entries_path(@report, @account)
+    li= link_to t('action.resource.new', resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_entry_path(@report, @account)
+
+.finance.account
+  section
+    = render 'finance/shared/report', report: @report
+    .container.index
+      = render 'finance/shared/menu', report: @report, account: @account
+      .page-content
+        .ui.grid
+          .thirteen.wide.column
+            = render 'finance/shared/account', report: @report, account: @account
+            .container
+              .group
+                .name
+                  = label_tag Finance::Account.human_attribute_name(:name)
+                  = @account.name
+              .group
+                .icon
+                  = label_tag Finance::Account.human_attribute_name(:icon)
+                  i.fa.fa-fw.fa-1g= @account.icon.to_s.html_safe
+              .group
+                .description
+                  = label_tag Finance::Account.human_attribute_name(:description)
+                  = @account.description
+              .group
+                .memo
+                  = label_tag Finance::Account.human_attribute_name(:memo)
+                  = simple_format(@account.memo)

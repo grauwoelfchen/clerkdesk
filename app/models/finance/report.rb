@@ -11,7 +11,7 @@ module Finance
              :started_at, :finished_at
 
     has_one :budget
-    has_many :account_books
+    has_many :accounts
     has_many :categories
     has_many :journalizings, through: :categories
     has_many :entries, through: :journalizings
@@ -45,7 +45,7 @@ module Finance
 
     def recent_entries(limit_count=5)
       entries
-        .includes(:account_book, :category)
+        .includes(:account, :category)
         .order(:updated_at => :desc)
         .limit(limit_count)
     end
@@ -55,12 +55,12 @@ module Finance
         result = save
         if result
           create_budget!
-          create_initial_account_books!
+          create_initial_accounts!
           create_initial_categories!
 
-          account_books.map do |account_book|
+          accounts.map do |account|
             categories.map do |category|
-              category.journalizings.create!(:account_book => account_book)
+              category.journalizings.create!(:account => account)
             end
           end
         end
@@ -75,13 +75,13 @@ module Finance
       end
     end
 
-    def create_initial_account_books!
+    def create_initial_accounts!
       {
         :cash => 'briefcase', :bank => 'bank'
-      }.map do |book_name, icon_name|
-        name = I18n.t(book_name, :scope => [:finance, :account_book])
+      }.map do |account_name, icon_name|
+        name = I18n.t(account_name, :scope => [:finance, :account])
         icons = Rails.application.config.icons
-        account_books.create!(:name => name, :icon => icons[icon_name])
+        accounts.create!(:name => name, :icon => icons[icon_name])
       end
     end
 

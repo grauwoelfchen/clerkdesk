@@ -1,25 +1,25 @@
 module Finance
   class EntriesController < WorkspaceController
     before_action :set_report
-    before_action :set_account_book
+    before_action :set_account
     before_action :set_journalizings, only: [:new, :create, :edit, :update]
     before_action :set_entry,         only: [:show, :edit, :update, :destroy]
 
     def index
-      @entries = @account_book.entries
+      @entries = @account.entries
         .includes(:journalizing, :category)
         .sort(params[:field], params[:direction])
         .page(params[:page])
     end
 
     def new
-      @entry = @account_book.entries.new
+      @entry = @account.entries.new
     end
 
     def create
-      @entry = @account_book.entries.build(entry_params)
+      @entry = @account.entries.build(entry_params)
       if @entry.save
-        redirect_to([:finance, @report, @account_book, @entry],
+        redirect_to([:finance, @report, @account, @entry],
           :notice => 'Entry has been successfully created.')
       else
         flash.now[:alert] = 'Entry could not be created.'
@@ -35,7 +35,7 @@ module Finance
 
     def update
       if @entry.update_attributes(entry_params)
-        redirect_to([:finance, @report, @account_book, @entry],
+        redirect_to([:finance, @report, @account, @entry],
           :notice => 'Entry has been successfully updated.')
       else
         flash.now[:alert] = 'Entry could not be updated.'
@@ -52,16 +52,16 @@ module Finance
       @report = Report.find(params[:report_id])
     end
 
-    def set_account_book
-      @account_book = @report.account_books.find(params[:account_book_id])
+    def set_account
+      @account = @report.accounts.find(params[:account_id])
     end
 
     def set_journalizings
-      @journalizings = @account_book.journalizings.includes(:category)
+      @journalizings = @account.journalizings.includes(:category)
     end
 
     def set_entry
-      @entry = @account_book.entries
+      @entry = @account.entries
         .includes(:contacts, :involvements, :category)
         .find(params[:id])
     end

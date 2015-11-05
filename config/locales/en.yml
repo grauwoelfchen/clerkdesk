@@ -62,7 +62,7 @@ en:
       report: Fiscal record
       overview: Overview
       category: Category
-      account_book: Account book
+      account: Account
       budget: Budget
       entry: Entry
     current_status: Current status

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FinanceRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:'finance/reports', :'finance/budgets', :'finance/account_books',
+  fixtures(:'finance/reports', :'finance/budgets', :'finance/accounts',
            :'finance/entries', :'finance/categories', :'finance/categories')
 
   def test_route_to_finance_reports
@@ -85,13 +85,13 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
     within_subdomain_host do |host|
       assert_routing({
         method: 'get',
-        path:   "#{host}/finances/1/account_books/1/journalizings.json?type=income"
+        path:   "#{host}/finances/1/accounts/1/journalizings.json?type=income"
       }, {
-        controller:      'finance/journalizings',
-        action:          'index',
-        report_id:       '1',
-        account_book_id: '1',
-        format:          'json'
+        controller: 'finance/journalizings',
+        action:     'index',
+        report_id:  '1',
+        account_id: '1',
+        format:     'json'
       })
     end
   end

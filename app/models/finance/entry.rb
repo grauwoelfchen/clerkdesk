@@ -8,7 +8,7 @@ module Finance
     self.inheritance_column = 'null'
     enum_accessor :type, [:expense, :income]
 
-    belongs_to :account_book
+    belongs_to :account
     belongs_to :journalizing,
       counter_cache: :entries_count
     has_many :involvements,

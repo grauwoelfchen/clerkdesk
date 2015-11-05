@@ -27,7 +27,7 @@
                 thead
                   tr
                     th= t('misc.datetime')
-                    th= Finance::AccountBook.model_name.human
+                    th= Finance::Account.model_name.human
                     th= Finance::Category.model_name.human
                     th= Finance::Entry.human_attribute_name(:title)
                     th= Finance::Entry.human_attribute_name(:type)
@@ -39,13 +39,13 @@
                       tr
                         td
                           span.created_at data-format='fromNow'= entry.created_at
-                        td.account_book
-                          = link_to finance_report_account_book_path(@report, entry.account_book) do
-                            i.icon.fa.fa-fw.fa-lg= entry.account_book.icon.to_s.html_safe
-                            span= entry.account_book.name
+                        td.account
+                          = link_to finance_report_account_path(@report, entry.account) do
+                            i.icon.fa.fa-fw.fa-lg= entry.account.icon.to_s.html_safe
+                            span= entry.account.name
                         td.category= truncate(entry.category.name, length: 8)
                         td.title
-                          = link_to entry.title, finance_report_account_book_entry_path(@report, entry.account_book, entry)
+                          = link_to entry.title, finance_report_account_entry_path(@report, entry.account, entry)
                         td.type
                           span class="label label-#{entry.type}"= entry.human_type
                         td.total_amount

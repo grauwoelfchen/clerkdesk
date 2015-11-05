@@ -22,8 +22,8 @@ module Finance
       transaction do
         result = save
         if result
-          report.account_books.map do |account_book|
-            journalizings.create!(:account_book => account_book)
+          report.accounts.map do |account|
+            journalizings.create!(:account => account)
           end
         end
         result

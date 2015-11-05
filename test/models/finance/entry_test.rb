@@ -5,7 +5,7 @@ module Finance
     locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/entries',
              :'finance/reports', :'finance/categories',
-             :'finance/account_books', :'finance/journalizings')
+             :'finance/accounts', :'finance/journalizings')
 
     def test_validation_with_without_title
       entry = Finance::Entry.new(:title => nil)
