@@ -17,7 +17,7 @@ module Finance
     has_many :contacts,
       through:     :involvements,
       source:      :holder,
-      source_type: 'Person'
+      source_type: 'Contact'
     has_one :category,
       through: :journalizing
 

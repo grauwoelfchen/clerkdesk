@@ -143,16 +143,16 @@
       , type:     'GET'
       , dataType: 'json'
       , accepts:  'application/json'
-      , url:      '/people/search.json'
+      , url:      '/contacts/search.json'
       })
       .done(function(data) {
-        var labels = $.map(data.people, function(p, i) { return p.label; });
+        var labels = $.map(data.contacts, function(p, i) { return p.label; });
         var dict   = {};
-        $.each(data.people, function(i, p) { dict[p.label] = p.id; });
+        $.each(data.contacts, function(i, p) { dict[p.label] = p.id; });
         tagList.tagEditor({
           delimiter:      ','
         , forceLowercase: false
-        , placeholder:    'Person'
+        , placeholder:    'Contact'
         , autocomplete: {
             delay:     0
           , position:  { collision: 'flip' }
@@ -166,7 +166,7 @@
                 if ($.inArray(tag, source) == -1) {
                   // remove unknown
                   $(this).closest('li').remove();
-                  var holder  = $('#people div.holder:eq(' + i + ')')
+                  var holder  = $('#contacts div.holder:eq(' + i + ')')
                     , destroy = holder.children('input.destroy');
                   if (destroy.length == 0) {
                     holder.remove();
@@ -183,7 +183,7 @@
               if (id) {
                 var hidden = $('#holder_' + id);
                 if (hidden.length == 0 && $.inArray(val, source) > -1) {
-                  $('#people').append(
+                  $('#contacts').append(
                     '<div class="holder">' +
                     '<input' +
                     ' type="hidden"' +
@@ -195,7 +195,7 @@
                     ' type="hidden"' +
                     ' id="holder_' + id + '_type"' +
                     ' name="entry[involvements_attributes][][holder_type]"' +
-                    ' value="Person"' +
+                    ' value="Contact"' +
                     '/>' +
                     '</div>'
                   );

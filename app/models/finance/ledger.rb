@@ -86,11 +86,15 @@ module Finance
     end
 
     def create_initial_categories!
-      %w{
-        accumulation carry-over membership-fee correspondence
-      }.map do |category|
+      {
+        :accumulation     => :income,
+        :'carry-over'     => :income,
+        :'membership-fee' => :income,
+        :correspondence   => :expense,
+        :stationery       => :expense
+      }.map do |category, type|
         name = I18n.t(category, :scope => [:finance, :category])
-        categories.create!(:name => name)
+        categories.create!(:name => name, :type => type)
       end
     end
   end
