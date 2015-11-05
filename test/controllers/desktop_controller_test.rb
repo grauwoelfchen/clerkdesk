@@ -5,7 +5,8 @@ class DesktopControllerTest < ActionController::TestCase
 
   def test_should_get_index
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       get(:index)
       assert_response(:success)

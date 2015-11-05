@@ -74,7 +74,8 @@ class PeopleRouteTest < ActionDispatch::IntegrationTest
 
   def within_subdomain_host
     user = locker_room_users(:oswald)
-    host = "http://#{user.team.subdomain}.#{RACK_HOST}"
+    team = user.teams.first
+    host = "http://#{team.subdomain}.#{RACK_HOST}"
     yield(host)
   end
 end

@@ -47,6 +47,7 @@ group :test do
   gem 'database_cleaner'
   gem 'connection_pool'
   gem 'poltergeist'
+  gem 'fake_braintree'
 end
 
 rock = File.expand_path('../Gemfile.rock', __FILE__)
