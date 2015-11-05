@@ -14,7 +14,7 @@ module Finance
     has_many :involvements,
       ->{ order(:id => :asc) },
       as: :matter
-    has_many :people,
+    has_many :contacts,
       through:     :involvements,
       source:      :holder,
       source_type: 'Person'
