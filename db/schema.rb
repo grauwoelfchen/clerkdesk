@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
 
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
 
-  create_table "finance_account_books", force: :cascade do |t|
+  create_table "finance_accounts", force: :cascade do |t|
     t.integer  "report_id",             null: false
     t.string   "name",                  null: false
     t.string   "description"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.string   "icon",        limit: 8
   end
 
-  add_index "finance_account_books", ["report_id"], name: "index_finance_account_books_on_report_id", using: :btree
+  add_index "finance_accounts", ["report_id"], name: "index_finance_accounts_on_report_id", using: :btree
 
   create_table "finance_budgets", force: :cascade do |t|
     t.integer  "report_id",   null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "finance_categories", ["type"], name: "index_finance_categories_on_type", using: :btree
 
   create_table "finance_entries", force: :cascade do |t|
-    t.integer  "account_book_id",             null: false
+    t.integer  "account_id",                  null: false
     t.integer  "journalizing_id"
     t.integer  "type",            default: 0, null: false
     t.string   "title",                       null: false
@@ -100,19 +100,19 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "finance_entries", ["account_book_id"], name: "index_finance_entries_on_account_book_id", using: :btree
+  add_index "finance_entries", ["account_id"], name: "index_finance_entries_on_account_id", using: :btree
   add_index "finance_entries", ["journalizing_id"], name: "index_finance_entries_on_journalizing_id", using: :btree
   add_index "finance_entries", ["type"], name: "index_finance_entries_on_type", using: :btree
 
   create_table "finance_journalizings", force: :cascade do |t|
-    t.integer  "account_book_id",             null: false
-    t.integer  "category_id",                 null: false
-    t.integer  "entries_count",   default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "account_id",                null: false
+    t.integer  "category_id",               null: false
+    t.integer  "entries_count", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  add_index "finance_journalizings", ["account_book_id"], name: "index_finance_journalizings_on_account_book_id", using: :btree
+  add_index "finance_journalizings", ["account_id"], name: "index_finance_journalizings_on_account_id", using: :btree
   add_index "finance_journalizings", ["category_id"], name: "index_finance_journalizings_on_category_id", using: :btree
 
   create_table "finance_reports", force: :cascade do |t|

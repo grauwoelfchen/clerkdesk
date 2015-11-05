@@ -1,0 +1,57 @@
+- breadcrumb :'finance/accounts', @report
+
+- content_for :header
+  h2= Finance::Account.model_name.human
+  h3= t('subheading.finance.account')
+
+- content_for :actions
+  .item
+    = render 'finance/shared/actions', report: @report
+  .item
+    = Finance::Account.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_report_account_path(@report), class: 'item'
+      = link_to t('action.index'), finance_report_accounts_path(@report), class: 'item active'
+
+- content_for :links
+  ul.links
+    li= link_to t('action.resource.new', resource: Finance::Account.model_name.human.downcase), new_finance_report_account_path(@report)
+
+.finance.account
+  section
+    = render 'finance/shared/report', report: @report
+    .container.index
+      = render 'finance/shared/menu', report: @report
+      .page-content
+        .ui.grid
+          .sixteen.wide.column
+            .container
+              = render 'shared/pagination', resource: @accounts, info: true
+              table.ui.very.basic.compact.table
+                thead
+                  tr
+                    th
+                      span.attribute
+                        = Finance::Account.human_attribute_name(:name)
+                      = sort_links_for(:name)
+                    th
+                      span.attribute
+                        = Finance::Account.human_attribute_name(:description)
+                      = sort_links_for(:description)
+                    th
+                      span.attribute
+                        = Finance::Account.human_attribute_name(:updated_at)
+                      = sort_links_for(:updated_at, :desc)
+                    th
+                tbody
+                  - @accounts.each do |account|
+                    tr
+                      td.name
+                        i.icon.fa.fa-fw.fa-lg= account.icon.to_s.html_safe
+                        = link_to truncate(account.name, length: 18), finance_report_account_entries_path(@report, account)
+                      td= truncate(account.description, length: 27)
+                      td.updated_at= account.updated_at
+                      td.operations
+                        ul
+                          li= link_to t('action.edit'), edit_finance_report_account_path(@report, account)
+                          li= link_to t('action.destroy'), finance_report_account_path(@report, account), method: :delete, data: {confirm: 'Are you sure?'}

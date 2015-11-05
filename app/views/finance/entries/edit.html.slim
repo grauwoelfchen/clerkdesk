@@ -1,4 +1,4 @@
-- breadcrumb :'finance/entry', @report, @account_book, @entry
+- breadcrumb :'finance/entry', @report, @account, @entry
 
 - content_for :header
   h2= Finance::Entry.model_name.human
@@ -10,30 +10,30 @@
   .item
     = Finance::Entry.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_report_account_book_entry_path(@report, @account_book), class: 'item'
-      = link_to t('action.index'), finance_report_account_book_entries_path(@report, @account_book), class: 'item'
-      = link_to t('action.show'), finance_report_account_book_entry_path(@report, @account_book, @entry), class: 'item'
-      = link_to t('action.edit'), edit_finance_report_account_book_entry_path(@report, @account_book, @entry), class: 'item active'
+      = link_to t('action.new'), new_finance_report_account_entry_path(@report, @account), class: 'item'
+      = link_to t('action.index'), finance_report_account_entries_path(@report, @account), class: 'item'
+      = link_to t('action.show'), finance_report_account_entry_path(@report, @account, @entry), class: 'item'
+      = link_to t('action.edit'), edit_finance_report_account_entry_path(@report, @account, @entry), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.index', resource: Finance::AccountBook.model_name.human.pluralize.downcase), finance_report_account_books_path(@report)
-    li= link_to t('action.resource.edit',  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
-    li= link_to t('action.resource.index', resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_book_entries_path(@report, @account_book)
-    li= link_to t('action.resource.show',  resource: Finance::Entry.model_name.human.downcase), finance_report_account_book_entry_path(@report, @account_book, @entry)
-    li= link_to t('action.resource.new',   resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_book_entry_path(@report, @account_book)
+    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.pluralize.downcase), finance_report_accounts_path(@report)
+    li= link_to t('action.resource.edit', resource: Finance::Account.model_name.human.downcase), edit_finance_report_account_path(@report, @account)
+    li= link_to t('action.resource.index', resource: Finance::Entry.model_name.human.pluralize.downcase), finance_report_account_entries_path(@report, @account)
+    li= link_to t('action.resource.show', resource: Finance::Entry.model_name.human.downcase), finance_report_account_entry_path(@report, @account, @entry)
+    li= link_to t('action.resource.new', resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_entry_path(@report, @account)
 
 .finance.entry
   section
     = render 'finance/shared/report', report: @report
     .container.index
-      = render 'finance/shared/menu', report: @report, account_book: @account_book, entry: @entry
+      = render 'finance/shared/menu', report: @report, account: @account, entry: @entry
       .page-content
         .ui.grid
           .twelve.wide.column
-            = render 'finance/shared/account_book', report: @report, account_book: @account_book
+            = render 'finance/shared/account', report: @report, account: @account
             h6= t('action.edit')
         .ui.grid
           .seven.wide.column
             .container
-              = render 'form', report: @report, account_book: @account_book, entry: @entry, journalizings: @journalizings
+              = render 'form', report: @report, account: @account, entry: @entry, journalizings: @journalizings

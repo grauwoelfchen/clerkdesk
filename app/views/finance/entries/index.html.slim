@@ -1,7 +1,7 @@
-- breadcrumb :'finance/entries', @report, @account_book
+- breadcrumb :'finance/entries', @report, @account
 
 - content_for :header
-  h2= Finance::AccountBook.model_name.human
+  h2= Finance::Account.model_name.human
   h3= t('subheading.finance.entry')
 
 - content_for :actions
@@ -10,24 +10,24 @@
   .item
     = Finance::Entry.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_report_account_book_entry_path(@report, @account_book), class: 'item'
-      = link_to t('action.index'), finance_report_account_book_entries_path(@report, @account_book), class: 'item active'
+      = link_to t('action.new'), new_finance_report_account_entry_path(@report, @account), class: 'item'
+      = link_to t('action.index'), finance_report_account_entries_path(@report, @account), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.index', resource: Finance::AccountBook.model_name.human.downcase), finance_report_account_books_path(@report)
-    li= link_to t('action.resource.edit',  resource: Finance::AccountBook.model_name.human.downcase), edit_finance_report_account_book_path(@report, @account_book)
-    li= link_to t('action.resource.new',   resource: Finance::Entry.model_name.human.downcase),       new_finance_report_account_book_entry_path(@report, @account_book)
+    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.downcase), finance_report_accounts_path(@report)
+    li= link_to t('action.resource.edit', resource: Finance::Account.model_name.human.downcase), edit_finance_report_account_path(@report, @account)
+    li= link_to t('action.resource.new', resource: Finance::Entry.model_name.human.downcase), new_finance_report_account_entry_path(@report, @account)
 
-.finance.account_book
+.finance.account
   section.block
     = render 'finance/shared/report', report: @report
     .container.index
-      = render 'finance/shared/menu', report: @report, account_book: @account_book
+      = render 'finance/shared/menu', report: @report, account: @account
       .page-content
         .ui.grid
           .sixteen.wide.column
-            = render 'finance/shared/account_book', report: @report, account_book: @account_book
+            = render 'finance/shared/account', report: @report, account: @account
             .container
               = render 'shared/pagination', resource: @entries, info: true
               table.ui.very.basic.compact.table
@@ -59,9 +59,9 @@
                     tr
                       td.category
                         - if entry.category
-                          = link_to entry.category.name, finance_report_account_book_entry_path(@report, @account_book, entry)
+                          = link_to entry.category.name, finance_report_account_entry_path(@report, @account, entry)
                       td.title
-                        = link_to entry.title, finance_report_account_book_entry_path(@report, @account_book, entry)
+                        = link_to entry.title, finance_report_account_entry_path(@report, @account, entry)
                       td.type
                         span class="label label-#{entry.type}"= entry.human_type
                       td.total_amount
@@ -69,7 +69,7 @@
                       td.updated_at= entry.updated_at
                       td.operations
                         ul
-                          li= link_to t('action.edit'),    edit_finance_report_account_book_entry_path(@report, @account_book, entry)
+                          li= link_to t('action.edit'),    edit_finance_report_account_entry_path(@report, @account, entry)
                           li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: 'Are you sure?'}
 
               = render 'shared/pagination', resource: @entries, info: false

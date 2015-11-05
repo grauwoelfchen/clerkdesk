@@ -27,8 +27,8 @@
         ;
 
       var setJournalizingOptions = function(typeVal, journalizingVal) {
-        var report      = $('#report')
-          , accountBook = $('#account_book')
+        var report  = $('#report')
+          , account = $('#account')
           ;
         if (typeof journalizingVal === "undefined") {
           journalizingVal = null;
@@ -39,7 +39,7 @@
         , dataType: 'json'
         , accepts:  'application/json'
         , url:      '/finances/' + report.attr('data-id') +
-            '/account_books/' + accountBook.attr('data-id') +
+            '/accounts/' + account.attr('data-id') +
             '/journalizings.json?type=' + encodeURIComponent(typeVal)
         })
         .fail(function() {

@@ -4,7 +4,7 @@ en:
     models:
       finance/report: Finance
       finance/category: Category
-      finance/account_book: Account book
+      finance/account: Account
       finance/budget: Budget
       finance/entry: Entry
     attributes:
@@ -20,7 +20,7 @@ en:
       finance/category:
         created_at: Created
         updated_at: Updated
-      finance/account_book:
+      finance/account:
         created_at: Created
         updated_at: Updated
       finance/entry:

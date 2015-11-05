@@ -19,7 +19,7 @@
         }
       }
 
-      $('#account_book_icon').selectric({
+      $('#account_icon').selectric({
         maxHeight: 240
       , onInit: function() {
           var selected = $(this).find('option:selected')

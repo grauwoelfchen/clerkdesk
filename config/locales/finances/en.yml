@@ -1,7 +1,7 @@
 ---
 en:
   finance:
-    account_book:
+    account:
       bank: Bank
       cash: Cash
     category:

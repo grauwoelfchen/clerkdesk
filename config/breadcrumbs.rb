@@ -51,32 +51,32 @@ crumb :'finance/category' do |report, category|
   parent :'finance/categories', report
 end
 
-crumb :'finance/account_books' do |report|
-  link Finance::AccountBook.model_name.human.pluralize, finance_report_account_books_path(report)
+crumb :'finance/accounts' do |report|
+  link Finance::Account.model_name.human.pluralize, finance_report_accounts_path(report)
   parent :'finance/report', report
 end
 
-crumb :'finance/account_book' do |report, account_book|
-  unless account_book.persisted?
+crumb :'finance/account' do |report, account|
+  unless account.persisted?
     link t('crumb.new'), nil
   else
-    link account_book.name, finance_report_account_book_path(report, account_book)
+    link account.name, finance_report_account_path(report, account)
   end
-  parent :'finance/account_books', report
+  parent :'finance/accounts', report
 end
 
-crumb :'finance/entries' do |report, account_book|
-  link Finance::Entry.model_name.human.pluralize, finance_report_account_book_entries_path(report, account_book)
-  parent :'finance/account_book', report, account_book
+crumb :'finance/entries' do |report, account|
+  link Finance::Entry.model_name.human.pluralize, finance_report_account_entries_path(report, account)
+  parent :'finance/account', report, account
 end
 
-crumb :'finance/entry' do |report, account_book, entry|
+crumb :'finance/entry' do |report, account, entry|
   unless entry.persisted?
     link t('crumb.new'), nil
   else
-    link entry.title, finance_report_account_book_entry_path(report, account_book, entry)
+    link entry.title, finance_report_account_entry_path(report, account, entry)
   end
-  parent :'finance/entries', report, account_book
+  parent :'finance/entries', report, account
 end
 
 crumb :'finance/budget' do |report|

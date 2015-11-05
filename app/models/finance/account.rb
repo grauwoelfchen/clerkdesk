@@ -1,8 +1,8 @@
 module Finance
-  class AccountBook < ActiveRecord::Base
+  class Account < ActiveRecord::Base
     extend FiscalPolicyExtension
 
-    self.table_name = 'finance_account_books'
+    self.table_name = 'finance_accounts'
 
     belongs_to :report
     has_many :journalizings
