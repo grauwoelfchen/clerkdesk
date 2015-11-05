@@ -20,7 +20,8 @@ class TeamScopTest < Capybara::Rails::TestCase
 
   def test_scoped_visibility_on_team_piano
     user = @team_piano.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       visit(notes_url(:subdomain => @team_piano.subdomain))
       assert_content('Musical instrument')
@@ -31,7 +32,8 @@ class TeamScopTest < Capybara::Rails::TestCase
 
   def test_scoped_visibility_on_team_penguin
     user = @team_penguin.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       visit(notes_url(:subdomain => @team_penguin.subdomain))
       refute_content('Musical instrument')
@@ -44,7 +46,8 @@ class TeamScopTest < Capybara::Rails::TestCase
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
     user = @team_piano.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       visit(note_url(note, :subdomain => @team_piano.subdomain))
       assert_content('Musical instrument')
@@ -56,7 +59,8 @@ class TeamScopTest < Capybara::Rails::TestCase
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
     user = @team_penguin.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       assert_raise(ActiveRecord::RecordNotFound) do
         visit(note_url(note, :subdomain => @team_penguin.subdomain))
@@ -70,7 +74,8 @@ class TeamScopTest < Capybara::Rails::TestCase
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
     user = @team_penguin.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       visit(note_url(note, :subdomain => @team_penguin.subdomain))
       assert_content('The ice')
@@ -82,7 +87,8 @@ class TeamScopTest < Capybara::Rails::TestCase
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
     user = @team_piano.owners.first
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       signin_user(user)
       assert_raise(ActiveRecord::RecordNotFound) do
         visit(note_url(note, :subdomain => @team_piano.subdomain))

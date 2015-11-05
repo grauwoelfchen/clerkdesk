@@ -6,42 +6,49 @@ class NotesControllerTest < ActionController::TestCase
 
   def test_get_index
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       get(:index)
       refute_empty(assigns[:notes])
       assert_template(:index)
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_get_show
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       get(:show, :id => note.id)
       assert_equal(note, assigns[:note])
       assert_template(:show)
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_get_new
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       get(:new)
       assert_kind_of(Note, assigns[:note])
       assert_template(:new)
       assert_template(:partial => '_form')
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_post_create_with_validation_errors
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       params = {
         :note => {
@@ -58,12 +65,14 @@ class NotesControllerTest < ActionController::TestCase
       assert_template(:partial => 'shared/_error')
       assert_template(:partial => '_form')
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_post_create
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       params = {
         :note => {
@@ -81,12 +90,14 @@ class NotesControllerTest < ActionController::TestCase
       )
       assert_response(:redirect)
       assert_redirected_to(assigns[:note])
+      logout_user
     end
   end
 
   def test_get_edit
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       get(:edit, :id => note.id)
@@ -94,12 +105,14 @@ class NotesControllerTest < ActionController::TestCase
       assert_template(:edit)
       assert_template(:partial => '_form')
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_put_update_with_validation_errors
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       params = {
@@ -115,12 +128,14 @@ class NotesControllerTest < ActionController::TestCase
       assert_template(:partial => 'shared/_error')
       assert_template(:partial => '_form')
       assert_response(:success)
+      logout_user
     end
   end
 
   def test_put_update
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       params = {
@@ -137,12 +152,14 @@ class NotesControllerTest < ActionController::TestCase
       )
       assert_response(:redirect)
       assert_redirected_to(assigns[:note])
+      logout_user
     end
   end
 
   def test_delete_destroy
     user = locker_room_users(:oswald)
-    within_subdomain(user.team.subdomain) do
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
       login_user(user)
       note = notes(:favorite_song)
       assert_difference('Note.count', -1) do
@@ -156,6 +173,7 @@ class NotesControllerTest < ActionController::TestCase
       )
       assert_response(:redirect)
       assert_redirected_to(notes_url)
+      logout_user
     end
   end
 end
