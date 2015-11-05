@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NotesRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:notes, :people)
+  fixtures(:notes, :contacts)
 
   def test_route_to_notes
     within_subdomain_host do |host|

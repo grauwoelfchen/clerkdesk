@@ -1,0 +1,6 @@
+== Jbuilder.encode do |json|
+  ruby:
+    json.contacts @contacts do |contact|
+      json.id    contact.id
+      json.label contact.label
+    end

@@ -1,17 +1,17 @@
 - content_for :script do
-  = javascript_include_tag 'src/people'
+  = javascript_include_tag 'src/contacts'
 
-= form_for person, html: {class: 'ui form'} do |f|
-  - if person.errors.any?
-    = render 'shared/error', resource: person
+= form_for contact, html: {class: 'ui form'} do |f|
+  - if contact.errors.any?
+    = render 'shared/error', resource: contact
   fieldset
     legend= t('legend.id')
     .field
       = f.label :slug
-      = f.text_field :slug, placeholder: t('example.person.slug')
+      = f.text_field :slug, placeholder: t('example.contact.slug')
     .field
       = f.label :name
-      = f.text_field :name, placeholder: t('example.person.name')
+      = f.text_field :name, placeholder: t('example.contact.name')
   fieldset
     legend= t('legend.contact')
     .fields
@@ -21,33 +21,33 @@
         = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}, class: 'ui dropdown'
       .eight.wide.field
         = f.label :postcode
-        = f.text_field :postcode, placeholder: t('example.person.postcode')
+        = f.text_field :postcode, placeholder: t('example.contact.postcode')
     .fields
       .five.wide.field
         = f.label :division
-        - divisions = person.division.present? ? [['', person.division]] : []
-        = f.select :division, divisions, {prompt: '---', value: person.division}, class: 'ui dropdown'
+        - divisions = contact.division.present? ? [['', contact.division]] : []
+        = f.select :division, divisions, {prompt: '---', value: contact.division}, class: 'ui dropdown'
       .eleven.wide.field
         = f.label :city
-        = f.text_field :city, placeholder: t('example.person.city')
+        = f.text_field :city, placeholder: t('example.contact.city')
     .field
         = f.label :address
-        = f.text_field :address, placeholder: t('example.person.address')
+        = f.text_field :address, placeholder: t('example.contact.address')
     .fields
       .eight.wide.field
         = f.label :phone
-        = f.text_field :phone, placeholder: t('example.person.phone')
+        = f.text_field :phone, placeholder: t('example.contact.phone')
       .eight.wide.field
         = f.label :email
-        = f.text_field :email, placeholder: t('example.person.email')
+        = f.text_field :email, placeholder: t('example.contact.email')
   fieldset
     legend= t('legend.additional_info')
     .field
       = f.label :property
-      = f.text_field :property, placeholder: t('example.person.property')
+      = f.text_field :property, placeholder: t('example.contact.property')
     .field
       = f.label :memo
-      = f.text_field :memo, placeholder: t('example.person.memo')
+      = f.text_field :memo, placeholder: t('example.contact.memo')
     .field
       = f.label :joined_at
       .fields
@@ -57,7 +57,7 @@
       .fields
         = f.date_select :left_at, use_two_digit_numbers: true, prompt: true
   .actions
-    - action = person.persisted? ? 'update' : 'create'
+    - action = contact.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui submit button'
     - if action == 'update'
-      = link_to t('action.destroy'), person_path, class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+      = link_to t('action.destroy'), contact_path, class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

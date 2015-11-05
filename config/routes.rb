@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
     resources :notes
     resources :users, only: [:index, :show]
-    resources :people do
+    resources :contacts do
       get :search, on: :collection
     end
 

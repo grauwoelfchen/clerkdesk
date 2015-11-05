@@ -1,0 +1,45 @@
+- breadcrumb :contacts
+
+- content_for :header
+  h2= Contact.model_name.human
+  h3= t('subheading.contact')
+
+- content_for :actions
+  .item
+    = Contact.model_name.human
+    .menu
+      = link_to t('action.new'), new_contact_path, class: 'item'
+      = link_to t('action.index'), contacts_path, class: 'item active'
+
+.contact
+  section
+    .container
+      .ui.grid
+        .twelve.wide.column
+          = render 'shared/pagination', resource: @contacts, info: true
+          table.ui.very.basic.compact.table
+            thead
+              tr
+                th
+                  span.attribute= Contact.human_attribute_name(:name)
+                  = sort_links_for(:name)
+                th
+                  span.attribute= Contact.human_attribute_name(:slug)
+                  = sort_links_for(:slug)
+                th
+                  span.attribute= Contact.human_attribute_name(:updated_at)
+                  = sort_links_for(:updated_at, :desc)
+                th
+            tbody
+              - @contacts.each do |contact|
+                tr
+                  td= link_to truncate(contact.name, length: 18), contact_path(contact)
+                  td
+                    span.label= truncate(contact.slug, length: 12)
+                  td.updated_at= contact.updated_at
+                  td.operations
+                    ul
+                      li= link_to t('action.edit'), edit_contact_path(contact)
+                      li= link_to t('action.destroy'), contact_path(contact), method: :delete, data: {confirm: 'Are you sure?'}
+
+          = render 'shared/pagination', resource: @contacts, info: false

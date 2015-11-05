@@ -1,0 +1,23 @@
+- breadcrumb :contact, @contact
+
+- content_for :header
+  h2= Contact.model_name.human
+  h3= t('subheading.contact')
+
+- content_for :actions
+  .item
+    = Contact.model_name.human
+    .menu
+      = link_to t('action.new'), new_contact_path, class: 'item'
+      = link_to t('action.index'), contacts_path, class: 'item'
+      = link_to t('action.show'), contact_path(@contact), class: 'item'
+      = link_to t('action.edit'), edit_contact_path(@contact), class: 'item active'
+
+.contact
+  section
+    .container
+      .ui.grid
+        .twelve.wide.column
+          h4= t('action.edit')
+          hr
+          = render 'form', contact: @contact

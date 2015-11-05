@@ -1,69 +1,69 @@
 require 'test_helper'
 
-class PeopleRouteTest < ActionDispatch::IntegrationTest
+class ContactsRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:people)
+  fixtures(:contacts)
 
-  def test_route_to_people
+  def test_route_to_contacts
     within_subdomain_host do |host|
       assert_routing({
         method: 'get',
-        path:   "#{host}/people"
+        path:   "#{host}/contacts"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'index'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/people/new"
+        path:   "#{host}/contacts/new"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'new'
       })
       assert_routing({
         method: 'post',
-        path:   "#{host}/people"
+        path:   "#{host}/contacts"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'create'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/people/1"
+        path:   "#{host}/contacts/1"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'show',
         id:         '1'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/people/1/edit"
+        path:   "#{host}/contacts/1/edit"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'edit',
         id:         '1'
       })
       assert_routing({
         method: 'patch',
-        path:   "#{host}/people/1"
+        path:   "#{host}/contacts/1"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'update',
         id:         '1'
       })
       assert_routing({
         method: 'put',
-        path:   "#{host}/people/1"
+        path:   "#{host}/contacts/1"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'update',
         id:         '1'
       })
       assert_routing({
         method: 'delete',
-        path:   "#{host}/people/1"
+        path:   "#{host}/contacts/1"
       }, {
-        controller: 'people',
+        controller: 'contacts',
         action:     'destroy',
         id:         '1'
       })
