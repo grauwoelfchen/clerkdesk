@@ -164,19 +164,17 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "locker_room_types", ["plan_id"], name: "index_locker_room_types_on_plan_id", using: :btree
 
   create_table "locker_room_users", force: :cascade do |t|
-    t.integer  "team_id"
     t.string   "username"
     t.string   "name"
-    t.string   "email",                                     null: false
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "locale",           limit: 5, default: "en", null: false
+    t.string   "email",                                    null: false
+    t.string   "password_digest"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "locale",          limit: 5, default: "en", null: false
   end
 
-  add_index "locker_room_users", ["team_id", "email"], name: "index_locker_room_users_on_team_id_and_email", unique: true, using: :btree
-  add_index "locker_room_users", ["team_id", "username"], name: "index_locker_room_users_on_team_id_and_username", unique: true, using: :btree
+  add_index "locker_room_users", ["email"], name: "index_locker_room_users_on_email", unique: true, using: :btree
+  add_index "locker_room_users", ["username"], name: "index_locker_room_users_on_username", unique: true, using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"

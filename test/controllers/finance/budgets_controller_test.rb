@@ -7,7 +7,8 @@ module Finance
 
     def test_get_show
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         get(:show, :report_id => budget.report_id)
@@ -20,7 +21,8 @@ module Finance
 
     def test_get_edit
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         get(:edit, :report_id => budget.report_id)
@@ -34,7 +36,8 @@ module Finance
 
     def test_put_update_with_validation_errors
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         params = {
@@ -61,7 +64,8 @@ module Finance
 
     def test_put_update
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
         params = {

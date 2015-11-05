@@ -7,7 +7,8 @@ module Finance
 
     def test_get_show
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         login_user(user)
         account_book = finance_account_books(:general_money)
         get(:show,

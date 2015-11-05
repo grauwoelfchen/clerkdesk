@@ -55,15 +55,15 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
   def test_team_registration
     visit root_url(subdomain: nil)
     click_link('GET STARTED')
-    find(:id, 'team_name').set('Vanilla dog biscuits')
-    fill_in('Subdomain', :with => 'vanilla-dog-biscuits')
-    fill_in('Username',  :with => 'weenie')
-    find(:id, 'team_owners_attributes_0_name').set('Weenie')
-    fill_in('Email',                 :with => 'weenie@example.com')
-    fill_in('Password',              :with => 'bowwow', :exact => true)
-    fill_in('Password confirmation', :with => 'bowwow')
+    find(:id, 'team_name').set('Lovely flowers')
+    fill_in('Subdomain', :with => 'lovely-flowers')
+    fill_in('Username',  :with => 'daisy')
+    find(:id, 'team_owners_attributes_0_name').set('Daisy')
+    fill_in('Email',                 :with => 'daisy@example.org')
+    fill_in('Password',              :with => 'byebyuuun', :exact => true)
+    fill_in('Password confirmation', :with => 'byebyuuun')
     click_button('Create Team')
-    assert_equal("http://vanilla-dog-biscuits.#{RACK_HOST}/", page.current_url)
+    assert_equal("http://lovely-flowers.#{RACK_HOST}/", page.current_url)
     assert_content('Team has been successfully created.')
     logout_user
   end

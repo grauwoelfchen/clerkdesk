@@ -7,7 +7,8 @@ class FinanceReportDestroyTest < Capybara::Rails::TestCase
   def test_destroy_finance
     within_js_driver do
       user = locker_room_users(:oswald)
-      within_subdomain(user.team.subdomain) do
+      team = user.teams.first
+      within_subdomain(team.subdomain) do
         signin_user(user)
         report = finance_reports(:general_report)
         visit(finance_reports_url)

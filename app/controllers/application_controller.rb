@@ -3,14 +3,14 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_filter :require_login
+  before_filter :authenticate_user!
 
   layout 'public'
 
   private
 
-  def redirect_back_or_to(default_url, flash_hash={})
-    url = session.delete(:return_to_url) || request.referrer || default_url
-    redirect_to(url, :flash => flash_hash)
-  end
+    def redirect_back_or_to(default_url, flash_hash={})
+      url = session.delete(:return_to_url) || request.referrer || default_url
+      redirect_to(url, :flash => flash_hash)
+    end
 end

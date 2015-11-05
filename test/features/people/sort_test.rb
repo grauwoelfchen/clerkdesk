@@ -6,8 +6,9 @@ class PersonSortTest < Capybara::Rails::TestCase
 
   def test_sort_with_name_desc
     user = locker_room_users(:weenie)
-    within_subdomain(user.team.subdomain) do
-      login_user(user)
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
+      login_user(user, team.subdomain)
       visit(people_url)
       assert_equal(people_url, page.current_url)
       href = '/people?direction=desc&field=name'
@@ -26,8 +27,9 @@ class PersonSortTest < Capybara::Rails::TestCase
 
   def test_sort_with_name_asc
     user = locker_room_users(:weenie)
-    within_subdomain(user.team.subdomain) do
-      login_user(user)
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
+      login_user(user, team.subdomain)
       visit(people_url)
       assert_equal(people_url, page.current_url)
       href = '/people?direction=asc&field=name'
@@ -46,8 +48,9 @@ class PersonSortTest < Capybara::Rails::TestCase
 
   def test_sort_with_slug_desc
     user = locker_room_users(:weenie)
-    within_subdomain(user.team.subdomain) do
-      login_user(user)
+    team = user.teams.first
+    within_subdomain(team.subdomain) do
+      login_user(user, team.subdomain)
       visit(people_url)
       assert_equal(people_url, page.current_url)
       href = '/people?direction=desc&field=slug'
