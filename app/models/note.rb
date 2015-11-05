@@ -4,7 +4,7 @@ class Note < ActiveRecord::Base
   include HtmlConvertable
 
   acts_as_taggable
-  tracked owner:          ->(controller, _) { controller.current_user },
+  tracked owner:          ->(controller, _) { controller.send(:current_user) },
           trackable_name: ->(_, model) { model.title }
   paginates_per 6
   sortable :title, :updated_at
