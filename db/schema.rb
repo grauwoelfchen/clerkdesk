@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
 
   create_table "finance_accounts", force: :cascade do |t|
-    t.integer  "report_id",             null: false
+    t.integer  "ledger_id",             null: false
     t.string   "name",                  null: false
     t.string   "description"
     t.text     "memo"
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.string   "icon",        limit: 8
   end
 
-  add_index "finance_accounts", ["report_id"], name: "index_finance_accounts_on_report_id", using: :btree
+  add_index "finance_accounts", ["ledger_id"], name: "index_finance_accounts_on_ledger_id", using: :btree
 
   create_table "finance_budgets", force: :cascade do |t|
-    t.integer  "report_id",   null: false
+    t.integer  "ledger_id",   null: false
     t.string   "description"
     t.text     "memo"
     t.datetime "approved_at"
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "finance_budgets", ["report_id"], name: "index_finance_budgets_on_report_id", using: :btree
+  add_index "finance_budgets", ["ledger_id"], name: "index_finance_budgets_on_ledger_id", using: :btree
 
   create_table "finance_categories", force: :cascade do |t|
-    t.integer  "report_id",               null: false
+    t.integer  "ledger_id",               null: false
     t.integer  "type",        default: 0, null: false
     t.string   "name",                    null: false
     t.string   "description"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "finance_categories", ["report_id"], name: "index_finance_categories_on_report_id", using: :btree
+  add_index "finance_categories", ["ledger_id"], name: "index_finance_categories_on_ledger_id", using: :btree
   add_index "finance_categories", ["type"], name: "index_finance_categories_on_type", using: :btree
 
   create_table "finance_entries", force: :cascade do |t|
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "finance_journalizings", ["account_id"], name: "index_finance_journalizings_on_account_id", using: :btree
   add_index "finance_journalizings", ["category_id"], name: "index_finance_journalizings_on_category_id", using: :btree
 
-  create_table "finance_reports", force: :cascade do |t|
+  create_table "finance_ledgers", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.date     "started_at"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "finance_reports", ["state"], name: "index_finance_reports_on_state", using: :btree
+  add_index "finance_ledgers", ["state"], name: "index_finance_ledgers_on_state", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",    null: false

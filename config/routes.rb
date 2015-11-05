@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
 
     scope module: :finance, as: :finance do
-      resources :reports, path: 'finances', except: [:show] do
-        # finance_reports
+      resources :ledgers, path: 'finances', except: [:show] do
+        # finance_ledgers
         get '/overview', action: :show, on: :member
 
         resource :budget, only: [:show, :edit, :update]

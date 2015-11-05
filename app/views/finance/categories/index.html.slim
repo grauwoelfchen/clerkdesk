@@ -1,4 +1,4 @@
-- breadcrumb :'finance/categories', @report
+- breadcrumb :'finance/categories', @ledger
 
 - content_for :header
   h2= Finance::Category.model_name.human
@@ -6,22 +6,22 @@
 
 - content_for :actions
   .item
-    = render 'finance/shared/actions', report: @report
+    = render 'finance/shared/actions', ledger: @ledger
   .item
     = Finance::Category.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_report_category_path(@report), class: 'item'
-      = link_to t('action.index'), finance_report_categories_path(@report), class: 'item active'
+      = link_to t('action.new'), new_finance_ledger_category_path(@ledger), class: 'item'
+      = link_to t('action.index'), finance_ledger_categories_path(@ledger), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.new', resource: Finance::Category.model_name.human.downcase), new_finance_report_category_path(@report)
+    li= link_to t('action.resource.new', resource: Finance::Category.model_name.human.downcase), new_finance_ledger_category_path(@ledger)
 
 .finance.category
   section
-    = render 'finance/shared/report', report: @report
+    = render 'finance/shared/ledger', ledger: @ledger
     .container.index
-      = render 'finance/shared/menu', report: @report
+      = render 'finance/shared/menu', ledger: @ledger
       .page-content
         .ui.grid
           .sixteen.wide.column
@@ -51,5 +51,5 @@
                       td.updated_at= category.updated_at
                       td.operations
                         ul
-                          li= link_to t('action.edit'), edit_finance_report_category_path(@report, category)
-                          li= link_to t('action.destroy'), finance_report_category_path(@report, category), method: :delete, data: {confirm: 'Are you sure?'}
+                          li= link_to t('action.edit'), edit_finance_ledger_category_path(@ledger, category)
+                          li= link_to t('action.destroy'), finance_ledger_category_path(@ledger, category), method: :delete, data: {confirm: 'Are you sure?'}

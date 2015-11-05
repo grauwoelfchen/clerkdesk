@@ -1,4 +1,4 @@
-- breadcrumb :'finance/account', @report, @account
+- breadcrumb :'finance/account', @ledger, @account
 
 - content_for :header
   h2= Finance::Account.model_name.human
@@ -6,18 +6,18 @@
 
 - content_for :actions
   .item
-    = render 'finance/shared/actions', report: @report
+    = render 'finance/shared/actions', ledger: @ledger
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.pluralize.downcase), finance_report_accounts_path(@report)
-    li= link_to t('action.resource.new',   resource: Finance::Account.model_name.human.downcase), new_finance_report_account_path(@report)
+    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.pluralize.downcase), finance_ledger_accounts_path(@ledger)
+    li= link_to t('action.resource.new',   resource: Finance::Account.model_name.human.downcase), new_finance_ledger_account_path(@ledger)
 
 .finance.account
   section
-    = render 'finance/shared/report', report: @report
+    = render 'finance/shared/ledger', ledger: @ledger
     .container.index
-      = render 'finance/shared/menu', report: @report, account: @account
+      = render 'finance/shared/menu', ledger: @ledger, account: @account
       .page-content
         .ui.grid
           .twelve.wide.column
@@ -26,4 +26,4 @@
         .ui.grid
           .seven.wide.column
             .container
-              = render 'form', report: @report, account: @account
+              = render 'form', ledger: @ledger, account: @account

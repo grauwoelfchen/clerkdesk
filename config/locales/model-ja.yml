@@ -3,9 +3,9 @@ ja:
   activerecord:
     models:
       note: ノート
-      finance/report: 会計
+      finance/ledger: 会計
       finance/category: 費目
-      finance/account: 帳簿
+      finance/account: 口座
       finance/budget: 予算
       finance/entry: 記録
       locker_room/user: 管理者
@@ -16,7 +16,7 @@ ja:
         tag_list: タグ
         created_at: 作成日時
         updated_at: 更新日時
-      finance/report:
+      finance/ledger:
         name: 名前
         description: 説明
         started_at: 開始
@@ -66,7 +66,7 @@ ja:
         left_at:
           after_field: 'は%{field}より後に設定してください'
       models:
-        finance/report:
+        finance/ledger:
           attributes:
             started_at:
               before_than_finished_at: 'は終了より前に設定してください'
@@ -74,7 +74,7 @@ ja:
     type:
       expense: 支出
       income: 収入
-    finance/report:
+    finance/ledger:
       state:
         closed: 終了
         opened: 有効

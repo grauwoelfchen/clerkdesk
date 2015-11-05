@@ -2,7 +2,7 @@
 en:
   activerecord:
     models:
-      finance/report: Finance
+      finance/ledger: Finance
       finance/category: Category
       finance/account: Account
       finance/budget: Budget
@@ -14,7 +14,7 @@ en:
         tag_list: Tags
         created_at: Created
         updated_at: Updated
-      finance/report:
+      finance/ledger:
         created_at: Created
         updated_at: Updated
       finance/category:
@@ -36,7 +36,7 @@ en:
         left_at:
           after_field: 'must be after %{field}'
       models:
-        finance/report:
+        finance/ledger:
           attributes:
             started_at:
               before_than_finished_at: 'must be before than finished_at'

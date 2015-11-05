@@ -3,7 +3,7 @@ require 'test_helper'
 module Finance
   class AccountTest < ActiveSupport::TestCase
     locker_room_fixtures(:teams, :users, :mateships)
-    fixtures(:'finance/reports', :'finance/accounts')
+    fixtures(:'finance/ledgers', :'finance/accounts')
 
     def test_validation_with_blank_name
       account = Finance::Account.new(:name => nil)
@@ -12,10 +12,10 @@ module Finance
       assert_equal([message], account.errors[:name])
     end
 
-    def test_validation_with_duplicated_name_under_same_report
+    def test_validation_with_duplicated_name_under_same_ledger
       other_account = finance_accounts(:general_bank)
-      report = other_account.report
-      account = report.accounts.new(:name => other_account.name)
+      ledger = other_account.ledger
+      account = ledger.accounts.new(:name => other_account.name)
       refute(account.valid?)
       message = 'has already been taken'
       assert_equal([message], account.errors[:name])

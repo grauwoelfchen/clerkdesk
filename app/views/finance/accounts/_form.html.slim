@@ -1,7 +1,7 @@
 - content_for :script do
   = javascript_include_tag 'src/finance/accounts'
 
-= form_for [:finance, report, account], html: {class: 'ui form'} do |f|
+= form_for [:finance, ledger, account], html: {class: 'ui form'} do |f|
   - if account.errors.any?
     = render 'shared/error', resource: account
   .field
@@ -17,4 +17,4 @@
     - action = account.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui submit button'
     - if action == 'update'
-      = link_to t('action.destroy'), finance_report_account_path(report, account), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+      = link_to t('action.destroy'), finance_ledger_account_path(ledger, account), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

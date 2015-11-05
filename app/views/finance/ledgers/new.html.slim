@@ -1,0 +1,21 @@
+- breadcrumb :'finance/ledger', @ledger
+
+- content_for :header
+  h2= Finance::Ledger.model_name.human
+  h3= t('subheading.finance.ledger')
+
+- content_for :actions
+  .item
+    = Finance::Ledger.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_ledger_path, class: 'item active'
+      = link_to t('action.index'), finance_ledgers_path, class: 'item'
+
+.finance.ledger
+  section
+    .container
+      .ui.grid
+        .seven.wide.column
+          h4= t('action.new')
+          hr
+          = render 'form', ledger: @ledger

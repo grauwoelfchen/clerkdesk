@@ -1,10 +1,10 @@
 module Finance
   class CategoriesController < WorkspaceController
-    before_action :set_report
+    before_action :set_ledger
     before_action :set_category, only: [:edit, :update, :destroy]
 
     def index
-      @categories = @report.categories
+      @categories = @ledger.categories
       respond_to do |format|
         format.html {
           @categories = @categories
@@ -17,13 +17,13 @@ module Finance
     end
 
     def new
-      @category = @report.categories.new
+      @category = @ledger.categories.new
     end
 
     def create
-      @category = @report.categories.new(category_params)
+      @category = @ledger.categories.new(category_params)
       if @category.save_with_journalizings
-        redirect_to(finance_report_categories_url(@report),
+        redirect_to(finance_ledger_categories_url(@ledger),
           :notice => 'Category has been successfully created.')
       else
         flash.now[:alert] = 'Category could not be created.'
@@ -36,7 +36,7 @@ module Finance
 
     def update
       if @category.update_attributes(category_params)
-        redirect_to(finance_report_categories_url(@report),
+        redirect_to(finance_ledger_categories_url(@ledger),
           :notice => 'Category has been successfully updated.')
       else
         flash.now[:alert] = 'Category could not be updated.'
@@ -46,18 +46,18 @@ module Finance
 
     def destroy
       @category.destroy
-      redirect_to(finance_report_categories_url(@report),
+      redirect_to(finance_ledger_categories_url(@ledger),
         :notice => 'Category has been successfully destroyed.')
     end
 
     private
 
-    def set_report
-      @report = Report.find(params[:report_id])
+    def set_ledger
+      @ledger = Ledger.find(params[:ledger_id])
     end
 
     def set_category
-      @category = @report.categories.find(params[:id])
+      @category = @ledger.categories.find(params[:id])
     end
 
     def category_params

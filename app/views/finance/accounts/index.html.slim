@@ -1,4 +1,4 @@
-- breadcrumb :'finance/accounts', @report
+- breadcrumb :'finance/accounts', @ledger
 
 - content_for :header
   h2= Finance::Account.model_name.human
@@ -6,22 +6,22 @@
 
 - content_for :actions
   .item
-    = render 'finance/shared/actions', report: @report
+    = render 'finance/shared/actions', ledger: @ledger
   .item
     = Finance::Account.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_report_account_path(@report), class: 'item'
-      = link_to t('action.index'), finance_report_accounts_path(@report), class: 'item active'
+      = link_to t('action.new'), new_finance_ledger_account_path(@ledger), class: 'item'
+      = link_to t('action.index'), finance_ledger_accounts_path(@ledger), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.new', resource: Finance::Account.model_name.human.downcase), new_finance_report_account_path(@report)
+    li= link_to t('action.resource.new', resource: Finance::Account.model_name.human.downcase), new_finance_ledger_account_path(@ledger)
 
 .finance.account
   section
-    = render 'finance/shared/report', report: @report
+    = render 'finance/shared/ledger', ledger: @ledger
     .container.index
-      = render 'finance/shared/menu', report: @report
+      = render 'finance/shared/menu', ledger: @ledger
       .page-content
         .ui.grid
           .sixteen.wide.column
@@ -48,10 +48,10 @@
                     tr
                       td.name
                         i.icon.fa.fa-fw.fa-lg= account.icon.to_s.html_safe
-                        = link_to truncate(account.name, length: 18), finance_report_account_entries_path(@report, account)
+                        = link_to truncate(account.name, length: 18), finance_ledger_account_entries_path(@ledger, account)
                       td= truncate(account.description, length: 27)
                       td.updated_at= account.updated_at
                       td.operations
                         ul
-                          li= link_to t('action.edit'), edit_finance_report_account_path(@report, account)
-                          li= link_to t('action.destroy'), finance_report_account_path(@report, account), method: :delete, data: {confirm: 'Are you sure?'}
+                          li= link_to t('action.edit'), edit_finance_ledger_account_path(@ledger, account)
+                          li= link_to t('action.destroy'), finance_ledger_account_path(@ledger, account), method: :delete, data: {confirm: 'Are you sure?'}

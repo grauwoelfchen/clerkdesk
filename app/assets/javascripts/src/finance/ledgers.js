@@ -39,7 +39,7 @@
     (function() {
       if ($.fn.autosize == undefined) { return; }
 
-      var textarea = $('#finance_report_description');
+      var textarea = $('#finance_ledger_description');
       textarea.autosize();
     })();
   });

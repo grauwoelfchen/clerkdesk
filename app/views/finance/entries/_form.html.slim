@@ -2,10 +2,10 @@
   = javascript_include_tag 'src/finance/entries'
 
 .attrs style="height:0;width:0;opacity:0;"
-  span#report data-id=@report.id
+  span#ledger data-id=@ledger.id
   span#account data-id=@account.id
 
-= form_for [:finance, report, account, entry], html: {class: 'ui form'} do |f|
+= form_for [:finance, ledger, account, entry], html: {class: 'ui form'} do |f|
   - if entry.errors.any?
     = render 'shared/error', resource: entry
   fieldset
@@ -46,4 +46,4 @@
       - action = entry.persisted? ? 'update' : 'create'
       = f.submit t("action.#{action}"), class: 'ui submit button'
       - if action == 'update'
-        = link_to t('action.destroy'), finance_report_account_entry_path(report, account, entry), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+        = link_to t('action.destroy'), finance_ledger_account_entry_path(ledger, account, entry), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
