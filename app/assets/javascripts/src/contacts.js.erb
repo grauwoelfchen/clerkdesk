@@ -4,7 +4,7 @@
   $(function() {
     // indicator
     (function() {
-      var container = $('#person_division');
+      var container = $('#contact_division');
       container.parent().append(
         '<span id="indicator"><img src="<%= asset_path('loading.gif') %>"></div>'
       );
@@ -14,8 +14,8 @@
 
     // division codes updater
     (function() {
-      var country  = $('#person_country')
-        , division = $('#person_division')
+      var country  = $('#contact_country')
+        , division = $('#contact_division')
         ;
 
       var setDivisionOptions = function(country_code, division_code) {

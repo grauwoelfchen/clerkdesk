@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+  create_table "contacts", force: :cascade do |t|
+    t.string   "slug",                    null: false
+    t.string   "property"
+    t.string   "name",       default: "", null: false
+    t.string   "postcode"
+    t.string   "country",    default: "", null: false
+    t.string   "division",   default: "", null: false
+    t.string   "city",       default: "", null: false
+    t.string   "address",    default: "", null: false
+    t.string   "phone"
+    t.string   "email"
+    t.string   "memo"
+    t.datetime "joined_at"
+    t.datetime "left_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "contacts", ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
+
   create_table "finance_account_books", force: :cascade do |t|
     t.integer  "report_id",             null: false
     t.string   "name",                  null: false
@@ -109,12 +129,12 @@ ActiveRecord::Schema.define(version: 20150922174132) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",    null: false
-    t.integer  "person_id",  null: false
+    t.integer  "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "identities", ["person_id"], name: "index_identities_on_person_id", using: :btree
+  add_index "identities", ["contact_id"], name: "index_identities_on_contact_id", using: :btree
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "involvements", force: :cascade do |t|
@@ -183,26 +203,6 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
-
-  create_table "people", force: :cascade do |t|
-    t.string   "slug",                    null: false
-    t.string   "property"
-    t.string   "name",       default: "", null: false
-    t.string   "postcode"
-    t.string   "country",    default: "", null: false
-    t.string   "division",   default: "", null: false
-    t.string   "city",       default: "", null: false
-    t.string   "address",    default: "", null: false
-    t.string   "phone"
-    t.string   "email"
-    t.string   "memo"
-    t.datetime "joined_at"
-    t.datetime "left_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "people", ["slug"], name: "index_people_on_slug", unique: true, using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

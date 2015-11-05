@@ -84,19 +84,19 @@ crumb :'finance/budget' do |report|
   parent :'finance/report', report
 end
 
-# people
+# contacts
 
-crumb :people do
-  link Person.model_name.human.pluralize, people_path
+crumb :contacts do
+  link Contact.model_name.human.pluralize, contacts_path
 end
 
-crumb :person do |person|
-  unless person.persisted?
+crumb :contact do |contact|
+  unless contact.persisted?
     link t('crumb.new'), nil
   else
-    link person.name, person_path(person)
+    link contact.name, contact_path(contact)
   end
-  parent :people
+  parent :contacts
 end
 
 # users

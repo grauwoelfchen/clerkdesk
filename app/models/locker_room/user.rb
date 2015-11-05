@@ -8,7 +8,7 @@ class LockerRoom::User < ActiveRecord::Base
   sortable :username, :updated_at
 
   has_one :identity, foreign_key: :user_id, class_name: 'Identity'
-  has_one :person, through: :identity, source: :user
+  has_one :contact, through: :identity, source: :user
 
   validates :locale,
     inclusion: {in: I18n.available_locales.map(&:to_s)}

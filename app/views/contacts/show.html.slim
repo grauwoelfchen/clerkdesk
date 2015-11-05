@@ -1,0 +1,83 @@
+- breadcrumb :contact, @contact
+
+- content_for :header
+  h2= Contact.model_name.human
+  h3= t('subheading.contact')
+
+- content_for :actions
+  .item
+    = Contact.model_name.human
+    .menu
+      = link_to t('action.new'), new_contact_path, class: 'item'
+      = link_to t('action.index'), contacts_path, class: 'item'
+      = link_to t('action.show'), contact_path(@contact), class: 'item active'
+      = link_to t('action.edit'), edit_contact_path(@contact), class: 'item'
+
+.contact
+  section
+    .container
+      .ui.grid
+        .twelve.wide.column
+          h4= @contact.name
+          hr
+          legend= t('legend.id')
+          .group
+            .slug
+              = label_tag Contact.human_attribute_name(:slug)
+              span.label.label-default= @contact.slug
+          .group
+            .name
+              = label_tag Contact.human_attribute_name(:name)
+              = @contact.name
+          legend= t('legend.contact')
+          .group
+            .country
+              = label_tag Contact.human_attribute_name(:country)
+              - country = Country.find_country_by_alpha2(@contact.country)
+              - if country
+                = country.translations[current_locale]
+          .group
+            .division
+              = label_tag Contact.human_attribute_name(:division)
+              - if country && division = country.subdivisions[@contact.division]
+                = division['name']
+          .group
+            .city
+              = label_tag Contact.human_attribute_name(:city)
+              = @contact.city
+          .group
+            .address
+              = label_tag Contact.human_attribute_name(:address)
+              = @contact.address
+          .group
+            .postcode
+              = label_tag Contact.human_attribute_name(:postcode)
+              = @contact.postcode
+          .group
+            .phone
+              = label_tag Contact.human_attribute_name(:phone)
+              = @contact.phone
+          .group
+            .email
+              = label_tag Contact.human_attribute_name(:email)
+              = mail_to @contact.email
+          legend= t('legend.additional_info')
+          .group
+            .property
+              = label_tag Contact.human_attribute_name(:property)
+              = @contact.property
+          .group
+            .memo
+              = label_tag Contact.human_attribute_name(:memo)
+              = @contact.memo
+          .group
+            .joined
+              = label_tag Contact.human_attribute_name(:joined_at)
+              span.joined_at= @contact.joined_at
+          .group
+            .left
+              = label_tag Contact.human_attribute_name(:left_at)
+              span.left_at= @contact.left_at
+          ul.actions
+            li
+              = link_to t('action.edit'), edit_contact_path, class: 'ui button'
