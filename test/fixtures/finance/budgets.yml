@@ -1,8 +1,8 @@
 second_piano_budget:
-  report: general_report
+  ledger: general_ledger
   description: 'Second piano budget'
   memo: ''
 unicycle_budget:
-  report: special_report
+  ledger: special_ledger
   description: 'Unicycle budget'
   memo: ''

@@ -1,6 +1,6 @@
-class CreateFinanceReports < ActiveRecord::Migration
+class CreateFinanceLedgers < ActiveRecord::Migration
   def change
-    create_table :finance_reports do |t|
+    create_table :finance_ledgers do |t|
       t.string   :name
       t.string   :description, null: true,  default: nil
       t.date     :started_at,  null: true,  default: nil
@@ -10,6 +10,6 @@ class CreateFinanceReports < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :finance_reports, :state
+    add_index :finance_ledgers, :state
   end
 end

@@ -8,5 +8,5 @@
   .ui.grid
     .four.wide.column
       .ui.secondary.pointing.menu
-        = active_link_to t('nav.overview'), finance_report_account_path(report, account), class: 'item', active: /accounts\/[0-9]$/
-        = active_link_to t('action.index'), finance_report_account_entries_path(report, account), class: 'item', active: /entries$/
+        = active_link_to t('nav.overview'), finance_ledger_account_path(ledger, account), class: 'item', active: /accounts\/[0-9]$/
+        = active_link_to t('action.index'), finance_ledger_account_entries_path(ledger, account), class: 'item', active: /entries$/

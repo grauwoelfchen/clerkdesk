@@ -4,14 +4,14 @@ stationaly_goods:
   type: <%= :expense %>
   title: 'Stationaly goods'
   total_amount: 305
-  memo: 'at ABC reports'
-reports:
+  memo: 'at ABC Books'
+books:
   account: general_money
   journalizing: general_journalizing_miscellaneous_expense
   type: <%= :expense %>
   title: 'Books'
   total_amount: 2850
-  memo: 'at ABC reports'
+  memo: 'at ABC Books'
 assistance_from_univ:
   account: general_money
   journalizing: general_journalizing_assistance

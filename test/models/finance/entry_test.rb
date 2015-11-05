@@ -4,7 +4,7 @@ module Finance
   class EntryTest < ActiveSupport::TestCase
     locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/entries',
-             :'finance/reports', :'finance/categories',
+             :'finance/ledgers', :'finance/categories',
              :'finance/accounts', :'finance/journalizings')
 
     def test_validation_with_without_title

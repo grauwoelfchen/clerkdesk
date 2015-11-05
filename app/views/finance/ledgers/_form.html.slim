@@ -1,9 +1,9 @@
 - content_for :script do
-  = javascript_include_tag 'src/finance/reports'
+  = javascript_include_tag 'src/finance/ledgers'
 
-= form_for [:finance, report], html: {class: 'ui form'} do |f|
-  - if report.errors.any?
-    = render 'shared/error', resource: report
+= form_for [:finance, ledger], html: {class: 'ui form'} do |f|
+  - if ledger.errors.any?
+    = render 'shared/error', resource: ledger
   .field
     = f.label :name
     = f.text_field :name, placeholder: 'Name'
@@ -12,7 +12,7 @@
     = f.text_area :description, rows: 4, placeholder: 'Description'
   .field
     = f.label :state
-    = f.select :state, Finance::Report.human_states.invert, class: 'ui dropdown'
+    = f.select :state, Finance::Ledger.human_states.invert, class: 'ui dropdown'
   fieldset
     .field
       legend= t('legend.period')
@@ -23,7 +23,7 @@
         = f.label :finished_at
         = f.text_field :finished_at, class: 'date'
   .actions
-    - action = report.persisted? ? 'update' : 'create'
+    - action = ledger.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui button'
     - if action == 'update'
-      = link_to t('action.destroy'), finance_report_path(report), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+      = link_to t('action.destroy'), finance_ledger_path(ledger), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

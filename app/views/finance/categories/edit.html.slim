@@ -1,4 +1,4 @@
-- breadcrumb :'finance/category', @report, @category
+- breadcrumb :'finance/category', @ledger, @category
 
 - content_for :header
   h2= Finance::Category.model_name.human
@@ -6,24 +6,24 @@
 
 - content_for :actions
   .item
-    = render 'finance/shared/actions', report: @report
+    = render 'finance/shared/actions', ledger: @ledger
   .item
     = Finance::Category.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_report_category_path(@report), class: 'item'
-      = link_to t('action.index'), finance_report_categories_path(@report), class: 'item'
-      = link_to t('action.edit'), edit_finance_report_category_path(@report, @category), class: 'item active'
+      = link_to t('action.new'), new_finance_ledger_category_path(@ledger), class: 'item'
+      = link_to t('action.index'), finance_ledger_categories_path(@ledger), class: 'item'
+      = link_to t('action.edit'), edit_finance_ledger_category_path(@ledger, @category), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.index', resource: Finance::Category.model_name.human.pluralize.downcase), finance_report_categories_path(@report)
-    li= link_to t('action.resource.new',   resource: Finance::Category.model_name.human.downcase), new_finance_report_category_path(@report)
+    li= link_to t('action.resource.index', resource: Finance::Category.model_name.human.pluralize.downcase), finance_ledger_categories_path(@ledger)
+    li= link_to t('action.resource.new',   resource: Finance::Category.model_name.human.downcase), new_finance_ledger_category_path(@ledger)
 
 .finance.category
   section
-    = render 'finance/shared/report', report: @report
+    = render 'finance/shared/ledger', ledger: @ledger
     .container.index
-      = render 'finance/shared/menu', report: @report
+      = render 'finance/shared/menu', ledger: @ledger
       .page-content
         .ui.grid
           .twelve.wide.column
@@ -32,4 +32,4 @@
         .ui.grid
           .seven.wide.column
             .container
-              = render 'form', report: @report, category: @category
+              = render 'form', ledger: @ledger, category: @category

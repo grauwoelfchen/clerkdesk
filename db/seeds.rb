@@ -20,15 +20,15 @@ if Apartment::Tenant.current == 'public'
 end
 
 if Apartment::Tenant.current == 'grauwoelfchen'
-  report_params = {
-    name:        '2015.05 Accounting',
+  ledger_params = {
+    name:        '2015.05',
     description: 'Foo',
     started_at:  Time.new(2015,04, 01, 00, 00, 00, '+00:00'),
     finished_at: Time.new(2016,03, 31, 23, 59, 59, '+00:00'),
     state:       :primary
   }
-  report = Finance::Report.new(report_params)
-  report.save_with_fiscal_objects
+  ledger = Finance::Ledger.new(ledger_params)
+  ledger.save_with_fiscal_objects
 
   note_params = {
     title: '05.2015 13th Meeting',
