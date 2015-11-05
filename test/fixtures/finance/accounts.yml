@@ -1,20 +1,20 @@
 general_money:
-  report: general_report
+  ledger: general_ledger
   name: 'Money'
   icon: '&#xf187;'
   description: ''
 general_bank:
-  report: general_report
+  ledger: general_ledger
   name: 'Bank'
   icon: '&#xf19c;'
   description: ''
 special_money:
-  report: special_report
+  ledger: special_ledger
   name: 'Mony'
   icon: '&#xf187;'
   description: ''
 special_bank:
-  report: special_report
+  ledger: special_ledger
   name: 'Bank'
   icon: '&#xf19c;'
   description: ''

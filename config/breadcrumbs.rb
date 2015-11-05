@@ -24,64 +24,64 @@ end
 
 # finance
 
-crumb :'finance/reports' do
-  link Finance::Report.model_name.human.pluralize, finance_reports_path
+crumb :'finance/ledgers' do
+  link Finance::Ledger.model_name.human.pluralize, finance_ledgers_path
 end
 
-crumb :'finance/report' do |report|
-  unless report.persisted?
+crumb :'finance/ledger' do |ledger|
+  unless ledger.persisted?
     link t('crumb.new'), nil
   else
-    link report.name, [:overview, :finance, report]
+    link ledger.name, [:overview, :finance, ledger]
   end
-  parent :'finance/reports'
+  parent :'finance/ledgers'
 end
 
-crumb :'finance/categories' do |report|
-  link Finance::Category.model_name.human.pluralize, finance_report_categories_path(report)
-  parent :'finance/report', report
+crumb :'finance/categories' do |ledger|
+  link Finance::Category.model_name.human.pluralize, finance_ledger_categories_path(ledger)
+  parent :'finance/ledger', ledger
 end
 
-crumb :'finance/category' do |report, category|
+crumb :'finance/category' do |ledger, category|
   unless category.persisted?
     link t('crumb.new'), nil
   else
-    link category.name, finance_report_category_path(report, category)
+    link category.name, finance_ledger_category_path(ledger, category)
   end
-  parent :'finance/categories', report
+  parent :'finance/categories', ledger
 end
 
-crumb :'finance/accounts' do |report|
-  link Finance::Account.model_name.human.pluralize, finance_report_accounts_path(report)
-  parent :'finance/report', report
+crumb :'finance/accounts' do |ledger|
+  link Finance::Account.model_name.human.pluralize, finance_ledger_accounts_path(ledger)
+  parent :'finance/ledger', ledger
 end
 
-crumb :'finance/account' do |report, account|
+crumb :'finance/account' do |ledger, account|
   unless account.persisted?
     link t('crumb.new'), nil
   else
-    link account.name, finance_report_account_path(report, account)
+    link account.name, finance_ledger_account_path(ledger, account)
   end
-  parent :'finance/accounts', report
+  parent :'finance/accounts', ledger
 end
 
-crumb :'finance/entries' do |report, account|
-  link Finance::Entry.model_name.human.pluralize, finance_report_account_entries_path(report, account)
-  parent :'finance/account', report, account
+crumb :'finance/entries' do |ledger, account|
+  link Finance::Entry.model_name.human.pluralize, finance_ledger_account_entries_path(ledger, account)
+  parent :'finance/account', ledger, account
 end
 
-crumb :'finance/entry' do |report, account, entry|
+crumb :'finance/entry' do |ledger, account, entry|
   unless entry.persisted?
     link t('crumb.new'), nil
   else
-    link entry.title, finance_report_account_entry_path(report, account, entry)
+    link entry.title, finance_ledger_account_entry_path(ledger, account, entry)
   end
-  parent :'finance/entries', report, account
+  parent :'finance/entries', ledger, account
 end
 
-crumb :'finance/budget' do |report|
-  link Finance::Budget.model_name.human, finance_report_budget_path(report)
-  parent :'finance/report', report
+crumb :'finance/budget' do |ledger|
+  link Finance::Budget.model_name.human, finance_ledger_budget_path(ledger)
+  parent :'finance/ledger', ledger
 end
 
 # contacts

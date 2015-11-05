@@ -1,4 +1,4 @@
-- breadcrumb :'finance/budget', @report, @budget
+- breadcrumb :'finance/budget', @ledger, @budget
 
 - content_for :header
   h2= Finance::Budget.model_name.human
@@ -6,22 +6,22 @@
 
 - content_for :actions
   .item
-    = render 'finance/shared/actions', report: @report
+    = render 'finance/shared/actions', ledger: @ledger
   .item
     = Finance::Budget.model_name.human
     .menu
-      = link_to t('action.show'), finance_report_budget_path(@report), class: 'item'
-      = link_to t('action.edit'), edit_finance_report_budget_path(@report), class: 'item active'
+      = link_to t('action.show'), finance_ledger_budget_path(@ledger), class: 'item'
+      = link_to t('action.edit'), edit_finance_ledger_budget_path(@ledger), class: 'item active'
 
 - content_for :links
   ul.links
-    li= link_to t('action.resource.show', resource: Finance::Budget.model_name.human.downcase), finance_report_budget_path(@report)
+    li= link_to t('action.resource.show', resource: Finance::Budget.model_name.human.downcase), finance_ledger_budget_path(@ledger)
 
 .finance.budget
   section
-    = render 'finance/shared/report', report: @report
+    = render 'finance/shared/ledger', ledger: @ledger
     .container.index
-      = render 'finance/shared/menu', report: @report, budget: @budget
+      = render 'finance/shared/menu', ledger: @ledger, budget: @budget
       .page-content
         .ui.grid
           .twelve.wide.column
@@ -30,4 +30,4 @@
         .ui.grid
           .seven.wide.column
             .container
-              = render 'form', report: @report, budget: @budget
+              = render 'form', ledger: @ledger, budget: @budget

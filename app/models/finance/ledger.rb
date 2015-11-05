@@ -1,9 +1,9 @@
 module Finance
-  class Report < ActiveRecord::Base
+  class Ledger < ActiveRecord::Base
     extend FiscalPolicyExtension
     include Sortable
 
-    self.table_name = 'finance_reports'
+    self.table_name = 'finance_ledgers'
 
     enum_accessor :state, [:closed, :opened, :primary]
     paginates_per 6

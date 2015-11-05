@@ -4,14 +4,14 @@ module Finance
 
     self.table_name = 'finance_accounts'
 
-    belongs_to :report
+    belongs_to :ledger
     has_many :journalizings
     has_many :categories, through: :journalizings
     has_many :entries
 
     validates :name,
       presence:   true,
-      uniqueness: {scope: :report_id},
+      uniqueness: {scope: :ledger_id},
       length:     {maximum: 128}
     validates :icon,
       presence:   true
@@ -26,7 +26,7 @@ module Finance
       transaction do
         result = save
         if result
-          report.categories.map do |category|
+          ledger.categories.map do |category|
             journalizings.create!(:category => category)
           end
         end

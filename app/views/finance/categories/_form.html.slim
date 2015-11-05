@@ -1,4 +1,4 @@
-= form_for [:finance, report, category], html: {class: 'ui form'} do |f|
+= form_for [:finance, ledger, category], html: {class: 'ui form'} do |f|
   - if category.errors.any?
     = render 'shared/error', resource: category
   .field
@@ -11,4 +11,4 @@
     - action = category.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui button'
     - if action == 'update'
-      = link_to t('action.destroy'), finance_report_category_path(report, category), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+      = link_to t('action.destroy'), finance_ledger_category_path(ledger, category), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
