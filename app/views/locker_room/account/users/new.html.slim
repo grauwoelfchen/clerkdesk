@@ -1,12 +1,12 @@
 .ui.middle.aligned.center.aligned.grid style="height:100% !important;"
   .column style="max-width:390px;"
     h2.ui.image.header
-      = image_tag 'clerkdesk.jpeg', size: '90x75', class: 'image'
+      = image_tag 'clerkdesk-48x48.png', size: '48x48', class: 'image'
       .content
         | Signup
     - if flash.any?
       = render 'shared/flash', flash: flash
-    = form_for @user, url: registration_path, method: :post, class: 'ui form', novalidate: 'novalidate' do |f|
+    = form_for @user, url: registration_path, method: :post, html: {class: 'ui form', novalidate: 'novalidate'} do |f|
       .ui.segment
         = render 'form', f: f
         = f.submit 'Signup', class: 'ui fluid large submit button'
