@@ -1,0 +1,21 @@
+- breadcrumb :settings
+
+- content_for :header
+  h2= t('heading.settings')
+  h3= t('subheading.settings.account')
+
+- content_for :actions
+  .item
+    = t('heading.settings')
+    .menu
+      = link_to t('subheading.settings.account'), user_settings_path, class: 'item active'
+      = link_to t('subheading.settings.team'), locker_room.edit_team_path, class: 'item'
+
+.contact
+  section
+    .container
+      .ui.grid
+        .twelve.wide.column
+          .ui.grid
+            .nine.wide.column
+              = render 'form', user: @user

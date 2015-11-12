@@ -9,6 +9,13 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
+    scope module: :settings, path: 'settings' do
+      get 'account', to: 'users#edit', as: :user_settings
+      resource :users, path: 'account',
+        only: [:update],
+        as:   :user_settings
+    end
+
     scope module: :finance, as: :finance do
       resources :ledgers, path: 'finances', except: [:show] do
         # finance_ledgers
