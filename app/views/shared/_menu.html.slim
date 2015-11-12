@@ -19,7 +19,7 @@
   i.fa.fa-user
   = LockerRoom::User.model_name.human
 
-= active_link_to '#', class: 'item', active: /^$/ do
+= active_link_to user_settings_path, class: 'item', active: /^\/settings$/ do
   i.fa.fa-cog
   = t('nav.settings')
 

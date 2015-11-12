@@ -113,3 +113,9 @@ crumb :user do |user|
   end
   parent :users
 end
+
+# settings
+
+crumb :settings do
+  link t('nav.settings'), user_settings_path
+end

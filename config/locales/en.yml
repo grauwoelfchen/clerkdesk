@@ -53,9 +53,12 @@ en:
     contact: Contact
     additional_info: Additional info.
     period: Period
+    basic_info: Basic info.
   result:
     filter_by:
       tag: 'Filtered by %{tag}'
+  heading:
+    settings: Settings
   subheading:
     note: Protokoll, Memo
     finance:
@@ -67,6 +70,8 @@ en:
       entry: Entry
     current_status: Current status
     recent_entries: Recent entries
+    settings:
+      account: Account
   misc:
     entry: Entry
     status: Status
