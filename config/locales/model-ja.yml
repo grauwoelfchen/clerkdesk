@@ -10,6 +10,8 @@ ja:
       finance/entry: 記録
       locker_room/user: 管理者
     attributes:
+      locker_room/user:
+        locale: 言語
       note:
         title: タイトル
         content: 本文
