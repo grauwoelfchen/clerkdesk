@@ -1,0 +1,12 @@
+legend= t('legend.basic_info')
+= form_for user, url: user_settings_path, html: {method: :patch, class: 'ui form'} do |f|
+  - if user.errors.any?
+    = render 'shared/error', resource: user
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :locale
+    = f.select :locale, options_for_select(supported_locales, user.locale)
+  .actions
+    = f.submit t('action.update'), class: 'ui submit button'

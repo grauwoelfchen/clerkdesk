@@ -53,9 +53,12 @@ ja:
     contact: 連絡先
     additional_info: その他の項目
     period: 期間
+    basic_info: 基本情報
   result:
     filter_by:
       tag: '%{tag} タグの一覧'
+  heading:
+    settings: 設定
   subheading:
     note: プロトコル・メモ
     finance:
@@ -67,6 +70,8 @@ ja:
       entry: 記録・エントリ
     current_status: 現在の状況
     recent_entries: 最近の記帳
+    settings:
+      account: アカウント
   misc:
     entry: 記帳
     status: 状況
