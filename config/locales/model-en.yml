@@ -2,35 +2,31 @@
 en:
   activerecord:
     models:
+      locker_room/user: User
       finance/ledger: Finance
       finance/category: Category
       finance/account: Account
       finance/budget: Budget
       finance/entry: Entry
     attributes:
+      default: &default
+        created_at: Created
+        updated_at: Updated
       note:
+        <<: *default
         title: Title
         content: Content
         tag_list: Tags
-        created_at: Created
-        updated_at: Updated
       finance/ledger:
-        created_at: Created
-        updated_at: Updated
+        <<: *default
       finance/category:
-        created_at: Created
-        updated_at: Updated
+        <<: *default
       finance/account:
-        created_at: Created
-        updated_at: Updated
+        <<: *default
       finance/entry:
-        created_at: Created
-        updated_at: Updated
+        <<: *default
       contact:
-        joined_at: Joined
-        left_at: Left
-        created_at: Created
-        updated_at: Updated
+        <<: *default
     errors:
       attributes:
         left_at:

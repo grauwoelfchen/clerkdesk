@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/grauwoelfchen/locker_room.git
-  revision: ae8a42f7b6ca3a65632ddc6381f249272b52fba6
+  revision: 95d6344494710c04c8e0ab212d7c772f5e0b2b8a
   specs:
     locker_room (0.0.1)
       apartment (~> 1.0.2)
@@ -81,8 +81,6 @@ GEM
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
     database_cleaner (1.4.1)
-    date_validator (0.8.0)
-      activemodel
     enum_accessor (2.0.0)
       activesupport (>= 3.0.0)
     erubis (2.7.0)
@@ -240,7 +238,6 @@ DEPENDENCIES
   countries
   country_select
   database_cleaner
-  date_validator
   fake_braintree
   foreman
   friendly_id
@@ -262,3 +259,6 @@ DEPENDENCIES
   stylus
   test_after_commit
   uglifier
+
+BUNDLED WITH
+   1.10.6

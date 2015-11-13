@@ -2,52 +2,53 @@
 ja:
   activerecord:
     models:
+      locker_room/user: 管理者
       note: ノート
       finance/ledger: 会計
       finance/category: 費目
       finance/account: 口座
       finance/budget: 予算
       finance/entry: 記録
-      locker_room/user: 管理者
+      contact: 連絡先
     attributes:
+      default: &default
+        created_at: 作成日時
+        updated_at: 更新日時
       locker_room/user:
         locale: 言語
       note:
+        <<: *default
         title: タイトル
         content: 本文
         tag_list: タグ
-        created_at: 作成日時
-        updated_at: 更新日時
       finance/ledger:
+        <<: *default
         name: 名前
         description: 説明
         started_at: 開始
         finished_at: 終了
         state: 状態
-        created_at: 作成日時
-        updated_at: 更新日時
       finance/budget:
+        <<: *default
         description: 説明
         memo: メモ
       finance/category:
+        <<: *default
         name: 名前
         type: 種類
-        created_at: 作成日時
-        updated_at: 更新日時
       finance/account:
+        <<: *default
         name: 名前
         icon: アイコン
         description: 説明
         memo: メモ
-        created_at: 作成日時
-        updated_at: 更新日時
       finance/entry:
+        <<: *default
         title: タイトル
         type: 種類
         total_amount: 金額
-        created_at: 作成日時
-        updated_at: 更新日時
       contact:
+        <<: *default
         slug: ID
         property: 属性
         name: 名前
@@ -59,10 +60,6 @@ ja:
         phone: 電話
         email: Eメール
         memo: メモ
-        joined_at: 参加日時
-        left_at: 離脱日時
-        created_at: 作成日時
-        updated_at: 更新日時
     errors:
       attributes:
         left_at:

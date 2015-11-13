@@ -70,14 +70,6 @@
             .memo
               = label_tag Contact.human_attribute_name(:memo)
               = @contact.memo
-          .group
-            .joined
-              = label_tag Contact.human_attribute_name(:joined_at)
-              span.joined_at= @contact.joined_at
-          .group
-            .left
-              = label_tag Contact.human_attribute_name(:left_at)
-              span.left_at= @contact.left_at
           ul.actions
             li
               = link_to t('action.edit'), edit_contact_path, class: 'ui button'

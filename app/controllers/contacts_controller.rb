@@ -70,7 +70,6 @@ class ContactsController < WorkspaceController
   def contact_params
     params.require(:contact).permit(
       :slug, :property, :name,
-      :country, :division, :postcode, :address, :phone, :email,
-      :memo, :joined_at, :left_at)
+      :country, :division, :postcode, :address, :phone, :email, :memo)
   end
 end

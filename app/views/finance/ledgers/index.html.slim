@@ -16,7 +16,7 @@
     .container
       .ui.grid
         .twelve.wide.column
-          = render 'shared/pagination', resource: @ledgers, info: true
+          = render 'shared/pagination', resource: @ledgers
           table.ui.very.basic.compact.table
             thead
               tr
@@ -52,4 +52,4 @@
                     ul
                       li= link_to t('action.edit'), edit_finance_ledger_path(ledger)
                       li= link_to t('action.destroy'), finance_ledger_path(ledger), method: :delete, data: {confirm: 'Are you sure?'}
-          = render 'shared/pagination', resource: @ledgers, info: false
+          = render 'shared/pagination', resource: @ledgers
