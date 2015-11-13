@@ -29,7 +29,7 @@
           .sixteen.wide.column
             = render 'finance/shared/account', ledger: @ledger, account: @account
             .container
-              = render 'shared/pagination', resource: @entries, info: true
+              = render 'shared/pagination', resource: @entries
               table.ui.very.basic.compact.table
                 thead
                   tr
@@ -72,4 +72,4 @@
                           li= link_to t('action.edit'),    edit_finance_ledger_account_entry_path(@ledger, @account, entry)
                           li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: 'Are you sure?'}
 
-              = render 'shared/pagination', resource: @entries, info: false
+              = render 'shared/pagination', resource: @entries

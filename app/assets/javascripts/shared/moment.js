@@ -21,7 +21,7 @@
     moment.locale(locale);
 
     var datetime = '.created_at,.updated_at,' +
-      '.started_at,.finished_at,.joined_at,.left_at';
+      '.started_at,.finished_at';
 
     $(datetime).each(function() {
       var field = $(this)
