@@ -161,19 +161,4 @@ class ContactTest < ActiveSupport::TestCase
     message = 'is too long (maximum is 255 characters)'
     assert_equal([message], contact.errors[:memo])
   end
-
-  def test_validation_error_with_invalid_joined_at
-    contact = Contact.new(:joined_at => 'foo')
-    refute(contact.valid?)
-    message = 'is not a date'
-    assert_equal([message], contact.errors[:joined_at])
-  end
-
-  def test_validation_error_with_left_at_before_joined_at
-    left_at = Time.new(2015, 06, 01, 19, 00, 00, '+00:00')
-    contact = Contact.new(:joined_at => left_at + 1.day, :left_at => left_at)
-    refute(contact.valid?)
-    message = 'must be after joined'
-    assert_equal([message], contact.errors[:left_at])
-  end
 end

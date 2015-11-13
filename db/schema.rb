@@ -46,8 +46,6 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.string   "phone"
     t.string   "email"
     t.string   "memo"
-    t.datetime "joined_at"
-    t.datetime "left_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

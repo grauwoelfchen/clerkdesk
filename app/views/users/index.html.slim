@@ -15,7 +15,7 @@
     .container
       .ui.grid
         .twelve.wide.column
-          /= render 'shared/pagination', resource: @users, info: true
+          /= render 'shared/pagination', resource: @users
           table.ui.very.basic.compact.table
             thead
               tr
@@ -36,4 +36,4 @@
                       /li= link_to t('action.edit'), edit_user_path(user)
                       /li= link_to t('action.destroy'), user_path(user), method: :delete, data: {confirm: 'Are you sure?'}
 
-          /= render 'shared/pagination', resource: @users, info: false
+          /= render 'shared/pagination', resource: @users

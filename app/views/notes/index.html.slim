@@ -34,7 +34,7 @@
                 span.tag= params[:tag]
               = t('result.filter_by.tag', tag: tag).html_safe
         .container
-          = render 'shared/pagination', resource: @notes, info: true
+          = render 'shared/pagination', resource: @notes
           hr
           .ui.embedded.segment
             .ui.items
@@ -58,4 +58,4 @@
                     .description
                       = truncate(strip_tags(note.content_html), length: 30)
                     .extra
-          = render 'shared/pagination', resource: @notes, info: false
+          = render 'shared/pagination', resource: @notes
