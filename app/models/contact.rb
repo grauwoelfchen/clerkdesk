@@ -15,7 +15,7 @@ class Contact < ActiveRecord::Base
 
   friendly_id :slug, use: :slugged
   paginates_per 20
-  sortable :name, :slug, :property, :updated_at
+  sortable :name, :slug, :property
 
   validates :slug,
     presence: true,
@@ -50,17 +50,6 @@ class Contact < ActiveRecord::Base
     allow_blank: true
   validates :memo,
     length: {maximum: 255}
-  validates :joined_at,
-    date:        true,
-    allow_blank: true
-  validates :left_at,
-    date: {
-      after:   :joined_at,
-      message: I18n.t(
-        'activerecord.errors.attributes.left_at.after_field',
-        field: self.human_attribute_name(:joined_at).downcase)
-    },
-    allow_blank: true
 
   validate :division_must_be_in_valid_country
 

@@ -12,8 +12,6 @@ class CreateContacts < ActiveRecord::Migration
       t.string  :phone
       t.string  :email
       t.string  :memo
-      t.datetime :joined_at, null: true, default: nil
-      t.datetime :left_at,   null: true, default: nil
 
       t.timestamps null: false
     end
