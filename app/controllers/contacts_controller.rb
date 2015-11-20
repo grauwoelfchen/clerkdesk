@@ -9,9 +9,9 @@ class ContactsController < WorkspaceController
   end
 
   def search
-    @contacts = Contact.select(:id, :slug, :name)
-    if params[:term]
-      @contacts = @contacts.search(params[:term], :slug, :name)
+    @contacts = Contact.select(:id, :code, :name)
+    if params[:q]
+      @contacts = @contacts.search(params[:q], :code, :name)
     end
   end
 
@@ -69,7 +69,7 @@ class ContactsController < WorkspaceController
 
   def contact_params
     params.require(:contact).permit(
-      :slug, :property, :name,
+      :code, :name, :prop,
       :country, :division, :postcode, :address, :phone, :email, :memo)
   end
 end

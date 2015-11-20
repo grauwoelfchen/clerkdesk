@@ -46,17 +46,17 @@ class ContactSortTest < Capybara::Rails::TestCase
     end
   end
 
-  def test_sort_with_slug_desc
+  def test_sort_with_code_desc
     user = locker_room_users(:weenie)
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user, team.subdomain)
       visit(contacts_url)
       assert_equal(contacts_url, page.current_url)
-      href = '/contacts?direction=desc&field=slug'
+      href = '/contacts?direction=desc&field=code'
       link = find(:xpath, "//a[@href='#{href}']")
       link.click
-      params = {:field => 'slug', :direction => 'desc'}
+      params = {:field => 'code', :direction => 'desc'}
       assert_equal(contacts_url(params), page.current_url)
       assert_selector(:xpath, <<-ICON.gsub(/^s*|\n/, ''))
         //ul[@class='links']/li

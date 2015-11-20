@@ -19,7 +19,7 @@
           hr
           legend= t('legend.account')
           .group
-            .slug
+            .username
               = label_tag LockerRoom::User.human_attribute_name(:username)
               = @user.username
           .group

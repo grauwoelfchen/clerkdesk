@@ -49,8 +49,8 @@ ja:
         total_amount: 金額
       contact:
         <<: *default
-        slug: ID
-        property: 属性
+        code: コード
+        prop: 属性
         name: 名前
         country: 国
         division: 都道府県

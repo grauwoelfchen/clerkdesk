@@ -22,9 +22,9 @@
           hr
           legend= t('legend.id')
           .group
-            .slug
-              = label_tag Contact.human_attribute_name(:slug)
-              span.label.label-default= @contact.slug
+            .code
+              = label_tag Contact.human_attribute_name(:code)
+              span.label.label-default= @contact.code
           .group
             .name
               = label_tag Contact.human_attribute_name(:name)
@@ -63,9 +63,9 @@
               = mail_to @contact.email
           legend= t('legend.additional_info')
           .group
-            .property
-              = label_tag Contact.human_attribute_name(:property)
-              = @contact.property
+            .prop
+              = label_tag Contact.human_attribute_name(:prop)
+              = @contact.prop
           .group
             .memo
               = label_tag Contact.human_attribute_name(:memo)
