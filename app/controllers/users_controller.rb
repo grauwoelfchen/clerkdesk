@@ -3,7 +3,7 @@ class UsersController < WorkspaceController
 
   def index
     @users = current_team.mates
-      .sort(params[:field], params[:direction])
+      .order_by(params[:field], params[:direction])
       .page(params[:page])
   end
 
