@@ -4,40 +4,40 @@ class ContactTest < ActiveSupport::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:contacts)
 
-  def test_validation_without_slug
-    contact = Contact.new(:slug => '')
+  def test_validation_without_code
+    contact = Contact.new(:code => '')
     refute(contact.valid?)
     message = 'can\'t be blank'
-    assert_equal([message], contact.errors[:slug])
+    assert_equal([message], contact.errors[:code])
   end
 
-  def test_validation_error_with_duplicated_slug
+  def test_validation_error_with_duplicated_code
     existing_user = contacts(:oswald_contact)
-    contact = Contact.new(:slug => existing_user.slug)
+    contact = Contact.new(:code => existing_user.code)
     refute(contact.valid?)
     message = 'has already been taken'
-    assert_equal([message], contact.errors[:slug])
+    assert_equal([message], contact.errors[:code])
   end
 
-  def test_validation_error_with_too_long_slug
-    contact = Contact.new(:slug => 'long' * 49)
+  def test_validation_error_with_too_long_code
+    contact = Contact.new(:code => 'long' * 49)
     refute(contact.valid?)
     message = 'is too long (maximum is 192 characters)'
-    assert_equal([message], contact.errors[:slug])
+    assert_equal([message], contact.errors[:code])
   end
 
-  def test_validation_error_with_invalid_slug
-    contact = Contact.new(:slug => '~/.ssh')
+  def test_validation_error_with_invalid_code
+    contact = Contact.new(:code => '~/.ssh')
     refute(contact.valid?)
     message = 'is invalid'
-    assert_equal([message], contact.errors[:slug])
+    assert_equal([message], contact.errors[:code])
   end
 
-  def test_validation_error_with_too_long_property
-    contact = Contact.new(:property => 'long' * 49)
+  def test_validation_error_with_too_long_prop
+    contact = Contact.new(:prop => 'long' * 49)
     refute(contact.valid?)
     message = 'is too long (maximum is 192 characters)'
-    assert_equal([message], contact.errors[:property])
+    assert_equal([message], contact.errors[:prop])
   end
 
   def test_validation_error_without_name

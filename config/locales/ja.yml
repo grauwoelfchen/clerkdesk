@@ -37,8 +37,8 @@ ja:
     destroy: '%{owner} が %{trackable} を削除しました'
   example:
     contact:
-      slug: 例） 01A001X
-      property: 例） 名誉会員
+      code: 例） 01A001X
+      prop: 例） 学生
       postcode: 例） 1000000
       name: 例） ジョン スミス
       memo: 例） 07.05 要返信
@@ -48,7 +48,7 @@ ja:
       email: 例） john@example.org
   legend:
     account: アカウント
-    id: 識別子
+    ident: ID
     name: 名前
     contact: 連絡先
     additional_info: その他の項目
