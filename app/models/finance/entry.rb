@@ -1,7 +1,7 @@
 module Finance
   class Entry < ActiveRecord::Base
     extend FiscalPolicyExtension
-    include Sortable
+    include Orderable
 
     self.table_name = 'finance_entries'
 
@@ -27,7 +27,7 @@ module Finance
 
     acts_as_taggable
     paginates_per 25
-    sortable :title, :type, :journalizing_id, :total_amount, :updated_at
+    orderable :title, :type, :journalizing_id, :total_amount, :updated_at
 
     validates :title,
       presence: true

@@ -4,7 +4,7 @@ class ContactsController < WorkspaceController
 
   def index
     @contacts = Contact
-      .sort(params[:field], params[:direction])
+      .order_by(params[:field] => params[:direction])
       .page(params[:page])
   end
 

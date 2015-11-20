@@ -5,7 +5,7 @@ class NotesController < WorkspaceController
 
   def index
     @notes = Note.includes(:tags)
-      .sort(params[:field], params[:direction])
+      .order_by(params[:field], params[:direction])
       .page(params[:page])
     if params[:tag]
       @tag = Note.tags_on(:tags).find_by!(:name => params[:tag])
