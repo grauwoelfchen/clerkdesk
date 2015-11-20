@@ -8,7 +8,7 @@ module Finance
       respond_to do |format|
         format.html {
           @categories = @categories
-            .sort(params[:field], params[:direction])
+            .order_by(params[:field], params[:direction])
             .page(params[:page])
           render(:index)
         }

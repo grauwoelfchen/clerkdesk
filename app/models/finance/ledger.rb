@@ -1,14 +1,14 @@
 module Finance
   class Ledger < ActiveRecord::Base
     extend FiscalPolicyExtension
-    include Sortable
+    include Orderable
 
     self.table_name = 'finance_ledgers'
 
     enum_accessor :state, [:closed, :opened, :primary]
     paginates_per 6
-    sortable :name, :description, :state, :updated_at,
-             :started_at, :finished_at
+    orderable :name, :description, :state, :updated_at,
+              :started_at, :finished_at
 
     has_one :budget
     has_many :accounts

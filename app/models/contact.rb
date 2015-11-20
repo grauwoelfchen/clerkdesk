@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
   include FriendlyId
-  include Sortable
+  include Orderable
   include Searchable
 
   has_many :involvements,
@@ -15,7 +15,7 @@ class Contact < ActiveRecord::Base
 
   friendly_id :code, use: :slugged
   paginates_per 20
-  sortable :name, :code, :prop
+  orderable :name, :code, :prop, code: :asc
 
   validates :code,
     presence: true,
