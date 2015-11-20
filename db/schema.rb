@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "slug",                    null: false
-    t.string   "property"
+    t.string   "code",                    null: false
+    t.string   "slug"
+    t.string   "prop"
     t.string   "name",       default: "", null: false
     t.string   "postcode"
     t.string   "country",    default: "", null: false
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.datetime "updated_at",              null: false
   end
 
+  add_index "contacts", ["code"], name: "index_contacts_on_code", unique: true, using: :btree
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
 
   create_table "finance_accounts", force: :cascade do |t|
@@ -124,16 +126,6 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   end
 
   add_index "finance_ledgers", ["state"], name: "index_finance_ledgers_on_state", using: :btree
-
-  create_table "identities", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "contact_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "identities", ["contact_id"], name: "index_identities_on_contact_id", using: :btree
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "involvements", force: :cascade do |t|
     t.string   "holder_type"
@@ -221,5 +213,15 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "userships", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "contact_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "userships", ["contact_id"], name: "index_userships_on_contact_id", using: :btree
+  add_index "userships", ["user_id"], name: "index_userships_on_user_id", using: :btree
 
 end

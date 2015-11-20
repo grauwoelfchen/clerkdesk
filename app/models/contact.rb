@@ -10,21 +10,21 @@ class Contact < ActiveRecord::Base
     through:     :involvements,
     source:      :matter,
     source_type: 'Finance::Entry'
-  has_one :identity, foreign_key: :user_id
-  has_one :user, through: :identity, source: :contact
+  has_one :usership, foreign_key: :user_id
+  has_one :user, through: :usership, source: :contact
 
-  friendly_id :slug, use: :slugged
+  friendly_id :code, use: :slugged
   paginates_per 20
-  sortable :name, :slug, :property
+  sortable :name, :code, :prop
 
-  validates :slug,
+  validates :code,
     presence: true,
     length:   {maximum: 192}
-  validates :slug,
+  validates :code,
     uniqueness:  true,
     format:      {with: /\A[A-z0-9\-_]+\z/},
     allow_blank: true
-  validates :property,
+  validates :prop,
     length: {maximum: 192}
   validates :name,
     presence: true,
@@ -54,7 +54,7 @@ class Contact < ActiveRecord::Base
   validate :division_must_be_in_valid_country
 
   def label
-    name + " (#{slug})"
+    name + " (#{code})"
   end
 
   private

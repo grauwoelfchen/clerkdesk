@@ -37,8 +37,8 @@ en:
     destroy: '%{owner} has destroyed %{trackable}'
   example:
     contact:
-      slug: e.g. 01A001X
-      property: e.g. Honorary Member
+      code: e.g. 01A001X
+      prop: e.g. Student
       postcode: e.g. 1000000
       name: e.g. John Smith
       memo: e.g. 05.07 Call back later
@@ -48,7 +48,7 @@ en:
       email: e.g. john@example.org
   legend:
     account: Account
-    id: ID
+    ident: ID
     name: Name
     contact: Contact
     additional_info: Additional info.

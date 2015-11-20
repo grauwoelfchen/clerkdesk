@@ -5,11 +5,11 @@
   - if contact.errors.any?
     = render 'shared/error', resource: contact
   fieldset
-    legend= t('legend.id')
+    legend= t('legend.ident')
     .field
       .eight.wide.field
-        = f.label :slug
-        = f.text_field :slug, placeholder: t('example.contact.slug')
+        = f.label :code
+        = f.text_field :code, placeholder: t('example.contact.code')
     .field
       .eight.wide.field
         = f.label :name
@@ -47,8 +47,8 @@
     legend= t('legend.additional_info')
     .field
       .six.wide.field
-        = f.label :property
-        = f.text_field :property, placeholder: t('example.contact.property')
+        = f.label :prop
+        = f.text_field :prop, placeholder: t('example.contact.prop')
     .field
       .twelve.wide.field
         = f.label :memo

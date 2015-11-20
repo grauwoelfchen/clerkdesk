@@ -24,18 +24,18 @@
                   span.attribute= Contact.human_attribute_name(:name)
                   = sort_links_for(:name)
                 th
-                  span.attribute= Contact.human_attribute_name(:slug)
-                  = sort_links_for(:slug)
+                  span.attribute= Contact.human_attribute_name(:code)
+                  = sort_links_for(:code)
                 th
-                  span.attribute= Contact.human_attribute_name(:property)
-                  = sort_links_for(:property)
+                  span.attribute= Contact.human_attribute_name(:prop)
+                  = sort_links_for(:prop)
                 th
             tbody
               - @contacts.each do |contact|
                 tr
                   td= link_to truncate(contact.name, length: 18), contact_path(contact)
-                  td= truncate(contact.slug, length: 12)
-                  td= contact.property
+                  td= truncate(contact.code, length: 12)
+                  td= contact.prop
                   td.operations
                     ul
                       li= link_to t('action.edit'), edit_contact_path(contact)
