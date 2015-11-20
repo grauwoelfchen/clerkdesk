@@ -8,7 +8,7 @@ module Finance
     def index
       @entries = @account.entries
         .includes(:journalizing, :category)
-        .sort(params[:field], params[:direction])
+        .order_by(params[:field], params[:direction])
         .page(params[:page])
     end
 

@@ -4,7 +4,7 @@ module Finance
 
     def index
       @ledgers = Ledger
-        .sort(params[:field], params[:direction])
+        .order_by(params[:field], params[:direction])
         .page(params[:page])
     end
 

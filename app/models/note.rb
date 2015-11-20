@@ -1,13 +1,13 @@
 class Note < ActiveRecord::Base
   include PublicActivity::Model
-  include Sortable
+  include Orderable
   include HtmlConvertable
 
   acts_as_taggable
   tracked owner:          ->(controller, _) { controller.send(:current_user) },
           trackable_name: ->(_, model) { model.title }
   paginates_per 6
-  sortable :title, :updated_at
+  orderable :title, :updated_at
   html_convertable :content
 
   validates :title,

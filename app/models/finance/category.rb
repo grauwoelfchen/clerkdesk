@@ -1,14 +1,14 @@
 module Finance
   class Category < ActiveRecord::Base
     extend FiscalPolicyExtension
-    include Sortable
+    include Orderable
 
     self.table_name = 'finance_categories'
     self.inheritance_column = 'null'
 
     enum_accessor :type, [:expense, :income]
     paginates_per 16
-    sortable :name, :type, :updated_at
+    orderable :name, :type, :updated_at
 
     belongs_to :ledger
     has_many :journalizings, dependent: :destroy
