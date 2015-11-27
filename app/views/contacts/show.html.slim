@@ -26,11 +26,11 @@
           legend= t('legend.ident')
           .group
             .code
-              = label_tag Contact.human_attribute_name(:code)
+              label= Contact.human_attribute_name(:code)
               span.label.label-default= @contact.code
           .group
             .name
-              = label_tag Contact.human_attribute_name(:name)
+              label= Contact.human_attribute_name(:name)
               = @contact.name
           legend= t('legend.address')
           .address-panel.closed
@@ -39,42 +39,42 @@
             .address-info
               .group
                 .country
-                  = label_tag Contact.human_attribute_name(:country)
+                  label= Contact.human_attribute_name(:country)
                   - country = Country.find_country_by_alpha2(@contact.country)
                   - if country
                     = country.translations[current_locale]
               .group
                 .division
-                  = label_tag Contact.human_attribute_name(:division)
+                  label= Contact.human_attribute_name(:division)
                   - if country && division = country.subdivisions[@contact.division]
                     = division['name']
               .group
                 .city
-                  = label_tag Contact.human_attribute_name(:city)
+                  label= Contact.human_attribute_name(:city)
                   = @contact.city
               .group
                 .street
-                  = label_tag Contact.human_attribute_name(:street)
+                  label= Contact.human_attribute_name(:street)
                   = @contact.street
               .group
                 .postcode
-                  = label_tag Contact.human_attribute_name(:postcode)
+                  label= Contact.human_attribute_name(:postcode)
                   = @contact.postcode
               .group
                 .phone
-                  = label_tag Contact.human_attribute_name(:phone)
+                  label= Contact.human_attribute_name(:phone)
                   = @contact.phone
               .group
                 .email
-                  = label_tag Contact.human_attribute_name(:email)
+                  label= Contact.human_attribute_name(:email)
                   = mail_to @contact.email
           legend= t('legend.additional_info')
           .group
             .tags
-              = label_tag Contact.human_attribute_name(:tag_list)
+              label= Contact.human_attribute_name(:tag_list)
               - @contact.tags.each do |tag|
                 span.tag
-                  = link_to truncate(tag.name, length: 8), contacts_path(tag: tag.name)
+                  = link_to truncate(tag.name, length: 8), contacts_path(t: tag.name)
           .group
             .memo
               = label_tag Contact.human_attribute_name(:memo)
