@@ -90,6 +90,11 @@ crumb :contacts do
   link Contact.model_name.human.pluralize, contacts_path
 end
 
+crumb :contacts_with_tag  do |tag|
+  link t('crumb.tag', tag: truncate(tag, length: 8)), nil
+  parent :contacts
+end
+
 crumb :contact do |contact|
   unless contact.persisted?
     link t('crumb.new'), nil

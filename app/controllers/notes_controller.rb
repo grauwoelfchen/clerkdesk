@@ -7,8 +7,8 @@ class NotesController < WorkspaceController
     @notes = Note.includes(:tags)
       .order_by(params[:field], params[:direction])
       .page(params[:page])
-    if params[:tag]
-      @tag = Note.tags_on(:tags).find_by!(:name => params[:tag])
+    if params[:t]
+      @tag = Note.tags_on(:tags).find_by!(:name => params[:t])
       @notes = @notes.tagged_with(@tag.name)
     end
   end
