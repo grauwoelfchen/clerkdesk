@@ -15,9 +15,9 @@ gulp.task('watch', function() {
   , ignoreInitial: true
   , events:        ['add', 'change']
   }, function(file) {
-    sys.puts('--');
-    sys.puts('[' + file.event + ']');
-    sys.puts(file.path);
+    console.log('--');
+    console.log('[' + file.event + ']');
+    console.log(file.path);
   })
   .pipe(shell([
     'bundle exec foreman run ruby -I.:test <%= file.path %>'
