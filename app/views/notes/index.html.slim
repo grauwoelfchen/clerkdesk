@@ -1,5 +1,5 @@
-- if params[:tag]
-  - breadcrumb :notes_with_tag, params[:tag]
+- if params[:t]
+  - breadcrumb :notes_with_tag, params[:t]
 - else
   - breadcrumb :notes
 
@@ -29,9 +29,9 @@
                 = Note.human_attribute_name(:updated_at)
               = sort_links_for(:updated_at, :desc)
           .filter
-            - if params[:tag]
+            - if params[:t]
               - capture_to_local tag=:tag
-                span.tag= params[:tag]
+                span.tag= params[:t]
               = t('result.filter_by.tag', tag: tag).html_safe
         .container
           = render 'shared/pagination', resource: @notes

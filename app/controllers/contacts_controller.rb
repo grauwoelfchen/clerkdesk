@@ -6,6 +6,10 @@ class ContactsController < WorkspaceController
     @contacts = Contact
       .order_by(params[:field] => params[:direction])
       .page(params[:page])
+    if params[:t]
+      @tag = Contact.tags_on(:tags).find_by!(:name => params[:t])
+      @contacts = @contacts.tagged_with(@tag.name)
+    end
   end
 
   def search
