@@ -38,19 +38,18 @@ ja:
   example:
     contact:
       code: 例） 01A001X
-      prop: 例） 学生
       postcode: 例） 1000000
       name: 例） ジョン スミス
       memo: 例） 07.05 要返信
       city: 例） ○○区
-      address: 例） 1-1-1
+      street: 例） 1-1-1
       phone: 例） 00-0000-0000
       email: 例） john@example.org
   legend:
     account: アカウント
-    ident: ID
     name: 名前
-    contact: 連絡先
+    ident: ID
+    address: 連絡先
     additional_info: その他の項目
     period: 期間
     basic_info: 基本情報

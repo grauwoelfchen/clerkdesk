@@ -50,16 +50,16 @@ ja:
       contact:
         <<: *default
         code: コード
-        prop: 属性
         name: 名前
         country: 国
         division: 都道府県
         city: 市区町村
         postcode: 郵便番号
-        address: 住所
+        street: 番地
         phone: 電話
         email: Eメール
         memo: メモ
+        tag_list: タグ
     errors:
       attributes:
         left_at:

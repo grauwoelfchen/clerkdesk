@@ -15,44 +15,53 @@
         = f.label :name
         = f.text_field :name, placeholder: t('example.contact.name')
   fieldset
-    legend= t('legend.contact')
-    .fields
-      .eight.wide.field
-        = f.label :country
-        / AI and AN has wrong translaton cache (at least)
-        = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}, class: 'ui dropdown'
-      .four.wide.field
-        = f.label :postcode
-        = f.text_field :postcode, placeholder: t('example.contact.postcode')
-    .fields
-      .six.wide.field
-        = f.label :division
-        - divisions = contact.division.present? ? [['', contact.division]] : []
-        = f.select :division, divisions, {prompt: '---', value: contact.division}, class: 'ui dropdown'
-      .six.wide.field
-        = f.label :city
-        = f.text_field :city, placeholder: t('example.contact.city')
-    .field
-      .twelve.wide.field
-        = f.label :address
-        = f.text_field :address, placeholder: t('example.contact.address')
-    .fields
-      .five.wide.field
-        = f.label :phone
-        = f.text_field :phone, placeholder: t('example.contact.phone')
-      .seven.wide.field
-        = f.label :email
-        = f.text_field :email, placeholder: t('example.contact.email')
+    legend= t('legend.address')
+    .address-panel(class="#{params[:address] == '1' ? '' : 'closed'}")
+      .field
+        a.toggle
+          - if params[:address] == '1'
+            i.large.angle.double.up.icon
+          - else
+            i.large.angle.double.down.icon
+        .address-info
+          = hidden_field_tag :address, 0, class: 'address'
+          .fields
+            .seven.wide.field
+              = f.label :country
+              / AI and AN has wrong translaton cache (at least)
+              = f.country_select :country, {except: ['AN', 'AI'], prompt: '---'}, class: 'ui dropdown'
+            .three.wide.field
+              = f.label :postcode
+              = f.text_field :postcode, placeholder: t('example.contact.postcode')
+          .fields
+            .five.wide.field
+              = f.label :division
+              - divisions = contact.division.present? ? [['', contact.division]] : []
+              = f.select :division, divisions, {prompt: '---', value: contact.division}, class: 'ui dropdown'
+            .five.wide.field
+              = f.label :city
+              = f.text_field :city, placeholder: t('example.contact.city')
+          .fields
+            .ten.wide.field
+              = f.label :street
+              = f.text_field :street, placeholder: t('example.contact.street')
+          .fields
+            .four.wide.field
+              = f.label :phone
+              = f.text_field :phone, placeholder: t('example.contact.phone')
+            .six.wide.field
+              = f.label :email
+              = f.text_field :email, placeholder: t('example.contact.email')
   fieldset
     legend= t('legend.additional_info')
     .field
-      .six.wide.field
-        = f.label :prop
-        = f.text_field :prop, placeholder: t('example.contact.prop')
+      .ten.wide.field
+        = f.label :tag_list
+        = f.text_field :tag_list, value: contact.tag_list.join(','), placeholder: 'Tag'
     .field
-      .twelve.wide.field
+      .ten.wide.field
         = f.label :memo
-        = f.text_field :memo, placeholder: t('example.contact.memo')
+        = f.text_area :memo, placeholder: t('example.contact.memo')
   .actions
     - action = contact.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui submit button'
