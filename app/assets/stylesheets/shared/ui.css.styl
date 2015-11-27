@@ -11,10 +11,11 @@ legend
 
 
 // Collections - Menu
-.ui.pointing.menu
-  min-height    2.5em
-  margin-bottom 0
-  border-left   none
+.ui.tabular.menu
+  .active.item
+    border-radius 2px 2px 0 0 !important
+    border-top    3px solid $light-brown-color
+    font-weight   normal
 
 .ui.vertical.menu
   box-shadow none
@@ -29,7 +30,6 @@ legend
   .container > .ui.menu > .item,
   .container > .ui.menu > .item.active
     border-radius 0
-    border-top    1px solid $light-gray-color
     padding       0 1.3em !important
     line-height   0.6em
 

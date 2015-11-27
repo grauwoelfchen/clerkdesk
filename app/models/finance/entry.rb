@@ -40,6 +40,14 @@ module Finance
 
     before_validation :force_sign
 
+    def self.total_expense
+      where_type(:expense).sum(:total_amount)
+    end
+
+    def self.total_income
+      where_type(:income).sum(:total_amount)
+    end
+
     private
 
     def reject_involvements(attributes)
