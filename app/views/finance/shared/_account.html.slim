@@ -1,7 +1,8 @@
 .sub-header
-  h5= account.name
-  p.description
+  h5
     i.icon.fa.fa-fw.fa-lg= account.icon.to_s.html_safe
+    = account.name
+  p.description
     = account.description
 
 - if controller_path != 'finance/entries'

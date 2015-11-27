@@ -24,6 +24,8 @@ module Finance
     end
 
     def show
+      @expense = @ledger.entries.total_expense
+      @income  = @ledger.entries.total_income
       if params[:segment] == 'status'
         @categories = @ledger.recent_categories
       else # entries
