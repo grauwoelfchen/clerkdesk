@@ -27,18 +27,14 @@
                   span.attribute= Contact.human_attribute_name(:code)
                   = sort_links_for(:code, :asc)
                 th
-                  span.attribute= Contact.human_attribute_name(:prop)
-                  = sort_links_for(:prop)
-                th
+                  span.attribute= Contact.human_attribute_name(:updated_at)
+                  = sort_links_for(:updated_at)
             tbody
               - @contacts.each do |contact|
                 tr
                   td= link_to truncate(contact.name, length: 18), contact_path(contact)
                   td= truncate(contact.code, length: 12)
-                  td= contact.prop
-                  td.operations
-                    ul
-                      li= link_to t('action.edit'), edit_contact_path(contact)
-                      li= link_to t('action.destroy'), contact_path(contact), method: :delete, data: {confirm: 'Are you sure?'}
+                  td
+                    span.updated_at(data-format='relative')= contact.updated_at
 
           = render 'shared/pagination', resource: @contacts

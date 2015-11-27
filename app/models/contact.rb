@@ -13,9 +13,10 @@ class Contact < ActiveRecord::Base
   has_one :usership, foreign_key: :user_id
   has_one :user, through: :usership, source: :contact
 
+  acts_as_taggable
   friendly_id :code, use: :slugged
   paginates_per 20
-  orderable :name, :code, :prop, code: :asc
+  orderable :name, :updated_at, code: :asc
 
   validates :code,
     presence: true,
@@ -24,8 +25,6 @@ class Contact < ActiveRecord::Base
     uniqueness:  true,
     format:      {with: /\A[A-z0-9\-_]+\z/},
     allow_blank: true
-  validates :prop,
-    length: {maximum: 192}
   validates :name,
     presence: true,
     length:   {maximum: 128}
@@ -34,7 +33,7 @@ class Contact < ActiveRecord::Base
     allow_blank: true
   validates :city,
     length: {maximum: 64}
-  validates :address,
+  validates :street,
     length: {maximum: 255}
   validates :postcode,
     length:      {maximum: 32},
@@ -49,7 +48,7 @@ class Contact < ActiveRecord::Base
     format:      {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i},
     allow_blank: true
   validates :memo,
-    length: {maximum: 255}
+    length: {maximum: 1024}
 
   validate :division_must_be_in_valid_country
 
