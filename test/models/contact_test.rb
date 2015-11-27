@@ -33,13 +33,6 @@ class ContactTest < ActiveSupport::TestCase
     assert_equal([message], contact.errors[:code])
   end
 
-  def test_validation_error_with_too_long_prop
-    contact = Contact.new(:prop => 'long' * 49)
-    refute(contact.valid?)
-    message = 'is too long (maximum is 192 characters)'
-    assert_equal([message], contact.errors[:prop])
-  end
-
   def test_validation_error_without_name
     contact = Contact.new(:name => nil)
     refute(contact.valid?)
@@ -88,11 +81,11 @@ class ContactTest < ActiveSupport::TestCase
     assert_equal([message], contact.errors[:city])
   end
 
-  def test_validation_error_with_too_long_address
-    contact = Contact.new(:address => 'long' * 64)
+  def test_validation_error_with_too_long_street
+    contact = Contact.new(:street => 'long' * 64)
     refute(contact.valid?)
     message = 'is too long (maximum is 255 characters)'
-    assert_equal([message], contact.errors[:address])
+    assert_equal([message], contact.errors[:street])
   end
 
   def test_validation_error_with_invalid_postcode
@@ -156,9 +149,9 @@ class ContactTest < ActiveSupport::TestCase
   end
 
   def test_validation_error_with_too_long_memo
-    contact = Contact.new(:memo => 'long' * 64)
+    contact = Contact.new(:memo => 'long' * 257)
     refute(contact.valid?)
-    message = 'is too long (maximum is 255 characters)'
+    message = 'is too long (maximum is 1024 characters)'
     assert_equal([message], contact.errors[:memo])
   end
 end
