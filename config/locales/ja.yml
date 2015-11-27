@@ -55,7 +55,7 @@ ja:
     basic_info: 基本情報
   result:
     filter_by:
-      tag: '%{tag} タグの一覧'
+      tag: '%{tag} 一覧'
   heading:
     settings: 設定
   subheading:

@@ -1,4 +1,7 @@
-- breadcrumb :contacts
+- if params[:t]
+  - breadcrumb :contacts_with_tag, params[:t]
+- else
+  - breadcrumb :contacts
 
 - content_for :header
   h2= Contact.model_name.human
@@ -13,6 +16,13 @@
 
 .contact
   section
+    .ui.grid
+      .eleven.wide.column
+        .filter
+          - if params[:t]
+            - capture_to_local tag=:tag
+              span.tag= params[:t]
+            = t('result.filter_by.tag', tag: tag).html_safe
     .container
       .ui.grid
         .twelve.wide.column
