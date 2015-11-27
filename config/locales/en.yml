@@ -38,22 +38,21 @@ en:
   example:
     contact:
       code: e.g. 01A001X
-      prop: e.g. Student
       postcode: e.g. 1000000
       name: e.g. John Smith
       memo: e.g. 05.07 Call back later
       city: e.g. Big city
-      address: e.g. 1-1-1
+      street: e.g. 1-1-1
       phone: e.g. 00-0000-0000
       email: e.g. john@example.org
   legend:
-    account: Account
+    account: ACCOUNT
     ident: ID
-    name: Name
-    contact: Contact
-    additional_info: Additional info.
-    period: Period
-    basic_info: Basic info.
+    name: NAME
+    address: ADDRESS
+    additional_info: ADDITIONAL INFO.
+    period: PERIOD
+    basic_info: BASIC INFO.
   result:
     filter_by:
       tag: 'Filtered by %{tag}'

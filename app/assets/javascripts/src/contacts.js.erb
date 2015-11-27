@@ -1,3 +1,6 @@
+//= require jquery-tag-editor/jquery.caret.min.js
+//= require jquery-tag-editor/jquery.tag-editor.min.js
+
 (function($) {
   'use strict';
 
@@ -67,6 +70,41 @@
           return true;
         }
         return setDivisionOptions(country_code);
+      });
+    })();
+
+    // toggle address panel
+    (function() {
+      var panel = $('.address-panel');
+      panel.find('a.toggle').click(function(e) {
+        e.preventDefault();
+        var klass   = 'closed'
+          , icon    = $(this).children('i')
+          , address = $('input.address')
+          ;
+        panel.toggleClass(klass);
+        if (address) {
+          if (panel.hasClass(klass)) {
+            address.val('0');
+          } else {
+            address.val('1');
+          }
+        }
+        icon.toggleClass('large angle double down icon');
+        icon.toggleClass('large angle double up icon');
+        return false;
+      });
+    })();
+
+    // tag editor
+    (function() {
+      if ($.fn.tagEditor == undefined) { return; }
+
+      var tagList = $('#contact_tag_list');
+      tagList.tagEditor({
+        'delimiter':      ','
+      , 'forceLowercase': false
+      , 'placeholder':    'Tag'
       });
     })();
   });

@@ -37,16 +37,15 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   create_table "contacts", force: :cascade do |t|
     t.string   "code",                    null: false
     t.string   "slug"
-    t.string   "prop"
     t.string   "name",       default: "", null: false
     t.string   "postcode"
     t.string   "country",    default: "", null: false
     t.string   "division",   default: "", null: false
-    t.string   "city",       default: "", null: false
-    t.string   "address",    default: "", null: false
+    t.string   "city"
+    t.string   "street"
     t.string   "phone"
     t.string   "email"
-    t.string   "memo"
+    t.text     "memo"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
