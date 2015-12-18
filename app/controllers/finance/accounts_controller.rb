@@ -1,7 +1,7 @@
 module Finance
   class AccountsController < WorkspaceController
     before_action :set_ledger
-    before_action :set_account, only: [:show, :edit, :update]
+    before_action :set_account, only: [:edit, :update]
 
     def index
       @accounts = @ledger.accounts.page(params[:page])
@@ -14,7 +14,7 @@ module Finance
     def create
       @account = @ledger.accounts.new(account_params)
       if @account.save_with_category
-        redirect_to(finance_ledger_account_url(@ledger, @account),
+        redirect_to(finance_ledger_account_entries_url(@ledger, @account),
           :notice => 'Account has been successfully created.')
       else
         flash.now[:alert] = 'Account could not be created.'
@@ -22,15 +22,12 @@ module Finance
       end
     end
 
-    def show
-    end
-
     def edit
     end
 
     def update
       if @account.update_attributes(account_params)
-        redirect_to(finance_ledger_account_url(@ledger, @account),
+        redirect_to(finance_ledger_account_entries_url(@ledger, @account),
           :notice => 'Account has been successfully updated.')
       else
         flash.now[:alert] = 'Account could not be updated.'

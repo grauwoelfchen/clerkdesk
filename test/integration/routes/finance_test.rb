@@ -28,6 +28,16 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         controller: 'finance/ledgers',
         action:     'create'
       })
+      assert_raise(Minitest::Assertion) do
+        assert_routing({
+          method: 'get',
+          path:   "#{host}/finances/1"
+        }, {
+          controller: 'finance/ledgers',
+          action:     'show',
+          id:         '1'
+        })
+      end
       assert_routing({
         method: 'get',
         path:   "#{host}/finances/1/overview"
@@ -68,16 +78,73 @@ class FinanceRouteTest < ActionDispatch::IntegrationTest
         action:     'destroy',
         id:         '1'
       })
+    end
+  end
+
+  def test_route_to_finance_accounts
+    within_subdomain_host do |host|
+      assert_routing({
+        method: 'get',
+        path:   "#{host}/finances/1/accounts"
+      }, {
+        controller: 'finance/accounts',
+        action:     'index',
+        ledger_id:  '1'
+      })
+      assert_routing({
+        method: 'get',
+        path:   "#{host}/finances/1/accounts/new"
+      }, {
+        controller: 'finance/accounts',
+        action:     'new',
+        ledger_id:  '1'
+      })
+      assert_routing({
+        method: 'post',
+        path:   "#{host}/finances/1/accounts"
+      }, {
+        controller: 'finance/accounts',
+        action:     'create',
+        ledger_id:  '1'
+      })
       assert_raise(Minitest::Assertion) do
         assert_routing({
           method: 'get',
-          path:   "#{host}/finances/1"
+          path:   "#{host}/finances/1/accounts/1"
         }, {
-          controller: 'finance/ledgers',
+          controller: 'finance/accounts',
           action:     'show',
+          ledger_id:  '1',
           id:         '1'
         })
       end
+      assert_routing({
+        method: 'get',
+        path:   "#{host}/finances/1/accounts/1/edit"
+      }, {
+        controller: 'finance/accounts',
+        action:     'edit',
+        ledger_id:  '1',
+        id:         '1'
+      })
+      assert_routing({
+        method: 'patch',
+        path:   "#{host}/finances/1/accounts/1"
+      }, {
+        controller: 'finance/accounts',
+        action:     'update',
+        ledger_id:  '1',
+        id:         '1'
+      })
+      assert_routing({
+        method: 'put',
+        path:   "#{host}/finances/1/accounts/1"
+      }, {
+        controller: 'finance/accounts',
+        action:     'update',
+        ledger_id:  '1',
+        id:         '1'
+      })
     end
   end
 
