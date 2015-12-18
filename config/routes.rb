@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         resource :budget, only: [:show, :edit, :update]
 
         resources :categories
-        resources :accounts do
+        resources :accounts, except: :show do
           resources :entries
           resources :journalizings, only: [:index],
             constraints: {type: /income|expense/, format: :json}
