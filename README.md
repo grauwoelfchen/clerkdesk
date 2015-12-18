@@ -55,5 +55,5 @@ see `Procfile`
 
 Copyright (C) 2015 Yasuhiro Asaka
 
-This is free software; You can redistribute it and/or modify it under the terms of the GNU Affero General Public License (AGPL).__
+This is free software; You can redistribute it and/or modify it under the terms of the GNU Affero General Public License (AGPL).  
 See doc/LICENSE.
