@@ -44,7 +44,7 @@ see `Procfile`
 
 ```
 ;; Run test suit as you like
-(env) % bundle exec foreman run rake test
+(env) % bundle exec foreman run test
 (env) % bundle exec foreman run ruby -I.:test test/models/note_test.rb
 
 ;; Watch with gulp (see gulpfile.js)
