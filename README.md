@@ -50,3 +50,10 @@ see `Procfile`
 ;; Watch with gulp (see gulpfile.js)
 (env) % gulp watch
 ```
+
+## License
+
+Copyright (C) 2015 Yasuhiro Asaka
+
+This is free software; You can redistribute it and/or modify it under the terms of the GNU Affero General Public License (AGPL).__
+See doc/LICENSE.
