@@ -1,5 +1,3 @@
-var sys = require('sys');
-
 var gulp  = require('gulp')
   , bower = require('gulp-bower')
   , watch = require('gulp-watch')
@@ -11,7 +9,7 @@ var sequence = require('run-sequence')
 gulp.task('watch', function() {
   return watch('./test/**/*_test.rb', {
     read:          false
-  , readDelay:     5
+  , readDelay:     1
   , ignoreInitial: true
   , events:        ['add', 'change']
   }, function(file) {

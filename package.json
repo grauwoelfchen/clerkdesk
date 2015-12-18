@@ -11,9 +11,6 @@
   , "gulp": "~> 3.9.0"
   , "gulp-bower": "0.0.10"
   , "gulp-shell": "0.4.2"
-  , "grunt": "0.4.5"
-  , "grunt-contrib-clean": "0.6.0"
-  , "grunt-shell": "1.1.2"
   , "run-sequence": "1.1.2"
   }
 , "devDependencies": {
