@@ -3,7 +3,6 @@ digraph Clerkdesk {
    * Style
    *
    */
-
   graph [fontname = "DejaVuSansMono"; fontsize = 9];
   node  [fontname = "DejaVuSansMono"; fontsize = 9];
   edge  [fontname = "DejaVuSansMono"; fontsize = 9];
@@ -12,14 +11,26 @@ digraph Clerkdesk {
    * Node
    *
    */
-
   node [ // object
     shape   = record
     rankdir = LR
   ]
 
-  LockerRoomAccount [
-    label = "{locker_room_accounts|«LockerRoom::Account»\lhas_many: locker_roommembers\lhas_many: locker_room_users\l\n|{ \
+  // LockerRoom
+
+  LockerRoomTeam [
+    label = "{locker_room_teams|\«LockerRoom::Team\»\l...\l\n|{ \
+      {FIELD|\l}| \
+      {TYPE|\l}| \
+      {VALUE|\l} \
+    }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "azure2"
+  ]
+
+  LockerRoomType [
+    label = "{locker_room_types|\«LockerRoom::Type\»\l...\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -30,7 +41,7 @@ digraph Clerkdesk {
   ]
 
   LockerRoomUser [
-    label = "{locker_room_users|«LockerRoom::User»\lbelongs_to: locker_room_account\lhas_one: locker_room_member\lhas_one: person\l\n|{ \
+    label = "{locker_room_users|\«LockerRoom::User\»\l...\lhas_one: contact (th. identities)\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -40,8 +51,8 @@ digraph Clerkdesk {
     fillcolor = "azure2"
   ]
 
-  LockerRoomMember [
-    label = "{locker_room_members|«LockerRoom::Member»\lbelongs_to: locker_room_account\lbelongs_to: locker_room_user\l\n|{ \
+  LockerRoomMateship [
+    label = "{locker_room_mateships|\«LockerRoom::Mateship\»\l...\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -50,9 +61,11 @@ digraph Clerkdesk {
     fontcolor = "black"
     fillcolor = "azure2"
   ]
+
+  // ActsAsTaggableOn
 
   Tag [
-    label = "{tags|«ActsAsTaggableOn::Tag»\lhas_many: taggins\l\n|{ \
+    label = "{tags|\«ActsAsTaggableOn::Tag\»\lhas_many: taggins\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -63,7 +76,7 @@ digraph Clerkdesk {
   ]
 
   Tagging [
-    label = "{taggings|«ActsAsTaggableOn::Tagging»\lbelongs_to: tag\lbelongs_to: note\lbelongs_to: entry\l\n|{ \
+    label = "{taggings|\«ActsAsTaggableOn::Tagging\»\lbelongs_to: tag\lbelongs_to: note\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -73,100 +86,116 @@ digraph Clerkdesk {
     fillcolor = "floralwhite"
   ]
 
-  Note [
-    label = "{notes|«Note»\lhas_many: tags\lhas_many: involvements (as concerns)\n|{ \
-      {FIELD|title\l|content\l}| \
-      {TYPE|varchar\l|text\l}| \
-      {VALUE|\l|\l} \
-    }}"
-  ]
+  // Finance
 
-  Finance [
-    label = "{finances|«Finance»\lhas_one: budget\lhas_one: settlement\lhas_one: ledger\l\n|{ \
-      {FIELD|name\l|description\l|started_at\l|finished_at\l|status\l}| \
-      {TYPE|varchar\l|text\l|datetime\l|datetime\l|integer\l}| \
+  FinanceLedger [
+    label = "{finance_ledgers|\«Finance::Ledger\»\lhas_one: budget\lhas_many: accounts\lhas_many: categories\lhas_many: journalizings (th. categories)\lhas_many: entries (th. journalizings)\l\n|{ \
+      {FIELD|name\l|description\l|started_at\l|finished_at\l|state\l}| \
+      {TYPE|string\l|text\l|datetime\l|datetime\l|integer\l}| \
       {VALUE|\l|\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen1"
   ]
 
   FinanceCategory [
-    label = "{finance_categories|«FinanceCategory»\lbelongs_to: finance\lhas_many: ledger_entries (th. journalizings, as entries)\l\n|{ \
-      {FIELD|finance_id\l|type\l|name\l}| \
-      {TYPE|integer\l|integer\l|name\l}| \
-      {VALUE|\l|0:expense,1:income\l|\l} \
+    label = "{finance_categories|«Finance::Category»\lbelongs_to: ledger\lhas_many: journalizings\lhas_many: entries (th. journalizings)\l\n|{ \
+      {FIELD|ledger_id\l|type\l|name\l|description\l}| \
+      {TYPE|integer\l|integer\l|string\l|string\l}| \
+      {VALUE|\l|0:expense,1:income\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen1"
   ]
 
-  Budget [
-    label = "{budgets|«Budget»\lbelongs_to: finance\l\n|{ \
-      {FIELD|finance_id\l|title\l|description\l|carryover\l|approved_at\l}| \
-      {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
-      {VALUE|\l|\l|\l|default:0\l|\l} \
+  FinanceBudget [
+    label = "{finance_budgets|\«Finance::Budget\»\lbelongs_to: ledger\l\n|{ \
+      {FIELD|ledger_id\l|description\l|memo\l|approved_at\l}| \
+      {TYPE|integer\l|string\l|text\l|datetime}| \
+      {VALUE|\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen1"
   ]
 
-  Settlement [
-    label = "{settlements|«Settlement»\lbelongs_to: finance\l\n|{ \
-      {FIELD|finance_id\l|title\l|description\l|carryover\l|approved_at\l}| \
-      {TYPE|integer\l|varchar\l|text\l|integer\l|datetime}| \
-      {VALUE|\l|\l|\l|default:0\l|\l} \
+  FinanceAccount [
+    label = "{finance_accounts|\«Finance::Account\»\lbelongs_to: ledger\lhas_many: journalizings\lhas_many: categories (th. journalizings)\lhas_many: entries\l\n|{ \
+      {FIELD|ledger_id\l|name\l|description\l|memo\l}| \
+      {TYPE|integer\l|string\l|string\l|text\l}| \
+      {VALUE|\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen1"
   ]
 
-  Ledger [
-    label = "{ledgers|«Ledger»\lbelongs_to: finance\lhas_many: ledger_entries (as entries)\l\n|{ \
-      {FIELD|finance_id\l|title\l|description\l}| \
-      {TYPE|integer\l|varchar\l|text\l}| \
-      {VALUE|\l|\l|\l} \
-    }}"
-  ]
-
-  Journalizing [
-    label = "{journalizings|«Journalizing»\lbelongs_to: ledger\lbelongs_to: finance_category (as category)\lhas_many: ledger_entry: (as entry)\l\n|{ \
-      {FIELD|ledger_id\l|category_id\l|entries_count\l}| \
+  FinanceJournalizing [
+    label = "{finance_journalizings|\«Finance::Journalizing\»\lbelongs_to: account\lbelongs_to: category\lhas_many: entries\l\n|{ \
+      {FIELD|account_id\l|category_id\l|entries_count\l}| \
       {TYPE|integer\l|integer\l|integer\l}| \
       {VALUE|\l|\l|default:0\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen3"
   ]
 
-  LedgerEntry [
-    label = "{ledger_entries|«LedgerEntry»\lbelongs_to: ledger\lbelongs_to: finace_category (th. journalizing, as category)\lhas_many: ledger_items (as items)\lhas_many: tags\lhas_many: involvements (as concerns)\l\n|{ \
-      {FIELD|ledger_id\l|journalizing_id\l|type\l|title\l|total_amount\l|memo\l}| \
-      {TYPE|integer\l|integer\l|integer\l|varchar\l|integer\l|varchar\l}| \
+  FinanceEntry [
+    label = "{finance_entries|\«Finance::Entry\»\lbelongs_to: account\lbelongs_to: journalizing\lhas_many: involvements\lhas_many: contacts (th. involvements)\lhas_one: category (th. journalizing)\l\n|{ \
+      {FIELD|account_id\l|journalizing_id\l|type\l|title\l|total_amount\l|memo\l}| \
+      {TYPE|integer\l|integer\l|integer\l|string\l|integer\l|string\l}| \
       {VALUE|\l|\l|0:expense,1:income\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "palegreen3"
   ]
 
-  LedgerItem [
-    label = "{ledger_items|«LedgerItem»\lbelongs_to: ledger_entry (as entry)\l\n|{ \
-      {FIELD|entry_id\l|name\l|amount\l|memo\l}| \
-      {TYPE|integer\l|varchar\l|integer\l|varchar\l}| \
-      {VALUE|\l|\l|\l|\l} \
+  Note [
+    label = "{notes|\«Note\»\lhas_many: tags\l\n|{ \
+      {FIELD|title\l|content\l|content_html\l}| \
+      {TYPE|string\l|text\l|text\l}| \
+      {VALUE|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "powderblue"
   ]
 
   Involvement [
-    label = "{involvements|«Involvement»\lbelongs_to: person\lbelongs_to: concern\l\n|{ \
-      {FIELD|person_id\l|concern_id\l|concern_type\l}| \
-      {TYPE|integer\l|integer\l|varchar\l}| \
-      {VALUE|\l|\l|\l} \
+    label = "{involvements|\«Involvement\»\lbelongs_to: contact\lbelongs_to: entry\lbelongs_to: note\l\n|{ \
+      {FIELD|holder_type\l|holder_id\l|matter_type\l|matter_id\l}| \
+      {TYPE|string\l|integer\l|string\l|integer\l}| \
+      {VALUE|\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "tan"
   ]
 
-  Person [
-    label = "{people|«Person»\lhas_one: locker_room_user (as user)\lhas_many: involvements (as concerns)\l\n|{ \
-      {FIELD|slug\l|property\l|first_name\l|last_name\l|postcode\l|country\l|division\l|city\l|address\l|phone\l|email\l|memo\l|joined_at\l|left_at\l}| \
-      {TYPE|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|varchar\l|datetime\l|datetime\l}| \
-      {VALUE|\l|\l|default:''\l|default:''\l|\l|default:''\l|default:''\l|default:''\l|default:''\l|\l|\l|\l|\l|\l} \
+  Contact [
+    label = "{contacts|\«Contact\»\lhas_many: involvements\lhas_many: entries (th. involvements)\lhas_one: usership\lhas_one: user (th. usership)\l\n|{ \
+      {FIELD|code\l|slug\l|name\l|postcode\l|country\l|division\l|city\l|street\l|phone\l|email\l|memo\l}| \
+      {TYPE|string\l|string\l|string\l|string\l|string\l|string\l|string\l|string\l|string\l|string\l|text\l}| \
+      {VALUE|\l|\l|default:''\l|\l|default:''\l|default:''\l|\l|\l|\l|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "thistle1"
   ]
 
-  Identity [
-    label = "{identities|«Identity»\lbelongs_to: locker_room (as user)\lbelongs_to: person\l\n|{ \
-      {FIELD|user_id\l|person_id\l}| \
+  Usership [
+    label = "{userships|\«Usership\»\lbelongs_to: locker_room (as user)\lbelongs_to: contact\l\n|{ \
+      {FIELD|user_id\l|contact_id\l}| \
       {TYPE|integer\l|integer\l}| \
       {VALUE|\l|\l} \
     }}"
+    style     = "filled"
+    fontcolor = "black"
+    fillcolor = "lightsteelblue3"
   ]
 
   edge [ // table
@@ -189,6 +218,68 @@ digraph Clerkdesk {
    * Relation
    *
    */
+  edge [ // belongs_to -> has_many
+    arrowhead = vee
+    arrowtail = crow
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  LockerRoomMateship -> LockerRoomTeam
+  LockerRoomMateship -> LockerRoomUser
+  Tagging -> Tag
+  Tagging -> Note
+  FinanceAccount  -> FinanceLedger
+  FinanceCategory -> FinanceLedger
+  FinanceEntry -> FinanceAccount
+  FinanceEntry -> FinanceJournalizing
+  FinanceJournalizing -> FinanceAccount
+  FinanceJournalizing -> FinanceCategory
+  Involvement -> Contact
+  Involvement -> FinanceEntry
+
+  edge [ // belongs_to -> has_one
+    arrowhead = vee
+    arrowtail = normal
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  Usership -> LockerRoomUser
+  Usership -> Contact
+  FinanceBudget -> FinanceLedger
+
+  edge [ // has_one <-> has_one
+    arrowhead = normal
+    arrowtail = normal
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  Contact -> LockerRoomUser
+
+  edge [ // has_one <-> has_many
+    arrowhead = normal
+    arrowtail = crow
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  FinanceEntry -> FinanceCategory
+
+  edge [ // has_many <-> has_many
+    arrowhead = crow
+    arrowtail = crow
+    headlabel = ""
+    taillabel = ""
+    dir       = both
+  ]
+
+  Contact -> FinanceEntry
 
   edge [ // has_many
     arrowhead = crow
@@ -198,11 +289,8 @@ digraph Clerkdesk {
     dir       = both
   ]
 
-  //Account -> Member
-  //Account -> User
-
-  Note        -> Tag
-  LedgerEntry -> Tag
+  FinanceAccount -> FinanceCategory
+  FinanceLedger  -> FinanceJournalizing
 
   edge [ // belongs_to
     arrowhead = vee
@@ -212,51 +300,11 @@ digraph Clerkdesk {
     dir       = both
   ]
 
-  LockerRoomMember -> LockerRoomAccount
-  LockerRoomMember -> LockerRoomUser
-  LockerRoomUser   -> LockerRoomAccount
-
-  Tagging -> Tag
-  Tagging -> Note
-  Tagging -> LedgerEntry
-
-  Budget     -> Finance
-  Settlement -> Finance
-  FinanceCategory -> Finance
-
-  Ledger      -> Finance
-  LedgerEntry -> Ledger
-  LedgerEntry -> Journalizing
-  LedgerItem  -> LedgerEntry
-
-  Journalizing -> Ledger
-  Journalizing -> FinanceCategory
-
-  Involvement -> Person
+  LockerRoomTeam -> LockerRoomType
   Involvement -> Note
-  Involvement -> LedgerEntry
-
-  Identity -> LockerRoomUser
-  Identity -> Person
 
   edge [ // has_one
     arrowhead = normal
-    arrowtail = none
-    headlabel = ""
-    taillabel = ""
-    dir       = both
-  ]
-
-  edge [ // has_and_belongs_to_many
-    arrowhead = crow
-    arrowtail = vee
-    headlabel = ""
-    taillabel = ""
-    dir       = both
-  ]
-
-  edge [
-    arrowhead = none
     arrowtail = none
     headlabel = ""
     taillabel = ""
@@ -268,12 +316,12 @@ digraph Clerkdesk {
    * Layout
    *
    */
+  {rank = same; LockerRoomMateship; LockerRoomType;};
+  {rank = same; LockerRoomTeam; LockerRoomUser;};
+  {rank = same; Tagging; Tag;};
+  {rank = same; FinanceBudget; FinanceAccount; FinanceCategory;};
+  {rank = same; FinanceEntry; FinanceJournalizing;};
 
-  {rank = same; LockerRoomMember;};
-  {rank = same; LockerRoomAccount; LockerRoomUser; Person};
-  {rank = same; Note; Involvement; Finance;};
-  {rank = same; Budget; Settlement;};
-  {rank = same; Involvement;};
-  {rank = same; Tagging; LedgerEntry;FinanceCategory;};
-  {rank = same; Tag; Ledger;};
+  {rank = same; LockerRoomUser; FinanceLedger;};
+  {rank = same; LockerRoomMateship; FinanceAccount;};
 }
