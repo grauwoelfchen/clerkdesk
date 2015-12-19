@@ -47,6 +47,8 @@ ja:
         title: タイトル
         type: 種類
         total_amount: 金額
+        memo: メモ
+        involvements: 関与
       contact:
         <<: *default
         code: コード

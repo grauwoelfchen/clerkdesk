@@ -2,8 +2,8 @@
   h5
     i.icon.fa.fa-fw.fa-lg= account.icon.to_s.html_safe
     = account.name
-  p.description
-    = account.description
+    span.description
+      = account.description
 
 - if controller_path != 'finance/entries'
   .ui.grid

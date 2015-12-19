@@ -166,7 +166,7 @@
                 if ($.inArray(tag, source) == -1) {
                   // remove unknown
                   $(this).closest('li').remove();
-                  var holder  = $('#contacts div.holder:eq(' + i + ')')
+                  var holder  = $('#involvements div.holder:eq(' + i + ')')
                     , destroy = holder.children('input.destroy');
                   if (destroy.length == 0) {
                     holder.remove();
@@ -183,7 +183,7 @@
               if (id) {
                 var hidden = $('#holder_' + id);
                 if (hidden.length == 0 && $.inArray(val, source) > -1) {
-                  $('#contacts').append(
+                  $('#involvements').append(
                     '<div class="holder">' +
                     '<input' +
                     ' type="hidden"' +
