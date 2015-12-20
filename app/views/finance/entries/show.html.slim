@@ -56,7 +56,7 @@
                 .content
                   .header
                     - if @entry.category
-                      = @entry.category.name
+                      = link_to @entry.category.name, finance_ledger_account_entries_path(@ledger, @account, c: @entry.category.id)
                     span class="label label-#{@entry.type}"
                       = @entry.type
                   .meta

@@ -1,4 +1,4 @@
-- breadcrumb :'finance/entries', @ledger, @account
+- breadcrumb :'finance/entries', @ledger, @account, @category
 
 - content_for :header
   h2= Finance::Account.model_name.human
@@ -28,6 +28,8 @@
         .ui.grid
           .sixteen.wide.column
             = render 'finance/shared/account', ledger: @ledger, account: @account
+            - if @category
+              p.category= @category.name
             .container
               = render 'shared/pagination', resource: @entries
               table.ui.very.basic.compact.table
@@ -59,7 +61,7 @@
                     tr
                       td.category
                         - if entry.category
-                          = link_to entry.category.name, finance_ledger_account_entry_path(@ledger, @account, entry)
+                          = link_to entry.category.name, finance_ledger_account_entries_path(@ledger, @account, c: entry.category.id)
                       td.title
                         = link_to entry.title, finance_ledger_account_entry_path(@ledger, @account, entry)
                       td.type

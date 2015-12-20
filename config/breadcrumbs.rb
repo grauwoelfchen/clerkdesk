@@ -65,8 +65,11 @@ crumb :'finance/account' do |ledger, account|
   parent :'finance/accounts', ledger
 end
 
-crumb :'finance/entries' do |ledger, account|
+crumb :'finance/entries' do |ledger, account, category|
   link Finance::Entry.model_name.human.pluralize, finance_ledger_account_entries_path(ledger, account)
+  if category
+    link category.name, finance_ledger_category_path(ledger, category)
+  end
   parent :'finance/account', ledger, account
 end
 

@@ -32,7 +32,7 @@
                         td.entry
                           p.type
                             span class="label label-#{entry.type}"= entry.human_type
-                          p.category= truncate(entry.category.name, length: 18)
+                          p.category= link_to truncate(entry.category.name, length: 18), finance_ledger_account_entries_path(@ledger, entry.account, c: entry.category.id)
                           = link_to finance_ledger_account_path(@ledger, entry.account) do
                             i.icon.fa.fa-fw.fa-lg= entry.account.icon.to_s.html_safe
                           p.title
