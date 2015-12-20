@@ -10,6 +10,12 @@ module Finance
         .includes(:journalizing, :category)
         .order_by(params[:field], params[:direction])
         .page(params[:page])
+      if params[:c]
+        @category = Finance::Category.find(params[:c])
+        @entries = @entries
+          .includes(:category)
+          .where(:finance_categories => {:id => params[:c]})
+      end
     end
 
     def new
