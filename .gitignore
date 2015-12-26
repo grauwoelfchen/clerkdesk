@@ -4,6 +4,7 @@
 /tmp
 
 /node_modules
+/env
 /vendor/assets/components
 /public/assets
 
