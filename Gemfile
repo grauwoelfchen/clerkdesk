@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'foreman'
 
+gem 'sprockets-rails', '~> 2.3'
+
 gem 'rails', '4.2.1'
 gem 'pg'
 

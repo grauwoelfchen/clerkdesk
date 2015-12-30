@@ -40,7 +40,7 @@
               .group
                 .country
                   label= Contact.human_attribute_name(:country)
-                  - country = Country.find_country_by_alpha2(@contact.country)
+                  - country = ISO3166::Country.find_country_by_alpha2(@contact.country)
                   - if country
                     = country.translations[current_locale]
               .group
