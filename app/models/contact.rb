@@ -29,7 +29,7 @@ class Contact < ActiveRecord::Base
     presence: true,
     length:   {maximum: 128}
   validates :country,
-    inclusion:   {in: Country.all.map { |_, alpha2| alpha2 }},
+    inclusion:   {in: ISO3166::Country.all.map(&:alpha2)},
     allow_blank: true
   validates :city,
     length: {maximum: 64}
@@ -67,7 +67,7 @@ class Contact < ActiveRecord::Base
   def valid_division?
     return false unless country.present?
     # because this finder does not raise any exception (returns nil)
-    country_data = Country.find_country_by_alpha2(country)
+    country_data = ISO3166::Country.find_country_by_alpha2(country)
     return false unless (country_data && country_data.subdivisions?)
     divisions = country_data.subdivisions
     divisions.keys.include?(division)

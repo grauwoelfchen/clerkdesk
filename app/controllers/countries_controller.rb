@@ -13,6 +13,6 @@ class CountriesController < WorkspaceController
   private
 
   def set_country
-    @country = Country.find_country_by_alpha2(params[:code])
+    @country = ISO3166::Country.find_country_by_alpha2(params[:code])
   end
 end
