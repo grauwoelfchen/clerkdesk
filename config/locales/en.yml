@@ -59,14 +59,9 @@ en:
   heading:
     settings: Settings
   subheading:
-    note: Protokoll, Memo
+    note: Protokoll
     finance:
-      ledger: Fiscal record
       overview: Overview
-      category: Category
-      account: Account
-      budget: Budget
-      entry: Entry
     current_status: Current status
     recent_entries: Recent entries
     settings:

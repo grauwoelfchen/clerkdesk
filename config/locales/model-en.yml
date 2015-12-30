@@ -3,7 +3,7 @@ en:
   activerecord:
     models:
       locker_room/user: User
-      finance/ledger: Finance
+      finance/ledger: Ledger
       finance/category: Category
       finance/account: Account
       finance/budget: Budget

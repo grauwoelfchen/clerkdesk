@@ -2,14 +2,14 @@
 ja:
   activerecord:
     models:
-      locker_room/user: 管理者
+      locker_room/user: ユーザ
       note: ノート
-      finance/ledger: 会計
+      finance/ledger: 帳簿
       finance/category: 費目
       finance/account: 口座
       finance/budget: 予算
-      finance/entry: 記録
-      contact: 連絡先
+      finance/entry: エントリ
+      contact: コンタクト
     attributes:
       default: &default
         created_at: 作成日時

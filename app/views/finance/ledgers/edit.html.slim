@@ -1,12 +1,12 @@
 - breadcrumb :'finance/ledger', @ledger
 
 - content_for :header
-  h2= Finance::Ledger.model_name.human
-  h3= t('subheading.finance.ledger')
+  h2= t('nav.finance')
+  h3= Finance::Ledger.model_name.human
 
 - content_for :actions
   .item
-    = Finance::Ledger.model_name.human
+    = t('nav.finance')
     .menu
       = link_to t('action.new'), new_finance_ledger_path, class: 'item'
       = link_to t('action.index'), finance_ledgers_path, class: 'item'
