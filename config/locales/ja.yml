@@ -11,6 +11,7 @@ ja:
   nav:
     desktop: デスクトップ
     actions: アクション
+    finance: ファイナンス
     settings: 設定
     overview: 概要
   crumb:
@@ -61,15 +62,10 @@ ja:
   subheading:
     note: プロトコル・メモ
     finance:
-      ledger: 帳簿・財政記録
       overview: 概要
-      category: 分類・カテゴリ
-      account: アカウント
-      budget: 計画・見積り
-      entry: 記録・エントリ
     current_status: 現在の状況
     recent_entries: 最近の記帳
-    contact: コンタクト
+    contact: 連絡先
     settings:
       account: アカウント
   misc:

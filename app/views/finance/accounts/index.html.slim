@@ -1,8 +1,8 @@
 - breadcrumb :'finance/accounts', @ledger
 
 - content_for :header
-  h2= Finance::Account.model_name.human
-  h3= t('subheading.finance.account')
+  h2= t('nav.finance')
+  h3= Finance::Account.model_name.human
 
 - content_for :actions
   .item
