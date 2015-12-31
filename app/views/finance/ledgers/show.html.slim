@@ -30,13 +30,16 @@
                     - if entry
                       tr
                         td.entry
+                          p.account
+                            = link_to finance_ledger_account_entries_path(@ledger, entry.account), class: 'icon' do
+                              i.icon.fa.fa-fw.fa-lg= entry.account.icon.to_s.html_safe
+                            = link_to finance_ledger_account_entries_path(@ledger, entry.account) do
+                              = truncate entry.account.name, length: 7
                           p.type
-                            span class="label label-#{entry.type}"= entry.human_type
-                          p.category= link_to truncate(entry.category.name, length: 18), finance_ledger_account_entries_path(@ledger, entry.account, c: entry.category.id)
-                          = link_to finance_ledger_account_path(@ledger, entry.account) do
-                            i.icon.fa.fa-fw.fa-lg= entry.account.icon.to_s.html_safe
+                            span class="label label-#{entry.type}"= t entry.type, scope: %i(activerecord values finance/ledger type)
+                          p.category= link_to truncate(entry.category.name, length: 7), finance_ledger_account_entries_path(@ledger, entry.account, c: entry.category.id)
                           p.title
-                           = link_to entry.title, finance_ledger_account_entry_path(@ledger, entry.account, entry)
+                           = link_to truncate(entry.title, length: 18), finance_ledger_account_entry_path(@ledger, entry.account, entry)
                         td.total_amount
                           span.currency= entry.total_amount
                         td

@@ -71,10 +71,14 @@ ja:
           attributes:
             started_at:
               before_than_finished_at: 'は終了より前に設定してください'
+    values:
+      finance/ledger:
+        type: &type
+          expense: 支出
+          income: 収入
   enum_accessor:
     type:
-      expense: 支出
-      income: 収入
+      <<: *type
     finance/ledger:
       state:
         closed: 終了
