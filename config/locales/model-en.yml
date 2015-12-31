@@ -36,3 +36,8 @@ en:
           attributes:
             started_at:
               before_than_finished_at: 'must be before than finished_at'
+    values:
+      finance/ledger:
+        type:
+          expense: EXP
+          income: INC
