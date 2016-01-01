@@ -1,7 +1,7 @@
 .item.top
-  .icon
-    = image_tag 'clerkdesk-32x32.png', size: '32x32'
-  = link_to t('app.name'), root_path, class: 'heading'
+  = link_to root_path, class: 'brand'
+    = image_tag 'clerkdesk-icon-22x22.png', size: '22x22'
+    = image_tag 'clerkdesk-logo-140x24.png', size: '140x24'
 
 = active_link_to notes_path, class: 'item' do
   i.fa.fa-file-text-o
