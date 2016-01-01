@@ -34,4 +34,4 @@
               = link_to nil, class: 'item disabled'
                 i.icon.fa.fa-print
                 = t('action.print')
-        .html== @note.content_html
+        .html= sanitize @note.content_html, tags: %w(p h1 h2 h3 h4 h5 h6 table tr th td strong em a ul ol li del pre code hr img), attributes: %w(href src)

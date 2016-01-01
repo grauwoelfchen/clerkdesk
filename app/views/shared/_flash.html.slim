@@ -1,4 +1,4 @@
 .flash-messages
   - flash.each do |name, message|
     ul(class=name)
-      li= message.html_safe
+      li= raw message
