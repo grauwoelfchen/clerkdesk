@@ -1,6 +1,6 @@
 # Cleckdesk
 
-[![Codeship Status for grauwoelfchen/clerkdesk](https://codeship.com/projects/b811c880-e27b-0132-f70e-4ea0dd54b93d/status?branch=master)](https://codeship.com/projects/81463) [![Code Climate](https://codeclimate.com/github/grauwoelfchen/clerkdesk/badges/gpa.svg)](https://codeclimate.com/github/grauwoelfchen/clerkdesk)
+[![Codeship Status for grauwoelfchen/clerkdesk](https://codeship.com/projects/b811c880-e27b-0132-f70e-4ea0dd54b93d/status?branch=master)](https://codeship.com/projects/81463) [![Code Climate](https://codeclimate.com/github/grauwoelfchen/clerkdesk/badges/gpa.svg)](https://codeclimate.com/github/grauwoelfchen/clerkdesk) [![Test Coverage](https://codeclimate.com/github/grauwoelfchen/clerkdesk/badges/coverage.svg)](https://codeclimate.com/github/grauwoelfchen/clerkdesk/coverage)
 
 [Project on TAIGA](https://tree.taiga.io/project/grauwoelfchen-clerkdesk/)
 
