@@ -4,7 +4,7 @@ gem 'foreman'
 
 gem 'sprockets-rails', '~> 2.3'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5'
 gem 'pg'
 
 # TODO: release locker_room gem
