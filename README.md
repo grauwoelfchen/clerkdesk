@@ -2,6 +2,8 @@
 
 [![Codeship Status for grauwoelfchen/clerkdesk](https://codeship.com/projects/b811c880-e27b-0132-f70e-4ea0dd54b93d/status?branch=master)](https://codeship.com/projects/81463)
 
+[Project on TAIGA](https://tree.taiga.io/project/grauwoelfchen-clerkdesk/)
+
 
 ## Development
 
