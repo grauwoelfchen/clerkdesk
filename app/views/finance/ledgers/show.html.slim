@@ -32,7 +32,7 @@
                         td.entry
                           p.account
                             = link_to finance_ledger_account_entries_path(@ledger, entry.account), class: 'icon' do
-                              i.icon.fa.fa-fw.fa-lg= entry.account.icon.to_s.html_safe
+                              i.icon.fa.fa-fw.fa-lg= raw entry.account.icon
                             = link_to finance_ledger_account_entries_path(@ledger, entry.account) do
                               = truncate entry.account.name, length: 7
                           p.type
