@@ -72,6 +72,8 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     cliver (0.3.2)
+    codeclimate-test-reporter (0.4.8)
+      simplecov (>= 0.7.1, < 1.0.0)
     connection_pool (2.2.0)
     countries (1.2.2)
       currencies (~> 0.4.2)
@@ -81,6 +83,7 @@ GEM
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
     database_cleaner (1.5.1)
+    docile (1.1.5)
     enum_accessor (2.1.0)
       activesupport (>= 3.0.0)
     erubis (2.7.0)
@@ -183,6 +186,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simplecov (0.11.1)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -235,6 +243,7 @@ DEPENDENCIES
   active_link_to
   acts-as-taggable-on (~> 3.4)
   browserify-rails
+  codeclimate-test-reporter
   connection_pool
   countries
   country_select

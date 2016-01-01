@@ -49,6 +49,7 @@ group :test do
   gem 'connection_pool'
   gem 'poltergeist'
   gem 'fake_braintree'
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 rock = File.expand_path('../Gemfile.rock', __FILE__)

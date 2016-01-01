@@ -1,5 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migrator.migrations_paths = [
   File.expand_path('../../db/migrate', __FILE__)
