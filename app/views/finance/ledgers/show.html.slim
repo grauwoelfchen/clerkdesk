@@ -18,7 +18,7 @@
           - if params[:segment] != 'status'
             / Recent entries
             .ui.grid
-              .five.wide.column
+              .ten.wide.column
                 .ui.secondary.menu
                   = active_link_to t('subheading.recent_entries'), url_for(segment: :entries), class: 'item', active: true
                   = active_link_to t('subheading.current_status'), url_for(segment: :status), class: 'item', active: false
@@ -52,7 +52,7 @@
           - else
             / Current status
             .ui.grid
-              .five.wide.column
+              .ten.wide.column
                 .ui.secondary.menu
                   = active_link_to t('subheading.recent_entries'), url_for(segment: :entries), class: 'item', active: false
                   = active_link_to t('subheading.current_status'), url_for(segment: :status), class: 'item', active: true
