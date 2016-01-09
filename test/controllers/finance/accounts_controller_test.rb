@@ -19,7 +19,8 @@ module Finance
         login_user(@user)
         get(:index, :ledger_id => @ledger.id)
         assert_equal(@ledger, assigns[:ledger])
-        assert_equal(@ledger.accounts, assigns[:accounts])
+        accounts = @ledger.accounts.order_by(:name, :asc)
+        assert_equal(accounts, assigns[:accounts])
         refute_empty(assigns[:accounts])
       end
     end
@@ -34,6 +35,28 @@ module Finance
     end
 
     # new
+
+    def test_new_should_redirect_with_accounts_count_limit_over
+      within_subdomain(@team.subdomain) do
+        login_user(@user)
+        # >= 20
+        (20 - @ledger.accounts.length).times do |i|
+          @ledger.accounts.create!(name: "Account #{i}", icon: '&#xf0f4;')
+        end
+        get(:new, :ledger_id => @ledger.id)
+        assert_response(:redirect)
+        expected = {
+          :controller => 'finance/accounts',
+          :action     => 'index',
+          :ledger_id  => @ledger.id
+        }
+        assert_equal(
+          'You cannot create over 20 accounts.',
+          ActionController::Base.helpers.strip_tags(flash[:alert])
+        )
+        assert_redirected_to(expected)
+      end
+    end
 
     def test_new_should_assign_vars
       within_subdomain(@team.subdomain) do
@@ -110,6 +133,35 @@ module Finance
           'Account could not be created.',
           ActionController::Base.helpers.strip_tags(flash[:alert])
         )
+      end
+    end
+
+    def test_create_should_redirect_with_accounts_count_limit_over
+      within_subdomain(@team.subdomain) do
+        login_user(@user)
+        # >= 20
+        (20 - @ledger.accounts.length).times do |i|
+          @ledger.accounts.create!(name: "Account #{i}", icon: '&#xf0f4;')
+        end
+        params = {
+          :ledger_id => @ledger.id,
+          :account => {
+            :name => 'Coffee Card',
+            :icon => '&#xf0f4;'
+          }
+        }
+        post(:create, params)
+        assert_response(:redirect)
+        expected = {
+          :controller => 'finance/accounts',
+          :action     => 'index',
+          :ledger_id  => @ledger.id
+        }
+        assert_equal(
+          'You cannot create over 20 accounts.',
+          ActionController::Base.helpers.strip_tags(flash[:alert])
+        )
+        assert_redirected_to(expected)
       end
     end
 

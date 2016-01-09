@@ -1,6 +1,7 @@
 module Finance
   class Account < ActiveRecord::Base
     extend FiscalPolicyExtension
+    include Orderable
 
     self.table_name = 'finance_accounts'
 
@@ -8,6 +9,8 @@ module Finance
     has_many :journalizings
     has_many :categories, through: :journalizings
     has_many :entries
+
+    orderable :description, name: :asc
 
     validates :name,
       presence:   true,
