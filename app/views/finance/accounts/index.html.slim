@@ -22,26 +22,26 @@
     = render 'finance/shared/ledger', ledger: @ledger
     .container
       = render 'finance/shared/menu', ledger: @ledger
-      .page-content
-        .ui.grid
-          .sixteen.wide.column
-            .container
-              = render 'shared/pagination', resource: @accounts
+      .ui.grid
+        .twelve.wide.column
+          .page-content
+            .ui.grid
+              .three.wide.column
+                = link_to new_finance_ledger_account_path(@ledger), class: 'ui compact brown button'
+                  i.icon.fa.fa-pencil
+                  = t('action.new')
+            .ui.embedded.segment
               table.ui.very.basic.compact.table
                 thead
                   tr
                     th
                       span.attribute
                         = Finance::Account.human_attribute_name(:name)
-                      = sort_links_for(:name)
+                      = sort_links_for(:name, :asc)
                     th
                       span.attribute
                         = Finance::Account.human_attribute_name(:description)
                       = sort_links_for(:description)
-                    th
-                      span.attribute
-                        = Finance::Account.human_attribute_name(:updated_at)
-                      = sort_links_for(:updated_at, :desc)
                     th
                 tbody
                   - @accounts.each do |account|
@@ -50,8 +50,17 @@
                         i.icon.fa.fa-fw.fa-lg= raw account.icon
                         = link_to truncate(account.name, length: 18), finance_ledger_account_entries_path(@ledger, account)
                       td= truncate(account.description, length: 27)
-                      td.updated_at= account.updated_at
                       td.operations
                         ul
                           li= link_to t('action.edit'), edit_finance_ledger_account_path(@ledger, account)
                           li= link_to t('action.destroy'), finance_ledger_account_path(@ledger, account), method: :delete, data: {confirm: 'Are you sure?'}
+        .four.wide.column
+          .ui.stacked.segment
+            .ui.top.attached.label TOTAL
+            .ui.divided.list
+              .item
+                span.ui.horizontal.label= t('enum_accessor.type.expense')
+                span.currency= @expense
+              .item
+                span.ui.horizontal.label= t('enum_accessor.type.income')
+                span.currency= @income

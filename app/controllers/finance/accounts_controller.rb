@@ -2,9 +2,11 @@ module Finance
   class AccountsController < WorkspaceController
     before_action :set_ledger
     before_action :set_account, only: [:edit, :update]
+    before_action :check_accounts_limit!, only: [:new, :create]
 
     def index
-      @accounts = @ledger.accounts.page(params[:page])
+      @accounts = @ledger.accounts
+        .order_by(params[:field], params[:direction])
     end
 
     def new
@@ -36,6 +38,12 @@ module Finance
     end
 
     private
+
+    def check_accounts_limit!
+      redirect_to(finance_ledger_accounts_url(@ledger),
+        :alert => 'You cannot create over 20 accounts.') \
+        if @ledger.accounts.length >= 20
+    end
 
     def set_ledger
       @ledger = Ledger.find(params[:ledger_id])
