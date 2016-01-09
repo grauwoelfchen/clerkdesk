@@ -4,6 +4,14 @@ class NotesControllerTest < ActionController::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:notes)
 
+  def setup
+    Note.public_activity_off
+  end
+
+  def teardown
+    Note.public_activity_on
+  end
+
   def test_get_index
     user = locker_room_users(:oswald)
     team = user.teams.first
@@ -11,6 +19,22 @@ class NotesControllerTest < ActionController::TestCase
       login_user(user)
       get(:index)
       refute_empty(assigns[:notes])
+      assert_template(:index)
+      assert_response(:success)
+      logout_user
+    end
+  end
+
+  def test_get_filtered_index_with_tag
+    user = locker_room_users(:oswald)
+    team = user.teams.first
+    note = notes(:favorite_song)
+    note.tag_list.add('Favorites')
+    note.save
+    within_subdomain(team.subdomain) do
+      login_user(user)
+      get(:index, :t => 'Favorites')
+      assert_equal([note], assigns[:notes])
       assert_template(:index)
       assert_response(:success)
       logout_user
