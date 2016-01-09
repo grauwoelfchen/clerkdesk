@@ -26,7 +26,7 @@
         .twelve.wide.column
           - if params[:segment] != 'income'
             .ui.grid
-              .five.wide.column
+              .ten.wide.column
                 .ui.secondary.menu
                   = active_link_to Finance::Category.human_types[:expense], url_for(segment: :expense), class: 'item', active: true
                   = active_link_to Finance::Category.human_types[:income], url_for(segment: :income), class: 'item', active: false
@@ -52,7 +52,7 @@
                     td 200,200
           - else
             .ui.grid
-              .five.wide.column
+              .ten.wide.column
                 .ui.secondary.menu
                   = active_link_to Finance::Category.human_types[:expense], url_for(segment: :expense), class: 'item', active: false
                   = active_link_to Finance::Category.human_types[:income], url_for(segment: :income), class: 'item', active: true
