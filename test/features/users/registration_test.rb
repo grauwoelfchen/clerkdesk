@@ -18,7 +18,7 @@ class UserRegistrationTest < Capybara::Rails::TestCase
       click_button('Signup')
       assert_content('Your user account could not be created.')
       assert_equal(locker_room.registration_url, page.current_url)
-      logout_user(locker_room.logout_url, :delete)
+      signout_user
     end
   end
 
@@ -37,7 +37,7 @@ class UserRegistrationTest < Capybara::Rails::TestCase
       click_button('Signup')
       assert_content('You have signed up successfully.')
       assert_equal(locker_room.root_url, page.current_url)
-      logout_user(locker_room.logout_url, :delete)
+      signout_user
     end
   end
 end

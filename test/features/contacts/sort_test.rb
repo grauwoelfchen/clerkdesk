@@ -5,9 +5,7 @@ class ContactSortTest < Capybara::Rails::TestCase
   fixtures(:contacts)
 
   def test_sort_with_name_desc
-    user = locker_room_users(:weenie)
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    behaves_as(:weenie) do |user, team|
       login_user(user, team.subdomain)
       visit(contacts_url)
       assert_equal(contacts_url, page.current_url)
@@ -21,14 +19,11 @@ class ContactSortTest < Capybara::Rails::TestCase
          /a[@href='#{contacts_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
       ICON
-      logout_user(locker_room.logout_url, :delete)
     end
   end
 
   def test_sort_with_name_asc
-    user = locker_room_users(:weenie)
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    behaves_as(:weenie) do |user, team|
       login_user(user, team.subdomain)
       visit(contacts_url)
       assert_equal(contacts_url, page.current_url)
@@ -42,14 +37,11 @@ class ContactSortTest < Capybara::Rails::TestCase
          /a[@href='#{contacts_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-up active')]
       ICON
-      logout_user(locker_room.logout_url, :delete)
     end
   end
 
   def test_sort_with_code_desc
-    user = locker_room_users(:weenie)
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    behaves_as(:weenie) do |user, team|
       login_user(user, team.subdomain)
       visit(contacts_url)
       assert_equal(contacts_url, page.current_url)
@@ -63,7 +55,6 @@ class ContactSortTest < Capybara::Rails::TestCase
          /a[@href='#{contacts_path(params)}']
          /i[contains(@class, 'fa fa-lg fa-angle-down active')]
       ICON
-      logout_user(locker_room.logout_url, :delete)
     end
   end
 end

@@ -23,9 +23,34 @@ module Integration
     nil
   end
 
+  # The DSL block to prepare signined user within subdomain.
+  #
+  #     1. load user by user_name, directly
+  #     2. enter subdomain
+  #     3. call signin_user
+  #     4. eval block by context (js or not) with (optional) args user and team
+  #     5. call signout_user
+  def behaves_as(user_name, js: false, &inner_block)
+    test_case = lambda {
+      user = locker_room_users(user_name)
+      team = user.teams.first!
+      within_subdomain(team.subdomain) do
+        signin_user(user)
+        inner_block.call(user, team)
+        signout_user
+      end
+    }
+    if js
+      within_js_driver(&test_case)
+    else
+      test_case.call
+    end
+  end
+
   def within_js_driver
     tld_length          = Rails.application.config.action_dispatch.tld_length
     default_url_options = Rails.application.routes.default_url_options
+
     # set subdomain host for phantomjs using xip.io
     Rails.application.config.action_dispatch.tld_length = JS_HOST.scan(/\./).length
     Rails.application.routes.default_url_options[:host] = JS_HOST
