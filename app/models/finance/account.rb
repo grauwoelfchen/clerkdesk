@@ -19,7 +19,7 @@ module Finance
     validates :icon,
       presence:   true
     validates :icon,
-      inclusion:   {in: Rails.application.config.icons.values},
+      inclusion:   {in: Rails.application.config.icons},
       allow_blank: true
     validates :description,
       length:      {maximum: 255},
