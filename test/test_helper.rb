@@ -112,7 +112,7 @@ Capybara.configure do |config|
   config.app_host              = "http://#{RACK_HOST}"
   config.run_server            = true
   config.always_include_port   = true
-  config.default_max_wait_time = 6 # seconds (default: 2)
+  config.default_max_wait_time = 10 # seconds (default: 2)
 end
 
 Capybara.register_driver :rack_test do |app|
@@ -123,7 +123,7 @@ end
 Capybara.register_driver :poltergeist do |app|
   phantomjs_path = '../../node_modules/.bin/phantomjs'
   Capybara::Poltergeist::Driver.new(app,
-    :timeout           => 90, # seconds (default: 30)
+    :timeout           => 120, # seconds (default: 30)
     :debug             => ENV['TEST_DEBUG'],
     :js_errors         => true,
     :phantomjs         => File.expand_path(phantomjs_path, __FILE__),

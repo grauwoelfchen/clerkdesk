@@ -19,9 +19,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   end
 
   def test_scoped_visibility_on_team_piano
-    user = @team_piano.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_piano.primary_owner
+    within_subdomain(@team_piano.subdomain) do
       signin_user(user)
       visit(notes_url(:subdomain => @team_piano.subdomain))
       assert_content('Musical instrument')
@@ -31,9 +30,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   end
 
   def test_scoped_visibility_on_team_penguin
-    user = @team_penguin.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_penguin.primary_owner
+    within_subdomain(@team_penguin.subdomain) do
       signin_user(user)
       visit(notes_url(:subdomain => @team_penguin.subdomain))
       refute_content('Musical instrument')
@@ -45,9 +43,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   def test_scope_for_a_note_on_exact_team_piano
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
-    user = @team_piano.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_piano.primary_owner
+    within_subdomain(@team_piano.subdomain) do
       signin_user(user)
       visit(note_url(note, :subdomain => @team_piano.subdomain))
       assert_content('Musical instrument')
@@ -58,9 +55,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   def test_scope_for_a_note_on_other_team_penguin
     Apartment::Tenant.switch!(@team_piano.subdomain)
     note = Note.last
-    user = @team_penguin.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_penguin.primary_owner
+    within_subdomain(@team_penguin.subdomain) do
       signin_user(user)
       assert_raise(ActiveRecord::RecordNotFound) do
         visit(note_url(note, :subdomain => @team_penguin.subdomain))
@@ -73,9 +69,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   def test_scope_for_a_note_on_exact_team_penguin
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
-    user = @team_penguin.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_penguin.primary_owner
+    within_subdomain(@team_penguin.subdomain) do
       signin_user(user)
       visit(note_url(note, :subdomain => @team_penguin.subdomain))
       assert_content('The ice')
@@ -86,9 +81,8 @@ class TeamScopTest < Capybara::Rails::TestCase
   def test_scope_for_a_note_on_other_team_piano
     Apartment::Tenant.switch!(@team_penguin.subdomain)
     note = Note.last
-    user = @team_piano.owners.first
-    team = user.teams.first
-    within_subdomain(team.subdomain) do
+    user = @team_piano.primary_owner
+    within_subdomain(@team_piano.subdomain) do
       signin_user(user)
       assert_raise(ActiveRecord::RecordNotFound) do
         visit(note_url(note, :subdomain => @team_piano.subdomain))

@@ -5,15 +5,16 @@ class UserLoginTest < Capybara::Rails::TestCase
 
   def test_signin_as_owner
     team = locker_room_teams(:playing_piano)
+    user = team.primary_owner
     within_subdomain(team.subdomain) do
       visit(locker_room.login_url)
       assert_equal(locker_room.login_url, page.current_url)
-      fill_in('Email',    :with => team.owners.first.email)
+      fill_in('Email',    :with => user.email)
       fill_in('Password', :with => 'secret')
       click_button('Signin')
       assert_content('You are now signed in.')
       assert_equal(locker_room.root_url, page.current_url)
-      logout_user(locker_room.logout_url, :delete)
+      signout_user
     end
   end
 
@@ -27,8 +28,8 @@ class UserLoginTest < Capybara::Rails::TestCase
       fill_in('Password', :with => 'secret')
       click_button('Signin')
       assert_content('You are now signed in.')
-      assert_equal(root_url, page.current_url)
-      logout_user(locker_room.logout_url, :delete)
+      assert_equal(locker_room.root_url, page.current_url)
+      signout_user
     end
   end
 end

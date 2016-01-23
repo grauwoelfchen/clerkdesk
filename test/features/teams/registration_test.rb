@@ -65,6 +65,8 @@ class TeamRegistrationTest < Capybara::Rails::TestCase
     click_button('Create Team')
     assert_equal("http://lovely-flowers.#{RACK_HOST}/", page.current_url)
     assert_content('Team has been successfully created.')
-    logout_user
+    within_subdomain('lovely-flowers') do
+      signout_user
+    end
   end
 end
