@@ -9,14 +9,13 @@
       if ($.fn.selectric == undefined) { return; }
 
       var renderIconItem = function(label, value) {
-        if (value.length) {
-          return '<span class="item">' +
-                 '<i class="fa fa-fw fa-lg">' + value + '</i>' +
-                 label +
-                 '</span>';
-        } else {
+        if (value == undefined || value.length == 0) {
           return label;
         }
+        return '<span class="item">' +
+          '<i class="icon fa fa-' + value + ' fa-lg"></i>' +
+          label +
+        '</span>';
       }
 
       $('#account_icon').selectric({
