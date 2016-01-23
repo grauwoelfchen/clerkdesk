@@ -4,6 +4,7 @@ body
   display        flex
   flex-direction row
   color          #777777
+  overflow       hidden
 
 .side-menu
   flex    0 0 auto
@@ -40,9 +41,13 @@ body
 
 
 .main
-  flex         1 1 auto
-  min-height   800px
-  line-height  1.333
+  -webkit-margin-before  0
+  -webkit-margin-after   0
+  -webkit-margin-start   $side-menu-width
+  -webkit-margin-end     0
+  flex                   1 1 auto
+  min-height             800px
+  line-height            1.333
 
 .main > .content > .column:first-child
   padding-right 0px
