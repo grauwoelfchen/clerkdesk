@@ -35,6 +35,13 @@ module Finance
       assert_equal([message], account.errors[:icon])
     end
 
+    def test_validation_with_unknown_icon
+      account = Finance::Account.new(:icon => 'thumbsdown')
+      refute(account.valid?)
+      message = 'is not included in the list'
+      assert_equal([message], account.errors[:icon])
+    end
+
     def test_validation_with_too_long_description
       account = Finance::Account.new(:description => 'long' * 64)
       refute(account.valid?)
