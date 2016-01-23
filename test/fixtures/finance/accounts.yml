@@ -1,20 +1,20 @@
 general_money:
   ledger: general_ledger
   name: 'Money'
-  icon: '&#xf187;'
+  icon: 'money'
   description: ''
 general_bank:
   ledger: general_ledger
   name: 'Bank'
-  icon: '&#xf19c;'
+  icon: 'bank'
   description: ''
 special_money:
   ledger: special_ledger
   name: 'Mony'
-  icon: '&#xf187;'
+  icon: 'money'
   description: ''
 special_bank:
   ledger: special_ledger
   name: 'Bank'
-  icon: '&#xf19c;'
+  icon: 'bank'
   description: ''
