@@ -41,7 +41,7 @@ module Finance
         login_user(@user)
         # >= 20
         (20 - @ledger.accounts.length).times do |i|
-          @ledger.accounts.create!(name: "Account #{i}", icon: '&#xf0f4;')
+          @ledger.accounts.create!(name: "Account #{i}", icon: 'archive')
         end
         get(:new, :ledger_id => @ledger.id)
         assert_response(:redirect)
@@ -87,7 +87,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => '',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -106,7 +106,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => '',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -124,7 +124,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => '',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -141,13 +141,13 @@ module Finance
         login_user(@user)
         # >= 20
         (20 - @ledger.accounts.length).times do |i|
-          @ledger.accounts.create!(name: "Account #{i}", icon: '&#xf0f4;')
+          @ledger.accounts.create!(name: "Account #{i}", icon: 'archive')
         end
         params = {
           :ledger_id => @ledger.id,
           :account => {
             :name => 'Coffee Card',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -172,7 +172,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => 'Coffee Card',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -190,7 +190,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => 'Coffee Card',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -212,7 +212,7 @@ module Finance
           :ledger_id => @ledger.id,
           :account => {
             :name => 'Coffee Card',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         post(:create, params)
@@ -305,7 +305,7 @@ module Finance
           :id        => account.id,
           :account => {
             :name => '',
-            :icon => '&#xf0f4;'
+            :icon => 'bank'
           }
         }
         put(:update, params)
