@@ -1,17 +1,23 @@
 @import('_mixin.css.styl')
 
 body
-  display        flex
-  flex-direction row
-  color          #777777
-  overflow       hidden
+  display                flex
+  -webkit-flex-direction row
+  -ms-flex-direction     row
+  flex-direction         row
+  color                  #777777
 
 .side-menu
-  flex    0 0 auto
-  z-index 1
-  width   $side-menu-width
+  -webkit-flex 0 0 auto
+  -ms-flex     0 0 auto
+  flex         0 0 auto
+  position     relative
+  z-index      1
+  width        $side-menu-width
   .menu
-    //width      $side-menu-width
+    top        0
+    left       0
+    width      $side-menu-width !important
     background $chocolate-color !important
     border     none
     i
@@ -41,13 +47,12 @@ body
 
 
 .main
-  -webkit-margin-before  0
-  -webkit-margin-after   0
-  -webkit-margin-start   $side-menu-width
-  -webkit-margin-end     0
-  flex                   1 1 auto
-  min-height             800px
-  line-height            1.333
+  -webkit-flex 1 1 auto
+  -ms-flex     1 1 auto
+  flex         1 1 auto
+  min-height   800px
+  min-width    0
+  line-height  1.333
 
 .main > .content > .column:first-child
   padding-right 0px
