@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "contacts", ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
 
   create_table "finance_accounts", force: :cascade do |t|
-    t.integer  "ledger_id",             null: false
-    t.string   "name",                  null: false
+    t.integer  "ledger_id",              null: false
+    t.string   "name",                   null: false
     t.string   "description"
     t.text     "memo"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "icon",        limit: 8
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "icon",        limit: 16
   end
 
   add_index "finance_accounts", ["ledger_id"], name: "index_finance_accounts_on_ledger_id", using: :btree

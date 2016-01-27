@@ -78,10 +78,9 @@ module Finance
     def create_initial_accounts!
       {
         :cash => 'briefcase', :bank => 'bank'
-      }.map do |account_name, icon_name|
+      }.map do |account_name, icon|
         name = I18n.t(account_name, :scope => [:finance, :account])
-        icons = Rails.application.config.icons
-        accounts.create!(:name => name, :icon => icons[icon_name])
+        accounts.create!(:name => name, :icon => icon)
       end
     end
 
