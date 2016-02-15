@@ -51,7 +51,7 @@ html lang=current_locale
                   = yield :links
       .footer
         .fourteen.wide.column
-          | <a href="#{global_root_url(host: request.domain)}">Clerkdesk</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
+          | <a href="#{global_root_url(host: request.domain)}">#{t('app.name')}</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
           | <br>
           | If you have any question or found a bug, please tell me :)
         .two.wide.column
