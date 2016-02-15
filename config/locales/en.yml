@@ -1,9 +1,9 @@
 ---
 en:
   app:
-    name: Clerkdesk
+    name: <%= ENV['APP_NAME'] %>
   meta:
-    title: Clerkdesk
+    title: <%= ENV['APP_NAME'] %>
     description: ''
   locale:
     en: English
