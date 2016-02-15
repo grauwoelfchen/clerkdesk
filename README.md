@@ -6,6 +6,7 @@
 
 [Project on TAIGA](https://tree.taiga.io/project/grauwoelfchen-librecash/)
 
+![LibreCash](https://raw.githubusercontent.com/grauwoelfchen/librecash/master/app/assets/images/librecash-logo-140x24.png)
 
 ## Development
 
