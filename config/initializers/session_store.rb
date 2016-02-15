@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
 options = {
-  key:    '_clerkdesk_session',
+  key:    "_#{ENV['APP_NAME'].to_s.downcase}_session",
   domain: ENV['APP_DOMAIN']
 }
 

@@ -20,7 +20,7 @@ html lang=current_locale
             .thirteen.wide.column
               .footer-content
                 p
-                  = link_to h(ENV['APP_NAME']), root_url(subdomain: nil)
+                  = link_to t('app.name'), root_url(subdomain: nil)
                   | is developed with <3
                 ul.legal-links
                   li= link_to 'policy', root_url(subdomain: nil)
