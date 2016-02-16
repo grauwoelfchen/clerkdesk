@@ -12,4 +12,7 @@ class LockerRoom::User < ActiveRecord::Base
 
   validates :locale,
     inclusion: {in: I18n.available_locales.map(&:to_s)}
+
+  def avatar_url
+  end
 end
