@@ -26,7 +26,7 @@ body
       margin  0 9px 0 0
     .item.top
       background $light-brown-color
-      padding    17px 3px 13px 8px
+      padding    17px 3px 13px 15px
       .brand
         vertical-align bottom
         img
@@ -44,6 +44,49 @@ body
       &.active
         color      $light-gray-color !important
         background darken($chocolate-color, 27%) !important
+    .item.bottom
+      &:hover
+        background-color $dark-brown-color !important
+      cursor           pointer
+      background-color $dark-brown-color
+      padding          0
+      bottom           0
+      height           61px
+      left             0
+      position         absolute
+      width            100%
+      // avatar
+      .avatar
+        display inline-block
+        padding auto
+        margin  11px 9px 11px 11px
+      .names
+        display        inline-block
+        margin         11px 0 11px 0
+        vertical-align top
+        text-align     left
+        span
+          display block
+        span.username
+          margin-top  2px
+          font-size   15px
+          font-weight 600
+        span.name
+          margin-top  6px
+          font-size   11px
+      .ellipsis
+        float   right
+        display block
+        margin  10px 2px 0 0
+    .flowing.popup
+      text-align    left
+      padding       9px 11px
+      border-radius 2px
+      .link
+        display block
+        padding 6px 8px
+      a
+        color $dark-gray-color !important
 
 
 .main
