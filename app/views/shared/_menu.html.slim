@@ -1,6 +1,5 @@
 .item.top
   = link_to root_path, class: 'brand'
-    = image_tag 'librecash-icon-22x22.png', size: '22x22'
     = image_tag 'librecash-logo-140x24.png', size: '140x24'
 
 = active_link_to notes_path, class: 'item' do
@@ -23,6 +22,17 @@
   i.fa.fa-cog
   = t('nav.settings')
 
-/.item.bottom
-/  = link_to locker_room.logout_path, method: :delete, class: 'item' do
-/    = 'logout'
+.item.bottom
+  .avatar= image_tag avatar_url(current_user)
+  .names
+    span.username= truncate(current_user.username, length: 13)
+    span.name= truncate(current_user.name, length: 18)
+  .ellipsis
+    i.fa.fa-ellipsis-v
+  .ui.flowing.popup.transition.hidden
+    = link_to user_settings_path, class: 'link' do
+      | Account Settings
+    = link_to root_path, class: 'link' do
+      | Change Password
+    = link_to locker_room.logout_path, method: :delete, class: 'link' do
+      | Sign out
