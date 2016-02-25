@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   constraints(Constraints::WithoutSubdomain) do
-    get '/', to: 'locker_room/entrance#index', as: :global_root
+    get '/', to: 'locker_room/sessions#new', as: :global_root
   end
 
   mount LockerRoom::Engine, at: '/'
