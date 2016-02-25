@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/grauwoelfchen/locker_room.git
-  revision: a5294d084e73337f681a8bbb4c497622ecfca88e
+  revision: 77cd3dfb5f9a8595de6fa8a3fc9518867ae350ef
   specs:
     locker_room (0.0.1)
       apartment (~> 1.0.2)
@@ -117,9 +117,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.99)
+    mime-types (2.99.1)
     mini_portile2 (2.0.0)
-    minitest (5.8.3)
+    minitest (5.8.4)
     minitest-capybara (0.7.2)
       capybara (~> 2.2)
       minitest (~> 5.0)
@@ -135,7 +135,7 @@ GEM
       minitest-metadata (~> 0.5.0)
       minitest-rails (~> 2.1)
     multi_json (1.11.2)
-    nokogiri (1.6.7.1)
+    nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
     poltergeist (1.8.1)
@@ -170,7 +170,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.2)
+    rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails-i18n (4.0.4)
       i18n (~> 0.6)
@@ -180,7 +180,7 @@ GEM
       activesupport (= 4.2.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.4.2)
+    rake (10.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
     redcarpet (3.3.4)
@@ -230,7 +230,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode_utils (1.4.0)
-    warden (1.2.4)
+    warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
@@ -274,4 +274,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
