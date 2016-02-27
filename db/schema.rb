@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
     t.text     "memo"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "icon",        limit: 16
+    t.string   "icon",        limit: 32
   end
 
   add_index "finance_accounts", ["ledger_id"], name: "index_finance_accounts_on_ledger_id", using: :btree
