@@ -11,12 +11,9 @@
   , "browserify-incremental": "^3.0.1"
   , "gulp": "~> 3.9.0"
   , "gulp-bower": "0.0.10"
-  , "gulp-shell": "0.4.2"
-  , "run-sequence": "1.1.2"
   }
 , "devDependencies": {
-    "gulp-watch": "*"
-  , "phantomjs": "~> 1.9"
+    "phantomjs": "~> 1.9"
   }
 , "cacheDirectories": [
     "node_modules"

@@ -16,31 +16,29 @@
 * Node.js
 
 ```
-;; e.g. Setup Node.js via Python's virtualenv
-% virtualenv develp --python=/usr/bin/python2.7
-(develp) % pip install nodeenv
-(develp) % nodeenv env --node=4.3.1
-(develp) % deactivate
-% source env/bin/activate
-(env) % node --version
+;; e.g. Setup Node.js
+% node --version
 v4.3.1
 ```
 
 ```
-;; Install rubygems and npm packages
-(env) % gem install bundler
-(env) % bundle install --path .bundle/gems
-(env) % npm install
-(env) % npm install gulp -g
-(env) % gulp bower
+% ruby --version
+ruby 2.2.4p230 (2015-12-16 revision 53155) [x86_64-linux]
+
+;; Install rubygems
+% gem install bundler
+% bundle install --path .bundle/gems
+
+;; Install npm packages and build assets
+% npm install
 ```
 
-see also `.bowerrc` and `bower.json`
+see also: `gulpfile.js`, `bower.json`
 
 ### Boot
 
 ```
-(env) % bundle exec foreman run server
+% bundle exec foreman run server
 ```
 
 see `Procfile`
@@ -48,12 +46,9 @@ see `Procfile`
 ### Test
 
 ```
-;; Run test suit as you like
-(env) % bundle exec foreman run test
-(env) % bundle exec foreman run ruby -I.:test test/models/note_test.rb
-
-;; Watch with gulp (see gulpfile.js)
-(env) % gulp watch
+;; Run test
+% bundle exec foreman run test
+% bundle exec foreman run ruby -I.:test test/models/note_test.rb
 ```
 
 ## License

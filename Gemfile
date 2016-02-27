@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'foreman'
-
 gem 'sprockets-rails', '~> 2.3'
 
 gem 'rails', '4.2.5'
@@ -33,13 +31,11 @@ gem 'stylus'
 
 # gem 'newrelic_rpm'
 
-group :doc do
-  gem 'sdoc', '~> 0.4.0'
-end
+gem 'sdoc', '~> 0.4.0', group: [:doc]
 
-group :development do
-  gem 'slim-rails'
-end
+gem 'foreman', group: [:development, :test]
+
+gem 'slim-rails', group: [:development]
 
 group :test do
   gem 'minitest', '~> 5.5'
