@@ -10,7 +10,7 @@
   $(function() {
     // tag editor
     (function() {
-      if ($.fn.tagEditor == undefined) { return; }
+      if ($.fn.tagEditor === undefined) { return; }
 
       var tagList = $('#snippet_tag_list');
       tagList.tagEditor({
@@ -22,7 +22,7 @@
 
     // autosize
     (function() {
-      if ($.fn.autosize == undefined) { return; }
+      if ($.fn.autosize === undefined) { return; }
 
       var textarea = $('#snippet_content');
       textarea.autosize();

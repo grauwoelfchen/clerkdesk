@@ -1,7 +1,7 @@
 (function($) {
   'use strict';
 
-  if ($.fn.autoNumeric == undefined) { return; }
+  if ($.fn.autoNumeric === undefined) { return; }
 
   $('.currency').autoNumeric('init', {
     aSign:  '¥ '

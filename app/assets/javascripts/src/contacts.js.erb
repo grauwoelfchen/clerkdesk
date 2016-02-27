@@ -1,7 +1,9 @@
 //= require jquery-tag-editor/jquery.caret.min.js
 //= require jquery-tag-editor/jquery.tag-editor.min.js
 
-(function($) {
+var Indicator = require('../modules/indicator');
+
+(function($, Indicator) {
   'use strict';
 
   $(function() {
@@ -9,9 +11,8 @@
     (function() {
       var container = $('#contact_division');
       container.parent().append(
-        '<span id="indicator"><img src="<%= asset_path('loading.gif') %>"></div>'
+        '<span id="indicator"><img src="<%= asset_path("loading.gif") %>"></div>'
       );
-      var Indicator = require('../modules/indicator');
       Indicator.setup($, container);
     })();
 
@@ -34,7 +35,6 @@
           division.empty();
           division.html('<option value="">---</option>');
           country.val('');
-          alert("Sorry, please retry :'(");
         })
         .done(function(data) {
           division.empty();
@@ -64,7 +64,7 @@
 
       country.change(function() {
         var country_code = $(this).val(); // refetch
-        if (country_code == '') {
+        if (country_code === '') {
           division.empty();
           division.html('<option value="">---</option>');
           return true;
@@ -98,7 +98,7 @@
 
     // tag editor
     (function() {
-      if ($.fn.tagEditor == undefined) { return; }
+      if ($.fn.tagEditor === undefined) { return; }
 
       var tagList = $('#contact_tag_list');
       tagList.tagEditor({
@@ -108,4 +108,4 @@
       });
     })();
   });
-})(jQuery);
+})(jQuery, Indicator);
