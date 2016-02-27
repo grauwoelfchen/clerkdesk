@@ -6,8 +6,8 @@ if Apartment::Tenant.current == 'public'
   end
 
   team_params = {
-    name:      'grauwoelfchen',
-    subdomain: 'grauwoelfchen',
+    name:      'Developers',
+    subdomain: 'developers',
     owners_attributes: [{
       email:                 'grauwoelfchen@gmail.com',
       name:                  'Yasuhiro Asaka',
@@ -19,7 +19,7 @@ if Apartment::Tenant.current == 'public'
   LockerRoom::Team.create_with_owner(team_params)
 end
 
-if Apartment::Tenant.current == 'grauwoelfchen'
+if Apartment::Tenant.current == 'developers'
   ledger_params = {
     name:        '2015.05',
     description: 'Foo',
