@@ -53,4 +53,4 @@ group :test do
 end
 
 rock = File.expand_path('../Gemfile.rock', __FILE__)
-eval File.read(rock) if ENV['ROCK'] == 'true' && File.exist?(rock)
+eval File.read(rock) if (ENV['ROCK'] !~ /^(no|false)$/i && File.exist?(rock))
