@@ -39,10 +39,16 @@ Rails.application.routes.draw do
       defaults:    {format: :json}
 
     root to: 'desktop#index'
+
+    # NOTE: private beta
+    match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 
   constraints(Constraints::WithoutSubdomain) do
     get '/', to: 'locker_room/sessions#new', as: :global_root
+
+    # NOTE: private beta
+    match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 
   mount LockerRoom::Engine, at: '/'

@@ -21,7 +21,8 @@
             = password_field_tag :password, nil, placeholder: 'Password'
         = submit_tag 'Signin', class: 'ui fluid large submit button'
       .ui.message
-        = link_to 'New User?', registration_path
+        /= link_to 'New User?', registration_path
+        '<del>New User?</del>'
         span
           | &nbsp;&nbsp;or&nbsp;&nbsp;
         = link_to 'Signin to another Team?', login_url(subdomain: nil)
