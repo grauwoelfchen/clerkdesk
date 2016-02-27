@@ -12,7 +12,7 @@
     (function() {
       if ($.fn.tagEditor == undefined) { return; }
 
-      var tagList = $('#note_tag_list');
+      var tagList = $('#snippet_tag_list');
       tagList.tagEditor({
         'delimiter':      ','
       , 'forceLowercase': false
@@ -24,7 +24,7 @@
     (function() {
       if ($.fn.autosize == undefined) { return; }
 
-      var textarea = $('#note_content');
+      var textarea = $('#snippet_content');
       textarea.autosize();
     })();
   });

@@ -76,7 +76,7 @@ digraph LibreCash {
   ]
 
   Tagging [
-    label = "{taggings|\«ActsAsTaggableOn::Tagging\»\lbelongs_to: tag\lbelongs_to: note\l\n|{ \
+    label = "{taggings|\«ActsAsTaggableOn::Tagging\»\lbelongs_to: tag\lbelongs_to: snippet\l\n|{ \
       {FIELD|\l}| \
       {TYPE|\l}| \
       {VALUE|\l} \
@@ -154,8 +154,8 @@ digraph LibreCash {
     fillcolor = "palegreen3"
   ]
 
-  Note [
-    label = "{notes|\«Note\»\lhas_many: tags\l\n|{ \
+  Snippet [
+    label = "{snippets|\«Snippet\»\lhas_many: tags\l\n|{ \
       {FIELD|title\l|content\l|content_html\l}| \
       {TYPE|string\l|text\l|text\l}| \
       {VALUE|\l|\l|\l} \
@@ -166,7 +166,7 @@ digraph LibreCash {
   ]
 
   Involvement [
-    label = "{involvements|\«Involvement\»\lbelongs_to: contact\lbelongs_to: entry\lbelongs_to: note\l\n|{ \
+    label = "{involvements|\«Involvement\»\lbelongs_to: contact\lbelongs_to: entry\lbelongs_to: snippet\l\n|{ \
       {FIELD|holder_type\l|holder_id\l|matter_type\l|matter_id\l}| \
       {TYPE|string\l|integer\l|string\l|integer\l}| \
       {VALUE|\l|\l|\l|\l} \
@@ -229,7 +229,7 @@ digraph LibreCash {
   LockerRoomMateship -> LockerRoomTeam
   LockerRoomMateship -> LockerRoomUser
   Tagging -> Tag
-  Tagging -> Note
+  Tagging -> Snippet
   FinanceAccount  -> FinanceLedger
   FinanceCategory -> FinanceLedger
   FinanceEntry -> FinanceAccount
@@ -301,7 +301,7 @@ digraph LibreCash {
   ]
 
   LockerRoomTeam -> LockerRoomType
-  Involvement -> Note
+  Involvement -> Snippet
 
   edge [ // has_one
     arrowhead = normal

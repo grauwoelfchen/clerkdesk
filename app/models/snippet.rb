@@ -1,4 +1,4 @@
-class Note < ActiveRecord::Base
+class Snippet < ActiveRecord::Base
   include PublicActivity::Model
   include Orderable
   include HtmlConvertable

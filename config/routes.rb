@@ -3,19 +3,6 @@ require 'locker_room/engine'
 
 Rails.application.routes.draw do
   constraints(LockerRoom::Constraints::SubdomainRequired) do
-    resources :notes
-    resources :users, only: [:index, :show]
-    resources :contacts do
-      get :search, on: :collection
-    end
-
-    scope module: :settings, path: 'settings' do
-      get 'account', to: 'users#edit', as: :user_settings
-      resource :users, path: 'account',
-        only: [:update],
-        as:   :user_settings
-    end
-
     scope module: :finance, as: :finance do
       resources :ledgers, path: 'finances', except: [:show] do
         # finance_ledgers
@@ -32,6 +19,21 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :snippets
+
+    resources :users, only: [:index, :show]
+
+    resources :contacts do
+      get :search, on: :collection
+    end
+
+    scope module: :settings, path: 'settings' do
+      get 'account', to: 'users#edit', as: :user_settings
+      resource :users, path: 'account',
+        only: [:update],
+        as:   :user_settings
+    end
+
     post '/locale', to: 'locales#switch', as: :switch_locale
 
     get  '/countries/:code/divisions', to: 'countries#divisions',
@@ -40,14 +42,14 @@ Rails.application.routes.draw do
 
     root to: 'desktop#index'
 
-    # NOTE: private beta
+    # snippet: private beta
     match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 
   constraints(Constraints::WithoutSubdomain) do
     get '/', to: 'locker_room/sessions#new', as: :global_root
 
-    # NOTE: private beta
+    # snippet: private beta
     match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 

@@ -1,11 +1,11 @@
 - content_for :script do
-  = javascript_include_tag 'src/notes'
+  = javascript_include_tag 'src/snippets'
 
-= form_for note, html: {class: 'ui form'} do |f|
+= form_for snippet, html: {class: 'ui form'} do |f|
   .ui.two.column.grid
     .column
-      - if note.errors.any?
-        = render 'shared/error', resource: note
+      - if snippet.errors.any?
+        = render 'shared/error', resource: snippet
     .column
       .right
         = select_tag :syntax, options_for_select(['Markdown'], 'Markdown'), class: 'ui dropdown'
@@ -14,12 +14,12 @@
     = f.text_field :title, placeholder: 'A title'
   .field
     = f.label :tag_list
-    = f.text_field :tag_list, value: note.tag_list.join(','), placeholder: 'Tag'
+    = f.text_field :tag_list, value: snippet.tag_list.join(','), placeholder: 'Tag'
   .field
     = f.label :content
     = f.text_area :content, rows: 18, placeholder: 'Content'
   .actions
-    - action = note.persisted? ? 'update' : 'create'
+    - action = snippet.persisted? ? 'update' : 'create'
     = f.submit t("action.#{action}"), class: 'ui submit button'
     - if action == 'update'
-      = link_to t('action.destroy'), note_path(note), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
+      = link_to t('action.destroy'), snippet_path(snippet), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}
