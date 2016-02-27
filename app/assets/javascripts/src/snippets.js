@@ -8,7 +8,7 @@
   'use strict';
 
   $(function() {
-    // tag editor
+    // setup tag-editor
     (function() {
       if ($.fn.tagEditor === undefined) { return; }
 
@@ -20,12 +20,11 @@
       });
     })();
 
-    // autosize
+    // setup textarea autosize
     (function() {
       if ($.fn.autosize === undefined) { return; }
-
-      var textarea = $('#snippet_content');
-      textarea.autosize();
+      // textarea
+      $('#snippet_content').autosize();
     })();
   });
 })(jQuery);

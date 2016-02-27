@@ -35,12 +35,10 @@
       });
     })();
 
-    // setup autosize
+    // setup textarea autosize
     (function() {
       if ($.fn.autosize === undefined) { return; }
-
-      var textarea = $('#finance_ledger_description');
-      textarea.autosize();
+      $('#finance_ledger_description').autosize();
     })();
   });
 })(jQuery);
