@@ -20,7 +20,8 @@ class SnippetsController < WorkspaceController
   def create
     @snippet = Snippet.new(snippet_params)
     if @snippet.save
-      redirect_to(@snippet, :notice => 'Snippet has been successfully created.')
+      redirect_to(@snippet,
+        :notice => 'Snippet has been successfully created.')
     else
       flash.now[:alert] = 'Snippet could not be created.'
       render(:new)
@@ -35,7 +36,8 @@ class SnippetsController < WorkspaceController
 
   def update
     if @snippet.update_attributes(snippet_params)
-      redirect_to(@snippet, :notice => 'Snippet has been successfully updated.')
+      redirect_to(@snippet,
+        :notice => 'Snippet has been successfully updated.')
     else
       flash.now[:alert] = 'Snippet could not be updated.'
       render(:edit)
