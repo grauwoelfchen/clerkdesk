@@ -17,13 +17,13 @@
 
 ```
 ;; e.g. Setup Node.js via Python's virtualenv
-% virtualenv venv
+% virtualenv develp --python=/usr/bin/python2.7
 (develp) % pip install nodeenv
-(develp) % nodeenv env --node=4.2.3
+(develp) % nodeenv env --node=4.3.1
 (develp) % deactivate
 % source env/bin/activate
 (env) % node --version
-v4.2.3
+v4.3.1
 ```
 
 ```
