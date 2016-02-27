@@ -6,9 +6,9 @@
       i.fa.fa-file-text-o.fa-1.icon
       - owner = link_to(truncate(activity.owner.name, length: 30), user_path(activity.owner))
       - if activity.trackable
-        - trackable = link_to(truncate(activity.trackable_name, length: 45), note_path(activity.trackable))
+        - trackable = link_to(truncate(activity.trackable_name, length: 45), snippet_path(activity.trackable))
       - else
-        - trackable = link_to("<del>#{Note.model_name.human}</del>".html_safe, note_path(activity.trackable_id)).to_s + ' (deleted)'
+        - trackable = link_to("<del>#{Snippet.model_name.human}</del>".html_safe, snippet_path(activity.trackable_id)).to_s + ' (deleted)'
       = t('activity.create', owner: owner, trackable: trackable).html_safe
     /.extra
     /  .text

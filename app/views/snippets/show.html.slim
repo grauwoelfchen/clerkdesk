@@ -1,0 +1,37 @@
+- breadcrumb :snippet, @snippet
+
+- content_for :header
+  h2= Snippet.model_name.human
+  h3= t('subheading.snippet')
+
+- content_for :actions
+  .item
+    = Snippet.model_name.human
+    .menu
+      = link_to t('action.new'), new_snippet_path, class: 'item'
+      = link_to t('action.index'), snippets_path, class: 'item'
+      = link_to t('action.show'), snippet_path(@snippet), class: 'item active'
+      = link_to t('action.edit'), edit_snippet_path(@snippet), class: 'item'
+
+.snippet
+  .ui.grid
+    .twelve.wide.column
+      .container
+        .ui.grid
+          .eleven.wide.column
+            h4= @snippet.title
+            .tags
+              - @snippet.tags.each do |tag|
+                span.tag
+                  = link_to truncate(tag.name, length: 8), snippets_path(tag: tag.name)
+            .meta
+              span.updated_at= @snippet.updated_at
+          .five.wide.column
+            .ui.compact.menu.right
+              = link_to edit_snippet_path(@snippet), class: 'item'
+                i.icon.fa.fa-pencil
+                = t('action.edit')
+              = link_to nil, class: 'item disabled'
+                i.icon.fa.fa-print
+                = t('action.print')
+        .html= sanitize @snippet.content_html, tags: %w(p h1 h2 h3 h4 h5 h6 table tr th td strong em a ul ol li del pre code hr img), attributes: %w(href src)

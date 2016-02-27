@@ -8,11 +8,11 @@
   'use strict';
 
   $(function() {
-    // tag editor
+    // setup tag-editor
     (function() {
-      if ($.fn.tagEditor == undefined) { return; }
+      if ($.fn.tagEditor === undefined) { return; }
 
-      var tagList = $('#note_tag_list');
+      var tagList = $('#snippet_tag_list');
       tagList.tagEditor({
         'delimiter':      ','
       , 'forceLowercase': false
@@ -20,12 +20,11 @@
       });
     })();
 
-    // autosize
+    // setup textarea autosize
     (function() {
-      if ($.fn.autosize == undefined) { return; }
-
-      var textarea = $('#note_content');
-      textarea.autosize();
+      if ($.fn.autosize === undefined) { return; }
+      // textarea
+      $('#snippet_content').autosize();
     })();
   });
 })(jQuery);

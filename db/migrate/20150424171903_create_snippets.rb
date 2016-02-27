@@ -1,6 +1,6 @@
-class CreateNotes < ActiveRecord::Migration
+class CreateSnippets < ActiveRecord::Migration
   def change
-    create_table :notes do |t|
+    create_table :snippets do |t|
       t.string  :title
       t.text    :content
       t.text    :content_html

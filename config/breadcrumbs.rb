@@ -2,26 +2,6 @@ crumb :root do
   link t('crumb.desktop'), root_path
 end
 
-# notes
-
-crumb :notes do
-  link Note.model_name.human.pluralize, notes_path
-end
-
-crumb :notes_with_tag  do |tag|
-  link t('crumb.tag', tag: truncate(tag, length: 8)), nil
-  parent :notes
-end
-
-crumb :note do |note|
-  unless note.persisted?
-    link t('crumb.new'), nil
-  else
-    link truncate(note.title, length: 27), note
-  end
-  parent :notes
-end
-
 # finance
 
 crumb :'finance/ledgers' do
@@ -85,6 +65,26 @@ end
 crumb :'finance/budget' do |ledger|
   link Finance::Budget.model_name.human, finance_ledger_budget_path(ledger)
   parent :'finance/ledger', ledger
+end
+
+# snippets
+
+crumb :snippets do
+  link Snippet.model_name.human.pluralize, snippets_path
+end
+
+crumb :snippets_with_tag  do |tag|
+  link t('crumb.tag', tag: truncate(tag, length: 8)), nil
+  parent :snippets
+end
+
+crumb :snippet do |snippet|
+  unless snippet.persisted?
+    link t('crumb.new'), nil
+  else
+    link truncate(snippet.title, length: 27), snippet
+  end
+  parent :snippets
 end
 
 # contacts

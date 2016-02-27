@@ -3,12 +3,12 @@ ja:
   activerecord:
     models:
       locker_room/user: ユーザ
-      note: ノート
       finance/ledger: 帳簿
       finance/category: 費目
       finance/account: 口座
       finance/budget: 予算
       finance/entry: エントリ
+      snippet: スニペット
       contact: コンタクト
     attributes:
       default: &default
@@ -16,11 +16,6 @@ ja:
         updated_at: 更新日時
       locker_room/user:
         locale: 言語
-      note:
-        <<: *default
-        title: タイトル
-        content: 本文
-        tag_list: タグ
       finance/ledger:
         <<: *default
         name: 名前
@@ -49,6 +44,11 @@ ja:
         total_amount: 金額
         memo: メモ
         involvements: 関与
+      snippet:
+        <<: *default
+        title: タイトル
+        content: 本文
+        tag_list: タグ
       contact:
         <<: *default
         code: コード

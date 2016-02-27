@@ -1,83 +1,83 @@
 require 'test_helper'
 
-class NotesRouteTest < ActionDispatch::IntegrationTest
+class SnippetsRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:notes, :contacts)
+  fixtures(:snippets, :contacts)
 
-  def test_route_to_notes
+  def test_route_to_snippets
     within_subdomain_host do |host|
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes"
+        path:   "#{host}/snippets"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'index'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes?tag=ice"
+        path:   "#{host}/snippets?tag=ice"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'index'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes?column=title&direction=desc&tag=ice"
+        path:   "#{host}/snippets?column=title&direction=desc&tag=ice"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'index'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes/new"
+        path:   "#{host}/snippets/new"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'new'
       })
       assert_routing({
         method: 'post',
-        path:   "#{host}/notes"
+        path:   "#{host}/snippets"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'create'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes/1"
+        path:   "#{host}/snippets/1"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'show',
         id:         '1'
       })
       assert_routing({
         method: 'get',
-        path:   "#{host}/notes/1/edit"
+        path:   "#{host}/snippets/1/edit"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'edit',
         id:         '1'
       })
       assert_routing({
         method: 'patch',
-        path:   "#{host}/notes/1"
+        path:   "#{host}/snippets/1"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'update',
         id:         '1'
       })
       assert_routing({
         method: 'put',
-        path:   "#{host}/notes/1"
+        path:   "#{host}/snippets/1"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'update',
         id:         '1'
       })
       assert_routing({
         method: 'delete',
-        path:   "#{host}/notes/1"
+        path:   "#{host}/snippets/1"
       }, {
-        controller: 'notes',
+        controller: 'snippets',
         action:     'destroy',
         id:         '1'
       })
