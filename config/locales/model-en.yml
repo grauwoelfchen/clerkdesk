@@ -12,11 +12,6 @@ en:
       default: &default
         created_at: Created
         updated_at: Updated
-      note:
-        <<: *default
-        title: Title
-        content: Content
-        tag_list: Tags
       finance/ledger:
         <<: *default
       finance/category:
@@ -25,6 +20,11 @@ en:
         <<: *default
       finance/entry:
         <<: *default
+      snippet:
+        <<: *default
+        title: Title
+        content: Content
+        tag_list: Tags
       contact:
         <<: *default
     errors:

@@ -1,15 +1,15 @@
 require 'test_helper'
 
-class NotesControllerTest < ActionController::TestCase
+class SnippetsControllerTest < ActionController::TestCase
   locker_room_fixtures(:teams, :users, :mateships)
-  fixtures(:notes)
+  fixtures(:snippets)
 
   def setup
-    Note.public_activity_off
+    Snippet.public_activity_off
   end
 
   def teardown
-    Note.public_activity_on
+    Snippet.public_activity_on
   end
 
   def test_get_index
@@ -18,7 +18,7 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       get(:index)
-      refute_empty(assigns[:notes])
+      refute_empty(assigns[:snippets])
       assert_template(:index)
       assert_response(:success)
       logout_user
@@ -28,13 +28,13 @@ class NotesControllerTest < ActionController::TestCase
   def test_get_filtered_index_with_tag
     user = locker_room_users(:oswald)
     team = user.teams.first
-    note = notes(:favorite_song)
-    note.tag_list.add('Favorites')
-    note.save
+    snippet = snippets(:favorite_song)
+    snippet.tag_list.add('Favorites')
+    snippet.save
     within_subdomain(team.subdomain) do
       login_user(user)
       get(:index, :t => 'Favorites')
-      assert_equal([note], assigns[:notes])
+      assert_equal([snippet], assigns[:snippets])
       assert_template(:index)
       assert_response(:success)
       logout_user
@@ -46,9 +46,9 @@ class NotesControllerTest < ActionController::TestCase
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user)
-      note = notes(:favorite_song)
-      get(:show, :id => note.id)
-      assert_equal(note, assigns[:note])
+      snippet = snippets(:favorite_song)
+      get(:show, :id => snippet.id)
+      assert_equal(snippet, assigns[:snippet])
       assert_template(:show)
       assert_response(:success)
       logout_user
@@ -61,7 +61,7 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       get(:new)
-      assert_kind_of(Note, assigns[:note])
+      assert_kind_of(Snippet, assigns[:snippet])
       assert_template(:new)
       assert_template(:partial => '_form')
       assert_response(:success)
@@ -75,15 +75,15 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       params = {
-        :note => {
+        :snippet => {
           :title => ''
         }
       }
-      assert_no_difference('Note.count', 1) do
+      assert_no_difference('Snippet.count', 1) do
         post(:create, params)
       end
-      assert_instance_of(Note, assigns[:note])
-      refute(assigns[:note].persisted?)
+      assert_instance_of(Snippet, assigns[:snippet])
+      refute(assigns[:snippet].persisted?)
       assert_nil(flash[:notice])
       assert_template(:new)
       assert_template(:partial => 'shared/_error')
@@ -99,21 +99,21 @@ class NotesControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       params = {
-        :note => {
-          :title => 'New note'
+        :snippet => {
+          :title => 'New snippet'
         }
       }
-      assert_difference('Note.count', 1) do
+      assert_difference('Snippet.count', 1) do
         post(:create, params)
       end
-      assert_instance_of(Note, assigns[:note])
-      assert(assigns[:note].persisted?)
+      assert_instance_of(Snippet, assigns[:snippet])
+      assert(assigns[:snippet].persisted?)
       assert_equal(
-        'Note has been successfully created.',
+        'Snippet has been successfully created.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)
-      assert_redirected_to(assigns[:note])
+      assert_redirected_to(assigns[:snippet])
       logout_user
     end
   end
@@ -123,9 +123,9 @@ class NotesControllerTest < ActionController::TestCase
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user)
-      note = notes(:favorite_song)
-      get(:edit, :id => note.id)
-      assert_equal(note, assigns[:note])
+      snippet = snippets(:favorite_song)
+      get(:edit, :id => snippet.id)
+      assert_equal(snippet, assigns[:snippet])
       assert_template(:edit)
       assert_template(:partial => '_form')
       assert_response(:success)
@@ -138,15 +138,15 @@ class NotesControllerTest < ActionController::TestCase
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user)
-      note = notes(:favorite_song)
+      snippet = snippets(:favorite_song)
       params = {
-        :id   => note.id,
-        :note => {
+        :id   => snippet.id,
+        :snippet => {
           :title => ''
         }
       }
       put(:update, params)
-      assert_equal(note, assigns[:note])
+      assert_equal(snippet, assigns[:snippet])
       assert_nil(flash[:notice])
       assert_template(:edit)
       assert_template(:partial => 'shared/_error')
@@ -161,21 +161,21 @@ class NotesControllerTest < ActionController::TestCase
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user)
-      note = notes(:favorite_song)
+      snippet = snippets(:favorite_song)
       params = {
-        :id   => note.id,
-        :note => {
-          :title => 'Violin note'
+        :id   => snippet.id,
+        :snippet => {
+          :title => 'Violin snippet'
         }
       }
       put(:update, params)
-      assert_equal(params[:note][:title], assigns[:note].title)
+      assert_equal(params[:snippet][:title], assigns[:snippet].title)
       assert_equal(
-        'Note has been successfully updated.',
+        'Snippet has been successfully updated.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)
-      assert_redirected_to(assigns[:note])
+      assert_redirected_to(assigns[:snippet])
       logout_user
     end
   end
@@ -185,18 +185,18 @@ class NotesControllerTest < ActionController::TestCase
     team = user.teams.first
     within_subdomain(team.subdomain) do
       login_user(user)
-      note = notes(:favorite_song)
-      assert_difference('Note.count', -1) do
-        delete(:destroy, :id => note.id)
+      snippet = snippets(:favorite_song)
+      assert_difference('Snippet.count', -1) do
+        delete(:destroy, :id => snippet.id)
       end
-      assert_equal(note, assigns[:note])
-      refute(assigns[:note].persisted?)
+      assert_equal(snippet, assigns[:snippet])
+      refute(assigns[:snippet].persisted?)
       assert_equal(
-        'Note has been successfully destroyed.',
+        'Snippet has been successfully destroyed.',
         ActionController::Base.helpers.strip_tags(flash[:notice])
       )
       assert_response(:redirect)
-      assert_redirected_to(notes_url)
+      assert_redirected_to(snippets_url)
       logout_user
     end
   end

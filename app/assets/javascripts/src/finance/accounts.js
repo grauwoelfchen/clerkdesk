@@ -6,10 +6,10 @@
   $(function() {
     // set icon
     (function() {
-      if ($.fn.selectric == undefined) { return; }
+      if ($.fn.selectric === undefined) { return; }
 
       var renderIconItem = function(label, value) {
-        if (value == undefined || value.length == 0) {
+        if (value === undefined || value.length === 0) {
           return label;
         }
         return '<span class="item">' +

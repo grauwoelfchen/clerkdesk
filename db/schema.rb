@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150922174132) do
   add_index "locker_room_users", ["email"], name: "index_locker_room_users_on_email", unique: true, using: :btree
   add_index "locker_room_users", ["username"], name: "index_locker_room_users_on_username", unique: true, using: :btree
 
-  create_table "notes", force: :cascade do |t|
+  create_table "snippets", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.text     "content_html"

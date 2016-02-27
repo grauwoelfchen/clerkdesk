@@ -30,7 +30,7 @@ if Apartment::Tenant.current == 'grauwoelfchen'
   ledger = Finance::Ledger.new(ledger_params)
   ledger.save_with_fiscal_objects
 
-  note_params = {
+  snippet_params = {
     title: '05.2015 13th Meeting',
     content: <<-CONTENT
 ## Summary
@@ -46,8 +46,8 @@ if Apartment::Tenant.current == 'grauwoelfchen'
   CONTENT
   }
 
-  Note.public_activity_off
-  note = Note.new(note_params)
-  note.save!
-  Note.public_activity_on
+  Snippet.public_activity_off
+  snippet = Snippet.new(snippet_params)
+  snippet.save!
+  Snippet.public_activity_on
 end

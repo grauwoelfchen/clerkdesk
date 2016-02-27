@@ -1,0 +1,20 @@
+- breadcrumb :snippet, @snippet
+
+- content_for :header
+  h2= Snippet.model_name.human
+  h3= t('subheading.snippet')
+
+- content_for :actions
+  .item
+    = Snippet.model_name.human
+    .menu
+      = link_to t('action.new'), new_snippet_path, class: 'item active'
+      = link_to t('action.index'), snippets_path, class: 'item'
+
+.snippet
+  section
+    .ui.grid
+      .twelve.wide.column
+        h3= t('action.new')
+        .container
+          = render 'form', snippet: @snippet

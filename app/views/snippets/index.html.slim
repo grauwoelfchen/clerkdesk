@@ -1,0 +1,61 @@
+- if params[:t]
+  - breadcrumb :snippets_with_tag, params[:t]
+- else
+  - breadcrumb :snippets
+
+- content_for :header
+  h2= Snippet.model_name.human
+  h3= t('subheading.snippet')
+
+- content_for :actions
+  .item
+    = Snippet.model_name.human
+    .menu
+      = link_to t('action.new'), new_snippet_path, class: 'item'
+      = link_to t('action.index'), snippets_path, class: 'item active'
+
+.snippet
+  section
+    .ui.grid
+      .eleven.wide.column
+        .sort
+          ul.links
+            li
+              span.attribute
+                = Snippet.human_attribute_name(:title)
+              = sort_links_for(:title)
+            li
+              span.attribute
+                = Snippet.human_attribute_name(:updated_at)
+              = sort_links_for(:updated_at, :desc)
+          .filter
+            - if params[:t]
+              - capture_to_local tag=:tag
+                span.tag= params[:t]
+              = t('result.filter_by.tag', tag: tag).html_safe
+        .container
+          = render 'shared/pagination', resource: @snippets
+          hr
+          .ui.embedded.segment
+            .ui.items
+              - @snippets.each do |snippet|
+                .item
+                  .image
+                    = link_to snippet_path(snippet) do
+                      i.fa.fa-file-o.fa-6
+                  .content
+                    = link_to truncate(snippet.title, length: 22), snippet_path(snippet), class: 'header'
+                    .meta
+                      .tags
+                        - snippet.tags.take(3).each do |tag|
+                          span.tag
+                            = link_to truncate(tag.name, length: 8), url_for(params.merge(t: tag.name))
+                        - if snippet.tags.length > 3
+                          span.more
+                            = link_to '... more', snippet_path(snippet)
+                    .meta
+                      span.updated_at= snippet.updated_at
+                    .description
+                      = truncate(strip_tags(snippet.content_html), length: 30)
+                    .extra
+          = render 'shared/pagination', resource: @snippets

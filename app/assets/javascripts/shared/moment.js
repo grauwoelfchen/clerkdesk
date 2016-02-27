@@ -1,7 +1,7 @@
 (function($, moment) {
   'use strict';
 
-  if (moment == undefined) { return; }
+  if (moment === undefined) { return; }
 
   moment.locale('ja', {
     longDateFormat: {

@@ -7,7 +7,7 @@
   $(function() {
     // setup pickmeup
     (function() {
-      if ($.fn.pickmeup == undefined) { return; }
+      if ($.fn.pickmeup === undefined) { return; }
 
       var locale = $('html').attr('lang')
         , locales = {
@@ -35,12 +35,10 @@
       });
     })();
 
-    // setup autosize
+    // setup textarea autosize
     (function() {
-      if ($.fn.autosize == undefined) { return; }
-
-      var textarea = $('#finance_ledger_description');
-      textarea.autosize();
+      if ($.fn.autosize === undefined) { return; }
+      $('#finance_ledger_description').autosize();
     })();
   });
 })(jQuery);
