@@ -58,7 +58,7 @@
             var id   = $('<div/>').text(value.id).html()
               , name = $('<div/>').text(value.name).html()
               ;
-            if (id == journalizingVal) {
+            if (id === journalizingVal) {
               journalizing.append(
                 '<option value="' + id + '" selected="selected">' + name + '</option>'
               );
@@ -71,7 +71,7 @@
             }
           });
           // dropdown
-          if (journalizingVal == null || journalizingVal == '') {
+          if (journalizingVal === null || journalizingVal === '') {
             journalizing.dropdown('clear');
             journalizing.dropdown('set text', '---');
           }
@@ -90,7 +90,7 @@
 
       type.change(function() {
         var typeVal = $(this).val(); // refetch
-        if (typeVal == '') {
+        if (typeVal === '') {
           journalizing.empty();
           journalizing.html('<option value="">---</option>');
           return true;
@@ -101,7 +101,7 @@
 
     // autosize
     (function() {
-      if ($.fn.autosize == undefined) { return; }
+      if ($.fn.autosize === undefined) { return; }
 
       var textarea = $('#entry_memo');
       textarea.autosize();
@@ -109,7 +109,7 @@
 
     // currency input
     (function() {
-      if ($.fn.autoNumeric == undefined) { return; }
+      if ($.fn.autoNumeric === undefined) { return; }
 
       $('#entry_type').change(function() {
         var field = $('#entry_total_amount.currency')
@@ -134,7 +134,7 @@
 
     // tag editor
     (function() {
-      if ($.fn.tagEditor == undefined) { return; }
+      if ($.fn.tagEditor === undefined) { return; }
 
       var tagList = $('#labels');
 
@@ -163,12 +163,12 @@
               var source = this.autocomplete.source;
               $('.tag-editor-tag:not(.active)', editor).each(function(i) {
                 var tag = $(this).html();
-                if ($.inArray(tag, source) == -1) {
+                if ($.inArray(tag, source) === -1) {
                   // remove unknown
                   $(this).closest('li').remove();
                   var holder  = $('#involvements div.holder:eq(' + i + ')')
                     , destroy = holder.children('input.destroy');
-                  if (destroy.length == 0) {
+                  if (destroy.length === 0) {
                     holder.remove();
                   } else { // persisted
                     destroy.prop('value', '1');
@@ -182,7 +182,7 @@
                 ;
               if (id) {
                 var hidden = $('#holder_' + id);
-                if (hidden.length == 0 && $.inArray(val, source) > -1) {
+                if (hidden.length === 0 && $.inArray(val, source) > -1) {
                   $('#involvements').append(
                     '<div class="holder">' +
                     '<input' +
@@ -208,7 +208,7 @@
                 ;
               if (id) {
                 var destroy = $('#holder_' + id + '_destroy');
-                if (destroy.length == 0) {
+                if (destroy.length === 0) {
                   $('#holder_' + id).remove();
                   $('#holder_' + id + '_type').remove();
                 } else { // persisted
