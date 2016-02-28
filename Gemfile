@@ -31,11 +31,15 @@ gem 'stylus'
 
 # gem 'newrelic_rpm'
 
-gem 'sdoc', '~> 0.4.0', group: [:doc]
-
+gem 'puma',    group: [:production]
 gem 'foreman', group: [:development, :test]
 
-gem 'slim-rails', group: [:development]
+gem 'sdoc', '~> 0.4.0', group: [:doc]
+
+group :development do
+  gem 'slim-rails'
+  gem 'spring'
+end
 
 group :test do
   gem 'minitest', '~> 5.5'
