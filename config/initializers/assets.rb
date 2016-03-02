@@ -11,6 +11,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w(
   font-awesome/fonts/*
   semantic-ui/dist/themes/default/assets/fonts/*
+  semantic-ui/dist/themes/default/assets/images/*
   jquery-tag-editor/delete.*
   src/**/*
 )
