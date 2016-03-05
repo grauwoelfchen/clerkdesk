@@ -7,7 +7,7 @@ gem 'pg'
 
 # TODO: release locker_room gem
 gem 'locker_room', git: 'https://github.com/grauwoelfchen/locker_room.git'
-# gem 'locker_room', path: '../locker_room'
+#gem 'locker_room', path: '../locker_room'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'public_activity'
@@ -29,12 +29,14 @@ gem 'jbuilder'
 gem 'slim'
 gem 'stylus'
 
-# gem 'newrelic_rpm'
-
-gem 'puma',    group: [:production]
 gem 'foreman', group: [:development, :test]
 
 gem 'sdoc', '~> 0.4.0', group: [:doc]
+
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
 
 group :development do
   gem 'slim-rails'
