@@ -15,7 +15,7 @@ module Finance
           Finance::Category.types[type])
     }
 
-    def as_json(options)
+    def as_json(_options=nil)
       {:name => category.name, :id => id}
     end
   end
