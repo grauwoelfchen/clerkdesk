@@ -31,7 +31,7 @@ html lang=current_locale
             .navigation
               .ui.grid
                 .ten.wide.column
-                  = breadcrumbs pretext: '', separator: '<span class="divider">/</span>', class: 'ui breadcrumb'
+                  = breadcrumbs(pretext: '', separator: '<span class="divider">/</span>', class: 'ui breadcrumb').to_s.html_safe
                 .six.wide.column
             = yield
         .three.wide.column
