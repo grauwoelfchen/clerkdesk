@@ -2,6 +2,10 @@
   "name": "librecash"
 , "version": "0.0.1"
 , "private": true
+, "engines": {
+    "node": ">=5.7.1 <5.8"
+  , "npm": "~3.6.0"
+  }
 , "scripts": {
     "postinstall": "node_modules/.bin/gulp"
   }
