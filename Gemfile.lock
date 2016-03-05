@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/grauwoelfchen/locker_room.git
-  revision: 3fa7746c51123eefd9c9372d2adcc427e3cb7f25
+  revision: dd6aca4f444faeec84b130c0cd4cd41ccffabfad
   specs:
     locker_room (0.0.1)
       apartment (~> 1.0.2)
