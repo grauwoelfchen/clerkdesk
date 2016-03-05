@@ -1,4 +1,4 @@
-- breadcrumb :settings
+- breadcrumb :'settings/password'
 
 - content_for :header
   h2= t('heading.settings')
@@ -16,9 +16,9 @@
     .container
       .ui.tabular.menu
         / LockerRoom::Settings::Users
-        = active_link_to 'Account', locker_room.user_settings_path, class: 'item'
+        = active_link_to t('subheading.settings.account'), locker_room.user_settings_path, class: 'item'
         / LockerRoom::Settigns::Passwords
-        = active_link_to 'Password', locker_room.edit_password_path, class: 'item active'
+        = active_link_to t('subheading.settings.password'), locker_room.edit_password_path, class: 'item active'
       .ui.grid
         .twelve.wide.column
           .ui.grid

@@ -2,7 +2,6 @@
 ja:
   activerecord:
     models:
-      locker_room/user: ユーザ
       finance/ledger: 帳簿
       finance/category: 費目
       finance/account: 口座

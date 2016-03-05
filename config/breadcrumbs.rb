@@ -124,6 +124,10 @@ end
 
 # settings
 
-crumb :settings do
+crumb :'settings/user' do
   link t('nav.settings'), user_settings_path
+end
+
+crumb :'settings/password' do
+  link t('nav.settings'), edit_password_path
 end

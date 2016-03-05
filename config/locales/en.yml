@@ -54,10 +54,6 @@ en:
     finance:
       overview: Overview
     snippet: Protokoll
-    current_status: Current status
-    recent_entries: Recent entries
-    settings:
-      account: Account
   misc:
     entry: Entry
     status: Status

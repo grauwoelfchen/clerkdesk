@@ -60,6 +60,8 @@ ja:
     contact: 連絡先
     settings:
       account: アカウント
+      team: チーム
+      password: パスワード
   misc:
     entry: 記帳
     status: 状況
