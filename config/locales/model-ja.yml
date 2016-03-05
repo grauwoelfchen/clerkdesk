@@ -58,7 +58,7 @@ ja:
         postcode: 郵便番号
         street: 番地
         phone: 電話
-        email: Eメール
+        email: E メール
         memo: メモ
         tag_list: タグ
     errors:
