@@ -27,13 +27,6 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
-    scope module: :settings, path: 'settings' do
-      get 'account', to: 'users#edit', as: :user_settings
-      resource :users, path: 'account',
-        only: [:update],
-        as:   :user_settings
-    end
-
     post '/locale', to: 'locales#switch', as: :switch_locale
 
     get  '/countries/:code/divisions', to: 'countries#divisions',
