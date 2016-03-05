@@ -14,4 +14,5 @@ Rails.application.config.assets.precompile += %w(
   semantic-ui/dist/themes/default/assets/images/*
   jquery-tag-editor/delete.*
   src/**/*
+  src/contacts.js
 )

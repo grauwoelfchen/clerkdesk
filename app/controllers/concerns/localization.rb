@@ -3,6 +3,7 @@ module Localization
 
   included do
     before_action :set_locale
+    after_action  :set_locale_if_updated
 
     def current_locale
       session[:locale]
@@ -21,6 +22,10 @@ module Localization
       detected_locale.in?(available_locales) ? detected_locale.intern : nil
     end
 
+    def user_locale
+      current_user ? valid_locale(current_user.locale) : nil
+    end
+
     def extract_lang_from_http_accept_language
       request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
     end
@@ -29,15 +34,15 @@ module Localization
       valid_locale(extract_lang_from_http_accept_language)
     end
 
-    def user_locale
-      current_user ? valid_locale(current_user.locale) : nil
-    end
-
     # actions
 
     def set_locale
       session[:locale] ||= (user_locale || accept_lang || I18n.default_locale)
       I18n.locale = session[:locale]
+    end
+
+    def set_locale_if_updated
+      reset_locale if self.respond_to?(:user_params) && user_params[:local]
     end
 
     def reset_locale

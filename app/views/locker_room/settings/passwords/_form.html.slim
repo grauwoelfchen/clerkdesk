@@ -1,0 +1,14 @@
+= form_for user, url: locker_room.password_path, html: {method: :patch, class: 'ui form'} do |f|
+  - if user.errors.any?
+    = render 'shared/error', resource: user
+  .field
+    = f.label :current_password
+    = f.password_field :current_password
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  .actions
+    = f.submit t('action.update'), class: 'ui submit button'
