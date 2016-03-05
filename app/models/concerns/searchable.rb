@@ -4,7 +4,7 @@ module Searchable
   included do
     scope :search, lambda { |query, *fields|
       table     = model_name.plural
-      condition = fields.map { |f| "#{table}.#{f.to_s} LIKE :q" }.join(' OR ')
+      condition = fields.map { |f| "#{table}.#{f} LIKE :q" }.join(' OR ')
       unless condition.empty?
         where(condition, :q => "%#{query}%")
       else
