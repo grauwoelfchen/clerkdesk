@@ -23,6 +23,13 @@ module LibreCash
       Rails.root.join('app', 'models', 'extensions').to_s
     ]
 
+    # extenders
+    config.to_prepare do
+      Dir.glob(Rails.root.join('app', 'extenders', '**', '*.rb')) do |file|
+        Rails.configuration.cache_classes ? require(file) : load(file)
+      end
+    end
+
     # The default locale is :en and all translations from config/locales/*.rb,
     # yml are auto loaded.
     config.i18n.load_path += Dir[
