@@ -8,24 +8,24 @@
   .item
     = t('heading.settings')
     .menu
-      = link_to t('subheading.settings.account'), locker_room.user_settings_path, class: 'item'
-      = link_to t('subheading.settings.group'), locker_room.team_settings_path, class: 'item active'
+      = link_to t('subheading.settings.account'), locker_room.edit_user_path, class: 'item'
+      = link_to t('subheading.settings.group'), locker_room.edit_team_path, class: 'item active'
 
 .settings
   section
     .container
       .ui.tabular.menu
         / LockerRoom::Settings::Users
-        = active_link_to t('subheading.settings.account'), locker_room.user_settings_path, class: 'item', active: false
+        = link_to t('subheading.settings.account'), locker_room.edit_user_path, class: 'item'
         / LockerRoom::Settigns::Teams
-        = active_link_to t('subheading.settings.group'), locker_room.team_settings_path, class: 'item', active: true
+        = link_to t('subheading.settings.group'), locker_room.edit_team_path, class: 'item active'
       .ui.grid
         .twelve.wide.column
           .ui.grid
             .ten.wide.column
               .ui.secondary.menu
-                = active_link_to t('subheading.settings.team.plan'), locker_room.team_settings_path, class: 'item', active: false
-                = active_link_to t('subheading.settings.team.member'), locker_room.mate_settings_path, class: 'item', active: true
+                = link_to t('subheading.settings.team.plan'), locker_room.edit_team_path, class: 'item'
+                = link_to t('subheading.settings.team.member'), locker_room.mates_path, class: 'item active'
           .ui.embedded.segment
             .ui.grid
               .nine.wide.column

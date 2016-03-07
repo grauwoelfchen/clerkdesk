@@ -110,13 +110,13 @@ end
 # settings
 
 crumb :'settings/user' do
-  link t('nav.settings'), user_settings_path
+  link t('nav.settings'), locker_room.edit_user_path
 end
 
 crumb :'settings/team' do
-  link t('nav.settings'), team_settings_path
+  link t('nav.settings'), locker_room.edit_team_path
 end
 
 crumb :'settings/mate' do
-  link t('nav.settings'), mate_settings_path
+  link t('nav.settings'), locker_room.mates_path
 end

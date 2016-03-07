@@ -8,7 +8,7 @@
   .item
     = LockerRoom::User.model_name.human
     .menu
-      = link_to t('action.index'), locker_room.mate_settings_path, class: 'item active'
+      = link_to t('action.index'), locker_room.mates_path, class: 'item', active: true
 
 .user
   section

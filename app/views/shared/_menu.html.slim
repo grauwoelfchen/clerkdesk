@@ -14,7 +14,7 @@
   i.fa.fa-tag
   = Contact.model_name.human
 
-= active_link_to locker_room.user_settings_path, class: 'item', active: /^\/settings\// do
+= active_link_to locker_room.edit_user_path, class: 'item', active: /^\/settings\// do
   i.fa.fa-cog
   = t('nav.settings')
 
@@ -26,9 +26,9 @@
   .ellipsis
     i.fa.fa-ellipsis-v
   .ui.flowing.popup.transition.hidden
-    = link_to locker_room.user_settings_path, class: 'link' do
+    = link_to locker_room.edit_user_path, class: 'link' do
       | Account Settings
-    = link_to locker_room.password_settings_path, class: 'link' do
+    = link_to locker_room.edit_password_path, class: 'link' do
       | Change Password
     = link_to locker_room.logout_path, method: :delete, class: 'link' do
       | Sign out

@@ -1,4 +1,4 @@
-= form_for team, url: locker_room.team_settings_path, html: {method: :patch, class: 'ui form'} do |f|
+= form_for team, url: locker_room.team_path, html: {method: :patch, class: 'ui form'} do |f|
   - if team.errors.any?
     = render 'shared/error', resource: team
   .field
