@@ -4,12 +4,11 @@
       .date.created_at(data-format='relative')= activity.created_at
     .summary
       i.fa.fa-file-text-o.fa-1.icon
-      - owner = link_to(truncate(activity.owner.name, length: 30), user_path(activity.owner))
+      - owner = truncate(activity.owner.name, length: 30)
       - trackable = activity.trackable_name
       = t('activity.destroy', owner: owner, trackable: trackable).html_safe
     /.extra
     /  .text
-    .meta
-      = link_to nil, class: 'star' do
-        i.star.icon
-      | 5 Stars
+    /.meta
+    /  = link_to nil, class: 'star' do
+    /    i.star.icon

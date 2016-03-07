@@ -45,8 +45,3 @@
                         td= link_to truncate(mate.username, length: 24)
                         td
                         td.operations
-                          ul
-                            /li= link_to t('action.edit'), edit_user_path(user)
-                            /li= link_to t('action.destroy'), user_path(user), method: :delete, data: {confirm: 'Are you sure?'}
-
-                /= render 'shared/pagination', resource: @users
