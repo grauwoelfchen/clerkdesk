@@ -56,5 +56,17 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
 end
 
-rock = File.expand_path('../Gemfile.rock', __FILE__)
-eval File.read(rock) if (ENV['ROCK'] !~ /^(no|false)$/i && File.exist?(rock))
+# Lock the rocks!
+# The additional personal Gemfile.rock support for development and test.
+#
+# @example
+#   bundle install         #=> The rock file will be loaded if exists
+#   ROCK=no bundle install #=> Ignores the rock file
+group :development, :test do
+  if ENV['ROCK'] !~ /\A(no|false)\z/i
+    rock = File.expand_path('../Gemfile.rock', __FILE__)
+    if File.exist?(rock)
+      eval File.read(rock)
+    end
+  end
+end
