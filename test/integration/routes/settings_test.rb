@@ -94,24 +94,10 @@ class SettingsRouteTest < ActionDispatch::IntegrationTest
       at_locker_room do
         assert_routing({
           method: 'get',
-          path:   "#{host}/settings/mate"
+          path:   "#{host}/settings/mates"
         }, {
           controller: 'locker_room/settings/mates',
-          action:     'edit'
-        })
-        assert_routing({
-          method: 'patch',
-          path:   "#{host}/settings/mate"
-        }, {
-          controller: 'locker_room/settings/mates',
-          action:     'update'
-        })
-        assert_routing({
-          method: 'put',
-          path:   "#{host}/settings/mate"
-        }, {
-          controller: 'locker_room/settings/mates',
-          action:     'update'
+          action:     'index'
         })
       end
     end
