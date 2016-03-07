@@ -1,0 +1,11 @@
+= form_for team, url: locker_room.team_settings_path, html: {method: :patch, class: 'ui form'} do |f|
+  - if team.errors.any?
+    = render 'shared/error', resource: team
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :type_id
+    = f.select :type_id, LockerRoom::Type.all.map { |t| [t.name, t.id] }
+  .actions
+    = f.submit t('action.update'), class: 'ui submit button'

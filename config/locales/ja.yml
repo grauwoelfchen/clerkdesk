@@ -45,7 +45,6 @@ ja:
     address: 連絡先
     additional_info: その他の項目
     period: 期間
-    basic_info: 基本情報
   result:
     filter_by:
       tag: '%{tag} 一覧'
@@ -60,8 +59,13 @@ ja:
     contact: 連絡先
     settings:
       account: アカウント
-      team: チーム
-      password: パスワード
+      group: グループ
+      user:
+        basic_info: 基本情報
+        password: パスワード
+      team:
+        plan: プラン
+        member: メンバー
   misc:
     entry: 記帳
     status: 状況

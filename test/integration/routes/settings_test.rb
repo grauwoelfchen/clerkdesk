@@ -38,7 +38,7 @@ class SettingsRouteTest < ActionDispatch::IntegrationTest
       at_locker_room do
         assert_routing({
           method: 'get',
-          path:   "#{host}/settings/password/edit"
+          path:   "#{host}/settings/password"
         }, {
           controller: 'locker_room/settings/passwords',
           action:     'edit'
@@ -55,6 +55,62 @@ class SettingsRouteTest < ActionDispatch::IntegrationTest
           path:   "#{host}/settings/password"
         }, {
           controller: 'locker_room/settings/passwords',
+          action:     'update'
+        })
+      end
+    end
+  end
+
+  def test_route_to_teams
+    within_subdomain_host do |host|
+      at_locker_room do
+        assert_routing({
+          method: 'get',
+          path:   "#{host}/settings/team"
+        }, {
+          controller: 'locker_room/settings/teams',
+          action:     'edit'
+        })
+        assert_routing({
+          method: 'patch',
+          path:   "#{host}/settings/team"
+        }, {
+          controller: 'locker_room/settings/teams',
+          action:     'update'
+        })
+        assert_routing({
+          method: 'put',
+          path:   "#{host}/settings/team"
+        }, {
+          controller: 'locker_room/settings/teams',
+          action:     'update'
+        })
+      end
+    end
+  end
+
+  def test_route_to_mates
+    within_subdomain_host do |host|
+      at_locker_room do
+        assert_routing({
+          method: 'get',
+          path:   "#{host}/settings/mate"
+        }, {
+          controller: 'locker_room/settings/mates',
+          action:     'edit'
+        })
+        assert_routing({
+          method: 'patch',
+          path:   "#{host}/settings/mate"
+        }, {
+          controller: 'locker_room/settings/mates',
+          action:     'update'
+        })
+        assert_routing({
+          method: 'put',
+          path:   "#{host}/settings/mate"
+        }, {
+          controller: 'locker_room/settings/mates',
           action:     'update'
         })
       end

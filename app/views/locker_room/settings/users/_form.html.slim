@@ -1,4 +1,3 @@
-legend= t('legend.basic_info')
 = form_for user, url: user_settings_path, html: {method: :patch, class: 'ui form'} do |f|
   - if user.errors.any?
     = render 'shared/error', resource: user

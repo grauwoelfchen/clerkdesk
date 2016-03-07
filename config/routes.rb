@@ -21,28 +21,27 @@ Rails.application.routes.draw do
 
     resources :snippets
 
-    resources :users, only: [:index, :show]
-
     resources :contacts do
       get :search, on: :collection
     end
-
-    post '/locale', to: 'locales#switch', as: :switch_locale
 
     get  '/countries/:code/divisions', to: 'countries#divisions',
       constraints: {code: /[A-Z]{2}/},
       defaults:    {format: :json}
 
     root to: 'desktop#index'
-
-    # snippet: private beta
-    match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 
   constraints(Constraints::WithoutSubdomain) do
     get '/', to: 'locker_room/sessions#new', as: :global_root
+  end
 
-    # snippet: private beta
+  # NOTE: private beta
+  constraints(LockerRoom::Constraints::SubdomainRequired) do
+    match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
+  end
+
+  constraints(Constraints::WithoutSubdomain) do
     match '/signup', to: proc { [404, {}, [":'("]] }, via: :all
   end
 

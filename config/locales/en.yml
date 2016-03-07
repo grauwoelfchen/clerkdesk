@@ -44,7 +44,6 @@ en:
     address: ADDRESS
     additional_info: ADDITIONAL INFO.
     period: PERIOD
-    basic_info: BASIC INFO.
   result:
     filter_by:
       tag: 'Filtered by %{tag}'
@@ -54,6 +53,9 @@ en:
     finance:
       overview: Overview
     snippet: Protokoll
+    settings:
+      user:
+        basic_info: Basic info.
   misc:
     entry: Entry
     status: Status

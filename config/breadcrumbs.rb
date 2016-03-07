@@ -107,27 +107,16 @@ crumb :contact do |contact|
   parent :contacts
 end
 
-# users
-
-crumb :users do
-  link LockerRoom::User.model_name.human.pluralize, users_path
-end
-
-crumb :user do |user|
-  unless user.persisted?
-    link t('crumb.new'), nil
-  else
-    link user.username, user_path(user)
-  end
-  parent :users
-end
-
 # settings
 
 crumb :'settings/user' do
   link t('nav.settings'), user_settings_path
 end
 
-crumb :'settings/password' do
-  link t('nav.settings'), edit_password_path
+crumb :'settings/team' do
+  link t('nav.settings'), team_settings_path
+end
+
+crumb :'settings/mate' do
+  link t('nav.settings'), mate_settings_path
 end
