@@ -54,17 +54,17 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
 end
 
-# Lock the rocks!
+# Gemfile.hack:
 # The additional personal Gemfile.rock support for development and test.
 #
 # @example
-#   bundle install         #=> The rock file will be loaded if exists
-#   ROCK=no bundle install #=> Ignores the rock file
+#   bundle install         #=> The .hack file will be loaded if it exists
+#   HACK=no bundle install #=> Ignores the .hack file
 group :development, :test do
-  if ENV['ROCK'] !~ /\A(no|false)\z/i
-    rock = File.expand_path('../Gemfile.rock', __FILE__)
-    if File.exist?(rock)
-      eval File.read(rock)
+  if ENV['HACK'] !~ /\A(no|false)\z/i
+    hack = File.expand_path('../Gemfile.hack', __FILE__)
+    if File.exist?(hack)
+      eval File.read(hack)
     end
   end
 end
