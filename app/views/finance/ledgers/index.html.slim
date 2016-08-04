@@ -15,41 +15,40 @@
   section
     .container
       .ui.grid
-        .twelve.wide.column
-          = render 'shared/pagination', resource: @ledgers
-          table.ui.very.basic.compact.table
-            thead
+        = render 'shared/pagination', resource: @ledgers
+        table.ui.very.basic.compact.table
+          thead
+            tr
+              th
+              th
+                span.attribute
+                  = Finance::Ledger.human_attribute_name(:name)
+                = sort_links_for(:name)
+              th
+                span.attribute
+                  = Finance::Ledger.human_attribute_name(:state)
+                = sort_links_for(:state)
+              th
+                span.attribute
+                  = Finance::Ledger.human_attribute_name(:description)
+                = sort_links_for(:description)
+              th
+                span.attribute
+                  = Finance::Ledger.human_attribute_name(:updated_at)
+                = sort_links_for(:updated_at, :desc)
+              th
+          tbody
+            - @ledgers.each do |ledger|
               tr
-                th
-                th
-                  span.attribute
-                    = Finance::Ledger.human_attribute_name(:name)
-                  = sort_links_for(:name)
-                th
-                  span.attribute
-                    = Finance::Ledger.human_attribute_name(:state)
-                  = sort_links_for(:state)
-                th
-                  span.attribute
-                    = Finance::Ledger.human_attribute_name(:description)
-                  = sort_links_for(:description)
-                th
-                  span.attribute
-                    = Finance::Ledger.human_attribute_name(:updated_at)
-                  = sort_links_for(:updated_at, :desc)
-                th
-            tbody
-              - @ledgers.each do |ledger|
-                tr
-                  td.check
-                    - if ledger.state_primary?
-                      i.fa.fa-check
-                  td.name= link_to truncate(ledger.name, length: 20), overview_finance_ledger_path(ledger)
-                  td.state= ledger_label(ledger, :state)
-                  td.description= truncate(ledger.description, length: 25)
-                  td.updated_at= ledger.updated_at
-                  td.operations
-                    ul
-                      li= link_to t('action.edit'), edit_finance_ledger_path(ledger)
-                      li= link_to t('action.destroy'), finance_ledger_path(ledger), method: :delete, data: {confirm: 'Are you sure?'}
-          = render 'shared/pagination', resource: @ledgers
+                td.check
+                  - if ledger.state_primary?
+                    i.fa.fa-check
+                td.name= link_to truncate(ledger.name, length: 20), overview_finance_ledger_path(ledger)
+                td.state= ledger_label(ledger, :state)
+                td.description= truncate(ledger.description, length: 25)
+                td.updated_at= ledger.updated_at
+                td.operations
+                  ul
+                    li= link_to t('action.edit'), edit_finance_ledger_path(ledger)
+                    li= link_to t('action.destroy'), finance_ledger_path(ledger), method: :delete, data: {confirm: 'Are you sure?'}
+        = render 'shared/pagination', resource: @ledgers
