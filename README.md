@@ -13,41 +13,55 @@
 ### Setup
 
 * Ruby
-* Node.js
+* JavaScript (Node.js)
 
-```
-;; e.g. Setup Node.js
+```zsh
+: e.g. Setup Node.js
 % node --version
-v4.3.1
+v6.3.1
 ```
 
-```
+```zsh
 % ruby --version
-ruby 2.2.4p230 (2015-12-16 revision 53155) [x86_64-linux]
+ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
 
-;; Install rubygems
+: Install rubygems
 % gem install bundler
 % bundle install --path .bundle/gems
 
-;; Install npm packages and build assets
+: Install npm packages and build assets
 % npm install
 ```
 
-see also: `gulpfile.js`, `bower.json`
+See `gulpfile.js`, `bower.json`
+
+### Prepare
+
+```zsh
+: Make .env
+% cp .env.sample .env
+
+: DB
+% bundle exec foreman run rake db:migrate
+% bundle exec foreman run rake db:seed
+```
 
 ### Boot
 
-```
-% bundle exec foreman run server
+```zsh
+: Or use foreman start
+% bundle exec foreman run devel
 ```
 
-see `Procfile`
+See `Procfile`
 
 ### Test
 
-```
-;; Run test
+```zsh
+: Run test suite
 % bundle exec foreman run test
+
+: Run single test file
 % bundle exec foreman run ruby -I.:test test/models/note_test.rb
 ```
 
