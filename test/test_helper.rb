@@ -52,15 +52,15 @@ class ActiveSupport::TestCase
     end
     Apartment::Tenant.switch!(team.subdomain)
     DatabaseCleaner.start
-    # load normal fixtures
     super
   end
 
   def after_teardown
-    #super
+    # super
     DatabaseCleaner.clean
     Apartment::Tenant.reset
   end
+
 end
 
 class ActionController::TestCase
