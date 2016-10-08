@@ -2,11 +2,10 @@ module Localization
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_locale
-    after_action  :set_locale_if_updated
+    around_action :set_locale
 
     def current_locale
-      session[:locale]
+      I18n.locale
     end
     helper_method :current_locale
 
@@ -34,20 +33,22 @@ module Localization
       valid_locale(extract_lang_from_http_accept_language)
     end
 
+    def locale_is_changed?
+      self.respond_to?(:user_params, true) &&
+        params[:user] &&
+        user_locale != user_params[:locale]
+    end
+
+    def detected_locale
+      user_locale || accept_lang || I18n.default_locale
+    end
+
     # actions
 
     def set_locale
-      session[:locale] ||= (user_locale || accept_lang || I18n.default_locale)
-      I18n.locale = session[:locale]
-    end
-
-    def set_locale_if_updated
-      reset_locale if self.respond_to?(:user_params) && user_params[:local]
-    end
-
-    def reset_locale
-      session.delete(:locale)
-      set_locale
+      I18n.locale = detected_locale
+      yield
+      I18n.locale = detected_locale if locale_is_changed?
     end
   end
 end
