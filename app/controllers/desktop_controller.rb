@@ -1,6 +1,5 @@
 class DesktopController < WorkspaceController
   before_action :set_activities, only: :index
-  before_action :reset_locale,   only: :index
 
   def index
   end
