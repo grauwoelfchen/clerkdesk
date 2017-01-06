@@ -17,7 +17,7 @@ module Finance
     def test_index_should_assign_vars
       within_subdomain(@team.subdomain) do
         login_user(@user)
-        get(:index, :ledger_id => @ledger.id)
+        get(:index, :params => {:ledger_id => @ledger.id})
         assert_equal(@ledger, assigns[:ledger])
         accounts = @ledger.accounts.order_by(:name, :asc)
         assert_equal(accounts, assigns[:accounts])
@@ -28,7 +28,7 @@ module Finance
     def test_index_should_render_template
       within_subdomain(@team.subdomain) do
         login_user(@user)
-        get(:index, :ledger_id => @ledger.id)
+        get(:index, :params => {:ledger_id => @ledger.id})
         assert_template(:index)
         assert_response(:success)
       end
@@ -43,7 +43,7 @@ module Finance
         (20 - @ledger.accounts.length).times do |i|
           @ledger.accounts.create!(name: "Account #{i}", icon: 'archive')
         end
-        get(:new, :ledger_id => @ledger.id)
+        get(:new, :params => {:ledger_id => @ledger.id})
         assert_response(:redirect)
         expected = {
           :controller => 'finance/accounts',
@@ -61,7 +61,7 @@ module Finance
     def test_new_should_assign_vars
       within_subdomain(@team.subdomain) do
         login_user(@user)
-        get(:new, :ledger_id => @ledger.id)
+        get(:new, :params => {:ledger_id => @ledger.id})
         assert_equal(@ledger, assigns[:ledger])
         assert_instance_of(Finance::Account, assigns[:account])
         refute(assigns[:account].persisted?)
@@ -71,7 +71,7 @@ module Finance
     def test_new_should_render_template
       within_subdomain(@team.subdomain) do
         login_user(@user)
-        get(:new, :ledger_id => @ledger.id)
+        get(:new, :params => {:ledger_id => @ledger.id})
         assert_template(:new)
         assert_template(:partial => '_form')
         assert_response(:success)
@@ -85,12 +85,12 @@ module Finance
         login_user(@user)
         params = {
           :ledger_id => @ledger.id,
-          :account => {
+          :account   => {
             :name => '',
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_instance_of(Finance::Account, assigns[:account])
         refute_empty(assigns[:account].errors)
@@ -104,12 +104,12 @@ module Finance
         login_user(@user)
         params = {
           :ledger_id => @ledger.id,
-          :account => {
+          :account   => {
             :name => '',
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_template(:new)
         assert_template(:partial => 'shared/_error')
         assert_template(:partial => '_form')
@@ -122,12 +122,12 @@ module Finance
         login_user(@user)
         params = {
           :ledger_id => @ledger.id,
-          :account => {
+          :account   => {
             :name => '',
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_nil(flash[:notice])
         assert_equal(
           'Account could not be created.',
@@ -150,7 +150,7 @@ module Finance
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_response(:redirect)
         expected = {
           :controller => 'finance/accounts',
@@ -175,7 +175,7 @@ module Finance
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_includes(@ledger.accounts, assigns[:account])
         assert(assigns[:account].persisted?)
@@ -188,12 +188,12 @@ module Finance
         login_user(@user)
         params = {
           :ledger_id => @ledger.id,
-          :account => {
+          :account   => {
             :name => 'Coffee Card',
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_response(:redirect)
         expected = {
           :controller => 'finance/entries',
@@ -215,7 +215,7 @@ module Finance
             :icon => 'bank'
           }
         }
-        post(:create, params)
+        post(:create, :params => params)
         assert_nil(flash[:alert])
         assert_equal(
           'Account has been successfully created.',
@@ -234,7 +234,7 @@ module Finance
           :ledger_id => @ledger.id,
           :id        => account.id
         }
-        get(:edit, params)
+        get(:edit, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_equal(account, assigns[:account])
       end
@@ -248,7 +248,7 @@ module Finance
           :ledger_id => @ledger.id,
           :id        => account.id
         }
-        get(:edit, params)
+        get(:edit, :params => params)
         assert_template(:edit)
         assert_template(:partial => '_form')
         assert_response(:success)
@@ -268,7 +268,7 @@ module Finance
             :name => ''
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         account.reload
         assert_equal(account, assigns[:account])
@@ -288,7 +288,7 @@ module Finance
             :name => ''
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_template(:edit)
         assert_template(:partial => 'shared/_error')
         assert_template(:partial => '_form')
@@ -308,7 +308,7 @@ module Finance
             :icon => 'bank'
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_nil(flash[:notice])
         assert_equal(
           'Account could not be updated.',
@@ -328,7 +328,7 @@ module Finance
             :name => 'New Bank'
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_not_equal(account.name, assigns[:account].name)
         assert_empty(assigns[:account].errors)
@@ -346,7 +346,7 @@ module Finance
             :name => 'New Bank'
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_response(:redirect)
         expected = {
           :controller => 'finance/entries',
@@ -369,7 +369,7 @@ module Finance
             :name => 'New Bank',
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         assert_nil(flash[:alert])
         assert_equal(
           'Account has been successfully updated.',

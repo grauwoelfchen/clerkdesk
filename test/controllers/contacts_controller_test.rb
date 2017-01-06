@@ -25,7 +25,7 @@ class ContactsControllerTest < ActionController::TestCase
     contact.save
     within_subdomain(team.subdomain) do
       login_user(user)
-      get(:index, :t => 'Penguin')
+      get(:index, :params => {:t => 'Penguin'})
       assert_equal([contact], assigns[:contacts])
       assert_template(:index)
       assert_response(:success)

@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'sprockets-rails', '2.3.1'
-gem 'sprockets', '3.6.2'
-gem 'rails', '~> 4.2.7.1'
+ruby '2.3.3'
+
+gem 'sprockets-rails'
+# https://github.com/forgecrafted/ruby-stylus/issues/92
+gem 'sprockets', '3.6.3'
+gem 'rails', '~> 5.0.1'
 
 gem 'pg'
 
 # TODO: release locker_room gem
-gem 'locker_room', git: 'https://github.com/grauwoelfchen/locker_room.git'
+gem 'locker_room', git: 'https://gitlab.com/grauwoelfchen/locker_room.git'
 #gem 'locker_room', path: '../locker_room'
 
 gem 'acts-as-taggable-on', '~> 4.0'
@@ -17,7 +20,7 @@ gem 'friendly_id'
 gem 'countries'
 gem 'country_select'
 
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 5.0.0'
 gem 'active_link_to'
 gem 'gretel'
 gem 'redcarpet'
@@ -36,7 +39,6 @@ gem 'sdoc', '~> 0.4.0', group: [:doc]
 
 group :production do
   gem 'puma'
-  gem 'rails_12factor'
 end
 
 group :development do
@@ -45,10 +47,11 @@ group :development do
 end
 
 group :test do
-  gem 'sinatra', '~> 1.4.7'
+  gem 'sinatra', '2.0.0.beta2'
 
   gem 'minitest', '~> 5.9.1'
   gem 'minitest-rails-capybara'
+  gem 'rails-controller-testing'
   gem 'database_cleaner'
   gem 'connection_pool'
   gem 'poltergeist'

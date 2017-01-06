@@ -1,7 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start
 
 require File.expand_path('../../config/environment', __FILE__)
 ActiveRecord::Migrator.migrations_paths = [
@@ -9,6 +9,9 @@ ActiveRecord::Migrator.migrations_paths = [
 ]
 
 require 'rails/test_help'
+
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
 
 require 'minitest/mock'
 require 'minitest/rails/capybara'

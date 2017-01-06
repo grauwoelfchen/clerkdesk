@@ -11,7 +11,7 @@ module Finance
       within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
-        get(:show, :ledger_id => budget.ledger_id)
+        get(:show, :params => {:ledger_id => budget.ledger_id})
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.ledger, assigns[:ledger])
         assert_template(:show)
@@ -25,7 +25,7 @@ module Finance
       within_subdomain(team.subdomain) do
         login_user(user)
         budget = finance_budgets(:second_piano_budget)
-        get(:edit, :ledger_id => budget.ledger_id)
+        get(:edit, :params => {:ledger_id => budget.ledger_id})
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.ledger, assigns[:ledger])
         assert_template(:edit)
@@ -46,7 +46,7 @@ module Finance
             :description => 'Long description' * 100
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         budget.reload
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.ledger, assigns[:ledger])
@@ -74,7 +74,7 @@ module Finance
             :description => 'Violin budget'
           }
         }
-        put(:update, params)
+        put(:update, :params => params)
         budget.reload
         assert_equal(budget, assigns[:budget])
         assert_equal(budget.ledger, assigns[:ledger])

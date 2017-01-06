@@ -23,7 +23,7 @@ module Finance
           :ledger_id  => @ledger.id,
           :account_id => @account.id
         }
-        get(:index, params)
+        get(:index, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_equal(@account, assigns[:account])
         assert_equal(@ledger, @account.ledger)
@@ -41,7 +41,7 @@ module Finance
           :c          => 'invalid_id'
         }
         assert_raise(ActiveRecord::RecordNotFound) do
-          get(:index, params)
+          get(:index, :params => params)
         end
       end
     end
@@ -55,7 +55,7 @@ module Finance
           :account_id => @account.id,
           :c          => category.id
         }
-        get(:index, params)
+        get(:index, :params => params)
         assert_equal(@ledger, assigns[:ledger])
         assert_equal(@account, assigns[:account])
         assert_equal(@ledger, @account.ledger)
@@ -72,7 +72,7 @@ module Finance
           :ledger_id  => @ledger.id,
           :account_id => @account.id
         }
-        get(:index, params)
+        get(:index, :params => params)
         assert_template(:index)
         assert_response(:success)
       end

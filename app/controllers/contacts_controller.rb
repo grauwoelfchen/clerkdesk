@@ -1,5 +1,5 @@
 class ContactsController < WorkspaceController
-  before_filter :xhr_only,    only: [:search]
+  before_action :xhr_only,    only: [:search]
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   def index

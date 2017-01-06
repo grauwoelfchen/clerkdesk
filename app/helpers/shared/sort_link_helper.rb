@@ -8,11 +8,12 @@ module Shared
     end
 
     def sort_link_for(field, direction, default_link=false)
-      link = url_for(params.merge(field: field, direction: direction))
+      link_params = params.merge(field: field, direction: direction)
+      link = url_for(link_params.permit(:field, :direction))
       icon = <<-ICON.gsub(/^\s*|\n/, '')
         <i class="#{sort_link_class_for(field, direction, default_link)}"></i>
       ICON
-      link_to(icon.html_safe, link)
+      link_to(raw(icon), link)
     end
 
     private

@@ -1,5 +1,5 @@
 class PagesController < WorkspaceController
-  skip_filter :require_login
+  skip_before_filter :require_login
 
   def index
   end

@@ -33,7 +33,7 @@ class SnippetsControllerTest < ActionController::TestCase
     snippet.save
     within_subdomain(team.subdomain) do
       login_user(user)
-      get(:index, :t => 'Favorites')
+      get(:index, :params => {:t => 'Favorites'})
       assert_equal([snippet], assigns[:snippets])
       assert_template(:index)
       assert_response(:success)
@@ -47,7 +47,7 @@ class SnippetsControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       snippet = snippets(:favorite_song)
-      get(:show, :id => snippet.id)
+      get(:show, :params => {:id => snippet.id})
       assert_equal(snippet, assigns[:snippet])
       assert_template(:show)
       assert_response(:success)
@@ -80,7 +80,7 @@ class SnippetsControllerTest < ActionController::TestCase
         }
       }
       assert_no_difference('Snippet.count', 1) do
-        post(:create, params)
+        post(:create, :params => params)
       end
       assert_instance_of(Snippet, assigns[:snippet])
       refute(assigns[:snippet].persisted?)
@@ -104,7 +104,7 @@ class SnippetsControllerTest < ActionController::TestCase
         }
       }
       assert_difference('Snippet.count', 1) do
-        post(:create, params)
+        post(:create, :params => params)
       end
       assert_instance_of(Snippet, assigns[:snippet])
       assert(assigns[:snippet].persisted?)
@@ -124,7 +124,7 @@ class SnippetsControllerTest < ActionController::TestCase
     within_subdomain(team.subdomain) do
       login_user(user)
       snippet = snippets(:favorite_song)
-      get(:edit, :id => snippet.id)
+      get(:edit, :params => {:id => snippet.id})
       assert_equal(snippet, assigns[:snippet])
       assert_template(:edit)
       assert_template(:partial => '_form')
@@ -145,7 +145,7 @@ class SnippetsControllerTest < ActionController::TestCase
           :title => ''
         }
       }
-      put(:update, params)
+      put(:update, :params => params)
       assert_equal(snippet, assigns[:snippet])
       assert_nil(flash[:notice])
       assert_template(:edit)
@@ -168,7 +168,7 @@ class SnippetsControllerTest < ActionController::TestCase
           :title => 'Violin snippet'
         }
       }
-      put(:update, params)
+      put(:update, :params => params)
       assert_equal(params[:snippet][:title], assigns[:snippet].title)
       assert_equal(
         'Snippet has been successfully updated.',
@@ -187,7 +187,7 @@ class SnippetsControllerTest < ActionController::TestCase
       login_user(user)
       snippet = snippets(:favorite_song)
       assert_difference('Snippet.count', -1) do
-        delete(:destroy, :id => snippet.id)
+        delete(:destroy, :params => {:id => snippet.id})
       end
       assert_equal(snippet, assigns[:snippet])
       refute(assigns[:snippet].persisted?)
