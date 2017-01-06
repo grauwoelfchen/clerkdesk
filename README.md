@@ -15,41 +15,51 @@
 * JavaScript (Node.js)
 
 ```zsh
-: e.g. Setup Node.js
-% node --version
-v6.3.1
-```
-
-```zsh
 % ruby --version
 ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
-
-: Install rubygems
-% gem install bundler
-% bundle install --path .bundle/gems
-
-: Install npm packages and build assets
-% npm install
 ```
 
-See `gulpfile.js`, `bower.json`
+```zsh
+: e.g. Setup Node.js via nodeenv
+% python3.4 -m venv venv
+% source venv/bin/activate
 
-### Prepare
+(venv) % pip install --upgrade setuptools pip
+(venv) % pip install nodeenv
+(venv) % nodeenv --node=6.9.4 -p
+(venv) % source venv/bin/activate
+(venv) % node --version
+v6.9.4
+```
+
+### Dependencies
 
 ```zsh
-: Make .env
-% cp .env.sample .env
+: rubygems
+(venv) % gem install bundler
+(venv) % bundle install --path .bundle/gems
+```
 
-: DB
-% bundle exec foreman run rake db:migrate
-% bundle exec foreman run rake db:seed
+```zsh
+: npm packages (see also `gulpfile.js`)
+(venv) % npm install
+```
+
+### Database
+
+```zsh
+: make .env
+(venv) % cp .env.sample .env
+
+(venv) % bundle exec foreman run rake db:migrate
+(venv) % bundle exec foreman run rake db:seed
 ```
 
 ### Boot
 
 ```zsh
-: Or use foreman start
-% bundle exec foreman run devel
+: use run or foreman start
+(venv) % bundle exec foreman run devel
 ```
 
 See `Procfile`
@@ -57,16 +67,16 @@ See `Procfile`
 ### Test
 
 ```zsh
-: Run test suite
-% bundle exec foreman run test
+: run test suite
+(venv) % bundle exec foreman run test
 
 : Run single test file
-% bundle exec foreman run ruby -I.:test test/models/note_test.rb
+(venv) % bundle exec foreman run ruby -I.:test test/models/note_test.rb
 ```
 
 ## License
 
-Copyright (C) 2015 Yasuhiro Asaka
+Copyright (C) 2015-2017 Yasuhiro Asaka
 
 This is free software;
 You can redistribute it and/or modify it under the terms of the GNU Affero General Public License (AGPL).
