@@ -2,7 +2,7 @@
   = link_to main_app.root_path, class: 'brand'
     = image_tag 'librecash-logo-140x24.png', size: '140x24'
 
-= active_link_to main_app.finance_ledgers_path, class: 'item', active: /^\/finance/ do
+= active_link_to main_app.finance_ledgers_path, class: 'item', active: /^\/(finance|$)/ do
   i.fa.fa-calculator
   = t('nav.finance')
 

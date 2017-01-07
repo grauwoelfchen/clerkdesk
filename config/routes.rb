@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       constraints: {code: /[A-Z]{2}/},
       defaults:    {format: :json}
 
-    root to: 'desktop#index'
+    root to: 'finance/ledgers#index'
   end
 
   constraints(Constraints::WithoutSubdomain) do
