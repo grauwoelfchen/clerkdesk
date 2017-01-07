@@ -7,8 +7,8 @@ ja:
       finance/account: 口座
       finance/budget: 予算
       finance/entry: エントリ
-      snippet: スニペット
-      contact: コンタクト
+      snippet: ノート
+      contact: 連絡先
     attributes:
       default: &default
         created_at: 作成日時

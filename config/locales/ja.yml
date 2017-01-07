@@ -3,7 +3,7 @@ ja:
   nav:
     desktop: デスクトップ
     actions: アクション
-    finance: ファイナンス
+    finance: 会計
     settings: 設定
     overview: 概要
   crumb:
@@ -56,7 +56,7 @@ ja:
     snippet: プロトコル・メモ
     current_status: 現在の状況
     recent_entries: 最近の記帳
-    contact: 連絡先
+    contact: コンタクト
     settings:
       account: アカウント
       group: グループ
