@@ -1,7 +1,3 @@
-crumb :root do
-  link t('crumb.desktop'), root_path
-end
-
 # finance
 
 crumb :'finance/ledgers' do

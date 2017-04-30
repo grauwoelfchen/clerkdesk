@@ -15,40 +15,33 @@ body
   z-index      1
   width        $side-menu-width
   .menu
-    top        0
-    left       0
-    width      $side-menu-width !important
-    background $chocolate-color !important
-    border     none
+    top          0
+    left         0
+    width        $side-menu-width !important
+    border-right 3px solid $light-gray-color
     i
       display inline-block
       padding 0
       margin  0 9px 0 0
     .item.top
-      background $light-brown-color
-      padding    17px 3px 13px 15px
-      .brand
-        vertical-align bottom
-        img
-          display inline-block
-          margin  0 1px 0 4px
+      padding    1.14rem 0 1.24rem 1.26rem
+      h1
+        font-size   1.38rem
+        font-weight normal
+        color       darken($dark-gray-color, 3%)
+        text-align  left
       &:hover
-        background darken($light-brown-color, 6%) !important
+        background #FFFFFF !important
     .item
-      color   $gray-color
+      color   $black-color
       border  none
       padding 16px 9px 16px 18px
       &:hover
-        color      $light-gray-color !important
-        background darken($chocolate-color, 13%) !important
+        background lighten($light-gray-color, 46%) !important
       &.active
-        color      $light-gray-color !important
-        background darken($chocolate-color, 27%) !important
+        background $light-gray-color !important
     .item.bottom
-      &:hover
-        background-color $dark-brown-color !important
       cursor           pointer
-      background-color $dark-brown-color
       padding          0
       bottom           0
       height           61px
@@ -109,6 +102,7 @@ body
   background-color lighten($pale-gray-color, 63%)
   min-height       760px
   padding          0 9px 0 18px
+  border-left      1px solid $light-gray-color
   .navigation
     padding 3px 0 21px 0
     margin  13px 0 0 0
@@ -143,27 +137,18 @@ body
 
 
 .content-header
-  height           $navbar-height
-  margin           0 auto
-  color            #CCCCCC
-  text-align       left
-  border-bottom    1px solid $pale-gray-color
-  background-color $cream-color
+  height        4.24rem
+  margin        0
+  color         #CCCCCC
+  border-bottom 1px solid #E8E6E5
+  text-align    left
   .heading
-    padding        6px 0 0 12px
-    display        inline-block
-    vertical-align middle
-    h2
-      color       #190318
-      margin      3px 0 3px 0
-      font-size   29px
-      font-weight normal
-    h3
-      color       #CCCCCC
-      margin      3px 0 0 0
-      font-weight normal
-      padding     0
-      margin      0
+    padding 0.69rem 0 0.43rem 0.89rem
+    input[type="text"]
+      display       inline-block
+      border        1px solid $light-gray-color
+      border-radius 4px
+      padding       0.66rem 0.83rem
 
 
 .inner-content
@@ -194,12 +179,11 @@ section .container
 
 
 .footer
-  color            darken($pale-gray-color, 5%)
-  background-color $dark-forest-green-color
-  font-size        87.5%
-  padding          21px 21px 21px 26px
-  line-height      1.6
-  margin           0 auto
+  border-top  1px solid $light-gray-color
+  font-size   87.5%
+  padding     21px 21px 21px 26px
+  line-height 1.6
+  margin      0 auto
   a
     display inline-block
     margin  0 4px 0 0

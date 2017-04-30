@@ -4,8 +4,7 @@
   - breadcrumb :contacts
 
 - content_for :header
-  h2= Contact.model_name.human
-  h3= t('subheading.contact')
+  = render 'search'
 
 - content_for :actions
   .item

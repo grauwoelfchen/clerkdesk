@@ -1,11 +1,10 @@
 - breadcrumb :contact, @contact
 
+- content_for :header
+  = render 'search'
+
 - content_for :script do
   = javascript_include_tag 'src/contacts'
-
-- content_for :header
-  h2= Contact.model_name.human
-  h3= t('subheading.contact')
 
 - content_for :actions
   .item

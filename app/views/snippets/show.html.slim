@@ -1,8 +1,7 @@
 - breadcrumb :snippet, @snippet
 
 - content_for :header
-  h2= Snippet.model_name.human
-  h3= t('subheading.snippet')
+  = render 'search'
 
 - content_for :actions
   .item

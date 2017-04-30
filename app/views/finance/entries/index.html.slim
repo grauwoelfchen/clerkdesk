@@ -1,8 +1,7 @@
 - breadcrumb :'finance/entries', @ledger, @account, @category
 
 - content_for :header
-  h2= t('nav.finance')
-  h3= t('subheading.finance.entry')
+  = render 'finance/search'
 
 - content_for :actions
   .item

@@ -1,9 +1,5 @@
 - breadcrumb :user, @user
 
-- content_for :header
-  h2= LockerRoom::User.model_name.human
-  h3= t('subheading.user')
-
 - content_for :actions
   .item
     = LockerRoom::User.model_name.human
