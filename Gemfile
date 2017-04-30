@@ -1,19 +1,17 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.4.1'
 
-gem 'sprockets-rails'
-# https://github.com/forgecrafted/ruby-stylus/issues/92
-gem 'sprockets', '3.6.3'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1.0'
 
 gem 'pg'
 
-# TODO: release locker_room gem
 gem 'locker_room', git: 'https://gitlab.com/grauwoelfchen/locker_room.git'
-#gem 'locker_room', path: '../locker_room'
+#gem 'locker_room'
 
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git', ref: '9bb57384'
+#gem 'acts-as-taggable-on', '~> 4.0'
+
 gem 'public_activity'
 gem 'friendly_id'
 
@@ -29,13 +27,13 @@ gem 'kaminari'
 gem 'browserify-rails'
 gem 'uglifier'
 
-gem 'jbuilder'
 gem 'slim'
 gem 'stylus'
 
+gem 'jbuilder'
 gem 'foreman', group: [:development, :test]
 
-gem 'sdoc', '~> 0.4.0', group: [:doc]
+gem 'sdoc', '~> 0.4.2', group: [:doc]
 
 group :production do
   gem 'puma'
@@ -49,7 +47,7 @@ end
 group :test do
   gem 'sinatra', '2.0.0.beta2'
 
-  gem 'minitest', '~> 5.9.1'
+  gem 'minitest', '~> 5.10.1'
   gem 'minitest-rails-capybara'
   gem 'rails-controller-testing'
   gem 'database_cleaner'

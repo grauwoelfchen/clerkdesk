@@ -74,15 +74,15 @@ end
 
 # NOTE
 # host and subdomain handling depend tld_length in environments/test.rb
-# foo.127.0.0.1.xip.io
+# foo.localhost (as subdomain)
 #
 # * Rails.application.config.action_dispatch.tld_length
 # * ActionDispatch::Http::URL.tld_length
 
 # Capybara
 
-RACK_HOST = '127.0.0.1.xip.io:3000'
-JS_HOST   = '127.0.0.1.xip.io:3001'
+RACK_HOST = 'localhost:3000'
+JS_HOST   = 'localhost:3001'
 
 ENV['BRAINTREE_GATEWAY_PORT'] ||= '45678'
 

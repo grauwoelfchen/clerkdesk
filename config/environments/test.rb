@@ -26,8 +26,8 @@ Rails.application.configure do
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
 
-  # see test_helper.rb (use 127.0.0.1.xip.io)
-  config.action_dispatch.tld_length = 5
+  # see test_helper.rb (use foo.localhost)
+  config.action_dispatch.tld_length = 0
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
