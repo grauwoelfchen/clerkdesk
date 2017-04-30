@@ -51,13 +51,13 @@ html lang=current_locale
                   = yield :links
       .footer
         .fourteen.wide.column
-          | <a href="#{main_app.global_root_url(host: request.domain)}">#{t('app.name')}</a> is developed with <3 by <a href="mailto:grauwoelfchen@gmail.com">grauwoelfchen@gmail.com</a>
+          | <a href="#{main_app.global_root_url(host: request.domain)}">#{t('app.name')}</a> is developed with <3 by <a href="mailto:yasuhiro.asaka@grauwoelfchen.net">yasuhiro.asaka@grauwoelfchen.net</a>
           | <br>
           | If you have any question or found a bug, please tell me :)
         .two.wide.column
           ul.legal-links
             li= link_to 'policy', main_app.root_path
           p.copyright
-             | &#0169; 2015 Yasuhiro Asaka All rights reserved.
+             | &#0169; 2015-2017 Yasuhiro Asaka All rights reserved.
   = javascript_include_tag 'application'
   = yield :script
