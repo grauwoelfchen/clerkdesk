@@ -2,7 +2,7 @@
   / Finance::Ledger
   = active_link_to t('nav.overview'), overview_finance_ledger_path(ledger), class: 'item'
   / Finance::Budget
-  = active_link_to Finance::Budget.model_name.human, finance_ledger_budget_path(ledger), class: 'item'
+  /= active_link_to Finance::Budget.model_name.human, finance_ledger_budget_path(ledger), class: 'item'
   / Finance::Category
   = active_link_to Finance::Category.model_name.human.pluralize, finance_ledger_categories_path(ledger), class: 'item'
   / Finance::Account, Finance::Entry
