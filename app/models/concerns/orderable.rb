@@ -20,7 +20,7 @@ module Orderable
         if :updated_at.in?(@orderable_attributes)
           option = {:updated_at => :desc}
         else
-          option = {:id => :asc}
+          option = {:id => :desc}
         end
       end
       option
@@ -56,7 +56,11 @@ module Orderable
         end
         opt
       }
-      option = orderable_default_option if option.blank?
+      if option.blank?
+        option = orderable_default_option
+      else
+        option = option.merge(orderable_default_option)
+      end
       order(option)
     }
   end

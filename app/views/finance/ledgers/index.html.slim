@@ -34,7 +34,7 @@
               th
                 span.attribute
                   = Finance::Ledger.human_attribute_name(:updated_at)
-                = sort_links_for(:updated_at, :desc)
+                = sort_links_for(:updated_at)
               th
           tbody
             - @ledgers.each do |ledger|
