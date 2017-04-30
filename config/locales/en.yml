@@ -57,6 +57,7 @@ en:
       user:
         basic_info: Basic info.
   misc:
+    count: Count
     entry: Entry
     status: Status
     datetime: Datetime

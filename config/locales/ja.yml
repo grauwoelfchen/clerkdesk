@@ -67,6 +67,7 @@ ja:
         plan: プラン
         member: メンバー
   misc:
+    count: 件数
     entry: 記帳
     status: 状況
     datetime: 日時

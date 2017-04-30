@@ -61,15 +61,14 @@
                 thead
                   tr
                     th= Finance::Category.model_name.human
-                    th= Finance::Budget.model_name.human
+                    th= t('misc.count')
                 tbody
                   - @categories.each do |category|
                     tr
                       td
                         = category.name
-                        .ui.label
-                          = category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
-                      td 0
+                      td
+                        = category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
         .four.wide.column
           .ui.stacked.segment
             .ui.top.attached.label TOTAL
