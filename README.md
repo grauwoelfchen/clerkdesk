@@ -14,8 +14,13 @@ https://gitlab.com/librecash/librecash/raw/master/app/assets/images/librecash-lo
 
 ### Setup
 
-* Ruby `>= 2.4.1`
-* JavaScript (Node.js)
+* Ruby `2.4.1`
+  * Rails `5.1.0`
+  * Bundler `1.13.7`
+* JavaScript
+  * Node.js `7.9.0`
+  * npm `4.5.0`
+* PostgreSQL `9.6`
 
 ```zsh
 % ruby --version
@@ -29,17 +34,19 @@ ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 
 (venv) % pip install --upgrade setuptools pip
 (venv) % pip install nodeenv
-(venv) % nodeenv --node=7.8.0 -p
+(venv) % nodeenv --node=7.9.0 -p
 (venv) % source venv/bin/activate
 (venv) % node --version
-v7.8.0
+v7.9.0
+(venv) % npm install --upgrade npm
+4.5.0
 ```
 
 ### Dependencies
 
 ```zsh
 : rubygems
-(venv) % gem install bundler
+(venv) % gem install bundler --version=1.13.7
 (venv) % bundle install --path .bundle/gems
 ```
 
@@ -47,6 +54,8 @@ v7.8.0
 : npm packages (see also `gulpfile.js`)
 (venv) % npm install -g gulp-cli eslint
 (venv) % npm install
+
+(venv) % gulp
 ```
 
 ### Database
