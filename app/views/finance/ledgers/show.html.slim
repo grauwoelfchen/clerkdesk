@@ -15,34 +15,34 @@
       .ui.grid
         .twelve.wide.column
           - if params[:segment] != 'status'
-            / Recent entries
+            / Recent transactions
             .ui.grid
               .ten.wide.column
                 .ui.secondary.menu
-                  = active_link_to t('subheading.recent_entries'), url_for(segment: :entries), class: 'item', active: true
+                  = active_link_to t('subheading.recent_transactions'), url_for(segment: :transactions), class: 'item', active: true
                   = active_link_to t('subheading.current_status'), url_for(segment: :status), class: 'item', active: false
             .ui.embedded.segment
               table.ui.very.basic.compact.table
                 tbody
                   - 5.times do |i|
-                    - entry = @entries[i]
-                    - if entry
+                    - transaction = @transactions[i]
+                    - if transaction
                       tr
-                        td.entry
+                        td.transaction
                           p.account
-                            = link_to finance_ledger_account_entries_path(@ledger, entry.account), class: 'icon' do
-                              i class="icon fa fa-#{entry.account.icon} fa-lg"
-                            = link_to finance_ledger_account_entries_path(@ledger, entry.account) do
-                              = truncate entry.account.name, length: 7
+                            = link_to finance_ledger_account_transactions_path(@ledger, transaction.account), class: 'icon' do
+                              i class="icon fa fa-#{transaction.account.icon} fa-lg"
+                            = link_to finance_ledger_account_transactions_path(@ledger, transaction.account) do
+                              = truncate transaction.account.name, length: 7
                           p.type
-                            span class="label label-#{entry.type}"= t entry.type, scope: %i(activerecord values finance/ledger type)
-                          p.category= link_to truncate(entry.category.name, length: 7), finance_ledger_account_entries_path(@ledger, entry.account, c: entry.category.id)
+                            span class="label label-#{transaction.type}"= t transaction.type, scope: %i(activerecord values finance/ledger type)
+                          p.category= link_to truncate(transaction.category.name, length: 7), finance_ledger_account_transactions_path(@ledger, transaction.account, c: transaction.category.id)
                           p.title
-                           = link_to truncate(entry.title, length: 18), finance_ledger_account_entry_path(@ledger, entry.account, entry)
+                           = link_to truncate(transaction.title, length: 18), finance_ledger_account_transaction_path(@ledger, transaction.account, transaction)
                         td.total_amount
-                          span.currency= entry.total_amount
+                          span.currency= transaction.total_amount
                         td
-                          span.created_at data-format='fromNow'= entry.created_at
+                          span.created_at data-format='fromNow'= transaction.created_at
                     - else
                       tr.blank
                         td
@@ -53,7 +53,7 @@
             .ui.grid
               .ten.wide.column
                 .ui.secondary.menu
-                  = active_link_to t('subheading.recent_entries'), url_for(segment: :entries), class: 'item', active: false
+                  = active_link_to t('subheading.recent_transactions'), url_for(segment: :transactions), class: 'item', active: false
                   = active_link_to t('subheading.current_status'), url_for(segment: :status), class: 'item', active: true
             .ui.embedded.segment
               table.ui.very.basic.compact.table
@@ -67,7 +67,7 @@
                       td
                         = category.name
                       td
-                        = category.journalizings.inject(0) { |acc, j| acc += j.entries_count }
+                        = category.journalizings.inject(0) { |acc, j| acc += j.transactions_count }
         .four.wide.column
           .ui.stacked.segment
             .ui.top.attached.label TOTAL

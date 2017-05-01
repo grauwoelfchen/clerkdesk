@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
         resources :categories
         resources :accounts, except: :show do
-          resources :entries
+          resources :transactions
           resources :journalizings, only: [:index],
             constraints: {type: /income|expense/, format: :json}
         end

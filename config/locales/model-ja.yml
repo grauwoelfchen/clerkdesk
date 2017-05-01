@@ -6,7 +6,7 @@ ja:
       finance/category: 費目
       finance/account: 口座
       finance/budget: 予算
-      finance/entry: エントリ
+      finance/transaction: 取引
       snippet: ノート
       contact: 連絡先
     attributes:
@@ -36,7 +36,7 @@ ja:
         icon: アイコン
         description: 説明
         memo: メモ
-      finance/entry:
+      finance/transaction:
         <<: *default
         title: タイトル
         type: 種類

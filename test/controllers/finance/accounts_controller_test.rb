@@ -183,7 +183,7 @@ module Finance
       end
     end
 
-    def test_create_should_redirect_to_account_entries_after_store
+    def test_create_should_redirect_to_account_transactions_after_store
       within_subdomain(@team.subdomain) do
         login_user(@user)
         params = {
@@ -196,7 +196,7 @@ module Finance
         post(:create, :params => params)
         assert_response(:redirect)
         expected = {
-          :controller => 'finance/entries',
+          :controller => 'finance/transactions',
           :action     => 'index',
           :ledger_id  => @ledger.id,
           :account_id => assigns[:account].id
@@ -335,7 +335,7 @@ module Finance
       end
     end
 
-    def test_update_should_redirect_to_finance_entries_after_modify
+    def test_update_should_redirect_to_finance_transactions_after_modify
       within_subdomain(@team.subdomain) do
         login_user(@user)
         account = finance_accounts(:general_bank)
@@ -349,7 +349,7 @@ module Finance
         put(:update, :params => params)
         assert_response(:redirect)
         expected = {
-          :controller => 'finance/entries',
+          :controller => 'finance/transactions',
           :action     => 'index',
           :ledger_id  => @ledger.id,
           :account_id => assigns[:account].id

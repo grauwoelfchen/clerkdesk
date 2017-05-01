@@ -7,7 +7,7 @@ en:
       finance/category: Category
       finance/account: Account
       finance/budget: Budget
-      finance/entry: Entry
+      finance/transaction: Transaction
     attributes:
       default: &default
         created_at: Created
@@ -18,7 +18,7 @@ en:
         <<: *default
       finance/account:
         <<: *default
-      finance/entry:
+      finance/transaction:
         <<: *default
       snippet:
         <<: *default

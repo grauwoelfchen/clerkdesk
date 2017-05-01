@@ -6,7 +6,7 @@ class Contact < ActiveRecord::Base
   has_many :involvements,
     ->{ order(:id => :asc) },
     as: :holder
-  has_many :finance_entries,
+  has_many :finance_transactions,
     through:     :involvements,
     source:      :matter,
     source_type: 'Finance::Entry'

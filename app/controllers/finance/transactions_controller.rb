@@ -1,34 +1,34 @@
 module Finance
-  class EntriesController < WorkspaceController
+  class TransactionsController < WorkspaceController
     before_action :set_ledger
     before_action :set_account
     before_action :set_journalizings, only: [:new, :create, :edit, :update]
-    before_action :set_entry,         only: [:show, :edit, :update, :destroy]
+    before_action :set_transaction,         only: [:show, :edit, :update, :destroy]
 
     def index
-      @entries = @account.entries
+      @transactions = @account.transactions
         .includes(:journalizing, :category)
         .order_by(params[:field], params[:direction])
         .page(params[:page])
       if params[:c]
         @category = Finance::Category.find(params[:c])
-        @entries = @entries
+        @transactions = @transactions
           .includes(:category)
           .where(:finance_categories => {:id => params[:c]})
       end
     end
 
     def new
-      @entry = @account.entries.new
+      @transaction = @account.transactions.new
     end
 
     def create
-      @entry = @account.entries.build(entry_params)
-      if @entry.save
-        redirect_to([:finance, @ledger, @account, @entry],
-          :notice => 'Entry has been successfully created.')
+      @transaction = @account.transactions.build(transaction_params)
+      if @transaction.save
+        redirect_to([:finance, @ledger, @account, @transaction],
+          :notice => 'Transaction has been successfully created.')
       else
-        flash.now[:alert] = 'Entry could not be created.'
+        flash.now[:alert] = 'Transaction could not be created.'
         render(:new)
       end
     end
@@ -40,11 +40,11 @@ module Finance
     end
 
     def update
-      if @entry.update_attributes(entry_params)
-        redirect_to([:finance, @ledger, @account, @entry],
-          :notice => 'Entry has been successfully updated.')
+      if @transaction.update_attributes(transaction_params)
+        redirect_to([:finance, @ledger, @account, @transaction],
+          :notice => 'Transaction has been successfully updated.')
       else
-        flash.now[:alert] = 'Entry could not be updated.'
+        flash.now[:alert] = 'Transaction could not be updated.'
         render(:edit)
       end
     end
@@ -66,14 +66,14 @@ module Finance
       @journalizings = @account.journalizings.includes(:category)
     end
 
-    def set_entry
-      @entry = @account.entries
+    def set_transaction
+      @transaction = @account.transactions
         .includes(:contacts, :involvements, :category)
         .find(params[:id])
     end
 
-    def entry_params
-      permitted_params = params.require(:entry).permit(
+    def transaction_params
+      permitted_params = params.require(:transaction).permit(
         :title, :type, :journalizing_id, :total_amount, :memo,
         :involvements_attributes => [
           :id, :holder_id, :holder_type, :_destroy

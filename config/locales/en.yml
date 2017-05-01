@@ -52,13 +52,12 @@ en:
   subheading:
     finance:
       overview: Overview
-    snippet: Protokoll
     settings:
       user:
         basic_info: Basic info.
   misc:
     count: Count
-    entry: Entry
+    transaction: Transaction
     status: Status
     datetime: Datetime
     money: Money

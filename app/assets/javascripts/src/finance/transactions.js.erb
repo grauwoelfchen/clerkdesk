@@ -10,7 +10,7 @@
   $(function() {
     // indicator
     (function() {
-      var container = $('#entry_journalizing_id');
+      var container = $('#transaction_journalizing_id');
       container.parent().append(
         '<span id="indicator">' +
           '<img src="<%= asset_path('loading.gif') %>">' +
@@ -22,8 +22,8 @@
 
     // journalizings updater
     (function() {
-      var type         = $('#entry_type')
-        , journalizing = $('#entry_journalizing_id')
+      var type         = $('#transaction_type')
+        , journalizing = $('#transaction_journalizing_id')
         ;
 
       var setJournalizingOptions = function(typeVal, journalizingVal) {
@@ -103,7 +103,7 @@
     (function() {
       if ($.fn.autosize === undefined) { return; }
 
-      var textarea = $('#entry_memo');
+      var textarea = $('#transaction_memo');
       textarea.autosize();
     })();
 
@@ -111,8 +111,8 @@
     (function() {
       if ($.fn.autoNumeric === undefined) { return; }
 
-      $('#entry_type').change(function() {
-        var field = $('#entry_total_amount.currency')
+      $('#transaction_type').change(function() {
+        var field = $('#transaction_total_amount.currency')
           , currentValue = field.autoNumeric('get');
         if ($(this).val() === 'income') {
           field.autoNumeric('update', {
@@ -188,13 +188,13 @@
                     '<input' +
                     ' type="hidden"' +
                     ' id="holder_' + id + '"' +
-                    ' name="entry[involvements_attributes][][holder_id]"' +
+                    ' name="transaction[involvements_attributes][][holder_id]"' +
                     ' value="' + id + '"' +
                     '/>' +
                     '<input' +
                     ' type="hidden"' +
                     ' id="holder_' + id + '_type"' +
-                    ' name="entry[involvements_attributes][][holder_type]"' +
+                    ' name="transaction[involvements_attributes][][holder_type]"' +
                     ' value="Contact"' +
                     '/>' +
                     '</div>'

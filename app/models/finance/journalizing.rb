@@ -6,7 +6,7 @@ module Finance
 
     belongs_to :account
     belongs_to :category
-    has_many :entries, dependent: :nullify
+    has_many :transactions, dependent: :nullify
 
     scope :category_type, ->(type) {
       includes(:category)

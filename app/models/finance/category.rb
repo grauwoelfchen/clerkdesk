@@ -12,7 +12,7 @@ module Finance
 
     belongs_to :ledger
     has_many :journalizings, dependent: :destroy
-    has_many :entries, through: :journalizings
+    has_many :transactions, through: :journalizings
 
     def self.to_param
       self.class.name

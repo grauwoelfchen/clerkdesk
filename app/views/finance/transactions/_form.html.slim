@@ -1,0 +1,49 @@
+- content_for :script do
+  = javascript_include_tag 'src/finance/transactions'
+
+.attrs style="height:0;width:0;opacity:0;"
+  span#ledger data-id=@ledger.id
+  span#account data-id=@account.id
+
+= form_for [:finance, ledger, account, transaction], html: {class: 'ui form'} do |f|
+  - if transaction.errors.any?
+    = render 'shared/error', resource: transaction
+  fieldset
+    legend= Finance::Transaction.model_name.human
+    .field
+      = f.label :title
+      = f.text_field :title, placeholder: 'Title'
+    .fields
+      .seven.wide.field
+        = f.label :type
+        = f.select :type, Finance::Transaction.human_types.invert, {}, class: 'ui dropdown'
+      .nine.wide.field
+        - journalizings = transaction.journalizing_id ? [['', transaction.journalizing_id]] : []
+        = f.label :journalizing_id, Finance::Category.model_name.human
+        = f.select :journalizing_id, journalizings, {prompt: '---'}, class: 'ui dropdown'
+    .field
+      = f.label :total_amount
+      = f.text_field :total_amount, class: 'currency', placeholder: ''
+  fieldset
+    legend= t('legend.additional_info')
+    .field
+      = f.label :memo
+      = f.text_area :memo, rows: 3, placeholder: 'Memo'
+    .field
+      = f.label :involvements
+      - labels = account_transaction_contact_labels(transaction).join(',')
+      = text_field_tag :labels, labels, id: 'labels', placeholder: 'Contact'
+      #involvements
+        - transaction.involvements.each do |involvement|
+          - if involvement.holder_type == 'Contact'
+            div.holder
+              = f.hidden_field :involvement, id: "holder_#{involvement.holder_id}", value: involvement.holder_id, name: 'transaction[involvements_attributes][][holder_id]'
+              = f.hidden_field :involvement, id: "holder_#{involvement.holder_id}_type", value: 'Contact', name: 'transaction[involvements_attributes][][holder_type]'
+              - if involvement.persisted?
+                = f.hidden_field :involvement, id: "holder_#{involvement.holder_id}_id", value: involvement.id, class: 'id', name: 'transaction[involvements_attributes][][id]'
+                = f.hidden_field :involvement, id: "holder_#{involvement.holder_id}_destroy", value: '0', class: 'destroy', name: 'transaction[involvements_attributes][][_destroy]'
+    .actions
+      - action = transaction.persisted? ? 'update' : 'create'
+      = f.submit t("action.#{action}"), class: 'ui submit button'
+      - if action == 'update'
+        = link_to t('action.destroy'), finance_ledger_account_transaction_path(ledger, account, transaction), class: 'ui button negative', data: {method: :delete, confirm: 'Are you sure?'}

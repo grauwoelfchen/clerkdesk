@@ -14,7 +14,7 @@ module Finance
     has_many :accounts
     has_many :categories
     has_many :journalizings, through: :categories
-    has_many :entries, through: :journalizings
+    has_many :transactions, through: :journalizings
 
     validates :name,
       presence: true
@@ -43,8 +43,8 @@ module Finance
         .limit(limit_count)
     end
 
-    def recent_entries(limit_count=5)
-      entries
+    def recent_transactions(limit_count=5)
+      transactions
         .includes(:account, :category)
         .order(:updated_at => :desc)
         .limit(limit_count)

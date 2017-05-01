@@ -1,0 +1,35 @@
+- breadcrumb :'finance/transaction', @ledger, @account, @transaction
+
+- content_for :actions
+  .item
+    = render 'finance/shared/actions', ledger: @ledger
+  .item
+    = Finance::Transaction.model_name.human
+    .menu
+      = link_to t('action.new'), new_finance_ledger_account_transaction_path(@ledger, @account), class: 'item'
+      = link_to t('action.index'), finance_ledger_account_transactions_path(@ledger, @account), class: 'item'
+      = link_to t('action.show'), finance_ledger_account_transaction_path(@ledger, @account, @transaction), class: 'item'
+      = link_to t('action.edit'), edit_finance_ledger_account_transaction_path(@ledger, @account, @transaction), class: 'item active'
+
+- content_for :links
+  ul.links
+    li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.pluralize.downcase), finance_ledger_accounts_path(@ledger)
+    li= link_to t('action.resource.edit', resource: Finance::Account.model_name.human.downcase), edit_finance_ledger_account_path(@ledger, @account)
+    li= link_to t('action.resource.index', resource: Finance::Transaction.model_name.human.pluralize.downcase), finance_ledger_account_transactions_path(@ledger, @account)
+    li= link_to t('action.resource.show', resource: Finance::Transaction.model_name.human.downcase), finance_ledger_account_transaction_path(@ledger, @account, @transaction)
+    li= link_to t('action.resource.new', resource: Finance::Transaction.model_name.human.downcase), new_finance_ledger_account_transaction_path(@ledger, @account)
+
+.finance.transaction
+  section
+    = render 'finance/shared/ledger', ledger: @ledger
+    .container
+      = render 'finance/shared/menu', ledger: @ledger, account: @account, transaction: @transaction
+      .page-content
+        .ui.grid
+          .twelve.wide.column
+            = render 'finance/shared/account', ledger: @ledger, account: @account
+            h6= t('action.edit')
+        .ui.grid
+          .seven.wide.column
+            .container
+              = render 'form', ledger: @ledger, account: @account, transaction: @transaction, journalizings: @journalizings

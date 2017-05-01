@@ -1,10 +1,10 @@
 require 'test_helper'
 
 module Finance
-  class EntriesControllerTest < ActionController::TestCase
+  class TransactionsControllerTest < ActionController::TestCase
     locker_room_fixtures(:teams, :users, :mateships)
     fixtures(:'finance/ledgers', :'finance/categories', :'finance/accounts',
-      :'finance/journalizings', :'finance/entries')
+      :'finance/journalizings', :'finance/transactions')
 
     def setup
       @user = locker_room_users(:oswald)
@@ -28,7 +28,7 @@ module Finance
         assert_equal(@account, assigns[:account])
         assert_equal(@ledger, @account.ledger)
         refute(assigns[:category])
-        refute_empty(assigns[:entries])
+        refute_empty(assigns[:transactions])
       end
     end
 
@@ -60,8 +60,8 @@ module Finance
         assert_equal(@account, assigns[:account])
         assert_equal(@ledger, @account.ledger)
         assert_equal(category, assigns[:category])
-        refute_empty(assigns[:entries])
-        assert_equal([category], assigns[:entries].map(&:category).uniq)
+        refute_empty(assigns[:transactions])
+        assert_equal([category], assigns[:transactions].map(&:category).uniq)
       end
     end
 

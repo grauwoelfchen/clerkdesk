@@ -8,7 +8,7 @@ module Finance
     belongs_to :ledger
     has_many :journalizings
     has_many :categories, through: :journalizings
-    has_many :entries
+    has_many :transactions
 
     orderable :description, name: :asc
 

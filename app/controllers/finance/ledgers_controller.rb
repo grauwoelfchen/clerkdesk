@@ -24,12 +24,12 @@ module Finance
     end
 
     def show
-      @expense = @ledger.entries.total_expense
-      @income  = @ledger.entries.total_income
+      @expense = @ledger.transactions.total_expense
+      @income  = @ledger.transactions.total_income
       if params[:segment] == 'status'
         @categories = @ledger.recent_categories
-      else # entries
-        @entries = @ledger.recent_entries
+      else # transactions
+        @transactions = @ledger.recent_transactions
       end
     end
 

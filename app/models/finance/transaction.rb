@@ -1,16 +1,16 @@
 module Finance
-  class Entry < ActiveRecord::Base
+  class Transaction < ActiveRecord::Base
     extend FiscalPolicyExtension
     include Orderable
 
-    self.table_name = 'finance_entries'
+    self.table_name = 'finance_transactions'
 
     self.inheritance_column = 'null'
     enum_accessor :type, [:expense, :income]
 
     belongs_to :account
     belongs_to :journalizing,
-      counter_cache: :entries_count
+      counter_cache: :transactions_count
     has_many :involvements,
       ->{ order(:id => :asc) },
       as: :matter

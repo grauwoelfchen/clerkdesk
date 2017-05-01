@@ -1,4 +1,4 @@
-- breadcrumb :'finance/entries', @ledger, @account, @category
+- breadcrumb :'finance/transactions', @ledger, @account, @category
 
 - content_for :header
   = render 'finance/search'
@@ -7,16 +7,16 @@
   .item
     = render 'finance/shared/actions', ledger: @ledger
   .item
-    = Finance::Entry.model_name.human
+    = Finance::Transaction.model_name.human
     .menu
-      = link_to t('action.new'), new_finance_ledger_account_entry_path(@ledger, @account), class: 'item'
-      = link_to t('action.index'), finance_ledger_account_entries_path(@ledger, @account), class: 'item active'
+      = link_to t('action.new'), new_finance_ledger_account_transaction_path(@ledger, @account), class: 'item'
+      = link_to t('action.index'), finance_ledger_account_transactions_path(@ledger, @account), class: 'item active'
 
 - content_for :links
   ul.links
     li= link_to t('action.resource.index', resource: Finance::Account.model_name.human.downcase), finance_ledger_accounts_path(@ledger)
     li= link_to t('action.resource.edit', resource: Finance::Account.model_name.human.downcase), edit_finance_ledger_account_path(@ledger, @account)
-    li= link_to t('action.resource.new', resource: Finance::Entry.model_name.human.downcase), new_finance_ledger_account_entry_path(@ledger, @account)
+    li= link_to t('action.resource.new', resource: Finance::Transaction.model_name.human.downcase), new_finance_ledger_account_transaction_path(@ledger, @account)
 
 .finance.account
   section.block
@@ -30,7 +30,7 @@
             - if @category
               p.category= @category.name
             .container
-              = render 'shared/pagination', resource: @entries
+              = render 'shared/pagination', resource: @transactions
               table.ui.very.basic.compact.table
                 thead
                   tr
@@ -40,37 +40,37 @@
                       = sort_links_for(:journalizing_id)
                     th
                       span.attribute
-                        = Finance::Entry.human_attribute_name(:title)
+                        = Finance::Transaction.human_attribute_name(:title)
                       = sort_links_for(:title)
                     th
                       span.attribute
-                        = Finance::Entry.human_attribute_name(:type)
+                        = Finance::Transaction.human_attribute_name(:type)
                       = sort_links_for(:type)
                     th
                       span.attribute
-                        = Finance::Entry.human_attribute_name(:total_amount)
+                        = Finance::Transaction.human_attribute_name(:total_amount)
                       = sort_links_for(:total_amount)
                     th
                       span.attribute
-                        = Finance::Entry.human_attribute_name(:updated_at)
+                        = Finance::Transaction.human_attribute_name(:updated_at)
                       = sort_links_for(:updated_at, :desc)
                     th
                 tbody
-                  - @entries.each do |entry|
+                  - @transactions.each do |transaction|
                     tr
                       td.category
-                        - if entry.category
-                          = link_to entry.category.name, finance_ledger_account_entries_path(@ledger, @account, c: entry.category.id)
+                        - if transaction.category
+                          = link_to transaction.category.name, finance_ledger_account_transactions_path(@ledger, @account, c: transaction.category.id)
                       td.title
-                        = link_to entry.title, finance_ledger_account_entry_path(@ledger, @account, entry)
+                        = link_to transaction.title, finance_ledger_account_transaction_path(@ledger, @account, transaction)
                       td.type
-                        span class="label label-#{entry.type}"= entry.human_type
+                        span class="label label-#{transaction.type}"= transaction.human_type
                       td.total_amount
-                        span.currency= entry.total_amount
-                      td.updated_at= entry.updated_at
+                        span.currency= transaction.total_amount
+                      td.updated_at= transaction.updated_at
                       td.operations
                         ul
-                          li= link_to t('action.edit'),    edit_finance_ledger_account_entry_path(@ledger, @account, entry)
+                          li= link_to t('action.edit'),    edit_finance_ledger_account_transaction_path(@ledger, @account, transaction)
                           li= link_to t('action.destroy'), nil, method: :delete, data: {confirm: 'Are you sure?'}
 
-              = render 'shared/pagination', resource: @entries
+              = render 'shared/pagination', resource: @transactions

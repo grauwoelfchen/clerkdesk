@@ -3,7 +3,7 @@ require 'test_helper'
 class FinanceRouteTest < ActionDispatch::IntegrationTest
   locker_room_fixtures(:teams, :users, :mateships)
   fixtures(:'finance/ledgers', :'finance/budgets', :'finance/accounts',
-           :'finance/entries', :'finance/categories', :'finance/categories')
+           :'finance/transactions', :'finance/categories', :'finance/categories')
 
   def test_route_to_finance_ledgers
     within_subdomain_host do |host|

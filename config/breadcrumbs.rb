@@ -41,21 +41,21 @@ crumb :'finance/account' do |ledger, account|
   parent :'finance/accounts', ledger
 end
 
-crumb :'finance/entries' do |ledger, account, category|
-  link Finance::Entry.model_name.human.pluralize, finance_ledger_account_entries_path(ledger, account)
+crumb :'finance/transactions' do |ledger, account, category|
+  link Finance::Transaction.model_name.human.pluralize, finance_ledger_account_transactions_path(ledger, account)
   if category
     link category.name, finance_ledger_category_path(ledger, category)
   end
   parent :'finance/account', ledger, account
 end
 
-crumb :'finance/entry' do |ledger, account, entry|
-  unless entry.persisted?
+crumb :'finance/transaction' do |ledger, account, transaction|
+  unless transaction.persisted?
     link t('crumb.new'), nil
   else
-    link entry.title, finance_ledger_account_entry_path(ledger, account, entry)
+    link transaction.title, finance_ledger_account_transaction_path(ledger, account, transaction)
   end
-  parent :'finance/entries', ledger, account
+  parent :'finance/transactions', ledger, account
 end
 
 crumb :'finance/budget' do |ledger|
