@@ -4,6 +4,8 @@
 https://codeclimate.com/github/grauwoelfchen/librecash)
 [![Test Coverage](https://codeclimate.com/github/grauwoelfchen/librecash/badges/coverage.svg)](
 https://codeclimate.com/github/grauwoelfchen/librecash/coverage)
+[![Codeship Status for librecash/librecash](
+https://app.codeship.com/projects/04ca8560-130f-0135-92c5-76b526e3acb8/status?branch=master)](https://app.codeship.com/projects/217353)
 [![Managed with Taiga.io](https://img.shields.io/badge/managed%20with-TAIGA.io-709f14.svg)](
 https://tree.taiga.io/project/grauwoelfchen-librecash/ "Managed with Taiga.io")
 
